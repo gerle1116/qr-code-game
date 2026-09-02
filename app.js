@@ -161,64 +161,70 @@ function changeLanguage() {
     setTimeout(() => el.remove(), 2200);
   }
 
- function shell(content, { back = null, label = "CITY QUEST", debugButton = false } = {}) {
+ function shell(
+  content,
+  { back = null, label = "CITY QUEST", debugButton = false } = {}
+) {
   app.innerHTML = `
     <main class="shell">
+
+      <button
+        id="languageBtn"
+        type="button"
+        style="
+          position:fixed;
+          top:14px;
+          right:14px;
+          z-index:99999;
+          padding:10px 14px;
+          border:none;
+          border-radius:12px;
+          background:#ffffff;
+          color:#173f32;
+          font-weight:800;
+          font-size:16px;
+          box-shadow:0 3px 10px rgba(0,0,0,.25);
+          cursor:pointer;
+        "
+      >
+        ${language === "en" ? "🇭🇺 HU" : "🇬🇧 EN"}
+      </button>
+
       <header class="topbar">
         <div>
           ${
             back
-              ? `<button class="back-button" id="backBtn" type="button">${t("back", "← Back")}</button>`
+              ? `<button class="back-button" id="backBtn" type="button">
+                   ${t("back", "← Back")}
+                 </button>`
               : `<div class="brand-mini">${esc(label)}</div>`
           }
         </div>
 
         <div class="top-actions">
-          <button
-            class="icon-button"
-            id="languageBtn"
-            type="button"
-            aria-label="Change language"
-          >
-            ${language === "en" ? "HU" : "EN"}
-          </button>
-
           ${
             debugButton
-              ? `<button class="icon-button" id="debugBtn" type="button">${t("debug", "Debug")}</button>`
+              ? `<button class="icon-button" id="debugBtn" type="button">Debug</button>`
               : ""
           }
         </div>
       </header>
 
       ${content}
-    </main>`;
+    </main>
+  `;
 
   if (back) {
     document.getElementById("backBtn").onclick = back;
   }
 
-  const languageBtn = document.getElementById("languageBtn");
-  if (languageBtn) {
-    languageBtn.onclick = changeLanguage;
-  }
+  document.getElementById("languageBtn").onclick = changeLanguage;
 
   if (debugButton) {
     document.getElementById("debugBtn").onclick = showDebug;
   }
 }
-    app.innerHTML = `
-      <main class="shell">
-        <header class="topbar">
-          <div>${back ? `<button class="back-button" id="backBtn" type="button">← Back</button>` : `<div class="brand-mini">${esc(label)}</div>`}</div>
-          <div class="top-actions">${debugButton ? `<button class="icon-button" id="debugBtn" type="button">Debug</button>` : ""}</div>
-        </header>
-        ${content}
-      </main>`;
-    if (back) document.getElementById("backBtn").onclick = back;
-    if (debugButton) document.getElementById("debugBtn").onclick = showDebug;
-  }
-
+  
 function stopCamera() {
   scanLoopToken++;
   scannerLocked = true;
