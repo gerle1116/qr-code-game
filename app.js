@@ -314,8 +314,8 @@ function stopCamera() {
             type="button"
             data-inventory-index="${index}"
             style="width:100%;text-align:left;color:inherit;font:inherit;cursor:pointer"
-          >${esc(item)}</button>`).join("")}</div>`
-      : `<div class="empty">You have no items yet.</div>`;
+          >${esc(translatedItem(item))}</button>`).join("")}</div>`
+      : `<div class="empty">${t("inventoryEmpty", "You have no items yet.")}</div>`;
 
     shell(`
       <section class="card screen-card inventory-screen">
@@ -342,11 +342,11 @@ function stopCamera() {
     stopCamera();
     const active = Object.entries(save.quests).filter(([, status]) => status === "active").map(([name]) => name);
     const body = active.length
-      ? `<div class="list">${active.map(q => `<div class="list-item">◇ ${esc(q)}</div>`).join("")}</div>`
+      ? `<div class="list">${active.map(q => `<div class="list-item">◇ ${esc(translatedQuest(q))}</div>`).join("")}</div>`
       : `<div class="empty">No active objectives.</div>`;
     shell(`
       <section class="card screen-card">
-        <h1 class="screen-title">Objectives</h1>
+        <h1 class="screen-title">${t("objectives", "Objectives")}</h1>
         <p class="screen-subtitle">Only active quests appear here.</p>
         ${body}
       </section>`, { back: showHome });
@@ -617,14 +617,14 @@ function acceptScannedText(raw) {
     } else {
       const buttons = visibleButtons(page, context);
       controls = buttons.length
-        ? `<div class="choices">${buttons.map(b => `<button class="choice-btn" type="button" data-button-index="${b.index}" data-next="${esc(b.next || "")}">${DEBUG ? `<span class="num">${b.index}</span>` : ""}${esc(b.label)}</button>`).join("")}</div>`
+        ? `<div class="choices">${buttons.map(b => `<button class="choice-btn" type="button" data-button-index="${b.index}" data-next="${esc(b.next || "")}">${DEBUG ? `<span class="num">${b.index}</span>` : ""}${esc(translatedLabel(b.label))}</button>`).join("")}</div>`
         : `<div class="empty">No choices are available on this page.</div>`;
     }
 
     shell(`
       <section class="card screen-card encounter-card">
-        <div class="speaker-row"><div class="speaker">${esc(page.speaker || "Encounter")}</div>${DEBUG ? `<div class="page-id">${esc(page.id)}</div>` : ""}</div>
-        <p class="dialogue">${esc(page.text)}</p>
+        <div class="speaker-row"><div class="speaker">${esc(translatedSpeaker(page.speaker || "Encounter"))}</div>${DEBUG ? `<div class="page-id">${esc(page.id)}</div>` : ""}</div>
+        <p class="dialogue">${esc(translatedPageText(page))}</p>
         ${controls}
       </section>`, { back: context.type === "item" ? showInventory : showHome });
 
@@ -657,17 +657,34 @@ function acceptScannedText(raw) {
     });
   }
 
-  function dropdownUI(action) {
-    if (action.type === "DROPDOWN_CHOICE") {
-      return {
-        empty: !action.options.length,
-        options: action.options.map(o => ({ label: o.label, value: o.label }))
-      };
-    }
-    const options = save.inventory.map(item => ({ label: item, value: item }));
-    return { empty: options.length === 0, options };
+function dropdownUI(action) {
+  if (action.type === "DROPDOWN_CHOICE") {
+    return {
+      empty: !action.options.length,
+
+      options: action.options.map(o => ({
+        // translated text shown to player
+        label: translatedLabel(o.label),
+
+        // ORIGINAL English value used by game logic
+        value: o.label
+      }))
+    };
   }
 
+  const options = save.inventory.map(item => ({
+    // Hungarian/English visible item name
+    label: translatedItem(item),
+
+    // original internal item name
+    value: item
+  }));
+
+  return {
+    empty: options.length === 0,
+    options
+  };
+}
   function confirmDropdown(page, action) {
     const select = document.getElementById("dropdownSelect");
     let destination = null;
