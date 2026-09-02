@@ -16,13 +16,8 @@
   let scanLoopToken = 0;
   let zxingControls = null;
   let offlineStatus = location.protocol === "file:" ? "Local files ready" : "Preparing offline mode…";
-
-  if (!GAME || !GAME.encounters) {
-    app.textContent = "Game data could not be loaded.";
-    return;
-  }
-  
 const I18N = window.QR_CITY_QUEST_I18N || {};
+
 const LANGUAGE_KEY = "qr-city-quest-language";
 
 let language =
@@ -30,21 +25,26 @@ let language =
     ? "hu"
     : "en";
 
+
 function t(key, fallback) {
   return I18N[language]?.ui?.[key] ?? fallback;
 }
+
 
 function translatedSpeaker(name) {
   return I18N[language]?.speakers?.[name] ?? name;
 }
 
+
 function translatedItem(name) {
   return I18N[language]?.items?.[name] ?? name;
 }
 
+
 function translatedQuest(name) {
   return I18N[language]?.quests?.[name] ?? name;
 }
+
 
 function translatedLabel(label) {
   return (
@@ -54,6 +54,7 @@ function translatedLabel(label) {
   );
 }
 
+
 function translatedPageText(page) {
   return (
     I18N[language]?.pages?.[page.id]?.text ??
@@ -61,16 +62,46 @@ function translatedPageText(page) {
   );
 }
 
-function changeLanguage() {
-  language = language === "en" ? "hu" : "en";
-  localStorage.setItem(LANGUAGE_KEY, language);
 
-  if (currentPageId && currentPageId !== "-1") {
-    showPage(currentPageId);
+function changeLanguage() {
+  if (language === "en") {
+    language = "hu";
   } else {
-    showHome();
+    language = "en";
   }
+
+  localStorage.setItem(
+    LANGUAGE_KEY,
+    language
+  );
+
+  console.log(
+    "Language changed to:",
+    language
+  );
+
+  toast(
+    language === "hu"
+      ? "Nyelv: Magyar 🇭🇺"
+      : "Language: English 🇬🇧"
+  );
+
+  if (
+    currentPageId &&
+    currentPageId !== "-1" &&
+    findPage(currentPageId)
+  ) {
+    showPage(currentPageId);
+    return;
+  }
+
+  showHome();
 }
+  if (!GAME || !GAME.encounters) {
+    app.textContent = "Game data could not be loaded.";
+    return;
+  }
+  
   function defaultSave() {
     return {
       schemaVersion: 1,
@@ -218,7 +249,17 @@ function changeLanguage() {
     document.getElementById("backBtn").onclick = back;
   }
 
-  document.getElementById("languageBtn").onclick = changeLanguage;
+const languageButton =
+  document.getElementById("languageBtn");
+
+if (languageButton) {
+  languageButton.addEventListener(
+    "click",
+    function () {
+      changeLanguage();
+    }
+  );
+}
 
   if (debugButton) {
     document.getElementById("debugBtn").onclick = showDebug;
