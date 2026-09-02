@@ -21,7 +21,56 @@
     app.textContent = "Game data could not be loaded.";
     return;
   }
+  
+const I18N = window.QR_CITY_QUEST_I18N || {};
+const LANGUAGE_KEY = "qr-city-quest-language";
 
+let language =
+  localStorage.getItem(LANGUAGE_KEY) === "hu"
+    ? "hu"
+    : "en";
+
+function t(key, fallback) {
+  return I18N[language]?.ui?.[key] ?? fallback;
+}
+
+function translatedSpeaker(name) {
+  return I18N[language]?.speakers?.[name] ?? name;
+}
+
+function translatedItem(name) {
+  return I18N[language]?.items?.[name] ?? name;
+}
+
+function translatedQuest(name) {
+  return I18N[language]?.quests?.[name] ?? name;
+}
+
+function translatedLabel(label) {
+  return (
+    I18N[language]?.labels?.[label] ??
+    I18N[language]?.items?.[label] ??
+    label
+  );
+}
+
+function translatedPageText(page) {
+  return (
+    I18N[language]?.pages?.[page.id]?.text ??
+    page.text
+  );
+}
+
+function changeLanguage() {
+  language = language === "en" ? "hu" : "en";
+  localStorage.setItem(LANGUAGE_KEY, language);
+
+  if (currentPageId && currentPageId !== "-1") {
+    showPage(currentPageId);
+  } else {
+    showHome();
+  }
+}
   function defaultSave() {
     return {
       schemaVersion: 1,
@@ -112,7 +161,52 @@
     setTimeout(() => el.remove(), 2200);
   }
 
-  function shell(content, { back = null, label = "CITY QUEST", debugButton = false } = {}) {
+ function shell(content, { back = null, label = "CITY QUEST", debugButton = false } = {}) {
+  app.innerHTML = `
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          ${
+            back
+              ? `<button class="back-button" id="backBtn" type="button">${t("back", "← Back")}</button>`
+              : `<div class="brand-mini">${esc(label)}</div>`
+          }
+        </div>
+
+        <div class="top-actions">
+          <button
+            class="icon-button"
+            id="languageBtn"
+            type="button"
+            aria-label="Change language"
+          >
+            ${language === "en" ? "HU" : "EN"}
+          </button>
+
+          ${
+            debugButton
+              ? `<button class="icon-button" id="debugBtn" type="button">${t("debug", "Debug")}</button>`
+              : ""
+          }
+        </div>
+      </header>
+
+      ${content}
+    </main>`;
+
+  if (back) {
+    document.getElementById("backBtn").onclick = back;
+  }
+
+  const languageBtn = document.getElementById("languageBtn");
+  if (languageBtn) {
+    languageBtn.onclick = changeLanguage;
+  }
+
+  if (debugButton) {
+    document.getElementById("debugBtn").onclick = showDebug;
+  }
+}
     app.innerHTML = `
       <main class="shell">
         <header class="topbar">
