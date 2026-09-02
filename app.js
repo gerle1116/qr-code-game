@@ -14,7 +14,7 @@
   let scannerLocked = false;
   let cameraStream = null;
   let scanLoopToken = 0;
-  let detector = null;
+  let zxingControls = null;
   let offlineStatus = location.protocol === "file:" ? "Local files ready" : "Preparing offline mode…";
 
   if (!GAME || !GAME.encounters) {
@@ -125,16 +125,42 @@
     if (debugButton) document.getElementById("debugBtn").onclick = showDebug;
   }
 
-  function stopCamera() {
-    scanLoopToken++;
-    scannerLocked = true;
-    if (cameraStream) {
-      cameraStream.getTracks().forEach(track => track.stop());
-      cameraStream = null;
-    }
-    const video = document.getElementById("cameraVideo");
-    if (video) video.srcObject = null;
+function stopCamera() {
+  scanLoopToken++;
+  scannerLocked = true;
+
+  if (zxingControls) {
+    try {
+      zxingControls.stop();
+    } catch (_) {}
+
+    zxingControls = null;
   }
+
+  if (cameraStream) {
+    cameraStream
+      .getTracks()
+      .forEach(track => track.stop());
+
+    cameraStream = null;
+  }
+
+  const video =
+    document.getElementById("cameraVideo");
+
+  if (video) {
+    if (
+      video.srcObject &&
+      video.srcObject.getTracks
+    ) {
+      video.srcObject
+        .getTracks()
+        .forEach(track => track.stop());
+    }
+
+    video.srcObject = null;
+  }
+}
 
   function showHome() {
     stopCamera();
@@ -232,21 +258,6 @@
       </section>`, { back: showHome });
   }
 
-  async function getDetector() {
-    if (detector) return detector;
-    if (!("BarcodeDetector" in window)) return null;
-    try {
-      if (BarcodeDetector.getSupportedFormats) {
-        const formats = await BarcodeDetector.getSupportedFormats();
-        if (!formats.includes("qr_code")) return null;
-      }
-      detector = new BarcodeDetector({ formats: ["qr_code"] });
-      return detector;
-    } catch (_) {
-      return null;
-    }
-  }
-
   function showScanner() {
     stopCamera();
     scannerLocked = false;
@@ -276,51 +287,71 @@
     if (secure) startCameraScanner();
   }
 
-  async function startCameraScanner() {
-    const msg = document.getElementById("cameraMessage");
-    const video = document.getElementById("cameraVideo");
-    if (!video || !msg) return;
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      msg.textContent = "Camera access is not available here. Use the code box below.";
-      return;
-    }
-    const qrDetector = await getDetector();
-    if (!qrDetector) {
-      msg.textContent = "This browser cannot decode camera QR codes natively. Use the two-digit code box below.";
-      return;
-    }
-    try {
-      cameraStream = await navigator.mediaDevices.getUserMedia({
-        audio: false,
-        video: { facingMode: { ideal: "environment" } }
-      });
-      video.srcObject = cameraStream;
-      await video.play();
-      msg.textContent = "Point the camera at a City Quest QR code.";
-      scannerLocked = false;
-      const token = ++scanLoopToken;
-      let last = 0;
-      const loop = async now => {
-        if (token !== scanLoopToken || scannerLocked || !document.getElementById("cameraVideo")) return;
-        if (now - last > 220 && video.readyState >= 2) {
-          last = now;
-          try {
-            const found = await qrDetector.detect(video);
-            if (found && found[0] && found[0].rawValue) {
-              acceptScannedText(found[0].rawValue);
-              return;
+async function startCameraScanner() {
+  const msg = document.getElementById("cameraMessage");
+  const video = document.getElementById("cameraVideo");
+
+  if (!video || !msg) return;
+
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    msg.textContent =
+      "Camera access is not available here. Use the code box below.";
+    return;
+  }
+
+  if (!window.ZXingBrowser) {
+    msg.textContent = "QR scanner could not load.";
+    return;
+  }
+
+  try {
+    const codeReader =
+      new ZXingBrowser.BrowserQRCodeReader();
+
+    scannerLocked = false;
+
+    zxingControls =
+      await codeReader.decodeFromConstraints(
+        {
+          audio: false,
+          video: {
+            facingMode: {
+              ideal: "environment"
             }
-          } catch (_) {}
+          }
+        },
+
+        video,
+
+        (result, error, controls) => {
+          if (!result || scannerLocked) return;
+
+          zxingControls = controls;
+
+          const text = result.getText();
+
+          console.log("QR scanned:", text);
+
+          acceptScannedText(text);
         }
-        requestAnimationFrame(loop);
-      };
-      requestAnimationFrame(loop);
-    } catch (err) {
-      msg.textContent = err && err.name === "NotAllowedError"
+      );
+
+    if (video.srcObject instanceof MediaStream) {
+      cameraStream = video.srcObject;
+    }
+
+    msg.textContent =
+      "Point the camera at a City Quest QR code.";
+
+  } catch (err) {
+    console.error("QR camera error:", err);
+
+    msg.textContent =
+      err && err.name === "NotAllowedError"
         ? "Camera permission was denied. Allow camera access or enter the code below."
         : "Camera could not start. Use the two-digit code box below.";
-    }
   }
+}
 
   async function scanImageFile(event) {
     const file = event.target.files && event.target.files[0];
