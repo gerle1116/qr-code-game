@@ -2102,6 +2102,7 @@
     },
     "09": {
       "startPage": "0901",
+      "requiredArea": "CASTLE_SIDE",
       "pages": {
         "0901": {
           "id": "0901",
@@ -2387,6 +2388,7 @@
     },
     "10": {
       "startPage": "1001",
+      "requiredArea": "CASTLE_SIDE",
       "pages": {
         "1001": {
           "id": "1001",
@@ -3003,7 +3005,7 @@
           "actions": [
             {
               "type": "UNLOCK_AREA",
-              "data": "Castle Entrance"
+              "data": "CASTLE_SIDE"
             }
           ],
           "condition": null
