@@ -91,10 +91,7 @@
           You can't reach this place yet.
           The bridge is locked.
         </p>
-  
-        <p>
-          Find a way to get past the Troll.
-        </p>
+
   
         <div class="error-actions">
           <button
