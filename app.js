@@ -78,7 +78,39 @@
       return defaultSave();
     }
   }
-
+  function showAreaLocked() {
+    stopCamera();
+  
+    shell(`
+      <section class="card error-card screen-card">
+        <div class="error-icon" aria-hidden="true">🔒</div>
+  
+        <h2>Area Locked</h2>
+  
+        <p>
+          You can't reach this place yet.
+          The bridge is locked.
+        </p>
+  
+        <p>
+          Find a way to get past the Troll.
+        </p>
+  
+        <div class="error-actions">
+          <button
+            class="primary"
+            id="lockedHome"
+            type="button"
+          >
+            OK
+          </button>
+        </div>
+      </section>
+    `, { back: showHome });
+  
+    document.getElementById("lockedHome").onclick =
+      showHome;
+  }
   function persist() {
     save.inventory = [...new Set(save.inventory)];
     save.flags.unlockedAreas = [...new Set(save.flags.unlockedAreas || [])];
@@ -448,11 +480,19 @@ function acceptScannedText(raw) {
     document.getElementById("homeFromError").onclick = showHome;
   }
 
-  function resolveScan(encounterId) {
-    const encounter = GAME.encounters[encounterId];
-    if (!encounter) return showUnknownQR();
-    currentEncounter = encounterId;
-    currentItemName = null;
+function resolveScan(encounterId) {
+  const encounter = GAME.encounters[encounterId];
+
+  if (!encounter) return showUnknownQR();
+
+  if (
+    encounter.requiredArea &&
+    !save.flags.unlockedAreas.includes(encounter.requiredArea)
+  ) {
+    return showAreaLocked();
+  }
+
+  currentEncounter = encounterId;
 
     const savedPage = save.encounters[encounterId] || encounter.startPage;
     if (savedPage !== "-1") return showPage(savedPage);
