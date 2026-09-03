@@ -465,49 +465,64 @@ function acceptScannedText(raw) {
   }
 }
 
-  function showUnknownQR() {
-    shell(`
-      <section class="card error-card screen-card">
-        <div class="error-icon" aria-hidden="true">?</div>
-        <h2>Unknown QR</h2>
-        <p>This QR isn't part of this game.</p>
-        <div class="error-actions">
-          <button class="primary" id="scanAgain" type="button">Scan again</button>
-          <button class="secondary" id="homeFromError" type="button">Home</button>
-        </div>
-      </section>`, { back: showHome });
-    document.getElementById("scanAgain").onclick = showScanner;
-    document.getElementById("homeFromError").onclick = showHome;
-  }
-
-function resolveScan(encounterId) {
-  const encounter = GAME.encounters[encounterId];
-
-  if (!encounter) return showUnknownQR();
-
-  if (
-    encounter.requiredArea &&
-    !save.flags.unlockedAreas.includes(encounter.requiredArea)
-  ) {
-    return showAreaLocked();
-  }
-
-  currentEncounter = encounterId;
-
-    const savedPage = save.encounters[encounterId] || encounter.startPage;
-    if (savedPage !== "-1") return showPage(savedPage);
-
+  function resolveScan(encounterId) {
+    const encounter = GAME.encounters[encounterId];
+  
+    if (!encounter) {
+      return showUnknownQR();
+    }
+  
+    // 🔒 AREA LOCK CHECK
+    if (
+      encounter.requiredArea &&
+      !save.flags.unlockedAreas.includes(
+        encounter.requiredArea
+      )
+    ) {
+      return showAreaLocked();
+    }
+  
+    currentEncounter = encounterId;
+    currentItemName = null;
+  
+    const savedPage =
+      save.encounters[encounterId] ||
+      encounter.startPage;
+  
+    if (savedPage !== "-1") {
+      return showPage(savedPage);
+    }
+  
     const timer = save.timers[encounterId];
-    if (!timer) return showDataError(`Encounter ${encounterId} is waiting (-1), but it has no timer record.`);
-    if (Date.now() < Number(timer.endAt)) return showTimerWait(encounterId, timer);
-
-    if (!findPage(timer.resumePage)) return showDataError(`Timer for encounter ${encounterId} points to missing page ${timer.resumePage}.`);
-    save.encounters[encounterId] = timer.resumePage;
+  
+    if (!timer) {
+      return showDataError(
+        `Encounter ${encounterId} is waiting (-1), but it has no timer record.`
+      );
+    }
+  
+    if (Date.now() < Number(timer.endAt)) {
+      return showTimerWait(
+        encounterId,
+        timer
+      );
+    }
+  
+    if (!findPage(timer.resumePage)) {
+      return showDataError(
+        `Timer for encounter ${encounterId} points to missing page ${timer.resumePage}.`
+      );
+    }
+  
+    save.encounters[encounterId] =
+      timer.resumePage;
+  
     delete save.timers[encounterId];
+  
     persist();
+  
     showPage(timer.resumePage);
   }
-
   function findPageContext(pageId) {
     const id = String(pageId ?? "");
 
