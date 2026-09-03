@@ -16,87 +16,7 @@
   let scanLoopToken = 0;
   let zxingControls = null;
   let offlineStatus = location.protocol === "file:" ? "Local files ready" : "Preparing offline mode…";
-const I18N = window.QR_CITY_QUEST_I18N || {};
 
-const LANGUAGE_KEY = "qr-city-quest-language";
-
-let language =
-  localStorage.getItem(LANGUAGE_KEY) === "hu"
-    ? "hu"
-    : "en";
-
-
-function t(key, fallback) {
-  return I18N[language]?.ui?.[key] ?? fallback;
-}
-
-
-function translatedSpeaker(name) {
-  return I18N[language]?.speakers?.[name] ?? name;
-}
-
-
-function translatedItem(name) {
-  return I18N[language]?.items?.[name] ?? name;
-}
-
-
-function translatedQuest(name) {
-  return I18N[language]?.quests?.[name] ?? name;
-}
-
-
-function translatedLabel(label) {
-  return (
-    I18N[language]?.labels?.[label] ??
-    I18N[language]?.items?.[label] ??
-    label
-  );
-}
-
-
-function translatedPageText(page) {
-  return (
-    I18N[language]?.pages?.[page.id]?.text ??
-    page.text
-  );
-}
-
-
-function changeLanguage() {
-  if (language === "en") {
-    language = "hu";
-  } else {
-    language = "en";
-  }
-
-  localStorage.setItem(
-    LANGUAGE_KEY,
-    language
-  );
-
-  console.log(
-    "Language changed to:",
-    language
-  );
-
-  toast(
-    language === "hu"
-      ? "Nyelv: Magyar 🇭🇺"
-      : "Language: English 🇬🇧"
-  );
-
-  if (
-    currentPageId &&
-    currentPageId !== "-1" &&
-    findPage(currentPageId)
-  ) {
-    showPage(currentPageId);
-    return;
-  }
-
-  showHome();
-}
   if (!GAME || !GAME.encounters) {
     app.textContent = "Game data could not be loaded.";
     return;
@@ -192,42 +112,14 @@ function changeLanguage() {
     setTimeout(() => el.remove(), 2200);
   }
 
- function shell(
-  content,
-  { back = null, label = "CITY QUEST", debugButton = false } = {}
-) {
+function shell(content, { back = null, label = "CITY QUEST", debugButton = false } = {}) {
   app.innerHTML = `
     <main class="shell">
-
-      <button
-        id="languageBtn"
-        type="button"
-        style="
-          position:fixed;
-          top:14px;
-          right:14px;
-          z-index:99999;
-          padding:10px 14px;
-          border:none;
-          border-radius:12px;
-          background:#ffffff;
-          color:#173f32;
-          font-weight:800;
-          font-size:16px;
-          box-shadow:0 3px 10px rgba(0,0,0,.25);
-          cursor:pointer;
-        "
-      >
-        ${language === "en" ? "🇭🇺 HU" : "🇬🇧 EN"}
-      </button>
-
       <header class="topbar">
         <div>
           ${
             back
-              ? `<button class="back-button" id="backBtn" type="button">
-                   ${t("back", "← Back")}
-                 </button>`
+              ? `<button class="back-button" id="backBtn" type="button">← Back</button>`
               : `<div class="brand-mini">${esc(label)}</div>`
           }
         </div>
@@ -242,24 +134,11 @@ function changeLanguage() {
       </header>
 
       ${content}
-    </main>
-  `;
+    </main>`;
 
   if (back) {
     document.getElementById("backBtn").onclick = back;
   }
-
-const languageButton =
-  document.getElementById("languageBtn");
-
-if (languageButton) {
-  languageButton.addEventListener(
-    "click",
-    function () {
-      changeLanguage();
-    }
-  );
-}
 
   if (debugButton) {
     document.getElementById("debugBtn").onclick = showDebug;
@@ -361,8 +240,8 @@ function stopCamera() {
             type="button"
             data-inventory-index="${index}"
             style="width:100%;text-align:left;color:inherit;font:inherit;cursor:pointer"
-          >${esc(translatedItem(item))}</button>`).join("")}</div>`
-      : `<div class="empty">${t("inventoryEmpty", "You have no items yet.")}</div>`;
+          >${esc(item)}</button>`).join("")}</div>`
+      : `<div class="empty">You have no items yet.</div>`;
 
     shell(`
       <section class="card screen-card inventory-screen">
@@ -389,11 +268,11 @@ function stopCamera() {
     stopCamera();
     const active = Object.entries(save.quests).filter(([, status]) => status === "active").map(([name]) => name);
     const body = active.length
-      ? `<div class="list">${active.map(q => `<div class="list-item">◇ ${esc(translatedQuest(q))}</div>`).join("")}</div>`
+      ? `<div class="list">${active.map(q => `<div class="list-item">◇ ${esc(q)}</div>`).join("")}</div>`
       : `<div class="empty">No active objectives.</div>`;
     shell(`
       <section class="card screen-card">
-        <h1 class="screen-title">${t("objectives", "Objectives")}</h1>
+        <h1 class="screen-title">Objectives</h1>
         <p class="screen-subtitle">Only active quests appear here.</p>
         ${body}
       </section>`, { back: showHome });
@@ -664,14 +543,14 @@ function acceptScannedText(raw) {
     } else {
       const buttons = visibleButtons(page, context);
       controls = buttons.length
-        ? `<div class="choices">${buttons.map(b => `<button class="choice-btn" type="button" data-button-index="${b.index}" data-next="${esc(b.next || "")}">${DEBUG ? `<span class="num">${b.index}</span>` : ""}${esc(translatedLabel(b.label))}</button>`).join("")}</div>`
+        ? `<div class="choices">${buttons.map(b => `<button class="choice-btn" type="button" data-button-index="${b.index}" data-next="${esc(b.next || "")}">${DEBUG ? `<span class="num">${b.index}</span>` : ""}${esc(b.label)}</button>`).join("")}</div>`
         : `<div class="empty">No choices are available on this page.</div>`;
     }
 
     shell(`
       <section class="card screen-card encounter-card">
-        <div class="speaker-row"><div class="speaker">${esc(translatedSpeaker(page.speaker || "Encounter"))}</div>${DEBUG ? `<div class="page-id">${esc(page.id)}</div>` : ""}</div>
-        <p class="dialogue">${esc(translatedPageText(page))}</p>
+        <div class="speaker-row"><div class="speaker">${esc(page.speaker || "Encounter")}</div>${DEBUG ? `<div class="page-id">${esc(page.id)}</div>` : ""}</div>
+        <p class="dialogue">${esc(page.text)}</p>
         ${controls}
       </section>`, { back: context.type === "item" ? showInventory : showHome });
 
@@ -708,22 +587,15 @@ function dropdownUI(action) {
   if (action.type === "DROPDOWN_CHOICE") {
     return {
       empty: !action.options.length,
-
       options: action.options.map(o => ({
-        // translated text shown to player
-        label: translatedLabel(o.label),
-
-        // ORIGINAL English value used by game logic
+        label: o.label,
         value: o.label
       }))
     };
   }
 
   const options = save.inventory.map(item => ({
-    // Hungarian/English visible item name
-    label: translatedItem(item),
-
-    // original internal item name
+    label: item,
     value: item
   }));
 
