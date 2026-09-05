@@ -229,7 +229,7 @@ function stopCamera() {
         </div>
       </section>`, { debugButton: DEBUG });
 
-    document.getElementById("scanBtn").onclick = nner;
+    document.getElementById("scanBtn").onclick = showScanner;
     document.getElementById("objectivesBtn").onclick = showObjectives;
     document.getElementById("inventoryBtn").onclick = showInventory;
     document.getElementById("extraBtn").onclick = () => toast("Not implemented yet.");
@@ -309,6 +309,7 @@ function stopCamera() {
 
 function showScanner() {
   stopCamera();
+
   scannerLocked = false;
 
   const secure =
@@ -318,13 +319,31 @@ function showScanner() {
 
   shell(`
     <section class="card scanner-card">
-      <div class="camera-wrap">
+
+      <div
+        class="camera-wrap"
+        style="
+          position: relative;
+          overflow: hidden;
+          border-radius: 18px;
+          background: #000;
+        "
+      >
+
         <video
           id="cameraVideo"
           autoplay
           playsinline
           muted
           aria-label="QR camera preview"
+          style="
+            display: block;
+            width: 100%;
+            min-height: 320px;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            background: #000;
+          "
         ></video>
 
         <div
@@ -335,22 +354,44 @@ function showScanner() {
         <div
           class="camera-message"
           id="cameraMessage"
+          aria-live="polite"
         ></div>
-      </div>
-    </section>
-  `, { back: showHome });
 
-  if (secure) {
-    startCameraScanner();
+      </div>
+
+    </section>
+  `, {
+    back: showHome
+  });
+
+  if (!secure) {
+    const msg =
+      document.getElementById(
+        "cameraMessage"
+      );
+
+    if (msg) {
+      msg.textContent =
+        "Camera scanning requires HTTPS.";
+    }
+
+    return;
   }
+
+  startCameraScanner();
 }
+
 
 async function startCameraScanner() {
   const msg =
-    document.getElementById("cameraMessage");
+    document.getElementById(
+      "cameraMessage"
+    );
 
   const video =
-    document.getElementById("cameraVideo");
+    document.getElementById(
+      "cameraVideo"
+    );
 
   if (!video || !msg) return;
 
@@ -366,16 +407,16 @@ async function startCameraScanner() {
 
   if (!window.ZXingBrowser) {
     msg.textContent =
-      "QR scanner could not load.";
+      "QR scanner could not load. Check your internet connection and reload once.";
 
     return;
   }
 
   try {
+    scannerLocked = false;
+
     const codeReader =
       new ZXingBrowser.BrowserQRCodeReader();
-
-    scannerLocked = false;
 
     zxingControls =
       await codeReader.decodeFromConstraints(
@@ -392,7 +433,12 @@ async function startCameraScanner() {
 
         video,
 
-        (result, error, controls) => {
+        (
+          result,
+          error,
+          controls
+        ) => {
+
           if (
             !result ||
             scannerLocked
@@ -400,7 +446,8 @@ async function startCameraScanner() {
             return;
           }
 
-          zxingControls = controls;
+          zxingControls =
+            controls;
 
           const text =
             result.getText();
@@ -410,7 +457,9 @@ async function startCameraScanner() {
             text
           );
 
-          acceptScannedText(text);
+          acceptScannedText(
+            text
+          );
         }
       );
 
@@ -421,8 +470,7 @@ async function startCameraScanner() {
         video.srcObject;
     }
 
-    msg.textContent =
-      "Point the camera at a City Quest QR code.";
+    msg.textContent = "";
 
   } catch (err) {
 
@@ -431,67 +479,24 @@ async function startCameraScanner() {
       err
     );
 
-    msg.textContent =
+    if (
       err &&
       err.name === "NotAllowedError"
-        ? "Camera permission was denied. Allow camera access to scan QR codes."
-        : "Camera could not start.";
-  }
-}
-
-
-async function scanImageFile(event) {
-  const file =
-    event.target.files &&
-    event.target.files[0];
-
-  if (!file) return;
-
-  const notice =
-    document.getElementById(
-      "scannerNotice"
-    );
-
-  const qrDetector =
-    await getDetector();
-
-  if (
-    !qrDetector ||
-    !window.createImageBitmap
-  ) {
-    notice.textContent =
-      "This browser cannot decode QR images here.";
-
-    return;
-  }
-
-  try {
-    const bitmap =
-      await createImageBitmap(file);
-
-    const found =
-      await qrDetector.detect(bitmap);
-
-    if (bitmap.close) {
-      bitmap.close();
-    }
-
-    if (
-      found &&
-      found[0] &&
-      found[0].rawValue
     ) {
-      acceptScannedText(
-        found[0].rawValue
-      );
-    } else {
-      notice.textContent =
-        "No QR code was found in that image.";
-    }
+      msg.textContent =
+        "Camera permission was denied. Allow camera access, then open Scan QR again.";
 
-  } catch (_) {
-    notice.textContent =
-      "That image could not be scanned.";
+    } else if (
+      err &&
+      err.name === "NotFoundError"
+    ) {
+      msg.textContent =
+        "No camera was found on this device.";
+
+    } else {
+      msg.textContent =
+        "Camera could not start. Reload the page and try again.";
+    }
   }
 }
 function acceptScannedText(raw) {
@@ -918,16 +923,20 @@ function dropdownUI(action) {
           }
           break;
 
-        case "DROPDOWN_INVENTORY":
-        case "DROPDOWN_CHOICE":
-          break;
-
-        default:
-          return showDataError(`Unknown action ${action.type} on ${page.id}.`);
-
-        case "NEXT_SCAN":
-          if (buttonIndex === 1) nextScan = true;
-          break;
+          case "DROPDOWN_INVENTORY":
+          case "DROPDOWN_CHOICE":
+            break;
+          
+          case "NEXT_SCAN":
+            if (buttonIndex === 1) {
+              nextScan = true;
+            }
+            break;
+          
+          default:
+            return showDataError(
+              `Unknown action ${action.type} on ${page.id}.`
+            );
       }
     }
 
@@ -978,6 +987,59 @@ function dropdownUI(action) {
     if (DEBUG) document.getElementById("winHome").onclick = showHome;
   }
 
+function showUnknownQR() {
+  stopCamera();
+
+  shell(`
+    <section class="card error-card screen-card">
+
+      <div
+        class="error-icon"
+        aria-hidden="true"
+      >
+        ?
+      </div>
+
+      <h2>Unknown QR</h2>
+
+      <p>
+        This QR isn't part of this game.
+      </p>
+
+      <div class="error-actions">
+
+        <button
+          class="primary"
+          id="scanAgain"
+          type="button"
+        >
+          Scan again
+        </button>
+
+        <button
+          class="secondary"
+          id="homeFromError"
+          type="button"
+        >
+          Home
+        </button>
+
+      </div>
+
+    </section>
+  `, {
+    back: showHome
+  });
+
+  document
+    .getElementById("scanAgain")
+    .onclick = showScanner;
+
+  document
+    .getElementById("homeFromError")
+    .onclick = showHome;
+}
+  
   function showDataError(detail) {
     stopCamera();
     console.error("QR City Quest data error:", detail);
@@ -1069,12 +1131,30 @@ function dropdownUI(action) {
       showDebug();
     };
 
-    document.getElementById("resetSave").onclick = () => {
-      if (!confirm("Reset all QR City Quest progress on this device?")) return;
-      save = defaultSave();
-      persist();
-      showHome();
-    };
+document.getElementById("resetSave").onclick = () => {
+  if (
+    !confirm(
+      "Reset all QR City Quest progress on this device?"
+    )
+  ) {
+    return;
+  }
+
+  localStorage.removeItem(
+    SAVE_KEY
+  );
+
+  save =
+    defaultSave();
+
+  persist();
+
+  toast(
+    "All progress reset."
+  );
+
+  showHome();
+};
   }
 
   async function registerOffline() {
