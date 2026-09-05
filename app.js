@@ -229,7 +229,7 @@ function stopCamera() {
         </div>
       </section>`, { debugButton: DEBUG });
 
-    document.getElementById("scanBtn").onclick = showScanner;
+    document.getElementById("scanBtn").onclick = nner;
     document.getElementById("objectivesBtn").onclick = showObjectives;
     document.getElementById("inventoryBtn").onclick = showInventory;
     document.getElementById("extraBtn").onclick = () => toast("Not implemented yet.");
@@ -307,44 +307,99 @@ function stopCamera() {
       </section>`, { back: showHome });
   }
 
-  function showScanner() {
-    stopCamera();
-    scannerLocked = false;
-    const secure = window.isSecureContext || location.hostname === "localhost" || location.hostname === "127.0.0.1";
-    shell(`
-      <section class="card scanner-card">
-        <div class="camera-wrap">
-          <video id="cameraVideo" autoplay playsinline muted aria-label="QR camera preview"></video>
-          <div class="scan-frame" aria-hidden="true"></div>
-          <div class="camera-message" id="cameraMessage">${secure ? "Starting camera…" : "Camera needs HTTPS or localhost. You can still enter the two-digit code below."}</div>
-        </div>
-          <label class="secondary file-label">Scan QR from an image<input id="imageInput" type="file" accept="image/*"></label>
-          <div class="notice" id="scannerNotice">QR values must be exactly two digits and exist in the bundled game data.</div>
-        </div>
-      </section>`, { back: showHome });
+function showScanner() {
+  stopCamera();
+  scannerLocked = false;
 
-    document.getElementById("manualOpen").onclick = () => acceptScannedText(document.getElementById("manualCode").value);
-    document.getElementById("manualCode").addEventListener("keydown", e => {
-      if (e.key === "Enter") acceptScannedText(e.currentTarget.value);
-    });
-    document.getElementById("imageInput").addEventListener("change", scanImageFile);
-    if (secure) startCameraScanner();
+  const secure =
+    window.isSecureContext ||
+    location.hostname === "localhost" ||
+    location.hostname === "127.0.0.1";
+
+  shell(`
+    <section class="card scanner-card">
+
+      <div class="camera-wrap">
+        <video
+          id="cameraVideo"
+          autoplay
+          playsinline
+          muted
+          aria-label="QR camera preview"
+        ></video>
+
+        <div
+          class="scan-frame"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="camera-message"
+          id="cameraMessage"
+        >
+          ${
+            secure
+              ? "Starting camera…"
+              : "Camera needs HTTPS or localhost."
+          }
+        </div>
+      </div>
+
+      <label class="secondary file-label">
+        Scan QR from an image
+        <input
+          id="imageInput"
+          type="file"
+          accept="image/*"
+        >
+      </label>
+
+      <div
+        class="notice"
+        id="scannerNotice"
+      >
+        QR values must be exactly two digits and exist in the bundled game data.
+      </div>
+
+    </section>
+  `, { back: showHome });
+
+  document
+    .getElementById("imageInput")
+    .addEventListener(
+      "change",
+      scanImageFile
+    );
+
+  if (secure) {
+    startCameraScanner();
   }
+}
+
 
 async function startCameraScanner() {
-  const msg = document.getElementById("cameraMessage");
-  const video = document.getElementById("cameraVideo");
+  const msg =
+    document.getElementById("cameraMessage");
+
+  const video =
+    document.getElementById("cameraVideo");
 
   if (!video || !msg) return;
 
-  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+  if (
+    !navigator.mediaDevices ||
+    !navigator.mediaDevices.getUserMedia
+  ) {
     msg.textContent =
-      "Camera access is not available here. Use the code box below.";
+      "Camera access is not available on this device or browser.";
+
     return;
   }
 
   if (!window.ZXingBrowser) {
-    msg.textContent = "QR scanner could not load.";
+    msg.textContent =
+      "QR scanner could not load.";
+
     return;
   }
 
@@ -356,8 +411,10 @@ async function startCameraScanner() {
 
     zxingControls =
       await codeReader.decodeFromConstraints(
+
         {
           audio: false,
+
           video: {
             facingMode: {
               ideal: "environment"
@@ -368,55 +425,107 @@ async function startCameraScanner() {
         video,
 
         (result, error, controls) => {
-          if (!result || scannerLocked) return;
+          if (
+            !result ||
+            scannerLocked
+          ) {
+            return;
+          }
 
           zxingControls = controls;
 
-          const text = result.getText();
+          const text =
+            result.getText();
 
-          console.log("QR scanned:", text);
+          console.log(
+            "QR scanned:",
+            text
+          );
 
           acceptScannedText(text);
         }
       );
 
-    if (video.srcObject instanceof MediaStream) {
-      cameraStream = video.srcObject;
+    if (
+      video.srcObject instanceof MediaStream
+    ) {
+      cameraStream =
+        video.srcObject;
     }
 
     msg.textContent =
       "Point the camera at a City Quest QR code.";
 
   } catch (err) {
-    console.error("QR camera error:", err);
+
+    console.error(
+      "QR camera error:",
+      err
+    );
 
     msg.textContent =
-      err && err.name === "NotAllowedError"
-        ? "Camera permission was denied. Allow camera access or enter the code below."
-        : "Camera could not start. Use the two-digit code box below.";
+      err &&
+      err.name === "NotAllowedError"
+        ? "Camera permission was denied. Allow camera access to scan QR codes."
+        : "Camera could not start.";
   }
 }
 
-  async function scanImageFile(event) {
-    const file = event.target.files && event.target.files[0];
-    if (!file) return;
-    const notice = document.getElementById("scannerNotice");
-    const qrDetector = await getDetector();
-    if (!qrDetector || !window.createImageBitmap) {
-      notice.textContent = "This browser cannot decode QR images here. Enter the two-digit code manually.";
-      return;
-    }
-    try {
-      const bitmap = await createImageBitmap(file);
-      const found = await qrDetector.detect(bitmap);
-      if (bitmap.close) bitmap.close();
-      if (found && found[0] && found[0].rawValue) acceptScannedText(found[0].rawValue);
-      else notice.textContent = "No QR code was found in that image.";
-    } catch (_) {
-      notice.textContent = "That image could not be scanned.";
-    }
+
+async function scanImageFile(event) {
+  const file =
+    event.target.files &&
+    event.target.files[0];
+
+  if (!file) return;
+
+  const notice =
+    document.getElementById(
+      "scannerNotice"
+    );
+
+  const qrDetector =
+    await getDetector();
+
+  if (
+    !qrDetector ||
+    !window.createImageBitmap
+  ) {
+    notice.textContent =
+      "This browser cannot decode QR images here.";
+
+    return;
   }
 
+  try {
+    const bitmap =
+      await createImageBitmap(file);
+
+    const found =
+      await qrDetector.detect(bitmap);
+
+    if (bitmap.close) {
+      bitmap.close();
+    }
+
+    if (
+      found &&
+      found[0] &&
+      found[0].rawValue
+    ) {
+      acceptScannedText(
+        found[0].rawValue
+      );
+    } else {
+      notice.textContent =
+        "No QR code was found in that image.";
+    }
+
+  } catch (_) {
+    notice.textContent =
+      "That image could not be scanned.";
+  }
+}
 function acceptScannedText(raw) {
   if (scannerLocked) return;
 
