@@ -318,7 +318,6 @@ function showScanner() {
 
   shell(`
     <section class="card scanner-card">
-
       <div class="camera-wrap">
         <video
           id="cameraVideo"
@@ -336,46 +335,15 @@ function showScanner() {
         <div
           class="camera-message"
           id="cameraMessage"
-        >
-          ${
-            secure
-              ? "Starting camera…"
-              : "Camera needs HTTPS or localhost."
-          }
-        </div>
+        ></div>
       </div>
-
-      <label class="secondary file-label">
-        Scan QR from an image
-        <input
-          id="imageInput"
-          type="file"
-          accept="image/*"
-        >
-      </label>
-
-      <div
-        class="notice"
-        id="scannerNotice"
-      >
-        QR values must be exactly two digits and exist in the bundled game data.
-      </div>
-
     </section>
   `, { back: showHome });
-
-  document
-    .getElementById("imageInput")
-    .addEventListener(
-      "change",
-      scanImageFile
-    );
 
   if (secure) {
     startCameraScanner();
   }
 }
-
 
 async function startCameraScanner() {
   const msg =
