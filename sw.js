@@ -1,4 +1,4 @@
-const CACHE = "qr-city-quest-v6-item-qr";
+const CACHE = "qr-city-quest-v1-item-qr";
 const ASSETS = [
   "./",
   "./index.html",
