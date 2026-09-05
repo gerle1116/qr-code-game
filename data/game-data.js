@@ -1,1 +1,3878 @@
-window.QR_CITY_QUEST_DATA = { "formatVersion": 1, "generatedFrom": "Gergo-app-prototype-item-actions-fixed + QR_City_Quest_Item_Data.md", "encounters": { "01": { "startPage": "0101", "pages": { "0101": { "id": "0101", "speaker": "Child", "text": "Will ya' buy me some sweets?", "buttons": [{ "index": 1, "label": "Yes", "next": "0102" }, { "index": 2, "label": "No", "next": "0103" }], "actions": [], "condition": null }, "0102": { "id": "0102", "speaker": "Child", "text": "You can buy them from the Merchant.", "buttons": [{ "index": 1, "label": "OK", "next": "0104" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "START_QUEST", "data": "Buy Sweets" }], "condition": null }, "0103": { "id": "0103", "speaker": "Child", "text": "Okay then, leave me alone!", "buttons": [{ "index": 1, "label": "Bye", "next": "0101" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0104": { "id": "0104", "speaker": "Child", "text": "Do you have any sweets?", "buttons": [{ "index": 1, "label": "Yes", "next": "0105" }, { "index": 2, "label": "No", "next": "0103" }], "actions": [], "condition": null }, "0105": { "id": "0105", "speaker": "Child", "text": "Show me!", "buttons": [{ "index": 1, "label": "Choose Item", "next": "0106" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Sweets", "next": "0106" }, { "label": "Other", "next": "0103" }] }], "condition": null }, "0106": { "id": "0106", "speaker": "Child", "text": "I heard the Messenger telling a password to the Warrior. It was something like \"...Pie\".", "buttons": [{ "index": 1, "label": "Thanks", "next": "0107" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Sweets" }], "condition": null }, "0107": { "id": "0107", "speaker": "Child", "text": "The child can't be seen.", "buttons": [{ "index": 1, "label": "OK", "next": "0107" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null } } }, "02": { "startPage": "0201", "pages": { "0201": { "id": "0201", "speaker": "Merchant", "text": "Hello customer! You wanna buy something?", "buttons": [{ "index": 1, "label": "Yes", "next": "0202" }, { "index": 2, "label": "No", "next": "0203" }], "actions": [], "condition": null }, "0202": { "id": "0202", "speaker": "Merchant", "text": "I have a few things to sell. Which one do you prefer?", "buttons": [{ "index": 1, "label": "Sweets", "next": "0204" }, { "index": 2, "label": "Old Scroll", "next": "0205" }], "actions": [], "condition": null }, "0203": { "id": "0203", "speaker": "Merchant", "text": "Okay, but do you have some free time? I would be happy if you could get me some unique ingredients.", "buttons": [{ "index": 1, "label": "No I gotta go", "next": "0201" }, { "index": 2, "label": "Yeah", "next": "0206" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0204": { "id": "0204", "speaker": "Merchant", "text": "Okay it will be a gold coin. Choose one of your items from your inventory.", "buttons": [{ "index": 1, "label": "Choose Item", "next": "0207" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Gold Coin", "next": "0207" }, { "label": "Other", "next": "0208" }] }], "condition": null }, "0205": { "id": "0205", "speaker": "Merchant", "text": "Okay it will be a Priclys Feather. Choose one of your items from your inventory.", "buttons": [{ "index": 1, "label": "Choose Item", "next": "0209" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Priclys Feather", "next": "0209" }, { "label": "Other", "next": "0208" }] }], "condition": null }, "0206": { "id": "0206", "speaker": "Merchant", "text": "So if you could get me a Blobfish I would be happy. Bye bye.", "buttons": [{ "index": 1, "label": "OK", "next": "0210" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0207": { "id": "0207", "speaker": "Merchant", "text": "Here are some sweets for ya! You've got some spare time?", "buttons": [{ "index": 1, "label": "No I gotta go", "next": "0201" }, { "index": 2, "label": "Yeah", "next": "0206" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Gold Coin" }, { "type": "ADD_ITEM", "data": "Sweets" }], "condition": null }, "0208": { "id": "0208", "speaker": "Merchant", "text": "I don't need that!", "buttons": [{ "index": 1, "label": "OK", "next": "0201" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0209": { "id": "0209", "speaker": "Merchant", "text": "Here is the old scroll. You've got some spare time?", "buttons": [{ "index": 1, "label": "No I gotta go", "next": "0201" }, { "index": 2, "label": "Yeah", "next": "0206" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Priclys Feather" }, { "type": "ADD_ITEM", "data": "Old Scroll" }], "condition": null }, "0210": { "id": "0210", "speaker": "Merchant", "text": "Do you have my fish?", "buttons": [{ "index": 1, "label": "No", "next": "0211" }, { "index": 2, "label": "Yes", "next": "0212" }], "actions": [], "condition": null }, "0211": { "id": "0211", "speaker": "Merchant", "text": "At least you wanna buy something?", "buttons": [{ "index": 1, "label": "No I gotta go", "next": "0201" }, { "index": 2, "label": "Yup", "next": "0202" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0212": { "id": "0212", "speaker": "Merchant", "text": "Can you give them to me?", "buttons": [{ "index": 1, "label": "Choose Item", "next": "0213" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Blobfish", "next": "0213" }, { "label": "Other", "next": "0208" }] }], "condition": null }, "0213": { "id": "0213", "speaker": "Merchant", "text": "Okay. Nice. I don't have much to share but I can tell you that at the troll's riddle the letters connect to numbers somehow as I heard.", "buttons": [{ "index": 1, "label": "Bye", "next": "0201" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Blobfish" }], "condition": null } } }, "03": { "startPage": "0301", "pages": { "0301": { "id": "0301", "speaker": "Guard", "text": "Hello Boy. Are you interested in how this whole world works?", "buttons": [{ "index": 1, "label": "Yes", "next": "0302" }, { "index": 2, "label": "No just wandering", "next": "0303" }], "actions": [], "condition": null }, "0302": { "id": "0302", "speaker": "Guard", "text": "So let me tell you! This place is made out of different sections. We are in the Village Centre part. There are 3 other sections...", "buttons": [{ "index": 1, "label": "What are they", "next": "0304" }, { "index": 2, "label": "That's enough", "next": "0306" }], "actions": [], "condition": null }, "0303": { "id": "0303", "speaker": "Guard", "text": "And do you know where you are?", "buttons": [{ "index": 1, "label": "Not really", "next": "0302" }, { "index": 2, "label": "Yes", "next": "0306" }], "actions": [], "condition": null }, "0304": { "id": "0304", "speaker": "Guard", "text": "The Grove, Bridge, and the Castle Entrance. At each section there are one or more people to talk with. You can get to each part easily but the castle is guarded by the Troll.", "buttons": [{ "index": 1, "label": "Who", "next": "0305" }, { "index": 2, "label": "I don't need more!", "next": "0306" }], "actions": [], "condition": null }, "0305": { "id": "0305", "speaker": "Guard", "text": "A troll. If you defeat it only then you can reach the entrance. But that's anything I could tell you. Have a fun time here!", "buttons": [{ "index": 1, "label": "Bye", "next": "0307" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0306": { "id": "0306", "speaker": "Guard", "text": "Then I have nothing more to tell you.", "buttons": [{ "index": 1, "label": "Bye", "next": "0307" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0307": { "id": "0307", "speaker": "Guard", "text": "Hi! Keep on exploring!", "buttons": [{ "index": 1, "label": "Bye", "next": "0307" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0308": { "id": "0308", "speaker": "Guard", "text": "Choose an item from your inventory.", "buttons": [{ "index": 1, "label": "Choose Item", "next": "0310" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Golden Medal", "next": "0310" }, { "label": "Other", "next": "0309" }] }], "condition": null }, "0309": { "id": "0309", "speaker": "Guard", "text": "I don't need this.", "buttons": [{ "index": 1, "label": "OK", "next": "0307" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0310": { "id": "0310", "speaker": "Guard", "text": "Oh my medal! Thank you for giving it back. For this I'll give you the Mark of Goblins. Goblins will be friendlier if you show them. Now thank you again!!!", "buttons": [{ "index": 1, "label": "Bye", "next": "0307" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Golden Medal" }, { "type": "ADD_ITEM", "data": "Mark of Goblins" }], "condition": null } } }, "04": { "startPage": "0401", "pages": { "0401": { "id": "0401", "speaker": "Talking Tree", "text": "Hello Human! What are you seeking here?", "buttons": [{ "index": 1, "label": "You can TALK??", "next": "0402" }, { "index": 2, "label": "Just rumours about people", "next": "0403" }], "actions": [], "condition": null }, "0402": { "id": "0402", "speaker": "Talking Tree", "text": "I'm pleased you asked although I won't share...", "buttons": [{ "index": 1, "label": "OK", "next": "0404" }, { "index": 2, "label": "Bye", "next": "0407" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0403": { "id": "0403", "speaker": "Talking Tree", "text": "I know things about people. I can tell you things. Who are you interested in?", "buttons": [{ "index": 1, "label": "Messenger", "next": "0405" }, { "index": 2, "label": "Warrior", "next": "0406" }], "actions": [], "condition": null }, "0404": { "id": "0404", "speaker": "Talking Tree", "text": "I'll soon go asleep for like 20 mins maybe. After that we can talk again.", "buttons": [{ "index": 1, "label": "Bye", "next": "0408" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "START_TIMER", "raw": "20 minutes", "durationMs": 1200000 }], "condition": null }, "0405": { "id": "0405", "speaker": "Talking Tree", "text": "That guy really has a sweet tooth. Also he hates running surprisingly! Now I'm going to sleep.", "buttons": [{ "index": 1, "label": "OK", "next": "0408" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0406": { "id": "0406", "speaker": "Talking Tree", "text": "That one is a mighty fighter and can only be defeated with the Sword of Koji. Now I shall rest.", "buttons": [{ "index": 1, "label": "OK", "next": "0408" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0407": { "id": "0407", "speaker": "Talking Tree", "text": "At least I can give you this magic branch that will help you on your mission. I insist. Now I'm going to rest.", "buttons": [{ "index": 1, "label": "OK", "next": "0408" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "ADD_ITEM", "data": "Magic Branch" }], "condition": null }, "0408": { "id": "0408", "speaker": "Talking Tree", "text": "The tree is asleep.", "buttons": [{ "index": 1, "label": "OK", "next": "0408" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0409": { "id": "0409", "speaker": "Talking Tree", "text": "Hello again. I remember you were so surprised to see a wonderful tree like me. Because of that I give you the Horn of Trees. If you blow it I will wake up from my dream. And now how can I help you?", "buttons": [{ "index": 1, "label": "Some info", "next": "0403" }, { "index": 2, "label": "I don't know", "next": "0407" }], "actions": [{ "type": "ADD_ITEM", "data": "Horn of Trees" }], "condition": null }, "0410": { "id": "0410", "speaker": "Talking Tree", "text": "Hello again. I can tell you things about some people.", "buttons": [{ "index": 1, "label": "Okay", "next": "0403" }, { "index": 2, "label": "No", "next": "0408" }], "actions": [], "condition": null } } }, "05": { "startPage": "0501", "pages": { "0501": { "id": "0501", "speaker": "Hunter", "text": "Greetings traveler! I'm on a hurry but I can give you a few minutes.", "buttons": [{ "index": 1, "label": "Why are you hurrying?", "next": "0502" }, { "index": 2, "label": "Who are you", "next": "0503" }], "actions": [], "condition": null }, "0502": { "id": "0502", "speaker": "Hunter", "text": "I'm always in a hurry hunting for the unique species that are attracted to this grove.", "buttons": [{ "index": 1, "label": "Why are they attracted?", "next": "0504" }, { "index": 2, "label": "Who are you?", "next": "0503" }], "actions": [], "condition": null }, "0503": { "id": "0503", "speaker": "Hunter", "text": "I am the hunter who hunts for the species hidden in this special grove!", "buttons": [{ "index": 1, "label": "Why is this grove special?", "next": "0504" }, { "index": 2, "label": "Can I ask a question?", "next": "0505" }], "actions": [], "condition": null }, "0504": { "id": "0504", "speaker": "Hunter", "text": "I don't know, but I swear there is something magical hidden in this grove. You should check the trees! And now I gotta go!", "buttons": [{ "index": 1, "label": "Bye", "next": "0507" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "START_TIMER", "raw": "5 minutes", "durationMs": 300000 }], "condition": null }, "0505": { "id": "0505", "speaker": "Hunter", "text": "Yes, but I might not know the answer.", "buttons": [{ "index": 1, "label": "How to get in to the castle?", "next": "0504" }, { "index": 2, "label": "Where is the Sword?", "next": "0504" }], "actions": [], "condition": null }, "0506": { "id": "0506", "speaker": "Hunter", "text": "Hello again! I'm chasing a Pina Coala, I've got no time, but I saw something shiny between the fountains stones.", "buttons": [{ "index": 1, "label": "Bye", "next": "0507" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "START_TIMER", "raw": "5 minutes", "durationMs": 300000 }], "condition": null }, "0507": { "id": "0507", "speaker": "Hunter", "text": "Hello adventurer! I'm back from my hunt and now I can answer a few questions, but first...", "buttons": [{ "index": 1, "label": "Go on", "next": "0509" }], "actions": [], "condition": null }, "0508": { "id": "0508", "speaker": "Hunter", "text": "The hunter is nowhere to be seen.", "buttons": [{ "index": 1, "label": "OK", "next": "0508" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0509": { "id": "0509", "speaker": "Hunter", "text": "Do you see the little footprints? That creature is better at hiding than anything else I've ever seen before. He might be hiding in one of the bushy places where I can't fit in!", "buttons": [{ "index": 1, "label": "Go on", "next": "0510" }], "actions": [], "condition": null }, "0510": { "id": "0510", "speaker": "Hunter", "text": "But now let's see your questions.", "buttons": [{ "index": 1, "label": "Have you seen anything strange?", "next": "0511" }, { "index": 2, "label": "Do you know someone here?", "next": "0512" }], "actions": [], "condition": null }, "0511": { "id": "0511", "speaker": "Hunter", "text": "Well, at the bridge I saw strange carvings in the stone, but nothing else.", "buttons": [{ "index": 1, "label": "Thanks", "next": "0514" }], "actions": [], "condition": null }, "0512": { "id": "0512", "speaker": "Hunter", "text": "Well have you seen the city guard? He is a friend of mine. He will tell you things about this little empire!", "buttons": [{ "index": 1, "label": "OK", "next": "0513" }], "actions": [], "condition": null }, "0513": { "id": "0513", "speaker": "Hunter", "text": "Also could you please give this golden medal to the guard? He might give you something in exchange.", "buttons": [{ "index": 1, "label": "That's it?", "next": "0514" }], "actions": [{ "type": "ADD_ITEM", "data": "Golden Medal" }], "condition": null }, "0514": { "id": "0514", "speaker": "Hunter", "text": "Okay and... Do you hear those wolves? This is the night of the blood moon, I shall go hunting, this is the time for the best prey!", "buttons": [{ "index": 1, "label": "Bye", "next": "0508" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null } } }, "06": { "startPage": "0601", "pages": { "0601": { "id": "0601", "speaker": "Goblin", "text": "Hello who are you? I'm the goblin living in the forest. I'm glad we met.", "buttons": [{ "index": 1, "label": "Hello!", "next": "0602" }, { "index": 2, "label": "Do you have items?", "next": "0603" }, { "index": 3, "label": "Look what I have", "next": "0604" }], "actions": [], "condition": { "type": "HAS_ITEM", "data": "Mark of Goblins" } }, "0602": { "id": "0602", "speaker": "Goblin", "text": "Hello come with me! Let me show you my collection!", "buttons": [{ "index": 1, "label": "Maybe next time", "next": "0605" }, { "index": 2, "label": "OK", "next": "0606" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0603": { "id": "0603", "speaker": "Goblin", "text": "Yesss. Definitely. I have a collection of rare items I'm pretty proud of!", "buttons": [{ "index": 1, "label": "Next time I'll see", "next": "0605" }, { "index": 2, "label": "Show me", "next": "0606" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0604": { "id": "0604", "speaker": "Goblin", "text": "Oh you've got the mark of goblins. Let me gift you something my friend!", "buttons": [{ "index": 1, "label": "Thank you!", "next": "0608" }], "actions": [{ "type": "ADD_ITEM", "data": "Gold Coin" }], "condition": null }, "0605": { "id": "0605", "speaker": "Goblin", "text": "Hi again! May I show you my collection this time?", "buttons": [{ "index": 1, "label": "Next time", "next": "0605" }, { "index": 2, "label": "Yes", "next": "0606" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0606": { "id": "0606", "speaker": "Goblin", "text": "Here! Look what I've collected! If you want one just say!", "buttons": [{ "index": 1, "label": "Gold Coin", "next": "0607" }, { "index": 2, "label": "Ruby Sword", "next": "0609" }, { "index": 3, "label": "Powder", "next": "0610" }, { "index": 4, "label": "I don't need more", "next": "0616" }], "actions": [], "condition": null }, "0607": { "id": "0607", "speaker": "Goblin", "text": "This is a Gold Coin I found in the forest. I would trade it for something from a rare animal like a bird.", "buttons": [{ "index": 1, "label": "Ok bye", "next": "0605" }, { "index": 2, "label": "I have that", "next": "0611" }, { "index": 3, "label": "Let me see the other items", "next": "0606" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0608": { "id": "0608", "speaker": "Goblin", "text": "Here take this Gold Coin I found. This treasure looks especially good.", "buttons": [{ "index": 1, "label": "Thx bye", "next": "0605" }, { "index": 2, "label": "Do you have something else", "next": "0606" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "ADD_ITEM", "data": "Gold Coin" }], "condition": null }, "0609": { "id": "0609", "speaker": "Goblin", "text": "This ruby sword was down in the bottom of the river. I saw its ruby and I had to have it. If you want it give me some other gem.", "buttons": [{ "index": 1, "label": "Ok bye", "next": "0605" }, { "index": 2, "label": "I have that", "next": "0611" }, { "index": 3, "label": "Let me see the other items", "next": "0606" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0610": { "id": "0610", "speaker": "Goblin", "text": "Hey I've found this powder in a leather sack and I thought it was really strange so I kept it. I would trade it for a shinier jewel.", "buttons": [{ "index": 1, "label": "Ok bye", "next": "0605" }, { "index": 2, "label": "I have that", "next": "0611" }, { "index": 3, "label": "Let me see the other items", "next": "0606" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0611": { "id": "0611", "speaker": "Goblin", "text": "Show me!", "buttons": [{ "index": 1, "label": "Choose Item", "next": "0612" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Silver Ring", "next": "0612" }, { "label": "Crystal Shard", "next": "0613" }, { "label": "Priclys Feather", "next": "0614" }, { "label": "Other", "next": "0615" }] }], "condition": null }, "0612": { "id": "0612", "speaker": "Goblin", "text": "Here is the strange powder. I like shinies, human, like dust... It's good for goblins!", "buttons": [{ "index": 1, "label": "OK", "next": "0605" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Silver Ring" }, { "type": "ADD_ITEM", "data": "Strange Powder" }], "condition": null }, "0613": { "id": "0613", "speaker": "Goblin", "text": "Here is the ruby sword. I like crystal shard better: It's shinier.", "buttons": [{ "index": 1, "label": "OK", "next": "0605" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Crystal Shard" }, { "type": "ADD_ITEM", "data": "Ruby Sword" }], "condition": null }, "0614": { "id": "0614", "speaker": "Goblin", "text": "Here is the gold coin. Feather might be trash for humans but treasure for goblins!", "buttons": [{ "index": 1, "label": "OK", "next": "0605" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Priclys Feather" }, { "type": "ADD_ITEM", "data": "Gold Coin" }], "condition": null }, "0615": { "id": "0615", "speaker": "Goblin", "text": "I don't need THAT!", "buttons": [{ "index": 1, "label": "OK", "next": "0605" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0616": { "id": "0616", "speaker": "Goblin", "text": "Can I give you one more gift for being my great trader mate? Here is the Staff of Goblins. This means you are the great friend of goblins.", "buttons": [{ "index": 1, "label": "Thx", "next": "0617" }], "actions": [{ "type": "ADD_ITEM", "data": "Staff of Goblins" }], "condition": null }, "0617": { "id": "0617", "speaker": "Goblin", "text": "Now I'm leaving because all treasure here is inside my pockets!", "buttons": [{ "index": 1, "label": "Bye", "next": "0618" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0618": { "id": "0618", "speaker": "Goblin", "text": "The goblin has left with all their valuables.", "buttons": [{ "index": 1, "label": "OK", "next": "0618" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null } } }, "07": { "startPage": "0701", "pages": { "0701": { "id": "0701", "speaker": "Troll", "text": "You try cross bridge?", "buttons": [{ "index": 1, "label": "Yes", "next": "0702" }, { "index": 2, "label": "No", "next": "0703" }, { "index": 3, "label": "What??", "next": "0704" }], "actions": [], "condition": null }, "0702": { "id": "0702", "speaker": "Troll", "text": "You first solve me riddle!", "buttons": [{ "index": 1, "label": "OK", "next": "0705" }], "actions": [], "condition": null }, "0703": { "id": "0703", "speaker": "Troll", "text": "You can no cross if no riddle solve. I tell you riddle.", "buttons": [{ "index": 1, "label": "Tell me", "next": "0705" }, { "index": 2, "label": "Let me try", "next": "0701" }], "actions": [], "condition": null }, "0704": { "id": "0704", "speaker": "Troll", "text": "You stupid", "buttons": [{ "index": 1, "label": "OK", "next": "0701" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0705": { "id": "0705", "speaker": "Troll", "text": "First 5 letter: O, T, T, F, F, S... Whats next 2?", "buttons": [{ "index": 1, "label": "DROPDOWN", "next": "0706" }], "actions": [{ "type": "DROPDOWN_CHOICE", "options": [{ "label": "SE", "next": "0706" }, { "label": "EF", "next": "0704" }, { "label": "ST", "next": "0704" }, { "label": "TS", "next": "0704" }, { "label": "ET", "next": "0704" }, { "label": "FS", "next": "0704" }] }], "condition": null }, "0706": { "id": "0706", "speaker": "Troll", "text": "You smart! Here bridge key. Now go!", "buttons": [{ "index": 1, "label": "OK", "next": "0707" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "ADD_ITEM", "data": "Bridge Key" }], "condition": null }, "0707": { "id": "0707", "speaker": "Troll", "text": "The Troll sits at the edge of the bridge and does not care about you.", "buttons": [{ "index": 1, "label": "OK", "next": "0707" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null } } }, "08": { "startPage": "0801", "pages": { "0801": { "id": "0801", "speaker": "Fisherman", "text": "Hello! What are you doing at the river?", "buttons": [{ "index": 1, "label": "Just exploring", "next": "0803" }, { "index": 2, "label": "Searching for the bridge", "next": "0802" }], "actions": [], "condition": null }, "0802": { "id": "0802", "speaker": "Fisherman", "text": "Well you walk a few meters it's right there. Turn right from here but before with the troll also could you help me with something?", "buttons": [{ "index": 1, "label": "Of course", "next": "0804" }, { "index": 2, "label": "Not now", "next": "0805" }], "actions": [], "condition": null }, "0803": { "id": "0803", "speaker": "Fisherman", "text": "You should go to the river. The troll is stopping you but his riddle is not that hard.", "buttons": [{ "index": 1, "label": "Okay I'll go", "next": "0805" }, { "index": 2, "label": "What are you doing here", "next": "0806" }], "actions": [], "condition": null }, "0804": { "id": "0804", "speaker": "Fisherman", "text": "Here is a fishing rod. Take it and throw it in. Try catching great salmon. They usually come after 20-25 seconds.", "buttons": [{ "index": 1, "label": "Okay", "next": "0807" }, { "index": 2, "label": "What about a blobfish", "next": "0817" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "ADD_ITEM", "data": "Fishing Rod" }, { "type": "START_QUEST", "data": "Get Great Salmon" }], "condition": null }, "0805": { "id": "0805", "speaker": "Fisherman", "text": "Then I'll see you next time.", "buttons": [{ "index": 1, "label": "OK", "next": "0808" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0806": { "id": "0806", "speaker": "Fisherman", "text": "I'm fishing patiently trying catching a great salmon but I can only find small fish in this muddy river.", "buttons": [{ "index": 1, "label": "Can I help you", "next": "0804" }, { "index": 2, "label": "That is sad", "next": "0809" }], "actions": [], "condition": null }, "0807": { "id": "0807", "speaker": "Fisherman", "text": "Do you have the great salmon?", "buttons": [{ "index": 1, "label": "Yes", "next": "0810" }, { "index": 2, "label": "No", "next": "0811" }], "actions": [], "condition": null }, "0808": { "id": "0808", "speaker": "Fisherman", "text": "Hello what brought you here?", "buttons": [{ "index": 1, "label": "Just exploring", "next": "0803" }, { "index": 2, "label": "I wanna help you", "next": "0804" }], "actions": [], "condition": null }, "0809": { "id": "0809", "speaker": "Fisherman", "text": "I can do nothing with. Try again. Can you help me in catching the prey?", "buttons": [{ "index": 1, "label": "Yes", "next": "0804" }, { "index": 2, "label": "No", "next": "0805" }], "actions": [], "condition": null }, "0810": { "id": "0810", "speaker": "Fisherman", "text": "Then give it to me.", "buttons": [{ "index": 1, "label": "Choose Item", "next": "0812" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Great Salmon", "next": "0812" }, { "label": "Other", "next": "0813" }] }], "condition": null }, "0811": { "id": "0811", "speaker": "Fisherman", "text": "Have them next time!", "buttons": [{ "index": 1, "label": "Okay", "next": "0807" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0812": { "id": "0812", "speaker": "Fisherman", "text": "In return I can tell you that the Troll's \"o\" means \"one\".", "buttons": [{ "index": 1, "label": "Thanks", "next": "0814" }, { "index": 2, "label": "Can I help you?", "next": "0815" }], "actions": [{ "type": "REMOVE_ITEM", "data": "Great Salmon" }], "condition": null }, "0813": { "id": "0813", "speaker": "Fisherman", "text": "That's not the great salmon.", "buttons": [{ "index": 1, "label": "Okay", "next": "0811" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0814": { "id": "0814", "speaker": "Fisherman", "text": "Bye bye. Now do not disturb me again in fishing!", "buttons": [{ "index": 1, "label": "Okay", "next": "0816" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0815": { "id": "0815", "speaker": "Fisherman", "text": "Well... if you could give this to the messenger... and return of a favor please give these fish to him. He might tell you something.", "buttons": [{ "index": 1, "label": "I'll give it to him", "next": "0814" }], "actions": [{ "type": "ADD_ITEM", "data": "Fish" }, { "type": "START_QUEST", "data": "Give Fish to Messenger" }], "condition": null }, "0816": { "id": "0816", "speaker": "Fisherman", "text": "The fisherman waves at you and then puts the finger in front of his mouth \"shh\". You can't talk to him right now.", "buttons": [{ "index": 1, "label": "Okay", "next": "0816" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0817": { "id": "0817", "speaker": "Fisherman", "text": "Blobfish usually catch after 12-15 seconds.", "buttons": [{ "index": 1, "label": "Okay thanks", "next": "0807" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null } } }, "09": { "requiredArea": "CASTLE_SIDE", "startPage": "0901", "pages": { "0901": { "id": "0901", "speaker": "Messenger", "text": "Hi I am the messenger. I'm always walking around delivering messages to various people.", "buttons": [{ "index": 1, "label": "Why not running?", "next": "0902" }, { "index": 2, "label": "Can I give you something?", "next": "0903" }, { "index": 3, "label": "You need help?", "next": "0904" }], "actions": [], "condition": null }, "0902": { "id": "0902", "speaker": "Messenger", "text": "Hey no I hate running. I would never run. Now if you have something important...", "buttons": [{ "index": 1, "label": "Can I give you something?", "next": "0903" }, { "index": 2, "label": "You need my help?", "next": "0904" }], "actions": [], "condition": null }, "0903": { "id": "0903", "speaker": "Messenger", "text": "Then give it.", "buttons": [{ "index": 1, "label": "Choose Item", "next": "0905" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Bundle of Letters", "next": "0905" }, { "label": "Fish", "next": "0907" }, { "label": "Other", "next": "0913" }] }], "condition": null }, "0904": { "id": "0904", "speaker": "Messenger", "text": "Well... I lost - let me count - three messages went lost when I was at the bridge's Castle side end. I dropped them. If you could bring those back I'd be happy.", "buttons": [{ "index": 1, "label": "Okay I'll do", "next": "0906" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "START_QUEST", "data": "Lost Messages" }], "condition": null }, "0905": { "id": "0905", "speaker": "Messenger", "text": "Oh thank you!!! In return I can tell you the first part of the password.", "buttons": [{ "index": 1, "label": "OK", "next": "0911" }], "actions": [{ "type": "REMOVE_ITEM", "data": "Bundle of Letters" }], "condition": null }, "0906": { "id": "0906", "speaker": "Messenger", "text": "Do you have those letters?", "buttons": [{ "index": 1, "label": "Yes", "next": "0908" }, { "index": 2, "label": "No", "next": "0909" }], "actions": [], "condition": null }, "0907": { "id": "0907", "speaker": "Messenger", "text": "Ooh the Fisherman sent me these fish? Nice. In return I'll tell you: if you ever find strange words on paper you should use a decoder powder which is just a gray powder. Now I gotta go.", "buttons": [{ "index": 1, "label": "Bye", "next": "0910" }], "actions": [{ "type": "NEXT_SCAN" }, { "type": "REMOVE_ITEM", "data": "Fish" }, { "type": "COMPLETE_QUEST", "data": "Give Fish to Messenger" }], "condition": null }, "0908": { "id": "0908", "speaker": "Messenger", "text": "Please give them to me. I really need them.", "buttons": [{ "index": 1, "label": "OK", "next": "0903" }], "actions": [{ "type": "COMPLETE_QUEST", "data": "Lost Messages" }], "condition": null }, "0909": { "id": "0909", "speaker": "Messenger", "text": "Then why did you come back? I'm in hurry. Only come back when you have those letters.", "buttons": [{ "index": 1, "label": "Ok", "next": "0906" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0910": { "id": "0910", "speaker": "Messenger", "text": "Hello do you want to help me in something?", "buttons": [{ "index": 1, "label": "No", "next": "0910" }, { "index": 2, "label": "Yes", "next": "0904" }, { "index": 3, "label": "I wanna give you something", "next": "0903" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0911": { "id": "0911", "speaker": "Messenger", "text": "The first part of the password is \"Apple\", now I gotta go!", "buttons": [{ "index": 1, "label": "Thx", "next": "0912" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0912": { "id": "0912", "speaker": "Messenger", "text": "You can't see the messenger.", "buttons": [{ "index": 1, "label": "OK", "next": "0912" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "0913": { "id": "0913", "speaker": "Messenger", "text": "That is not what I need.", "buttons": [{ "index": 1, "label": "OK", "next": "0906" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null } } }, "10": { "requiredArea": "CASTLE_SIDE", "startPage": "1001", "pages": { "1001": { "id": "1001", "speaker": "Warrior", "text": "Hello! If you wanna get inside, you have to know the password!", "buttons": [{ "index": 1, "label": "Okay, bye", "next": "1001" }, { "index": 2, "label": "I don't know, but I show you something", "next": "1002" }, { "index": 3, "label": "I know", "next": "1003" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "1002": { "id": "1002", "speaker": "Warrior", "text": "Look at this.", "buttons": [{ "index": 1, "label": "Sword of Koji", "next": "1005" }, { "index": 2, "label": "Magic Branch", "next": "1010" }, { "index": 3, "label": "Other", "next": "1004" }], "actions": [], "condition": null }, "1003": { "id": "1003", "speaker": "Warrior", "text": "Then what is it?", "buttons": [{ "index": 1, "label": "Choose First Part", "next": "1006" }], "actions": [{ "type": "DROPDOWN_CHOICE", "options": [{ "label": "Apple", "next": "1006" }, { "label": "Orange", "next": "1008" }, { "label": "Plum", "next": "1008" }, { "label": "Pear", "next": "1008" }, { "label": "Peach", "next": "1008" }] }], "condition": null }, "1004": { "id": "1004", "speaker": "Warrior", "text": "No you can't get inside with that.", "buttons": [{ "index": 1, "label": "OK", "next": "1001" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "1005": { "id": "1005", "speaker": "Warrior", "text": "Ha you wanna fight?", "buttons": [{ "index": 1, "label": "No bye", "next": "1001" }, { "index": 2, "label": "I wanna give it to you", "next": "1004" }, { "index": 3, "label": "Yes", "next": "1009" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "1006": { "id": "1006", "speaker": "Warrior", "text": "Choose the second part.", "buttons": [{ "index": 1, "label": "Choose Second Part", "next": "1007" }], "actions": [{ "type": "DROPDOWN_CHOICE", "options": [{ "label": "Pie", "next": "1007" }, { "label": "Juice", "next": "1008" }, { "label": "Tree", "next": "1008" }, { "label": "Flavour", "next": "1008" }, { "label": "Fruit", "next": "1008" }] }], "condition": null }, "1007": { "id": "1007", "speaker": "Warrior", "text": "Well... that's correct! You may go in.", "buttons": [{ "index": 1, "label": "YAY", "next": "1011" }], "actions": [{ "type": "OPEN_CASTLE" }], "condition": null }, "1008": { "id": "1008", "speaker": "Warrior", "text": "Well... that's incorrect. You must stay out!", "buttons": [{ "index": 1, "label": "Okay", "next": "1001" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "1009": { "id": "1009", "speaker": "Warrior", "text": "Let's go!! Nothing happens. A dinosaur jumps out of your hand and two strikes it defeats the guard.", "buttons": [{ "index": 1, "label": "May I go in?", "next": "1007" }], "actions": [], "condition": null }, "1010": { "id": "1010", "speaker": "Warrior", "text": "You swing it. Little rainbow sparkles, but nothing else.", "buttons": [{ "index": 1, "label": "Bye", "next": "1001" }, { "index": 2, "label": "Ha ha ha ha ha ha ha ha...", "next": "1010" }, { "index": 3, "label": "I wanna give it to you", "next": "1004" }], "actions": [{ "type": "NEXT_SCAN" }], "condition": null }, "1011": { "id": "1011", "speaker": "Warrior", "text": "You won!", "buttons": [{ "index": 1, "label": "OK", "next": "TITLE_SCREEN" }], "actions": [], "condition": null } } } }, "items": { "Sweets": { "startPage": "1101", "pages": { "1101": { "id": "1101", "speaker": "Sweets", "text": "These are just sweets.", "buttons": [{ "index": 1, "label": "OK", "next": "HOME" }, { "index": 2, "label": "Eat them", "next": "1102" }], "actions": [], "condition": null }, "1102": { "id": "1102", "speaker": "Sweets", "text": "A small Warning: DONT!", "buttons": [{ "index": 1, "label": "OK", "next": "HOME" }], "actions": [], "condition": null }, "1103": { "id": "1103", "speaker": "Sweets", "text": "You actually ate them. Now you lost a valuable resource...\n\nJust great...", "buttons": [{ "index": 1, "label": "OK", "next": "HOME" }], "actions": [{ "type": "REMOVE_ITEM", "data": "Sweets" }], "condition": null } }, "specialMechanics": { "eatAttempts": { "buttonPage": "1101", "buttonLabel": "Eat them", "warningPage": "1102", "attemptsBeforeConsumed": 5, "consumedPage": "1103" } } }, "Old Scroll": { "startPage": "1201", "pages": { "1201": { "id": "1201", "speaker": "Old Scroll", "text": "Its just an old scroll folded up!", "buttons": [{ "index": 1, "label": "Ok", "next": "HOME" }, { "index": 2, "label": "Inspect", "next": "1202" }, { "index": 3, "label": "Unfold", "next": "1203" }], "actions": [], "condition": null }, "1202": { "id": "1202", "speaker": "Old Scroll", "text": "Its paper looks very old, and its a little bit dirty.", "buttons": [{ "index": 1, "label": "Ok", "next": "HOME" }, { "index": 2, "label": "Unfold", "next": "1203" }], "actions": [], "condition": null }, "1203": { "id": "1203", "speaker": "Old Scroll", "text": "Ypu unfold it and find a strange thing written on it:\n\nRcuuygtf:Crrmgrkg", "buttons": [{ "index": 1, "label": "Inspect the paper", "next": "1202" }, { "index": 2, "label": "Read it out", "next": "1204" }, { "index": 3, "label": "Ok", "next": "HOME" }], "actions": [], "condition": null }, "1204": { "id": "1204", "speaker": "Old Scroll", "text": "You start babbling but nothing extraordinary happens wxpect you look like you lost your mind.", "buttons": [{ "index": 1, "label": "Combin it with an item", "next": "1205" }, { "index": 2, "label": "Ok", "next": "HOME" }], "actions": [], "condition": null }, "1205": { "id": "1205", "speaker": "Old Scroll", "text": "choose an item from inventory:", "buttons": [{ "index": 1, "label": "Choose Item", "next": "1207" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Strange Powder", "next": "1207" }, { "label": "Other", "next": "1206" }] }], "condition": null }, "1206": { "id": "1206", "speaker": "Old Scroll", "text": "Nothing happens", "buttons": [{ "index": 1, "label": "Ok", "next": "HOME" }], "actions": [], "condition": null }, "1207": { "id": "1207", "speaker": "Old Scroll", "text": "The words shimmer and the magic powder turns into dust and the evaporates under it you find new words.\n\nPassword:Applepie", "buttons": [{ "index": 1, "label": "Ok", "next": "HOME" }], "actions": [{ "type": "ADD_ITEM", "data": "Scroll with Password" }, { "type": "REMOVE_ITEM", "data": "Old Scroll" }, { "type": "REMOVE_ITEM", "data": "Strange Powder" }], "condition": null } } }, "Magic Branch": { "startPage": "1301", "pages": { "1301": { "id": "1301", "speaker": "Magic Branch", "text": "This is a branch you've got from a talking tree.", "buttons": [{ "index": 1, "label": "Swing It", "next": "1302" }, { "index": 2, "label": "OK", "next": "HOME" }], "actions": [], "condition": null }, "1302": { "id": "1302", "speaker": "Magic Branch", "text": "Rainbow glitters appear but nothing else changes.", "buttons": [{ "index": 1, "label": "OK", "next": "HOME" }], "actions": [], "condition": null } } }, "Horn of Trees": { "startPage": "1401", "pages": { "1401": { "id": "1401", "speaker": "Horn of Trees", "text": "This strange horn You've got from tree. It looks like an instrument.", "buttons": [{ "index": 1, "label": "OK", "next": "HOME" }, { "index": 2, "label": "Blow it", "next": "1402" }], "actions": [], "condition": null }, "1402": { "id": "1402", "speaker": "Horn of Trees", "text": "When you blow it you hear a voice of dried leaf rustling, and the tree speaks to you.", "buttons": [{ "index": 1, "label": "Lets hear her", "next": "0410" }], "actions": [], "condition": null } }, "crossEncounterTargets": ["0410"] }, "Bridge Key": { "startPage": "1501", "pages": { "1501": { "id": "1501", "speaker": "Bridge Key", "text": "A silver Key. You can open the bridge with it.", "buttons": [{ "index": 1, "label": "Use it", "next": "1502" }, { "index": 2, "label": "OK", "next": "HOME" }], "actions": [], "condition": null }, "1502": { "id": "1502", "speaker": "Bridge Key", "text": "Now the bridge is open and you can access the Castle Entrance area.", "buttons": [{ "index": 1, "label": "OK", "next": "HOME" }], "actions": [{ "type": "UNLOCK_AREA", "data": "Castle Entrance" }], "condition": null } } }, "Golden Medal": { "startPage": "1601", "pages": { "1601": { "id": "1601", "speaker": "Golden Medal", "text": "A golden coin attached to a silk string. It was given to you by the hunter to give this to his friend the Guard, in the means of friendship.", "buttons": [{ "index": 1, "label": "OK", "next": "HOME" }, { "index": 2, "label": "Give it to Guard", "next": "1602" }], "actions": [], "condition": null }, "1602": { "id": "1602", "speaker": "Golden Medal", "text": "Then go to the guard!!!", "buttons": [{ "index": 1, "label": "OK", "next": "HOME" }], "actions": [], "condition": null } } }, "Mark of Goblins": { "startPage": "1701", "pages": { "1701": { "id": "1701", "speaker": "Mark of Goblins", "text": "A silver coin with a goblin face carved into it. The guard believes it impresses goblins.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Priclys Feather": { "startPage": "1801", "pages": { "1801": { "id": "1801", "speaker": "Priclys Feather", "text": "A yellowish-brown feather with white spots, probably from a strange creature.", "buttons": [{ "index": 1, "label": "Ok", "next": "HOME" }, { "index": 2, "label": "Swing it", "next": "1802" }], "actions": [], "condition": null }, "1802": { "id": "1802", "speaker": "Priclys Feather", "text": "You hear the voices of birds flapping their wings, and then it fades away.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Strange Powder": { "startPage": "1901", "pages": { "1901": { "id": "1901", "speaker": "Strange Powder", "text": "This powder is really strange. You could try rubbing it into something because it looks magical.", "buttons": [{ "index": 1, "label": "Not now", "next": "HOME" }, { "index": 2, "label": "Try", "next": "1902" }], "actions": [], "condition": null }, "1902": { "id": "1902", "speaker": "Strange Powder", "text": "Into what?", "buttons": [{ "index": 1, "label": "Choose Item", "next": "1903" }], "actions": [{ "type": "DROPDOWN_INVENTORY", "options": [{ "label": "Old Scroll", "next": "1903" }, { "label": "Other", "next": "1904" }] }], "condition": null }, "1903": { "id": "1903", "speaker": "Strange Powder", "text": "When you rub it into the old paper, it shimmers and the new text appears. Password:”apple pie”. You got the password to something.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [{ "type": "ADD_ITEM", "data": "Scroll with Password" }, { "type": "REMOVE_ITEM", "data": "Old Scroll" }, { "type": "REMOVE_ITEM", "data": "Strange Powder" }], "condition": null }, "1904": { "id": "1904", "speaker": "Strange Powder", "text": "Nothing happens.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Gold Coin": { "startPage": "2001", "pages": { "2001": { "id": "2001", "speaker": "Gold Coin", "text": "A golden coin Found by the goblin, can be used for transactional. purpose.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Ruby Sword": { "startPage": "2101", "pages": { "2101": { "id": "2101", "speaker": "Ruby Sword / Sword of Koji", "text": "The blade looks very ancient, very unique. You are glad to have it from the goblin.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }, { "index": 2, "label": "practice", "next": "2102" }, { "index": 3, "label": "throw it", "next": "2103" }], "actions": [], "condition": null }, "2102": { "id": "2102", "speaker": "Ruby Sword / Sword of Koji", "text": "When you hold it like a sword fighter, you feel a great strength in your veins. You try a few complicated moves. They are super easy. You became a very good fighter.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null }, "2103": { "id": "2103", "speaker": "Ruby Sword / Sword of Koji", "text": "When you throw it, it comes back to you like a boomerang. This looks like a magical weapon.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } }, "aliases": ["Sword of Koji"] }, "Staff of Goblins": { "startPage": "2201", "pages": { "2201": { "id": "2201", "speaker": "Staff of Goblins", "text": "This wooden and gold staff you got from a goblin is the symbol of friendship.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }, { "index": 2, "label": "stomp it", "next": "2202" }], "actions": [], "condition": null }, "2202": { "id": "2202", "speaker": "Staff of Goblins", "text": "You stomp it. You hear a fading goblin laugh, and then silence.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Fishing Rod": { "startPage": "2301", "pages": { "2301": { "id": "2301", "speaker": "Fishing Rod", "text": "Just a fishing rod with a small bobber.", "buttons": [{ "index": 1, "label": "Throw it in", "next": "2302" }, { "index": 2, "label": "ok", "next": "HOME" }], "actions": [], "condition": null }, "2302": { "id": "2302", "speaker": "Fishing Rod", "text": "You throw it in and wait two-three seconds.", "buttons": [{ "index": 1, "label": "reel", "next": "2310" }, { "index": 2, "label": "wait", "next": "2303" }], "actions": [], "condition": null }, "2303": { "id": "2303", "speaker": "Fishing Rod", "text": "You wait four-five seconds.", "buttons": [{ "index": 1, "label": "reel", "next": "2310" }, { "index": 2, "label": "wait", "next": "2304" }], "actions": [], "condition": null }, "2304": { "id": "2304", "speaker": "Fishing Rod", "text": "You wait six, seven seconds.", "buttons": [{ "index": 1, "label": "reel", "next": "2311" }, { "index": 2, "label": "wait", "next": "2305" }], "actions": [], "condition": null }, "2305": { "id": "2305", "speaker": "Fishing Rod", "text": "You wait three, four seconds.", "buttons": [{ "index": 1, "label": "reel", "next": "2310" }, { "index": 2, "label": "wait", "next": "2306" }], "actions": [], "condition": null }, "2306": { "id": "2306", "speaker": "Fishing Rod", "text": "You wait three seconds.", "buttons": [{ "index": 1, "label": "reel", "next": "2310" }, { "index": 2, "label": "wait", "next": "2307" }], "actions": [], "condition": null }, "2307": { "id": "2307", "speaker": "Fishing Rod", "text": "You wait two, three seconds.", "buttons": [{ "index": 1, "label": "reel", "next": "2312" }, { "index": 2, "label": "wait", "next": "2308" }], "actions": [], "condition": null }, "2308": { "id": "2308", "speaker": "Fishing Rod", "text": "You wait four, six seconds.", "buttons": [{ "index": 1, "label": "reel", "next": "2310" }, { "index": 2, "label": "wait", "next": "2309" }], "actions": [], "condition": null }, "2309": { "id": "2309", "speaker": "Fishing Rod", "text": "You wait one more second.", "buttons": [{ "index": 1, "label": "reel", "next": "2313" }], "actions": [], "condition": null }, "2310": { "id": "2310", "speaker": "Fishing Rod", "text": "Nothing. You caught nothing. Now, you go away.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null }, "2311": { "id": "2311", "speaker": "Fishing Rod", "text": "You struggle with the pull in, and at the end of the road, there is a blobfish.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [{ "type": "ADD_ITEM", "data": "Blobfish" }], "condition": null }, "2312": { "id": "2312", "speaker": "Fishing Rod", "text": "You start pulling it in, you struggle, and then ta-da, there is a large salmon", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [{ "type": "ADD_ITEM", "data": "Great Salmon" }], "condition": null }, "2313": { "id": "2313", "speaker": "Fishing Rod", "text": "You find an old boot.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [{ "type": "ADD_ITEM", "data": "Old Boots" }], "condition": null } }, "specialMechanics": { "oneTimeCatches": [{ "fromPage": "2304", "button": "reel", "rewardPage": "2311", "rewardItem": "Blobfish", "repeatPage": "2310" }, { "fromPage": "2307", "button": "reel", "rewardPage": "2312", "rewardItem": "Great Salmon", "repeatPage": "2310" }, { "fromPage": "2309", "button": "reel", "rewardPage": "2313", "rewardItem": "Old Boots", "repeatPage": "2310" }] } }, "Crystal Shard": { "startPage": "2401", "pages": { "2401": { "id": "2401", "speaker": "Crystal Shard", "text": "A blue shard, when you put it towards the light, it emits a rainbow.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Blobfish": { "startPage": "2501", "pages": { "2501": { "id": "2501", "speaker": "Blobfish", "text": "It looks just like a deflated ball.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }, { "index": 2, "label": "inflate", "next": "2502" }], "actions": [], "condition": null }, "2502": { "id": "2502", "speaker": "Blobfish", "text": "you struggle and fail for a long time. Then you give up.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Silver Ring": { "startPage": "2601", "pages": { "2601": { "id": "2601", "speaker": "Silver Ring", "text": "A beautiful shining ring you found at the river.", "buttons": [{ "index": 1, "label": "Put it on.", "next": "2602" }, { "index": 2, "label": "ok", "next": "HOME" }], "actions": [], "condition": null }, "2602": { "id": "2602", "speaker": "Silver Ring", "text": "You put it on your finger, and it looks good with its silvery shining.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } }, "specialMechanics": { "hideButtonAfterUse": { "page": "2601", "buttonLabel": "Put it on." } } }, "Bundle of Letters": { "startPage": "2701", "pages": { "2701": { "id": "2701", "speaker": "Bundle of Letters", "text": "A bundle of letters you found at the bridge dropped by someone.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Scroll with Password": { "startPage": "2801", "pages": { "2801": { "id": "2801", "speaker": "Scroll with Password", "text": "It's just the old scroll, but decoded.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }, { "index": 2, "label": "inspect", "next": "2802" }], "actions": [], "condition": null }, "2802": { "id": "2802", "speaker": "Scroll with Password", "text": "The words On the paper read, “password: applepie.” Though, where should you use it?", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Old Boots": { "startPage": "2901", "pages": { "2901": { "id": "2901", "speaker": "Old Boots", "text": "Just a pair of worn leather boots. Still dripping water.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }, { "index": 2, "label": "Wear", "next": "2902" }], "actions": [], "condition": null }, "2902": { "id": "2902", "speaker": "Old Boots", "text": "You put it on but they are so wet and uncomfortable you immediately take it off.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Great Salmon": { "startPage": "3001", "pages": { "3001": { "id": "3001", "speaker": "Great Salmon", "text": "It's just a large fish. Wait…its still alive!", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } }, "Fish": { "startPage": "3101", "pages": { "3101": { "id": "3101", "speaker": "Fish", "text": "These are just fish in a bag.", "buttons": [{ "index": 1, "label": "ok", "next": "HOME" }], "actions": [], "condition": null } } } }, "compilerNotes": ["PASSWORD_INPUT from the source spreadsheet is normalized to DROPDOWN_CHOICE.", "Item dialogues use the same page/button/action/condition shape as NPC encounters.", "Item dialogue buttons use next='HOME' when the design says the player returns Home.", "Blobfish replaces Pufferfish everywhere per the current item canon.", "Message Paper is normalized to Bundle of Letters per the current item canon.", "Staff of Goblin is normalized to Staff of Goblins per the current item canon.", "Magic Branch on Warrior page 1002 links to the already-existing failed rainbow-sparkle page 1010.", "UNLOCK_AREA is represented for Bridge Key and requires an app action handler.", "specialMechanics records Sweets five-attempt eating, Silver Ring one-time Wear, and one-time Fishing Rod catches.", "Horn of Trees intentionally links to NPC page 0410."], "compilerWarnings": ["The app must read gameData.items when an inventory item is tapped.", "The app must understand the HOME next target for item dialogue buttons.", "UNLOCK_AREA is a new action type and must be implemented for Bridge Key to unlock the Castle Entrance.", "specialMechanics must be implemented to enforce the exact Sweets, Silver Ring, and Fishing Rod rules.", "Item dialogue navigation must allow Horn of Trees to open NPC page 0410."] };
+window.QR_CITY_QUEST_DATA = {
+  "formatVersion": 1,
+  "generatedFrom": "Gergo-app-prototype-item-actions-fixed + QR_City_Quest_Item_Data.md",
+  "encounters": {
+    "01": {
+      "startPage": "0101",
+      "pages": {
+        "0101": {
+          "id": "0101",
+          "speaker": "Child",
+          "text": "Will ya' buy me some sweets?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "0102"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "0103"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0102": {
+          "id": "0102",
+          "speaker": "Child",
+          "text": "You can buy them from the Merchant.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0104"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Buy Sweets"
+            }
+          ],
+          "condition": null
+        },
+        "0103": {
+          "id": "0103",
+          "speaker": "Child",
+          "text": "Okay then, leave me alone!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0101"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0104": {
+          "id": "0104",
+          "speaker": "Child",
+          "text": "Do you have any sweets?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "0105"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "0103"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0105": {
+          "id": "0105",
+          "speaker": "Child",
+          "text": "Show me!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "0106"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Sweets",
+                  "next": "0106"
+                },
+                {
+                  "label": "Other",
+                  "next": "0103"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0106": {
+          "id": "0106",
+          "speaker": "Child",
+          "text": "I heard the Messenger telling a password to the Warrior. It was something like \"...Pie\".",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thanks",
+              "next": "0107"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Sweets"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Buy Sweets"
+            }
+          ],
+          "condition": null
+        },
+        "0107": {
+          "id": "0107",
+          "speaker": "Child",
+          "text": "The child can't be seen.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0107"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "02": {
+      "startPage": "0201",
+      "pages": {
+        "0201": {
+          "id": "0201",
+          "speaker": "Merchant",
+          "text": "Hello customer! You wanna buy something?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "0202"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "0203"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0202": {
+          "id": "0202",
+          "speaker": "Merchant",
+          "text": "I have a few things to sell. Which one do you prefer?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Sweets",
+              "next": "0204"
+            },
+            {
+              "index": 2,
+              "label": "Old Scroll",
+              "next": "0205"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0203": {
+          "id": "0203",
+          "speaker": "Merchant",
+          "text": "Okay, but do you have some free time? I would be happy if you could get me some unique ingredients.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "No I gotta go",
+              "next": "0201"
+            },
+            {
+              "index": 2,
+              "label": "Yeah",
+              "next": "0206"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0204": {
+          "id": "0204",
+          "speaker": "Merchant",
+          "text": "Okay it will be a gold coin. Choose one of your items from your inventory.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "0207"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Gold Coin",
+                  "next": "0207"
+                },
+                {
+                  "label": "Other",
+                  "next": "0208"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0205": {
+          "id": "0205",
+          "speaker": "Merchant",
+          "text": "Okay it will be a Priclys Feather. Choose one of your items from your inventory.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "0209"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Priclys Feather",
+                  "next": "0209"
+                },
+                {
+                  "label": "Other",
+                  "next": "0208"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0206": {
+          "id": "0206",
+          "speaker": "Merchant",
+          "text": "So if you could get me a Blobfish I would be happy. Bye bye.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0210"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Get Blobfish for Merchant"
+            }
+          ],
+          "condition": null
+        },
+        "0207": {
+          "id": "0207",
+          "speaker": "Merchant",
+          "text": "Here are some sweets for ya! You've got some spare time?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "No I gotta go",
+              "next": "0201"
+            },
+            {
+              "index": 2,
+              "label": "Yeah",
+              "next": "0206"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Gold Coin"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Sweets"
+            }
+          ],
+          "condition": null
+        },
+        "0208": {
+          "id": "0208",
+          "speaker": "Merchant",
+          "text": "I don't need that!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0201"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0209": {
+          "id": "0209",
+          "speaker": "Merchant",
+          "text": "Here is the old scroll. You've got some spare time?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "No I gotta go",
+              "next": "0201"
+            },
+            {
+              "index": 2,
+              "label": "Yeah",
+              "next": "0206"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Priclys Feather"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Old Scroll"
+            }
+          ],
+          "condition": null
+        },
+        "0210": {
+          "id": "0210",
+          "speaker": "Merchant",
+          "text": "Do you have my fish?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "No",
+              "next": "0211"
+            },
+            {
+              "index": 2,
+              "label": "Yes",
+              "next": "0212"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0211": {
+          "id": "0211",
+          "speaker": "Merchant",
+          "text": "At least you wanna buy something?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "No I gotta go",
+              "next": "0201"
+            },
+            {
+              "index": 2,
+              "label": "Yup",
+              "next": "0202"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0212": {
+          "id": "0212",
+          "speaker": "Merchant",
+          "text": "Can you give them to me?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "0213"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Blobfish",
+                  "next": "0213"
+                },
+                {
+                  "label": "Other",
+                  "next": "0208"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0213": {
+          "id": "0213",
+          "speaker": "Merchant",
+          "text": "Okay. Nice. I don't have much to share but I can tell you that at the troll's riddle the letters connect to numbers somehow as I heard.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0201"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Blobfish"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Get Blobfish for Merchant"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "03": {
+      "startPage": "0301",
+      "pages": {
+        "0301": {
+          "id": "0301",
+          "speaker": "Guard",
+          "text": "Hello Boy. Are you interested in how this whole world works?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "0302"
+            },
+            {
+              "index": 2,
+              "label": "No just wandering",
+              "next": "0303"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0302": {
+          "id": "0302",
+          "speaker": "Guard",
+          "text": "So let me tell you! This place is made out of different sections. We are in the Village Centre part. There are 3 other sections...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "What are they",
+              "next": "0304"
+            },
+            {
+              "index": 2,
+              "label": "That's enough",
+              "next": "0306"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0303": {
+          "id": "0303",
+          "speaker": "Guard",
+          "text": "And do you know where you are?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Not really",
+              "next": "0302"
+            },
+            {
+              "index": 2,
+              "label": "Yes",
+              "next": "0306"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0304": {
+          "id": "0304",
+          "speaker": "Guard",
+          "text": "The Grove, Bridge, and the Castle Entrance. At each section there are one or more people to talk with. You can get to each part easily but the castle is guarded by the Troll.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Who",
+              "next": "0305"
+            },
+            {
+              "index": 2,
+              "label": "I don't need more!",
+              "next": "0306"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0305": {
+          "id": "0305",
+          "speaker": "Guard",
+          "text": "A troll. If you defeat it only then you can reach the entrance. But that's anything I could tell you. Have a fun time here!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0306": {
+          "id": "0306",
+          "speaker": "Guard",
+          "text": "Then I have nothing more to tell you.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0307": {
+          "id": "0307",
+          "speaker": "Guard",
+          "text": "Hi! Keep on exploring!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0307"
+            },
+            {
+              "index": 2,
+              "label": "I have something for you",
+              "next": "0308"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0308": {
+          "id": "0308",
+          "speaker": "Guard",
+          "text": "Choose an item from your inventory.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "0310"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Golden Medal",
+                  "next": "0310"
+                },
+                {
+                  "label": "Other",
+                  "next": "0309"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0309": {
+          "id": "0309",
+          "speaker": "Guard",
+          "text": "I don't need this.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0310": {
+          "id": "0310",
+          "speaker": "Guard",
+          "text": "Oh my medal! Thank you for giving it back. For this I'll give you the Mark of Goblins. Goblins will be friendlier if you show them. Now thank you again!!!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Golden Medal"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Mark of Goblins"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Return Golden Medal to Guard"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "04": {
+      "startPage": "0401",
+      "pages": {
+        "0401": {
+          "id": "0401",
+          "speaker": "Talking Tree",
+          "text": "Hello Human! What are you seeking here?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "You can TALK??",
+              "next": "0402"
+            },
+            {
+              "index": 2,
+              "label": "Just rumours about people",
+              "next": "0403"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0402": {
+          "id": "0402",
+          "speaker": "Talking Tree",
+          "text": "I'm pleased you asked although I won't share...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0404"
+            },
+            {
+              "index": 2,
+              "label": "Bye",
+              "next": "0407"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0403": {
+          "id": "0403",
+          "speaker": "Talking Tree",
+          "text": "I know things about people. I can tell you things. Who are you interested in?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Messenger",
+              "next": "0405"
+            },
+            {
+              "index": 2,
+              "label": "Warrior",
+              "next": "0406"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0404": {
+          "id": "0404",
+          "speaker": "Talking Tree",
+          "text": "I'll soon go asleep for like 20 mins maybe. After that we can talk again.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_TIMER",
+              "raw": "20 minutes",
+              "durationMs": 1200000
+            }
+          ],
+          "condition": null
+        },
+        "0405": {
+          "id": "0405",
+          "speaker": "Talking Tree",
+          "text": "That guy really has a sweet tooth. Also he hates running surprisingly! Now I'm going to sleep.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0406": {
+          "id": "0406",
+          "speaker": "Talking Tree",
+          "text": "That one is a mighty fighter and can only be defeated with the Sword of Koji. Now I shall rest.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0407": {
+          "id": "0407",
+          "speaker": "Talking Tree",
+          "text": "At least I can give you this magic branch that will help you on your mission. I insist. Now I'm going to rest.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Magic Branch"
+            }
+          ],
+          "condition": null
+        },
+        "0408": {
+          "id": "0408",
+          "speaker": "Talking Tree",
+          "text": "The tree is asleep.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0409": {
+          "id": "0409",
+          "speaker": "Talking Tree",
+          "text": "Hello again. I remember you were so surprised to see a wonderful tree like me. Because of that I give you the Horn of Trees. If you blow it I will wake up from my dream. And now how can I help you?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Some info",
+              "next": "0403"
+            },
+            {
+              "index": 2,
+              "label": "I don't know",
+              "next": "0407"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Horn of Trees"
+            }
+          ],
+          "condition": null
+        },
+        "0410": {
+          "id": "0410",
+          "speaker": "Talking Tree",
+          "text": "Hello again. I can tell you things about some people.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "0403"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "0408"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "05": {
+      "startPage": "0501",
+      "pages": {
+        "0501": {
+          "id": "0501",
+          "speaker": "Hunter",
+          "text": "Greetings traveler! I'm on a hurry but I can give you a few minutes.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Why are you hurrying?",
+              "next": "0502"
+            },
+            {
+              "index": 2,
+              "label": "Who are you",
+              "next": "0503"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0502": {
+          "id": "0502",
+          "speaker": "Hunter",
+          "text": "I'm always in a hurry hunting for the unique species that are attracted to this grove.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Why are they attracted?",
+              "next": "0504"
+            },
+            {
+              "index": 2,
+              "label": "Who are you?",
+              "next": "0503"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0503": {
+          "id": "0503",
+          "speaker": "Hunter",
+          "text": "I am the hunter who hunts for the species hidden in this special grove!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Why is this grove special?",
+              "next": "0504"
+            },
+            {
+              "index": 2,
+              "label": "Can I ask a question?",
+              "next": "0505"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0504": {
+          "id": "0504",
+          "speaker": "Hunter",
+          "text": "I don't know, but I swear there is something magical hidden in this grove. You should check the trees! And now I gotta go!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0507"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_TIMER",
+              "raw": "5 minutes",
+              "durationMs": 300000
+            }
+          ],
+          "condition": null
+        },
+        "0505": {
+          "id": "0505",
+          "speaker": "Hunter",
+          "text": "Yes, but I might not know the answer.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "How to get in to the castle?",
+              "next": "0504"
+            },
+            {
+              "index": 2,
+              "label": "Where is the Sword?",
+              "next": "0504"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0506": {
+          "id": "0506",
+          "speaker": "Hunter",
+          "text": "Hello again! I'm chasing a Pina Coala, I've got no time, but I saw something shiny between the fountains stones.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0507"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_TIMER",
+              "raw": "5 minutes",
+              "durationMs": 300000
+            }
+          ],
+          "condition": null
+        },
+        "0507": {
+          "id": "0507",
+          "speaker": "Hunter",
+          "text": "Hello adventurer! I'm back from my hunt and now I can answer a few questions, but first...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Go on",
+              "next": "0509"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0508": {
+          "id": "0508",
+          "speaker": "Hunter",
+          "text": "The hunter is nowhere to be seen.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0508"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0509": {
+          "id": "0509",
+          "speaker": "Hunter",
+          "text": "Do you see the little footprints? That creature is better at hiding than anything else I've ever seen before. He might be hiding in one of the bushy places where I can't fit in!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Go on",
+              "next": "0510"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0510": {
+          "id": "0510",
+          "speaker": "Hunter",
+          "text": "But now let's see your questions.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Have you seen anything strange?",
+              "next": "0511"
+            },
+            {
+              "index": 2,
+              "label": "Do you know someone here?",
+              "next": "0512"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0511": {
+          "id": "0511",
+          "speaker": "Hunter",
+          "text": "Well, at the bridge I saw strange carvings in the stone, but nothing else.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thanks",
+              "next": "0514"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0512": {
+          "id": "0512",
+          "speaker": "Hunter",
+          "text": "Well have you seen the city guard? He is a friend of mine. He will tell you things about this little empire!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0513"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0513": {
+          "id": "0513",
+          "speaker": "Hunter",
+          "text": "Also could you please give this golden medal to the guard? He might give you something in exchange.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "That's it?",
+              "next": "0514"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Golden Medal"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Return Golden Medal to Guard"
+            }
+          ],
+          "condition": null
+        },
+        "0514": {
+          "id": "0514",
+          "speaker": "Hunter",
+          "text": "Okay and... Do you hear those wolves? This is the night of the blood moon, I shall go hunting, this is the time for the best prey!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0508"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "06": {
+      "startPage": "0601",
+      "pages": {
+        "0601": {
+          "id": "0601",
+          "speaker": "Goblin",
+          "text": "Hello who are you? I'm the goblin living in the forest. I'm glad we met.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Hello!",
+              "next": "0602"
+            },
+            {
+              "index": 2,
+              "label": "Do you have items?",
+              "next": "0603"
+            },
+            {
+              "index": 3,
+              "label": "Look what I have",
+              "next": "0604"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "type": "HAS_ITEM",
+            "data": "Mark of Goblins"
+          }
+        },
+        "0602": {
+          "id": "0602",
+          "speaker": "Goblin",
+          "text": "Hello come with me! Let me show you my collection!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Maybe next time",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0603": {
+          "id": "0603",
+          "speaker": "Goblin",
+          "text": "Yesss. Definitely. I have a collection of rare items I'm pretty proud of!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Next time I'll see",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Show me",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0604": {
+          "id": "0604",
+          "speaker": "Goblin",
+          "text": "Oh you've got the mark of goblins. Let me gift you something my friend!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thank you!",
+              "next": "0608"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0605": {
+          "id": "0605",
+          "speaker": "Goblin",
+          "text": "Hi again! May I show you my collection this time?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Next time",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Yes",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0606": {
+          "id": "0606",
+          "speaker": "Goblin",
+          "text": "Here! Look what I've collected! If you want one just say!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Gold Coin",
+              "next": "0607"
+            },
+            {
+              "index": 2,
+              "label": "Ruby Sword",
+              "next": "0609"
+            },
+            {
+              "index": 3,
+              "label": "Powder",
+              "next": "0610"
+            },
+            {
+              "index": 4,
+              "label": "I don't need more",
+              "next": "0616"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0607": {
+          "id": "0607",
+          "speaker": "Goblin",
+          "text": "This is a Gold Coin I found in the forest. I would trade it for something from a rare animal like a bird.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok bye",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "I have that",
+              "next": "0611"
+            },
+            {
+              "index": 3,
+              "label": "Let me see the other items",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0608": {
+          "id": "0608",
+          "speaker": "Goblin",
+          "text": "Here take this Gold Coin I found. This treasure looks especially good.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thx bye",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Do you have something else",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Gold Coin"
+            }
+          ],
+          "condition": null
+        },
+        "0609": {
+          "id": "0609",
+          "speaker": "Goblin",
+          "text": "This ruby sword was down in the bottom of the river. I saw its ruby and I had to have it. If you want it give me some other gem.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok bye",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "I have that",
+              "next": "0611"
+            },
+            {
+              "index": 3,
+              "label": "Let me see the other items",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0610": {
+          "id": "0610",
+          "speaker": "Goblin",
+          "text": "Hey I've found this powder in a leather sack and I thought it was really strange so I kept it. I would trade it for a shinier jewel.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok bye",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "I have that",
+              "next": "0611"
+            },
+            {
+              "index": 3,
+              "label": "Let me see the other items",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0611": {
+          "id": "0611",
+          "speaker": "Goblin",
+          "text": "Show me!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "0612"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Silver Ring",
+                  "next": "0612"
+                },
+                {
+                  "label": "Crystal Shard",
+                  "next": "0613"
+                },
+                {
+                  "label": "Priclys Feather",
+                  "next": "0614"
+                },
+                {
+                  "label": "Other",
+                  "next": "0615"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0612": {
+          "id": "0612",
+          "speaker": "Goblin",
+          "text": "Here is the strange powder. I like shinies, human, like dust... It's good for goblins!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0605"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Silver Ring"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Strange Powder"
+            }
+          ],
+          "condition": null
+        },
+        "0613": {
+          "id": "0613",
+          "speaker": "Goblin",
+          "text": "Here is the ruby sword. I like crystal shard better: It's shinier.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0605"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Crystal Shard"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Ruby Sword"
+            }
+          ],
+          "condition": null
+        },
+        "0614": {
+          "id": "0614",
+          "speaker": "Goblin",
+          "text": "Here is the gold coin. Feather might be trash for humans but treasure for goblins!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0605"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Priclys Feather"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Gold Coin"
+            }
+          ],
+          "condition": null
+        },
+        "0615": {
+          "id": "0615",
+          "speaker": "Goblin",
+          "text": "I don't need THAT!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0605"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0616": {
+          "id": "0616",
+          "speaker": "Goblin",
+          "text": "Can I give you one more gift for being my great trader mate? Here is the Staff of Goblins. This means you are the great friend of goblins.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thx",
+              "next": "0617"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Staff of Goblins"
+            }
+          ],
+          "condition": null
+        },
+        "0617": {
+          "id": "0617",
+          "speaker": "Goblin",
+          "text": "Now I'm leaving because all treasure here is inside my pockets!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0618"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0618": {
+          "id": "0618",
+          "speaker": "Goblin",
+          "text": "The goblin has left with all their valuables.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0618"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "07": {
+      "startPage": "0701",
+      "pages": {
+        "0701": {
+          "id": "0701",
+          "speaker": "Troll",
+          "text": "You try cross bridge?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "0702"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "0703"
+            },
+            {
+              "index": 3,
+              "label": "What??",
+              "next": "0704"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0702": {
+          "id": "0702",
+          "speaker": "Troll",
+          "text": "You first solve me riddle!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0705"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0703": {
+          "id": "0703",
+          "speaker": "Troll",
+          "text": "You can no cross if no riddle solve. I tell you riddle.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tell me",
+              "next": "0705"
+            },
+            {
+              "index": 2,
+              "label": "Let me try",
+              "next": "0701"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0704": {
+          "id": "0704",
+          "speaker": "Troll",
+          "text": "You stupid",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0701"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0705": {
+          "id": "0705",
+          "speaker": "Troll",
+          "text": "First 5 letter: O, T, T, F, F, S... Whats next 2?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "DROPDOWN",
+              "next": "0706"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_CHOICE",
+              "options": [
+                {
+                  "label": "SE",
+                  "next": "0706"
+                },
+                {
+                  "label": "EF",
+                  "next": "0704"
+                },
+                {
+                  "label": "ST",
+                  "next": "0704"
+                },
+                {
+                  "label": "TS",
+                  "next": "0704"
+                },
+                {
+                  "label": "ET",
+                  "next": "0704"
+                },
+                {
+                  "label": "FS",
+                  "next": "0704"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0706": {
+          "id": "0706",
+          "speaker": "Troll",
+          "text": "You smart! Here bridge key. Now go!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0707"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Bridge Key"
+            }
+          ],
+          "condition": null
+        },
+        "0707": {
+          "id": "0707",
+          "speaker": "Troll",
+          "text": "The Troll sits at the edge of the bridge and does not care about you.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0707"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "08": {
+      "startPage": "0801",
+      "pages": {
+        "0801": {
+          "id": "0801",
+          "speaker": "Fisherman",
+          "text": "Hello! What are you doing at the river?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Just exploring",
+              "next": "0803"
+            },
+            {
+              "index": 2,
+              "label": "Searching for the bridge",
+              "next": "0802"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0802": {
+          "id": "0802",
+          "speaker": "Fisherman",
+          "text": "Well you walk a few meters it's right there. Turn right from here but before with the troll also could you help me with something?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Of course",
+              "next": "0804"
+            },
+            {
+              "index": 2,
+              "label": "Not now",
+              "next": "0805"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0803": {
+          "id": "0803",
+          "speaker": "Fisherman",
+          "text": "You should go to the river. The troll is stopping you but his riddle is not that hard.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay I'll go",
+              "next": "0805"
+            },
+            {
+              "index": 2,
+              "label": "What are you doing here",
+              "next": "0806"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0804": {
+          "id": "0804",
+          "speaker": "Fisherman",
+          "text": "Here is a fishing rod. Take it and throw it in. Try catching great salmon. They usually come after 20-25 seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "0807"
+            },
+            {
+              "index": 2,
+              "label": "What about a blobfish",
+              "next": "0817"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Fishing Rod"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Get Great Salmon"
+            }
+          ],
+          "condition": null
+        },
+        "0805": {
+          "id": "0805",
+          "speaker": "Fisherman",
+          "text": "Then I'll see you next time.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0808"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0806": {
+          "id": "0806",
+          "speaker": "Fisherman",
+          "text": "I'm fishing patiently trying catching a great salmon but I can only find small fish in this muddy river.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Can I help you",
+              "next": "0804"
+            },
+            {
+              "index": 2,
+              "label": "That is sad",
+              "next": "0809"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0807": {
+          "id": "0807",
+          "speaker": "Fisherman",
+          "text": "Do you have the great salmon?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "0810"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "0811"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0808": {
+          "id": "0808",
+          "speaker": "Fisherman",
+          "text": "Hello what brought you here?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Just exploring",
+              "next": "0803"
+            },
+            {
+              "index": 2,
+              "label": "I wanna help you",
+              "next": "0804"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0809": {
+          "id": "0809",
+          "speaker": "Fisherman",
+          "text": "I can do nothing with. Try again. Can you help me in catching the prey?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "0804"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "0805"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0810": {
+          "id": "0810",
+          "speaker": "Fisherman",
+          "text": "Then give it to me.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "0812"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Great Salmon",
+                  "next": "0812"
+                },
+                {
+                  "label": "Other",
+                  "next": "0813"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0811": {
+          "id": "0811",
+          "speaker": "Fisherman",
+          "text": "Have them next time!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "0807"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0812": {
+          "id": "0812",
+          "speaker": "Fisherman",
+          "text": "In return I can tell you that the Troll's \"o\" means \"one\".",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thanks",
+              "next": "0814"
+            },
+            {
+              "index": 2,
+              "label": "Can I help you?",
+              "next": "0815"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Great Salmon"
+            }
+          ],
+          "condition": null
+        },
+        "0813": {
+          "id": "0813",
+          "speaker": "Fisherman",
+          "text": "That's not the great salmon.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "0811"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0814": {
+          "id": "0814",
+          "speaker": "Fisherman",
+          "text": "Bye bye. Now do not disturb me again in fishing!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "0816"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0815": {
+          "id": "0815",
+          "speaker": "Fisherman",
+          "text": "Well... if you could give this to the messenger... and return of a favor please give these fish to him. He might tell you something.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "I'll give it to him",
+              "next": "0814"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Fish"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Give Fish to Messenger"
+            }
+          ],
+          "condition": null
+        },
+        "0816": {
+          "id": "0816",
+          "speaker": "Fisherman",
+          "text": "The fisherman waves at you and then puts the finger in front of his mouth \"shh\". You can't talk to him right now.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "0816"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0817": {
+          "id": "0817",
+          "speaker": "Fisherman",
+          "text": "Blobfish usually catch after 12-15 seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay thanks",
+              "next": "0807"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "09": {
+      "requiredArea": "CASTLE_SIDE",
+      "startPage": "0901",
+      "pages": {
+        "0901": {
+          "id": "0901",
+          "speaker": "Messenger",
+          "text": "Hi I am the messenger. I'm always walking around delivering messages to various people.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Why not running?",
+              "next": "0902"
+            },
+            {
+              "index": 2,
+              "label": "Can I give you something?",
+              "next": "0903"
+            },
+            {
+              "index": 3,
+              "label": "You need help?",
+              "next": "0904"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0902": {
+          "id": "0902",
+          "speaker": "Messenger",
+          "text": "Hey no I hate running. I would never run. Now if you have something important...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Can I give you something?",
+              "next": "0903"
+            },
+            {
+              "index": 2,
+              "label": "You need my help?",
+              "next": "0904"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0903": {
+          "id": "0903",
+          "speaker": "Messenger",
+          "text": "Then give it.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "0905"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Bundle of Letters",
+                  "next": "0905"
+                },
+                {
+                  "label": "Fish",
+                  "next": "0907"
+                },
+                {
+                  "label": "Other",
+                  "next": "0913"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0904": {
+          "id": "0904",
+          "speaker": "Messenger",
+          "text": "Well... I lost - let me count - three messages went lost when I was at the bridge's Castle side end. I dropped them. If you could bring those back I'd be happy.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay I'll do",
+              "next": "0906"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Lost Messages"
+            }
+          ],
+          "condition": null
+        },
+        "0905": {
+          "id": "0905",
+          "speaker": "Messenger",
+          "text": "Oh thank you!!! In return I can tell you the first part of the password.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0911"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Bundle of Letters"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Lost Messages"
+            }
+          ],
+          "condition": null
+        },
+        "0906": {
+          "id": "0906",
+          "speaker": "Messenger",
+          "text": "Do you have those letters?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "0908"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "0909"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0907": {
+          "id": "0907",
+          "speaker": "Messenger",
+          "text": "Ooh the Fisherman sent me these fish? Nice. In return I'll tell you: if you ever find strange words on paper you should use a decoder powder which is just a gray powder. Now I gotta go.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "0910"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Fish"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Give Fish to Messenger"
+            }
+          ],
+          "condition": null
+        },
+        "0908": {
+          "id": "0908",
+          "speaker": "Messenger",
+          "text": "Please give them to me. I really need them.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0903"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0909": {
+          "id": "0909",
+          "speaker": "Messenger",
+          "text": "Then why did you come back? I'm in hurry. Only come back when you have those letters.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok",
+              "next": "0906"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0910": {
+          "id": "0910",
+          "speaker": "Messenger",
+          "text": "Hello do you want to help me in something?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "No",
+              "next": "0910"
+            },
+            {
+              "index": 2,
+              "label": "Yes",
+              "next": "0904"
+            },
+            {
+              "index": 3,
+              "label": "I wanna give you something",
+              "next": "0903"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0911": {
+          "id": "0911",
+          "speaker": "Messenger",
+          "text": "The first part of the password is \"Apple\", now I gotta go!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thx",
+              "next": "0912"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0912": {
+          "id": "0912",
+          "speaker": "Messenger",
+          "text": "You can't see the messenger.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0912"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0913": {
+          "id": "0913",
+          "speaker": "Messenger",
+          "text": "That is not what I need.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0906"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "10": {
+      "requiredArea": "CASTLE_SIDE",
+      "startPage": "1001",
+      "pages": {
+        "1001": {
+          "id": "1001",
+          "speaker": "Warrior",
+          "text": "Hello! If you wanna get inside, you have to know the password!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay, bye",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "I don't know, but I show you something",
+              "next": "1002"
+            },
+            {
+              "index": 3,
+              "label": "I know",
+              "next": "1003"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1002": {
+          "id": "1002",
+          "speaker": "Warrior",
+          "text": "Choose an item from your inventory.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "1005"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Ruby Sword",
+                  "next": "1005"
+                },
+                {
+                  "label": "Magic Branch",
+                  "next": "1010"
+                },
+                {
+                  "label": "Other",
+                  "next": "1004"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1003": {
+          "id": "1003",
+          "speaker": "Warrior",
+          "text": "Then what is it?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose First Part",
+              "next": "1006"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_CHOICE",
+              "options": [
+                {
+                  "label": "Apple",
+                  "next": "1006"
+                },
+                {
+                  "label": "Orange",
+                  "next": "1008"
+                },
+                {
+                  "label": "Plum",
+                  "next": "1008"
+                },
+                {
+                  "label": "Pear",
+                  "next": "1008"
+                },
+                {
+                  "label": "Peach",
+                  "next": "1008"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1004": {
+          "id": "1004",
+          "speaker": "Warrior",
+          "text": "No you can't get inside with that.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "1001"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1005": {
+          "id": "1005",
+          "speaker": "Warrior",
+          "text": "Ha you wanna fight?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "No bye",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "I wanna give it to you",
+              "next": "1004"
+            },
+            {
+              "index": 3,
+              "label": "Yes",
+              "next": "1009"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1006": {
+          "id": "1006",
+          "speaker": "Warrior",
+          "text": "Choose the second part.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Second Part",
+              "next": "1007"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_CHOICE",
+              "options": [
+                {
+                  "label": "Pie",
+                  "next": "1007"
+                },
+                {
+                  "label": "Juice",
+                  "next": "1008"
+                },
+                {
+                  "label": "Tree",
+                  "next": "1008"
+                },
+                {
+                  "label": "Flavour",
+                  "next": "1008"
+                },
+                {
+                  "label": "Fruit",
+                  "next": "1008"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1007": {
+          "id": "1007",
+          "speaker": "Warrior",
+          "text": "Well... that's correct! You may go in.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "YAY",
+              "next": "1011"
+            }
+          ],
+          "actions": [
+            {
+              "type": "OPEN_CASTLE"
+            }
+          ],
+          "condition": null
+        },
+        "1008": {
+          "id": "1008",
+          "speaker": "Warrior",
+          "text": "Well... that's incorrect. You must stay out!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "1001"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1009": {
+          "id": "1009",
+          "speaker": "Warrior",
+          "text": "Let's go!! Nothing happens. A dinosaur jumps out of your hand and two strikes it defeats the guard.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "May I go in?",
+              "next": "1007"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1010": {
+          "id": "1010",
+          "speaker": "Warrior",
+          "text": "You swing it. Little rainbow sparkles, but nothing else.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "Ha ha ha ha ha ha ha ha...",
+              "next": "1010"
+            },
+            {
+              "index": 3,
+              "label": "I wanna give it to you",
+              "next": "1004"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1011": {
+          "id": "1011",
+          "speaker": "Warrior",
+          "text": "You won!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "TITLE_SCREEN"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    }
+  },
+  "items": {
+    "Sweets": {
+      "startPage": "1101",
+      "pages": {
+        "1101": {
+          "id": "1101",
+          "speaker": "Sweets",
+          "text": "These are just sweets.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Eat them",
+              "next": "1102"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1102": {
+          "id": "1102",
+          "speaker": "Sweets",
+          "text": "A small Warning: DONT!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1103": {
+          "id": "1103",
+          "speaker": "Sweets",
+          "text": "You actually ate them. Now you lost a valuable resource...\n\nJust great...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Sweets"
+            }
+          ],
+          "condition": null
+        }
+      },
+      "specialMechanics": {
+        "eatAttempts": {
+          "buttonPage": "1101",
+          "buttonLabel": "Eat them",
+          "warningPage": "1102",
+          "attemptsBeforeConsumed": 5,
+          "consumedPage": "1103"
+        }
+      }
+    },
+    "Old Scroll": {
+      "startPage": "1201",
+      "pages": {
+        "1201": {
+          "id": "1201",
+          "speaker": "Old Scroll",
+          "text": "Its just an old scroll folded up!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Inspect",
+              "next": "1202"
+            },
+            {
+              "index": 3,
+              "label": "Unfold",
+              "next": "1203"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1202": {
+          "id": "1202",
+          "speaker": "Old Scroll",
+          "text": "Its paper looks very old, and its a little bit dirty.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Unfold",
+              "next": "1203"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1203": {
+          "id": "1203",
+          "speaker": "Old Scroll",
+          "text": "Ypu unfold it and find a strange thing written on it:\n\nRcuuygtf:Crrmgrkg",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Inspect the paper",
+              "next": "1202"
+            },
+            {
+              "index": 2,
+              "label": "Read it out",
+              "next": "1204"
+            },
+            {
+              "index": 3,
+              "label": "Ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1204": {
+          "id": "1204",
+          "speaker": "Old Scroll",
+          "text": "You start babbling but nothing extraordinary happens wxpect you look like you lost your mind.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Combin it with an item",
+              "next": "1205"
+            },
+            {
+              "index": 2,
+              "label": "Ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1205": {
+          "id": "1205",
+          "speaker": "Old Scroll",
+          "text": "choose an item from inventory:",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "1207"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Strange Powder",
+                  "next": "1207"
+                },
+                {
+                  "label": "Other",
+                  "next": "1206"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1206": {
+          "id": "1206",
+          "speaker": "Old Scroll",
+          "text": "Nothing happens",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1207": {
+          "id": "1207",
+          "speaker": "Old Scroll",
+          "text": "The words shimmer and the magic powder turns into dust and the evaporates under it you find new words.\n\nPassword:Applepie",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Scroll with Password"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Old Scroll"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Strange Powder"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "Magic Branch": {
+      "startPage": "1301",
+      "pages": {
+        "1301": {
+          "id": "1301",
+          "speaker": "Magic Branch",
+          "text": "This is a branch you've got from a talking tree.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Swing It",
+              "next": "1302"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1302": {
+          "id": "1302",
+          "speaker": "Magic Branch",
+          "text": "Rainbow glitters appear but nothing else changes.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Horn of Trees": {
+      "startPage": "1401",
+      "pages": {
+        "1401": {
+          "id": "1401",
+          "speaker": "Horn of Trees",
+          "text": "This strange horn You've got from tree. It looks like an instrument.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Blow it",
+              "next": "1402"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1402": {
+          "id": "1402",
+          "speaker": "Horn of Trees",
+          "text": "When you blow it you hear a voice of dried leaf rustling, and the tree speaks to you.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Lets hear her",
+              "next": "0410"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      },
+      "crossEncounterTargets": [
+        "0410"
+      ]
+    },
+    "Bridge Key": {
+      "startPage": "1501",
+      "pages": {
+        "1501": {
+          "id": "1501",
+          "speaker": "Bridge Key",
+          "text": "A silver Key. You can open the bridge with it.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Use it",
+              "next": "1502"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1502": {
+          "id": "1502",
+          "speaker": "Bridge Key",
+          "text": "Now the bridge is open and you can access the Castle Entrance area.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "UNLOCK_AREA",
+              "data": "CASTLE_SIDE"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "Golden Medal": {
+      "startPage": "1601",
+      "pages": {
+        "1601": {
+          "id": "1601",
+          "speaker": "Golden Medal",
+          "text": "A golden coin attached to a silk string. It was given to you by the hunter to give this to his friend the Guard, in the means of friendship.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Give it to Guard",
+              "next": "1602"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1602": {
+          "id": "1602",
+          "speaker": "Golden Medal",
+          "text": "Then go to the guard!!!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Mark of Goblins": {
+      "startPage": "1701",
+      "pages": {
+        "1701": {
+          "id": "1701",
+          "speaker": "Mark of Goblins",
+          "text": "A silver coin with a goblin face carved into it. The guard believes it impresses goblins.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Priclys Feather": {
+      "startPage": "1801",
+      "pages": {
+        "1801": {
+          "id": "1801",
+          "speaker": "Priclys Feather",
+          "text": "A yellowish-brown feather with white spots, probably from a strange creature.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ok",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Swing it",
+              "next": "1802"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1802": {
+          "id": "1802",
+          "speaker": "Priclys Feather",
+          "text": "You hear the voices of birds flapping their wings, and then it fades away.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Strange Powder": {
+      "startPage": "1901",
+      "pages": {
+        "1901": {
+          "id": "1901",
+          "speaker": "Strange Powder",
+          "text": "This powder is really strange. You could try rubbing it into something because it looks magical.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Not now",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Try",
+              "next": "1902"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1902": {
+          "id": "1902",
+          "speaker": "Strange Powder",
+          "text": "Into what?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "1903"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Old Scroll",
+                  "next": "1903"
+                },
+                {
+                  "label": "Other",
+                  "next": "1904"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1903": {
+          "id": "1903",
+          "speaker": "Strange Powder",
+          "text": "When you rub it into the old paper, it shimmers and the new text appears. Password:”apple pie”. You got the password to something.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Scroll with Password"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Old Scroll"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Strange Powder"
+            }
+          ],
+          "condition": null
+        },
+        "1904": {
+          "id": "1904",
+          "speaker": "Strange Powder",
+          "text": "Nothing happens.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Gold Coin": {
+      "startPage": "2001",
+      "pages": {
+        "2001": {
+          "id": "2001",
+          "speaker": "Gold Coin",
+          "text": "A golden coin Found by the goblin, can be used for transactional. purpose.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Ruby Sword": {
+      "startPage": "2101",
+      "pages": {
+        "2101": {
+          "id": "2101",
+          "speaker": "Ruby Sword / Sword of Koji",
+          "text": "The blade looks very ancient, very unique. You are glad to have it from the goblin.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "practice",
+              "next": "2102"
+            },
+            {
+              "index": 3,
+              "label": "throw it",
+              "next": "2103"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2102": {
+          "id": "2102",
+          "speaker": "Ruby Sword / Sword of Koji",
+          "text": "When you hold it like a sword fighter, you feel a great strength in your veins. You try a few complicated moves. They are super easy. You became a very good fighter.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2103": {
+          "id": "2103",
+          "speaker": "Ruby Sword / Sword of Koji",
+          "text": "When you throw it, it comes back to you like a boomerang. This looks like a magical weapon.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      },
+      "aliases": [
+        "Sword of Koji"
+      ]
+    },
+    "Staff of Goblins": {
+      "startPage": "2201",
+      "pages": {
+        "2201": {
+          "id": "2201",
+          "speaker": "Staff of Goblins",
+          "text": "This wooden and gold staff you got from a goblin is the symbol of friendship.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "stomp it",
+              "next": "2202"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2202": {
+          "id": "2202",
+          "speaker": "Staff of Goblins",
+          "text": "You stomp it. You hear a fading goblin laugh, and then silence.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Fishing Rod": {
+      "startPage": "2301",
+      "pages": {
+        "2301": {
+          "id": "2301",
+          "speaker": "Fishing Rod",
+          "text": "Just a fishing rod with a small bobber.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Throw it in",
+              "next": "2302"
+            },
+            {
+              "index": 2,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2302": {
+          "id": "2302",
+          "speaker": "Fishing Rod",
+          "text": "You throw it in and wait two-three seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "reel",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "wait",
+              "next": "2303"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2303": {
+          "id": "2303",
+          "speaker": "Fishing Rod",
+          "text": "You wait four-five seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "reel",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "wait",
+              "next": "2304"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2304": {
+          "id": "2304",
+          "speaker": "Fishing Rod",
+          "text": "You wait six, seven seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "reel",
+              "next": "2311"
+            },
+            {
+              "index": 2,
+              "label": "wait",
+              "next": "2305"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2305": {
+          "id": "2305",
+          "speaker": "Fishing Rod",
+          "text": "You wait three, four seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "reel",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "wait",
+              "next": "2306"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2306": {
+          "id": "2306",
+          "speaker": "Fishing Rod",
+          "text": "You wait three seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "reel",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "wait",
+              "next": "2307"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2307": {
+          "id": "2307",
+          "speaker": "Fishing Rod",
+          "text": "You wait two, three seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "reel",
+              "next": "2312"
+            },
+            {
+              "index": 2,
+              "label": "wait",
+              "next": "2308"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2308": {
+          "id": "2308",
+          "speaker": "Fishing Rod",
+          "text": "You wait four, six seconds.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "reel",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "wait",
+              "next": "2309"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2309": {
+          "id": "2309",
+          "speaker": "Fishing Rod",
+          "text": "You wait one more second.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "reel",
+              "next": "2313"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2310": {
+          "id": "2310",
+          "speaker": "Fishing Rod",
+          "text": "Nothing. You caught nothing. Now, you go away.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2311": {
+          "id": "2311",
+          "speaker": "Fishing Rod",
+          "text": "You struggle with the pull in, and at the end of the road, there is a blobfish.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Blobfish"
+            }
+          ],
+          "condition": null
+        },
+        "2312": {
+          "id": "2312",
+          "speaker": "Fishing Rod",
+          "text": "You start pulling it in, you struggle, and then ta-da, there is a large salmon",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Great Salmon"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Get Great Salmon"
+            }
+          ],
+          "condition": null
+        },
+        "2313": {
+          "id": "2313",
+          "speaker": "Fishing Rod",
+          "text": "You find an old boot.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Old Boots"
+            }
+          ],
+          "condition": null
+        }
+      },
+      "specialMechanics": {
+        "oneTimeCatches": [
+          {
+            "fromPage": "2304",
+            "button": "reel",
+            "rewardPage": "2311",
+            "rewardItem": "Blobfish",
+            "repeatPage": "2310"
+          },
+          {
+            "fromPage": "2307",
+            "button": "reel",
+            "rewardPage": "2312",
+            "rewardItem": "Great Salmon",
+            "repeatPage": "2310"
+          },
+          {
+            "fromPage": "2309",
+            "button": "reel",
+            "rewardPage": "2313",
+            "rewardItem": "Old Boots",
+            "repeatPage": "2310"
+          }
+        ]
+      }
+    },
+    "Crystal Shard": {
+      "startPage": "2401",
+      "pages": {
+        "2401": {
+          "id": "2401",
+          "speaker": "Crystal Shard",
+          "text": "A blue shard, when you put it towards the light, it emits a rainbow.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Blobfish": {
+      "startPage": "2501",
+      "pages": {
+        "2501": {
+          "id": "2501",
+          "speaker": "Blobfish",
+          "text": "It looks just like a deflated ball.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "inflate",
+              "next": "2502"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2502": {
+          "id": "2502",
+          "speaker": "Blobfish",
+          "text": "you struggle and fail for a long time. Then you give up.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Silver Ring": {
+      "startPage": "2601",
+      "pages": {
+        "2601": {
+          "id": "2601",
+          "speaker": "Silver Ring",
+          "text": "A beautiful shining ring you found at the river.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Put it on.",
+              "next": "2602"
+            },
+            {
+              "index": 2,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2602": {
+          "id": "2602",
+          "speaker": "Silver Ring",
+          "text": "You put it on your finger, and it looks good with its silvery shining.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      },
+      "specialMechanics": {
+        "hideButtonAfterUse": {
+          "page": "2601",
+          "buttonLabel": "Put it on."
+        }
+      }
+    },
+    "Bundle of Letters": {
+      "startPage": "2701",
+      "pages": {
+        "2701": {
+          "id": "2701",
+          "speaker": "Bundle of Letters",
+          "text": "A bundle of letters you found at the bridge dropped by someone.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Scroll with Password": {
+      "startPage": "2801",
+      "pages": {
+        "2801": {
+          "id": "2801",
+          "speaker": "Scroll with Password",
+          "text": "It's just the old scroll, but decoded.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "inspect",
+              "next": "2802"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2802": {
+          "id": "2802",
+          "speaker": "Scroll with Password",
+          "text": "The words On the paper read, “password: applepie.” Though, where should you use it?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Old Boots": {
+      "startPage": "2901",
+      "pages": {
+        "2901": {
+          "id": "2901",
+          "speaker": "Old Boots",
+          "text": "Just a pair of worn leather boots. Still dripping water.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Wear",
+              "next": "2902"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2902": {
+          "id": "2902",
+          "speaker": "Old Boots",
+          "text": "You put it on but they are so wet and uncomfortable you immediately take it off.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Great Salmon": {
+      "startPage": "3001",
+      "pages": {
+        "3001": {
+          "id": "3001",
+          "speaker": "Great Salmon",
+          "text": "It's just a large fish. Wait…its still alive!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Fish": {
+      "startPage": "3101",
+      "pages": {
+        "3101": {
+          "id": "3101",
+          "speaker": "Fish",
+          "text": "These are just fish in a bag.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "ok",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    }
+  },
+  "compilerNotes": [
+    "PASSWORD_INPUT from the source spreadsheet is normalized to DROPDOWN_CHOICE.",
+    "Item dialogues use the same page/button/action/condition shape as NPC encounters.",
+    "Item dialogue buttons use next='HOME' when the design says the player returns Home.",
+    "Blobfish replaces Pufferfish everywhere per the current item canon.",
+    "Message Paper is normalized to Bundle of Letters per the current item canon.",
+    "Staff of Goblin is normalized to Staff of Goblins per the current item canon.",
+    "Magic Branch on Warrior page 1002 links to the already-existing failed rainbow-sparkle page 1010.",
+    "UNLOCK_AREA is represented for Bridge Key and requires an app action handler.",
+    "specialMechanics records Sweets five-attempt eating, Silver Ring one-time Wear, and one-time Fishing Rod catches.",
+    "Horn of Trees intentionally links to NPC page 0410.",
+    "Objective fixes: Buy Sweets and Get Great Salmon now complete at their actual completion points.",
+    "Added side objectives for the Merchant's Blobfish request and returning the Golden Medal to the Guard.",
+    "Lost Messages now completes only after Bundle of Letters is actually handed to the Messenger.",
+    "Guard page 0307 now provides a route to the Golden Medal hand-in pages 0308-0310.",
+    "Removed duplicate Gold Coin reward from Goblin page 0604; the reward remains on page 0608.",
+    "Bridge Key now unlocks internal area id CASTLE_SIDE to match encounters 09 and 10.",
+    "Warrior page 1002 now uses DROPDOWN_INVENTORY so unavailable items cannot be selected."
+  ],
+  "compilerWarnings": [
+    "The app must read gameData.items when an inventory item is tapped.",
+    "The app must understand the HOME next target for item dialogue buttons.",
+    "specialMechanics must be implemented to enforce the exact Sweets, Silver Ring, and Fishing Rod rules.",
+    "Item dialogue navigation must allow Horn of Trees to open NPC page 0410."
+  ]
+};
