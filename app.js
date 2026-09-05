@@ -318,11 +318,6 @@ function stopCamera() {
           <div class="scan-frame" aria-hidden="true"></div>
           <div class="camera-message" id="cameraMessage">${secure ? "Starting camera…" : "Camera needs HTTPS or localhost. You can still enter the two-digit code below."}</div>
         </div>
-        <div class="scan-tools">
-          <div class="manual-row">
-            <input class="code-input" id="manualCode" inputmode="numeric" autocomplete="off" maxlength="2" placeholder="Two-digit code, e.g. 04" aria-label="Two-digit QR code">
-            <button class="primary" id="manualOpen" type="button">Open</button>
-          </div>
           <label class="secondary file-label">Scan QR from an image<input id="imageInput" type="file" accept="image/*"></label>
           <div class="notice" id="scannerNotice">QR values must be exactly two digits and exist in the bundled game data.</div>
         </div>
@@ -785,9 +780,6 @@ function dropdownUI(action) {
 
     for (const action of page.actions) {
       switch (action.type) {
-        case "NEXT_SCAN":
-          if (buttonIndex === 1) nextScan = true;
-          break;
 
         case "ADD_ITEM": {
           if (action.data && !save.inventory.includes(action.data)) {
@@ -855,6 +847,10 @@ function dropdownUI(action) {
 
         default:
           return showDataError(`Unknown action ${action.type} on ${page.id}.`);
+
+        case "NEXT_SCAN":
+          if (buttonIndex === 1) nextScan = true;
+          break;
       }
     }
 
