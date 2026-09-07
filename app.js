@@ -26,6 +26,7 @@
     return {
       schemaVersion: 1,
       inventory: [],
+      hadItems :[],
       quests: {},
       encounters: {},
       timers: {},
@@ -53,6 +54,18 @@
       clean.inventory = Array.isArray(value.inventory)
         ? [...new Set(value.inventory.filter(x => typeof x === "string" && x.trim()).map(x => x.trim()))]
         : [];
+      clean.hadItems = Array.isArray(value.hadItems)
+        ? [...new Set(
+            value.hadItems
+              .filter(x => typeof x === "string" && x.trim())
+              .map(x => x.trim())
+          )]
+        : [...clean.inventory];
+      for (const item of clean.inventory) {
+        if (!clean.hadItems.includes(item)) {
+          clean.hadItems.push(item);
+        }
+      }
       clean.quests = value.quests && typeof value.quests === "object" ? value.quests : {};
       clean.encounters = value.encounters && typeof value.encounters === "object" ? value.encounters : {};
       clean.timers = value.timers && typeof value.timers === "object" ? value.timers : {};
@@ -110,6 +123,14 @@
   }
   function persist() {
     save.inventory = [...new Set(save.inventory)];
+    save.hadItems = [...new Set(save.hadItems || [])];
+  
+    for (const item of save.inventory) {
+      if (!save.hadItems.includes(item)) {
+        save.hadItems.push(item);
+      }
+    }
+  
     save.flags.unlockedAreas = [...new Set(save.flags.unlockedAreas || [])];
     save.lastSavedAt = Date.now();
     try {
@@ -693,7 +714,7 @@ function acceptScannedText(raw) {
     }
   }
 
-function checkButtonCondition(condition, page, button, context) {
+function checkButtonCondition(condition, page, button, context) 
   if (
     condition === undefined ||
     condition === null ||
@@ -703,6 +724,8 @@ function checkButtonCondition(condition, page, button, context) {
   }
 
   try {
+    const had_item = save.hadItems;
+    
     return !!eval(condition);
   } catch (error) {
     console.error(
