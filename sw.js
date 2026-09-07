@@ -1,4 +1,4 @@
-const CACHE = "qr-city-quest-v3";
+const CACHE = "qr-city-quest-v4";
 
 const PRECACHE = [
   "./",
