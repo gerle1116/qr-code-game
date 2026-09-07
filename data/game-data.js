@@ -1183,14 +1183,11 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 3,
               "label": "Look what I have",
-              "next": "0604"
+              "next": "0604",
+              "condition": "save.inventory.includes(\"Mark of Goblins\")"
             }
           ],
-          "actions": [],
-          "condition": {
-            "type": "HAS_ITEM",
-            "data": "Mark of Goblins"
-          }
+          "actions": []
         },
         "0602": {
           "id": "0602",
