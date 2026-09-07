@@ -693,21 +693,88 @@ function acceptScannedText(raw) {
     }
   }
 
+function checkButtonCondition(condition, page, button, context) {
+  if (
+    condition === undefined ||
+    condition === null ||
+    condition === ""
+  ) {
+    return true;
+  }
+
+  try {
+    return !!eval(condition);
+  } catch (error) {
+    console.error(
+      "Button condition error:",
+      {
+        pageId: page && page.id,
+        buttonIndex: button && button.index,
+        condition,
+        error
+      }
+    );
+
+    return false;
+  }
+}
+
+
   function visibleButtons(page, context) {
     return page.buttons.filter(button => {
-      if (button.index === 1 && page.condition) {
-        if (page.condition.type === "HAS_ITEM" && !save.inventory.includes(page.condition.data)) return false;
+  
+      // -------------------------
+      // BUTTON CONDITION
+      // -------------------------
+  
+      if (
+        button.condition &&
+        !checkButtonCondition(
+          button.condition,
+          page,
+          button,
+          context
+        )
+      ) {
+        return false;
       }
-
+  
+  
+      // -------------------------
+      // ITEM SPECIAL MECHANICS
+      // -------------------------
+  
       if (context.type === "item") {
-        const item = GAME.items && GAME.items[context.itemName];
-        const mechanic = item && item.specialMechanics && item.specialMechanics.hideButtonAfterUse;
-        if (mechanic && mechanic.page === page.id && mechanic.buttonLabel === button.label) {
-          const key = usedButtonKey(context.itemName, mechanic.page, mechanic.buttonLabel);
-          if (save.itemState.usedButtons[key]) return false;
+        const item =
+          GAME.items &&
+          GAME.items[context.itemName];
+  
+        const mechanic =
+          item &&
+          item.specialMechanics &&
+          item.specialMechanics.hideButtonAfterUse;
+  
+        if (
+          mechanic &&
+          mechanic.page === page.id &&
+          mechanic.buttonLabel === button.label
+        ) {
+          const key =
+            usedButtonKey(
+              context.itemName,
+              mechanic.page,
+              mechanic.buttonLabel
+            );
+  
+          if (
+            save.itemState.usedButtons[key]
+          ) {
+            return false;
+          }
         }
       }
-
+  
+  
       return true;
     });
   }
