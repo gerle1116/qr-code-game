@@ -714,7 +714,7 @@ function acceptScannedText(raw) {
     }
   }
 
-function checkButtonCondition(condition, page, button, context) 
+function checkButtonCondition(condition, page, button, context) {
   if (
     condition === undefined ||
     condition === null ||
