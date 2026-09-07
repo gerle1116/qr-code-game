@@ -1280,22 +1280,27 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Gold Coin",
-              "next": "0607"
+              "next": "0607",
+              "condition": "!had_item.includes(\"Gold Coin\")"
             },
             {
               "index": 2,
               "label": "Ruby Sword",
-              "next": "0609"
+              "next": "0609",
+              "condition": "!had_item.includes(\"Ruby Sword\")"
             },
             {
               "index": 3,
               "label": "Powder",
-              "next": "0610"
+              "next": "0610",
+              "condition": "!had_item.includes(\"Strange Powder\")"
             },
             {
               "index": 4,
               "label": "I don't need more",
-              "next": "0616"
+              "next": "0616",
+              "condition": "[\"Strange Powder\", \"Ruby Sword\", \"Gold Coin\"].filter(item => had_item.includes(item)).length >= 2"
+              
             }
           ],
           "actions": [],
