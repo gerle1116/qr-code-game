@@ -133,6 +133,11 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "COMPLETE_QUEST",
               "data": "Buy Sweets"
+            },
+            {
+              "type": "RESET_COUNTER",
+              "item": "Sweets",
+              "data": "eatAttempts"
             }
           ],
           "condition": null
@@ -2694,71 +2699,100 @@ window.QR_CITY_QUEST_DATA = {
   },
   "items": {
     "Sweets": {
-      "startPage": "1101",
-      "pages": {
-        "1101": {
-          "id": "1101",
-          "speaker": "Sweets",
-          "text": "These are just sweets.",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "OK",
-              "next": "HOME"
-            },
-            {
-              "index": 2,
-              "label": "Eat them",
-              "next": "1102"
-            }
-          ],
-          "actions": [],
-          "condition": null
+  "startPage": "1101",
+
+  "pages": {
+
+    "1101": {
+      "id": "1101",
+      "speaker": "Sweets",
+      "text": "These are just sweets.",
+
+      "buttons": [
+        {
+          "index": 1,
+          "label": "OK",
+          "next": "HOME"
         },
-        "1102": {
-          "id": "1102",
-          "speaker": "Sweets",
-          "text": "A small Warning: DONT!",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "OK",
-              "next": "HOME"
-            }
-          ],
-          "actions": [],
-          "condition": null
+
+        {
+          "index": 2,
+          "label": "Eat them",
+          "next": "1102",
+          "condition": "counter(\"eatAttempts\") < 4"
         },
-        "1103": {
-          "id": "1103",
-          "speaker": "Sweets",
-          "text": "You actually ate them. Now you lost a valuable resource...\n\nJust great...",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "OK",
-              "next": "HOME"
-            }
-          ],
-          "actions": [
-            {
-              "type": "REMOVE_ITEM",
-              "data": "Sweets"
-            }
-          ],
-          "condition": null
+
+        {
+          "index": 3,
+          "label": "Eat them",
+          "next": "1103",
+          "condition": "counter(\"eatAttempts\") >= 4"
         }
-      },
-      "specialMechanics": {
-        "eatAttempts": {
-          "buttonPage": "1101",
-          "buttonLabel": "Eat them",
-          "warningPage": "1102",
-          "attemptsBeforeConsumed": 5,
-          "consumedPage": "1103"
+      ],
+
+      "actions": [
+        {
+          "type": "ADD_COUNTER",
+          "data": "eatAttempts",
+          "amount": 1,
+          "buttonIndex": 2
+        },
+
+        {
+          "type": "ADD_COUNTER",
+          "data": "eatAttempts",
+          "amount": 1,
+          "buttonIndex": 3
         }
-      }
+      ],
+
+      "condition": null
     },
+
+
+    "1102": {
+      "id": "1102",
+      "speaker": "Sweets",
+      "text": "A small Warning: DONT!",
+
+      "buttons": [
+        {
+          "index": 1,
+          "label": "OK",
+          "next": "HOME"
+        }
+      ],
+
+      "actions": [],
+      "condition": null
+    },
+
+
+    "1103": {
+      "id": "1103",
+      "speaker": "Sweets",
+      "text": "You actually ate them. Now you lost a valuable resource...\n\nJust great...",
+
+      "buttons": [
+        {
+          "index": 1,
+          "label": "OK",
+          "next": "HOME"
+        }
+      ],
+
+      "actions": [
+        {
+          "type": "REMOVE_ITEM",
+          "data": "Sweets"
+        }
+      ],
+
+      "condition": null
+    }
+
+  }
+},
     "Old Scroll": {
       "startPage": "1201",
       "pages": {
