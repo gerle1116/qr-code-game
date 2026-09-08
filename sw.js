@@ -9,6 +9,7 @@ const PRECACHE = [
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png"
+  "./data/apptext_en.js",
 ];
 
 self.addEventListener("install", event => {
