@@ -133,11 +133,6 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "COMPLETE_QUEST",
               "data": "Buy Sweets"
-            },
-            {
-              "type": "RESET_COUNTER",
-              "item": "Sweets",
-              "data": "eatAttempts"
             }
           ],
           "condition": null
@@ -331,6 +326,11 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "ADD_ITEM",
               "data": "Sweets"
+            },
+            {
+              "type": "RESET_COUNTER",
+              "item": "Sweets",
+              "data": "eatAttempts"
             }
           ],
           "condition": null
