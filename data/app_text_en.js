@@ -3,7 +3,7 @@ window.QR_CITY_QUEST_APP_TEXT = {
   // =========================================================
   // GENERAL
   // =========================================================
-
+  timerDebugLabel: mins => `TIMER · ${mins}m`,
   appName: "CITY QUEST",
   homeTitle: "City Quest",
 
