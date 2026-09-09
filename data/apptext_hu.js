@@ -1,238 +1,95 @@
 window.QR_CITY_QUEST_APP_TEXT = {
-
-  // GENERAL
-  appName: "CITY QUEST",
-  homeTitle: "City Quest",
-
+  appName: "QR City Quest",
   back: "← Vissza",
-  home: "Főmenü",
-  ok: "OK",
-  confirm: "Megerősítés",
   debug: "Debug",
+  switchLanguage: "Nyelvváltás",
 
-  encounterFallback: "Találkozás",
-
-
-  // STARTUP / OFFLINE
-  localFilesReady: "Helyi fájlok készen állnak",
-  preparingOfflineMode: "Offline mód előkészítése…",
-  readyForOfflinePlay: "✓ Offline játékra kész",
-  onlineMode: "Online mód",
-
-  gameDataCouldNotLoad:
-    "A játék adatait nem sikerült betölteni.",
-
-
-  // HOME
+  homeTitle: "City Quest",
   scanQR: "QR-kód beolvasása",
-  objectives: "Feladatok",
+  objectives: "Küldetések",
   inventory: "Tárgyak",
   other: "Egyéb",
-
-  notImplementedYet:
-    "Ez még nincs elkészítve.",
-
-
-  // AREA LOCK
-  areaLockedTitle:
-    "Lezárt terület",
-
-  areaLockedText:
-    "Ezt a helyet még nem érheted el. A híd le van zárva.",
-
-
-  // INVENTORY
-  noItemsYet:
-    "Még nincs egyetlen tárgyad sem.",
-
-  noItems:
-    "Nincsenek tárgyaid.",
-
-  itemHasNoDialogue:
-    "Ehhez a tárgyhoz még nincs párbeszéd.",
-
-  itemAddedToInventory: itemName =>
-    `${itemName} bekerült a tárgyaid közé.`,
-
-
-  // OBJECTIVES
-  noActiveObjectives:
-    "Nincsenek aktív feladataid.",
-
-  objectivesTitle:
-    "Feladatok",
-
-  objectivesSubtitle:
-    "Itt csak az aktív küldetések jelennek meg.",
-
-
-  // QR SCANNER
-  qrCameraPreview:
-    "QR-kód kamera előnézet",
-
-  cameraRequiresHttps:
-    "A kamerás QR-beolvasáshoz HTTPS szükséges.",
-
-  cameraUnavailable:
-    "A kamera nem érhető el ezen az eszközön vagy böngészőben.",
-
-  qrScannerCouldNotLoad:
-    "A QR-olvasót nem sikerült betölteni. Ellenőrizd az internetkapcsolatot, majd töltsd újra az oldalt.",
-
-  cameraPermissionDenied:
-    "A kameraengedély megtagadva. Engedélyezd a kamerát, majd nyisd meg újra a QR-beolvasót.",
-
-  noCameraFound:
-    "Nem található kamera ezen az eszközön.",
-
-  cameraCouldNotStart:
-    "A kamerát nem sikerült elindítani. Töltsd újra az oldalt, majd próbáld újra.",
-
-
-  // UNKNOWN QR
-  unknownQRTitle:
-    "Ismeretlen QR-kód",
-
-  unknownQRText:
-    "Ez a QR-kód nem része ennek a játéknak.",
-
-  scanAgain:
-    "Újra beolvasás",
-
-
-  // DROPDOWNS
-  chooseOption:
-    "Válassz egy lehetőséget",
-
-  choosePlaceholder:
-    "Válassz…",
-
-  chooseOptionFirst:
-    "Először válassz egy lehetőséget.",
-
-  noChoicesAvailable:
-    "Ezen az oldalon nincs választható lehetőség.",
-
-
-  // TIMER
-  waiting:
-    "Várakozás",
-
-  timerNothingToDo:
-    "Itt most nem tudsz semmit tenni.",
-
-  bye:
-    "Viszlát",
-
-  progressSavedTimer:
-    "A haladás elmentve. Gyere vissza, amikor lejárt az idő.",
-
-  timerDebugLabel: mins =>
-    `IDŐZÍTŐ · ${mins} perc`,
-
-
-  // WIN
-  youWon:
-    "NYERTÉL",
-
-  demoComplete:
-    "A QR City Quest demója véget ért.",
-
-
-  // ERRORS
-  somethingWentWrong:
-    "Valami hiba történt",
-
-  encounterDataProblem:
-    "Hiba van ennek a találkozásnak a játékadataiban.",
-
-  saveCouldNotBeWritten:
-    "A mentést nem sikerült elmenteni ebben a böngészőben.",
-
-
-  // DATA ERRORS
-  encounterWaitingWithoutTimer: encounterId =>
-    `A(z) ${encounterId} találkozás várakozó állapotban van (-1), de nincs hozzá időzítő.`,
-
-  timerMissingPage: (encounterId, resumePage) =>
-    `A(z) ${encounterId} találkozás időzítője egy nem létező oldalra mutat: ${resumePage}.`,
-
-  pageDoesNotExist: pageId =>
-    `A(z) ${pageId} oldal nem létezik.`,
-
-  noDropdownDestination: pageId =>
-    `A(z) ${pageId} oldalon nincs céloldal megadva a lenyíló választáshoz.`,
-
-  buttonHasNoDestination: (buttonIndex, pageId) =>
-    `A(z) ${buttonIndex}. gombnak nincs céloldala a(z) ${pageId} oldalon.`,
-
-  timerOnlyForEncounter: pageId =>
-    `A(z) ${pageId} oldalon az időzítő csak QR-találkozásnál használható.`,
-
-  timerNeedsResumePage: pageId =>
-    `A(z) ${pageId} oldalon az időzítőnek érvényes folytatási PageID-ra van szüksége.`,
-
-  unknownAction: (actionType, pageId) =>
-    `Ismeretlen művelet: ${actionType}, oldal: ${pageId}.`,
-
-  nextScanOnlyForEncounter: pageId =>
-    `A NEXT_SCAN a(z) ${pageId} oldalon csak QR-találkozásnál használható.`,
-
-  nextScanInvalidPage: (pageId, destination) =>
-    `A NEXT_SCAN a(z) ${pageId} oldalon érvénytelen oldalra mutat: ${destination}.`,
-
-  unknownDestination: destination =>
-    `Ismeretlen cél: ${destination}.`,
-
-
-  // COUNTERS
-  counterActionNeedsItem: actionType =>
-    `A ${actionType} művelethez meg kell adni egy tárgyat, amelyhez a számláló tartozik.`,
-
-  counterActionNeedsName: actionType =>
-    `A ${actionType} művelethez meg kell adni a számláló nevét.`,
-
-  counterActionInvalidNumber: actionType =>
-    `A ${actionType} műveletben érvénytelen szám szerepel.`,
-
-
-  // DEBUG
-  debugTools:
-    "Debug eszközök",
-
-  debugSubtitle:
-    "Fejlesztéshez használható segédeszközök.",
-
-  jumpToPageId:
-    "Ugrás PageID-ra",
-
-  jump:
-    "Ugrás",
-
-  inventoryEditor:
-    "Tárgylista szerkesztése",
-
-  add:
-    "Hozzáadás",
-
-  clearInventory:
-    "Tárgyak törlése",
-
-  expireAllTimers:
-    "Összes időzítő lejártatása",
-
-  resetSave:
-    "Mentés törlése",
-
-  currentSave:
-    "Jelenlegi mentés",
-
-  pageNotFound:
-    "Az oldal nem található.",
-
-  resetProgressQuestion:
-    "Biztosan törlöd az összes QR City Quest mentést ezen az eszközön?",
-
-  allProgressReset:
-    "Minden haladás törölve."
+  notImplementedYet: "Ez még nincs elkészítve.",
+
+  areaLockedTitle: "Lezárt terület",
+  areaLockedText: "Erre a területre még nem léphetsz be.",
+  ok: "OK",
+
+  noItemsYet: "Még nincs nálad semmilyen tárgy.",
+  itemHasNoDialogue: "Ehhez a tárgyhoz nem tartozik párbeszéd.",
+  itemAddedToInventory: itemName => `${itemName} bekerült a tárgyaid közé.`,
+
+  noActiveObjectives: "Nincs aktív küldetés.",
+  objectivesTitle: "Küldetések",
+  objectivesSubtitle: "Az aktív küldetéseid itt jelennek meg.",
+
+  qrCameraPreview: "QR-kamera előnézete",
+  cameraRequiresHttps: "A kamera használatához HTTPS szükséges.",
+  cameraUnavailable: "A kamera nem érhető el ezen az eszközön.",
+  qrScannerCouldNotLoad: "A QR-olvasót nem sikerült betölteni.",
+  cameraPermissionDenied: "A kameraengedélyt megtagadtad.",
+  noCameraFound: "Nem található kamera.",
+  cameraCouldNotStart: "A kamerát nem sikerült elindítani.",
+
+  waiting: "Várakozás",
+  timerDebugLabel: mins => `${mins} perc van hátra`,
+  timerNothingToDo: "Itt egyelőre nincs teendőd. Gyere vissza később.",
+  bye: "Viszlát",
+
+  noItems: "Nincs tárgy",
+  chooseOption: "Válassz egy lehetőséget",
+  choosePlaceholder: "Válassz…",
+  confirm: "Megerősítés",
+  noChoicesAvailable: "Nincs választható lehetőség.",
+  encounterFallback: "Találkozás",
+  chooseOptionFirst: "Előbb válassz egy lehetőséget.",
+
+  youWon: "Nyertél!",
+  demoComplete: "Teljesítetted a QR City Questet.",
+  home: "Főoldal",
+
+  unknownQRTitle: "Ismeretlen QR",
+  unknownQRText: "Ez a QR-kód nem része ennek a játéknak.",
+  scanAgain: "Újra beolvasás",
+
+  somethingWentWrong: "Valami hiba történt",
+  encounterDataProblem: "Probléma van ennek a találkozásnak az adataival.",
+
+  debugTools: "Debug eszközök",
+  debugSubtitle: "Tesztelési eszközök a QR City Questhez.",
+  jumpToPageId: "Ugrás oldalazonosítóra",
+  jump: "Ugrás",
+  inventoryEditor: "Tárgylista szerkesztése",
+  add: "Hozzáadás",
+  clearInventory: "Tárgylista ürítése",
+  expireAllTimers: "Minden időzítő lejáratása",
+  resetSave: "Mentés visszaállítása",
+  currentSave: "Jelenlegi mentés",
+  pageNotFound: "Az oldal nem található.",
+  resetProgressQuestion: "Biztosan törlöd az összes játékbeli előrehaladást?",
+  allProgressReset: "Minden előrehaladás törölve.",
+
+  localFilesReady: "A helyi fájlok készen állnak.",
+  preparingOfflineMode: "Offline mód előkészítése…",
+  readyForOfflinePlay: "Offline játékra kész.",
+  onlineMode: "Online mód.",
+  saveCouldNotBeWritten: "A mentést nem sikerült elmenteni.",
+  gameDataCouldNotLoad: "A QR City Quest játékadatait nem sikerült betölteni.",
+  progressSavedTimer: "Az előrehaladás mentve. Gyere vissza később.",
+
+  encounterWaitingWithoutTimer: id => `A(z) ${id} találkozás várakozó állapotban van, de nincs hozzá időzítő.`,
+  timerMissingPage: (id, page) => `A(z) ${id} találkozás időzítője nem létező oldalra mutat: ${page}.`,
+  pageDoesNotExist: page => `A(z) ${page} oldal nem létezik.`,
+  noDropdownDestination: page => `A(z) ${page} oldal legördülő menüjéhez nincs céloldal.`,
+  buttonHasNoDestination: (button, page) => `A(z) ${page} oldal ${button}. gombjához nincs céloldal.`,
+  timerOnlyForEncounter: page => `A START_TIMER csak találkozásoldalon használható. Oldal: ${page}`,
+  timerNeedsResumePage: page => `A(z) ${page} oldalon lévő START_TIMER művelethez érvényes négyjegyű folytatási oldal szükséges.`,
+  counterActionNeedsItem: type => `A(z) ${type} művelethez tárgykörnyezet vagy action.item szükséges.`,
+  counterActionNeedsName: type => `A(z) ${type} művelethez számlálónév szükséges az action.data mezőben.`,
+  counterActionInvalidNumber: type => `A(z) ${type} művelet érvénytelen számot tartalmaz.`,
+  unknownAction: (type, page) => `Ismeretlen művelet: "${type}" a(z) ${page} oldalon.`,
+  nextScanOnlyForEncounter: page => `A NEXT_SCAN csak találkozásoldalon használható. Oldal: ${page}`,
+  nextScanInvalidPage: (page, destination) => `A(z) ${page} oldalon lévő NEXT_SCAN érvénytelen oldalra mutat: ${destination}.`,
+  unknownDestination: destination => `Ismeretlen cél: ${destination}`
 };
+
