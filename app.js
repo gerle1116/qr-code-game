@@ -6,6 +6,7 @@
 
   const SAVE_KEY = "qr-city-quest-save-v1";
   const DEBUG = new URLSearchParams(location.search).get("debug") === "1";
+  const LANGUAGE = window.QR_CITY_QUEST_LANGUAGE || "en";
   const app = document.getElementById("app");
 
   // apptext_en.js must be loaded before app.js
@@ -371,6 +372,16 @@
           </div>
 
           <div class="top-actions">
+            <button
+              class="icon-button"
+              id="languageBtn"
+              type="button"
+              aria-label="${esc(TEXT.switchLanguage)}"
+              title="${esc(TEXT.switchLanguage)}"
+            >
+              ${LANGUAGE === "hu" ? "EN" : "HU"}
+            </button>
+
             ${
               debugButton
                 ? `
@@ -397,6 +408,27 @@
       document
         .getElementById("backBtn")
         .onclick = back;
+    }
+
+    const languageBtn =
+      document.getElementById("languageBtn");
+
+    if (languageBtn) {
+      languageBtn.onclick = () => {
+        const nextLanguage =
+          LANGUAGE === "hu"
+            ? "en"
+            : "hu";
+
+        if (
+          typeof window.QR_CITY_QUEST_SET_LANGUAGE ===
+          "function"
+        ) {
+          window.QR_CITY_QUEST_SET_LANGUAGE(
+            nextLanguage
+          );
+        }
+      };
     }
 
     if (debugButton) {
@@ -785,6 +817,19 @@
   }
 
 
+  function getQuestDisplayName(questName) {
+    if (
+      GAME.questDisplayNames &&
+      typeof GAME.questDisplayNames[questName] === "string" &&
+      GAME.questDisplayNames[questName].trim()
+    ) {
+      return GAME.questDisplayNames[questName].trim();
+    }
+
+    return questName;
+  }
+
+
   // =========================================================
   // OBJECTIVES
   // =========================================================
@@ -811,7 +856,7 @@
                 .map(
                   q => `
                     <div class="list-item">
-                      ◇ ${esc(q)}
+                      ◇ ${esc(getQuestDisplayName(q))}
                     </div>
                   `
                 )
