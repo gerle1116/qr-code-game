@@ -27,7 +27,7 @@ window.QR_CITY_QUEST_DATA = {
         "0102": {
           "id": "0102",
           "speaker": "Gyerek",
-          "text": "A Kereskedőtől tudsz venni.",
+          "text": "A Kereskedőtől vehetsz.",
           "buttons": [
             {
               "index": 1,
@@ -49,7 +49,7 @@ window.QR_CITY_QUEST_DATA = {
         "0103": {
           "id": "0103",
           "speaker": "Gyerek",
-          "text": "Akkor hagyj békén!",
+          "text": "Oké, akkor hagyj békén!",
           "buttons": [
             {
               "index": 1,
@@ -90,7 +90,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "0106"
             }
           ],
@@ -99,14 +99,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Sweets",
+                  "value": "Sweets",
+                  "label": "Édesség",
                   "next": "0106"
-                },
-                {
-                  "label": "Other",
-                  "next": "0103"
                 }
-              ]
+              ],
+              "otherNext": "0103"
             }
           ],
           "condition": null
@@ -114,11 +112,11 @@ window.QR_CITY_QUEST_DATA = {
         "0106": {
           "id": "0106",
           "speaker": "Gyerek",
-          "text": "Hallottam, ahogy a Hírnök egy jelszót mondott a Harcosnak. Valami olyasmi volt, hogy „...Pie”.",
+          "text": "Hallottam, amikor a Hírnök egy jelszót mondott a Harcosnak. Valami olyasmi volt, hogy „...Pie”.",
           "buttons": [
             {
               "index": 1,
-              "label": "Köszönöm",
+              "label": "Köszi",
               "next": "0107"
             }
           ],
@@ -182,16 +180,16 @@ window.QR_CITY_QUEST_DATA = {
         "0202": {
           "id": "0202",
           "speaker": "Kereskedő",
-          "text": "Van néhány eladó holmim. Melyiket szeretnéd?",
+          "text": "Van néhány eladó dolgom. Melyiket szeretnéd?",
           "buttons": [
             {
               "index": 1,
-              "label": "Sweets",
+              "label": "Édesség",
               "next": "0204"
             },
             {
               "index": 2,
-              "label": "Old Scroll",
+              "label": "Régi tekercs",
               "next": "0205"
             }
           ],
@@ -201,7 +199,7 @@ window.QR_CITY_QUEST_DATA = {
         "0203": {
           "id": "0203",
           "speaker": "Kereskedő",
-          "text": "Rendben, de van egy kis szabadidőd? Örülnék, ha szereznél nekem néhány különleges hozzávalót.",
+          "text": "Oké, de van egy kis szabadidőd? Örülnék, ha szereznél nekem néhány különleges hozzávalót.",
           "buttons": [
             {
               "index": 1,
@@ -224,11 +222,11 @@ window.QR_CITY_QUEST_DATA = {
         "0204": {
           "id": "0204",
           "speaker": "Kereskedő",
-          "text": "Rendben, egy aranyérme lesz az ára. Válassz egy tárgyat a tárgyaid közül.",
+          "text": "Oké, akkor aranyérme lesz. Válassz egy tárgyat a felszerelésedből.",
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "0207"
             }
           ],
@@ -237,14 +235,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Gold Coin",
+                  "value": "Gold Coin",
+                  "label": "Aranyérme",
                   "next": "0207"
-                },
-                {
-                  "label": "Other",
-                  "next": "0208"
                 }
-              ]
+              ],
+              "otherNext": "0208"
             }
           ],
           "condition": null
@@ -252,11 +248,11 @@ window.QR_CITY_QUEST_DATA = {
         "0205": {
           "id": "0205",
           "speaker": "Kereskedő",
-          "text": "Rendben, egy Priclys toll lesz az ára. Válassz egy tárgyat a tárgyaid közül.",
+          "text": "Oké, akkor Priclys tolla lesz. Válassz egy tárgyat a felszerelésedből.",
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "0209"
             }
           ],
@@ -265,14 +261,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Priclys Feather",
+                  "value": "Priclys Feather",
+                  "label": "Priclys tolla",
                   "next": "0209"
-                },
-                {
-                  "label": "Other",
-                  "next": "0208"
                 }
-              ]
+              ],
+              "otherNext": "0208"
             }
           ],
           "condition": null
@@ -280,7 +274,7 @@ window.QR_CITY_QUEST_DATA = {
         "0206": {
           "id": "0206",
           "speaker": "Kereskedő",
-          "text": "Ha tudnál hozni nekem egy Blobfish-t, nagyon örülnék. Viszlát!",
+          "text": "Ha tudnál szerezni nekem egy Blobfisht, nagyon örülnék. Szia-szia.",
           "buttons": [
             {
               "index": 1,
@@ -302,7 +296,7 @@ window.QR_CITY_QUEST_DATA = {
         "0207": {
           "id": "0207",
           "speaker": "Kereskedő",
-          "text": "Tessék, itt az édesség! Van még egy kis szabadidőd?",
+          "text": "Tessék, egy kis édesség! Van egy kis szabadidőd?",
           "buttons": [
             {
               "index": 1,
@@ -338,7 +332,7 @@ window.QR_CITY_QUEST_DATA = {
         "0208": {
           "id": "0208",
           "speaker": "Kereskedő",
-          "text": "Erre nincs szükségem!",
+          "text": "Ez nem kell!",
           "buttons": [
             {
               "index": 1,
@@ -356,7 +350,7 @@ window.QR_CITY_QUEST_DATA = {
         "0209": {
           "id": "0209",
           "speaker": "Kereskedő",
-          "text": "Tessék, itt a régi tekercs. Van még egy kis szabadidőd?",
+          "text": "Itt a régi tekercs. Van egy kis szabadidőd?",
           "buttons": [
             {
               "index": 1,
@@ -406,7 +400,7 @@ window.QR_CITY_QUEST_DATA = {
         "0211": {
           "id": "0211",
           "speaker": "Kereskedő",
-          "text": "Legalább venni akarsz valamit?",
+          "text": "Legalább vásárolni akarsz valamit?",
           "buttons": [
             {
               "index": 1,
@@ -429,11 +423,11 @@ window.QR_CITY_QUEST_DATA = {
         "0212": {
           "id": "0212",
           "speaker": "Kereskedő",
-          "text": "Odaadnád nekem?",
+          "text": "Odaadnád nekem őket?",
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "0213"
             }
           ],
@@ -442,14 +436,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Blobfish",
                   "label": "Blobfish",
                   "next": "0213"
-                },
-                {
-                  "label": "Other",
-                  "next": "0208"
                 }
-              ]
+              ],
+              "otherNext": "0208"
             }
           ],
           "condition": null
@@ -457,7 +449,7 @@ window.QR_CITY_QUEST_DATA = {
         "0213": {
           "id": "0213",
           "speaker": "Kereskedő",
-          "text": "Rendben. Szép. Nem sok mindent tudok mondani, de úgy hallottam, hogy a Troll találós kérdésében a betűk valahogy számokhoz kapcsolódnak.",
+          "text": "Oké. Szép. Nem sok mindent tudok mondani, de azt hallottam, hogy a Troll találós kérdésében a betűk valahogy számokhoz kapcsolódnak.",
           "buttons": [
             {
               "index": 1,
@@ -488,7 +480,7 @@ window.QR_CITY_QUEST_DATA = {
         "0301": {
           "id": "0301",
           "speaker": "Őr",
-          "text": "Helló! Érdekel, hogyan működik ez az egész világ?",
+          "text": "Szia, fiú. Érdekel, hogyan működik ez az egész világ?",
           "buttons": [
             {
               "index": 1,
@@ -497,7 +489,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Nem, csak nézelődöm",
+              "label": "Nem, csak kóborlok",
               "next": "0303"
             }
           ],
@@ -507,11 +499,11 @@ window.QR_CITY_QUEST_DATA = {
         "0302": {
           "id": "0302",
           "speaker": "Őr",
-          "text": "Akkor elmondom! Ez a hely több különböző területből áll. Most a Falu központjában vagyunk. Ezen kívül még 3 terület van...",
+          "text": "Elmondom! Ez a hely különböző részekből áll. Most a Faluközpontban vagyunk. Van még 3 másik rész...",
           "buttons": [
             {
               "index": 1,
-              "label": "Melyek azok?",
+              "label": "Mik azok?",
               "next": "0304"
             },
             {
@@ -526,7 +518,7 @@ window.QR_CITY_QUEST_DATA = {
         "0303": {
           "id": "0303",
           "speaker": "Őr",
-          "text": "És tudod, hol vagy most?",
+          "text": "És tudod, hol vagy?",
           "buttons": [
             {
               "index": 1,
@@ -545,7 +537,7 @@ window.QR_CITY_QUEST_DATA = {
         "0304": {
           "id": "0304",
           "speaker": "Őr",
-          "text": "A Liget, a Híd és a Kastélybejárat. Minden területen van egy vagy több ember, akivel beszélhetsz. Könnyen eljuthatsz mindegyikhez, de a kastélyt egy Troll őrzi.",
+          "text": "A Liget, a Híd és a Kastélybejárat. Minden részen van egy vagy több ember, akivel beszélhetsz. Mindegyik rész könnyen elérhető, de a kastélyt a Troll őrzi.",
           "buttons": [
             {
               "index": 1,
@@ -564,7 +556,7 @@ window.QR_CITY_QUEST_DATA = {
         "0305": {
           "id": "0305",
           "speaker": "Őr",
-          "text": "Egy troll. Csak akkor juthatsz el a bejárathoz, ha legyőzöd. Ennyit tudtam mondani. Jó szórakozást itt!",
+          "text": "Egy troll. Csak akkor érheted el a bejáratot, ha legyőzöd. Ennyit tudok mondani. Jó szórakozást itt!",
           "buttons": [
             {
               "index": 1,
@@ -600,7 +592,7 @@ window.QR_CITY_QUEST_DATA = {
         "0307": {
           "id": "0307",
           "speaker": "Őr",
-          "text": "Szia! Fedezz fel tovább!",
+          "text": "Szia! Csak folytasd a felfedezést!",
           "buttons": [
             {
               "index": 1,
@@ -609,7 +601,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Van nálam valami neked",
+              "label": "Van valamim neked",
               "next": "0308"
             }
           ],
@@ -623,11 +615,11 @@ window.QR_CITY_QUEST_DATA = {
         "0308": {
           "id": "0308",
           "speaker": "Őr",
-          "text": "Válassz egy tárgyat a tárgyaid közül.",
+          "text": "Válassz egy tárgyat a felszerelésedből.",
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "0310"
             }
           ],
@@ -636,14 +628,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Golden Medal",
+                  "value": "Golden Medal",
+                  "label": "Aranymedál",
                   "next": "0310"
-                },
-                {
-                  "label": "Other",
-                  "next": "0309"
                 }
-              ]
+              ],
+              "otherNext": "0309"
             }
           ],
           "condition": null
@@ -669,7 +659,7 @@ window.QR_CITY_QUEST_DATA = {
         "0310": {
           "id": "0310",
           "speaker": "Őr",
-          "text": "Ó, az érmem! Köszönöm, hogy visszahoztad. Ezért odaadom neked a Goblinok jelét. A goblinok barátságosabbak lesznek, ha megmutatod nekik. Még egyszer köszönöm!!!",
+          "text": "Ó, az érmem! Köszönöm, hogy visszahoztad. Ezért neked adom a Goblinok jelét. A goblinok barátságosabbak lesznek, ha megmutatod nekik. Még egyszer köszönöm!!!",
           "buttons": [
             {
               "index": 1,
@@ -704,16 +694,16 @@ window.QR_CITY_QUEST_DATA = {
         "0401": {
           "id": "0401",
           "speaker": "Beszélő fa",
-          "text": "Üdv, Ember! Mit keresel itt?",
+          "text": "Üdv, ember! Mit keresel itt?",
           "buttons": [
             {
               "index": 1,
-              "label": "TE TUDSZ BESZÉLNI??",
+              "label": "TUDSZ BESZÉLNI??",
               "next": "0402"
             },
             {
               "index": 2,
-              "label": "Csak pletykákat keresek emberekről",
+              "label": "Csak pletykák emberekről",
               "next": "0403"
             }
           ],
@@ -746,7 +736,7 @@ window.QR_CITY_QUEST_DATA = {
         "0403": {
           "id": "0403",
           "speaker": "Beszélő fa",
-          "text": "Sok mindent tudok az emberekről. Mesélhetek róluk. Kiről szeretnél hallani?",
+          "text": "Tudok dolgokat az emberekről. Mesélhetek róluk. Kiről szeretnél hallani?",
           "buttons": [
             {
               "index": 1,
@@ -765,7 +755,7 @@ window.QR_CITY_QUEST_DATA = {
         "0404": {
           "id": "0404",
           "speaker": "Beszélő fa",
-          "text": "Hamarosan elalszom úgy körülbelül 20 percre. Utána megint beszélhetünk.",
+          "text": "Hamarosan elalszom úgy 20 percre. Utána megint beszélhetünk.",
           "buttons": [
             {
               "index": 1,
@@ -788,7 +778,7 @@ window.QR_CITY_QUEST_DATA = {
         "0405": {
           "id": "0405",
           "speaker": "Beszélő fa",
-          "text": "Annak a fickónak nagyon édesszájú a természete. Meglepő módon futni is utál! Most elmegyek aludni.",
+          "text": "Az a fickó tényleg édesszájú. Meglepő módon a futást is utálja! Most pedig aludni megyek.",
           "buttons": [
             {
               "index": 1,
@@ -806,7 +796,7 @@ window.QR_CITY_QUEST_DATA = {
         "0406": {
           "id": "0406",
           "speaker": "Beszélő fa",
-          "text": "Az egy hatalmas harcos, és csak Koji kardjával lehet legyőzni. Most pihenek.",
+          "text": "Csak egy erős harcos tudja legyőzni, méghozzá Koji kardjával. Most pedig pihenek.",
           "buttons": [
             {
               "index": 1,
@@ -824,7 +814,7 @@ window.QR_CITY_QUEST_DATA = {
         "0407": {
           "id": "0407",
           "speaker": "Beszélő fa",
-          "text": "Legalább ezt a varázságat odaadhatom neked, segíteni fog a küldetésedben. Ragaszkodom hozzá. Most pedig pihenek.",
+          "text": "Legalább ezt a varázságat odaadhatom neked, ami segíteni fog a küldetéseden. Ragaszkodom hozzá. Most pedig pihenni megyek.",
           "buttons": [
             {
               "index": 1,
@@ -864,7 +854,7 @@ window.QR_CITY_QUEST_DATA = {
         "0409": {
           "id": "0409",
           "speaker": "Beszélő fa",
-          "text": "Üdv újra. Emlékszem, mennyire meglepődtél, amikor megláttál egy olyan csodálatos fát, mint én. Ezért neked adom A fák kürtjét. Ha megfújod, felébredek az álmomból. Miben segíthetek?",
+          "text": "Szia megint. Emlékszem, mennyire meglepődtél, hogy egy ilyen csodálatos fa tud beszélni. Ezért neked adom A fák kürtjét. Ha megfújod, felébredek az álmomból. És most miben segíthetek?",
           "buttons": [
             {
               "index": 1,
@@ -888,11 +878,11 @@ window.QR_CITY_QUEST_DATA = {
         "0410": {
           "id": "0410",
           "speaker": "Beszélő fa",
-          "text": "Üdv újra. Tudok mesélni néhány emberről.",
+          "text": "Szia megint. Tudok mesélni neked néhány emberről.",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben",
+              "label": "Oké",
               "next": "0403"
             },
             {
@@ -912,7 +902,7 @@ window.QR_CITY_QUEST_DATA = {
         "0501": {
           "id": "0501",
           "speaker": "Vadász",
-          "text": "Üdvözöllek, utazó! Sietek, de van rád néhány percem.",
+          "text": "Üdv, utazó! Sietek, de pár percem van rád.",
           "buttons": [
             {
               "index": 1,
@@ -921,7 +911,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Ki vagy?",
+              "label": "Ki vagy te",
               "next": "0503"
             }
           ],
@@ -931,7 +921,7 @@ window.QR_CITY_QUEST_DATA = {
         "0502": {
           "id": "0502",
           "speaker": "Vadász",
-          "text": "Mindig sietek, mert azokat a különleges fajokat vadászom, amelyeket ez a liget vonz ide.",
+          "text": "Mindig sietek, mert azokra az egyedi fajokra vadászom, amelyeket ez a liget vonz ide.",
           "buttons": [
             {
               "index": 1,
@@ -940,7 +930,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Ki vagy?",
+              "label": "Ki vagy te?",
               "next": "0503"
             }
           ],
@@ -969,7 +959,7 @@ window.QR_CITY_QUEST_DATA = {
         "0504": {
           "id": "0504",
           "speaker": "Vadász",
-          "text": "Nem tudom, de esküszöm, valami varázslatos dolog rejtőzik ebben a ligetben. Nézd meg a fákat! Most pedig mennem kell!",
+          "text": "Nem tudom, de esküszöm, valami varázslatos rejtőzik ebben a ligetben. Nézd meg a fákat! Most pedig mennem kell!",
           "buttons": [
             {
               "index": 1,
@@ -992,7 +982,7 @@ window.QR_CITY_QUEST_DATA = {
         "0505": {
           "id": "0505",
           "speaker": "Vadász",
-          "text": "Igen, bár lehet, hogy nem tudom a választ.",
+          "text": "Igen, de lehet, hogy nem tudom a választ.",
           "buttons": [
             {
               "index": 1,
@@ -1011,7 +1001,7 @@ window.QR_CITY_QUEST_DATA = {
         "0506": {
           "id": "0506",
           "speaker": "Vadász",
-          "text": "Üdv újra! Egy Pina Coalát üldözök, nincs időm, de láttam valami csillogót a szökőkút kövei között.",
+          "text": "Szia megint! Egy Pina Coalát üldözök, nincs időm, de láttam valami csillogót a szökőkút kövei között.",
           "buttons": [
             {
               "index": 1,
@@ -1034,7 +1024,7 @@ window.QR_CITY_QUEST_DATA = {
         "0507": {
           "id": "0507",
           "speaker": "Vadász",
-          "text": "Üdv, kalandor! Visszatértem a vadászatról, és most tudok válaszolni néhány kérdésre, de előbb...",
+          "text": "Szia, kalandor! Visszatértem a vadászatról, és most válaszolhatok néhány kérdésre, de előbb...",
           "buttons": [
             {
               "index": 1,
@@ -1066,7 +1056,7 @@ window.QR_CITY_QUEST_DATA = {
         "0509": {
           "id": "0509",
           "speaker": "Vadász",
-          "text": "Látod azokat az apró lábnyomokat? Az a lény jobban tud elbújni, mint bármi, amit eddig láttam. Talán valamelyik bokros helyen rejtőzik, ahová én nem férek be!",
+          "text": "Látod azokat a kis lábnyomokat? Az a lény jobban tud rejtőzködni bárminél, amit valaha láttam. Talán valamelyik bokros helyen bújik, ahová én nem férek be!",
           "buttons": [
             {
               "index": 1,
@@ -1080,7 +1070,7 @@ window.QR_CITY_QUEST_DATA = {
         "0510": {
           "id": "0510",
           "speaker": "Vadász",
-          "text": "Na, lássuk a kérdéseidet.",
+          "text": "De most lássuk a kérdéseidet.",
           "buttons": [
             {
               "index": 1,
@@ -1103,7 +1093,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Köszönöm",
+              "label": "Köszi",
               "next": "0514"
             }
           ],
@@ -1113,7 +1103,7 @@ window.QR_CITY_QUEST_DATA = {
         "0512": {
           "id": "0512",
           "speaker": "Vadász",
-          "text": "Láttad már a városi őrt? A barátom. Mesélni fog neked erről a kis birodalomról!",
+          "text": "Nos, láttad már a városi őrt? A barátom. Tud mesélni neked erről a kis birodalomról!",
           "buttons": [
             {
               "index": 1,
@@ -1127,7 +1117,7 @@ window.QR_CITY_QUEST_DATA = {
         "0513": {
           "id": "0513",
           "speaker": "Vadász",
-          "text": "Megtennéd azt is, hogy odaadod ezt az aranymedált az Őrnek? Talán ad érte valamit cserébe.",
+          "text": "Ja, és kérlek, add oda ezt az aranymedált az őrnek! Talán ad érte valamit cserébe.",
           "buttons": [
             {
               "index": 1,
@@ -1150,7 +1140,7 @@ window.QR_CITY_QUEST_DATA = {
         "0514": {
           "id": "0514",
           "speaker": "Vadász",
-          "text": "Rendben, és... Hallod azokat a farkasokat? Ez a vérhold éjszakája. Vadászni indulok, ilyenkor lehet a legjobb zsákmányt elejteni!",
+          "text": "Oké, és... Hallod azokat a farkasokat? Ez a vérhold éjszakája, mennem kell vadászni, ilyenkor a legjobb a préda!",
           "buttons": [
             {
               "index": 1,
@@ -1173,7 +1163,7 @@ window.QR_CITY_QUEST_DATA = {
         "0601": {
           "id": "0601",
           "speaker": "Goblin",
-          "text": "Helló, ki vagy? Én vagyok az erdőben élő goblin. Örülök, hogy találkoztunk.",
+          "text": "Szia, ki vagy? Én vagyok az erdőben élő goblin. Örülök, hogy találkoztunk.",
           "buttons": [
             {
               "index": 1,
@@ -1197,7 +1187,7 @@ window.QR_CITY_QUEST_DATA = {
         "0602": {
           "id": "0602",
           "speaker": "Goblin",
-          "text": "Helló, gyere velem! Hadd mutassam meg a gyűjteményemet!",
+          "text": "Szia, gyere velem! Hadd mutassam meg a gyűjteményemet!",
           "buttons": [
             {
               "index": 1,
@@ -1220,7 +1210,7 @@ window.QR_CITY_QUEST_DATA = {
         "0603": {
           "id": "0603",
           "speaker": "Goblin",
-          "text": "Igeeen. Határozottan. Van egy ritka tárgyakból álló gyűjteményem, amire nagyon büszke vagyok!",
+          "text": "Igeeen. Határozottan. Van egy ritka tárgyakból álló gyűjteményem, amire elég büszke vagyok!",
           "buttons": [
             {
               "index": 1,
@@ -1243,7 +1233,7 @@ window.QR_CITY_QUEST_DATA = {
         "0604": {
           "id": "0604",
           "speaker": "Goblin",
-          "text": "Ó, nálad van a Goblinok jele. Hadd adjak neked valamit ajándékba, barátom!",
+          "text": "Ó, nálad van a Goblinok jele. Hadd adjak neked valamit, barátom!",
           "buttons": [
             {
               "index": 1,
@@ -1257,7 +1247,7 @@ window.QR_CITY_QUEST_DATA = {
         "0605": {
           "id": "0605",
           "speaker": "Goblin",
-          "text": "Szia újra! Most megmutathatom a gyűjteményemet?",
+          "text": "Szia megint! Ezúttal megmutathatom a gyűjteményemet?",
           "buttons": [
             {
               "index": 1,
@@ -1280,7 +1270,7 @@ window.QR_CITY_QUEST_DATA = {
         "0606": {
           "id": "0606",
           "speaker": "Goblin",
-          "text": "Tessék! Nézd, miket gyűjtöttem! Ha szeretnél valamit, csak szólj!",
+          "text": "Itt! Nézd, miket gyűjtöttem! Ha szeretnél egyet, csak szólj!",
           "buttons": [
             {
               "index": 1,
@@ -1313,16 +1303,16 @@ window.QR_CITY_QUEST_DATA = {
         "0607": {
           "id": "0607",
           "speaker": "Goblin",
-          "text": "Ez egy Aranyérme, amit az erdőben találtam. Elcserélném valamire, ami egy ritka állattól származik, például egy madártól.",
+          "text": "Ez egy aranyérme, amit az erdőben találtam. Elcserélném valamire, ami egy ritka állattól származik, például egy madártól.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK, szia",
+              "label": "Oké, viszlát",
               "next": "0605"
             },
             {
               "index": 2,
-              "label": "Van ilyenem",
+              "label": "Nálam van",
               "next": "0611"
             },
             {
@@ -1341,7 +1331,7 @@ window.QR_CITY_QUEST_DATA = {
         "0608": {
           "id": "0608",
           "speaker": "Goblin",
-          "text": "Tessék, vidd ezt az Aranyérmét, amit találtam. Ez a kincs különösen jól néz ki.",
+          "text": "Tessék, vidd ezt az aranyérmét, amit találtam. Ez a kincs különösen jól néz ki.",
           "buttons": [
             {
               "index": 1,
@@ -1350,7 +1340,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Van még valami más?",
+              "label": "Van valami másod?",
               "next": "0606"
             }
           ],
@@ -1368,16 +1358,16 @@ window.QR_CITY_QUEST_DATA = {
         "0609": {
           "id": "0609",
           "speaker": "Goblin",
-          "text": "Ezt a rubinkardot a folyó fenekén találtam. Megláttam benne a rubint, és muszáj volt megszereznem. Ha akarod, adj érte valamilyen más drágakövet.",
+          "text": "Ezt a rubinkardot a folyó fenekén találtam. Megláttam a rubinját, és muszáj volt megszereznem. Ha szeretnéd, adj érte valamilyen másik drágakövet.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK, szia",
+              "label": "Oké, viszlát",
               "next": "0605"
             },
             {
               "index": 2,
-              "label": "Van ilyenem",
+              "label": "Nálam van",
               "next": "0611"
             },
             {
@@ -1396,16 +1386,16 @@ window.QR_CITY_QUEST_DATA = {
         "0610": {
           "id": "0610",
           "speaker": "Goblin",
-          "text": "Hé, ezt a port egy bőrzsákban találtam. Annyira furcsának tűnt, hogy megtartottam. Elcserélném egy fényesebb ékszerre.",
+          "text": "Hé, ezt a port egy bőrzsákban találtam, és olyan furcsának tűnt, hogy megtartottam. Elcserélném egy csillogóbb ékszerre.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK, szia",
+              "label": "Oké, viszlát",
               "next": "0605"
             },
             {
               "index": 2,
-              "label": "Van ilyenem",
+              "label": "Nálam van",
               "next": "0611"
             },
             {
@@ -1428,7 +1418,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "0612"
             }
           ],
@@ -1437,22 +1427,22 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Silver Ring",
+                  "value": "Silver Ring",
+                  "label": "Ezüstgyűrű",
                   "next": "0612"
                 },
                 {
-                  "label": "Crystal Shard",
+                  "value": "Crystal Shard",
+                  "label": "Kristályszilánk",
                   "next": "0613"
                 },
                 {
-                  "label": "Priclys Feather",
+                  "value": "Priclys Feather",
+                  "label": "Priclys tolla",
                   "next": "0614"
-                },
-                {
-                  "label": "Other",
-                  "next": "0615"
                 }
-              ]
+              ],
+              "otherNext": "0615"
             }
           ],
           "condition": null
@@ -1460,7 +1450,7 @@ window.QR_CITY_QUEST_DATA = {
         "0612": {
           "id": "0612",
           "speaker": "Goblin",
-          "text": "Tessék, itt a furcsa por. Szeretem a csillogó dolgokat, ember, még ha csak por is... A goblinoknak ez jó!",
+          "text": "Itt a furcsa por. Szeretem a csillogó dolgokat, ember, például a port... A goblinoknak ez jó!",
           "buttons": [
             {
               "index": 1,
@@ -1486,7 +1476,7 @@ window.QR_CITY_QUEST_DATA = {
         "0613": {
           "id": "0613",
           "speaker": "Goblin",
-          "text": "Tessék, itt a rubinkard. Nekem jobban tetszik a kristályszilánk: fényesebb.",
+          "text": "Itt a rubinkard. Én jobban szeretem a kristályszilánkot: csillogóbb.",
           "buttons": [
             {
               "index": 1,
@@ -1512,7 +1502,7 @@ window.QR_CITY_QUEST_DATA = {
         "0614": {
           "id": "0614",
           "speaker": "Goblin",
-          "text": "Tessék, itt az aranyérme. A toll talán szemét az embereknek, de a goblinoknak kincs!",
+          "text": "Itt az aranyérme. A toll az embereknek talán szemét, de a goblinoknak kincs!",
           "buttons": [
             {
               "index": 1,
@@ -1556,7 +1546,7 @@ window.QR_CITY_QUEST_DATA = {
         "0616": {
           "id": "0616",
           "speaker": "Goblin",
-          "text": "Adhatok még egy ajándékot, amiért ilyen jó kereskedőtársam voltál? Tessék, itt a Goblinbot. Ez azt jelenti, hogy a goblinok nagy barátja vagy.",
+          "text": "Adhatok még egy ajándékot, amiért ilyen remek kereskedőtársam vagy? Itt a Goblinbot. Ez azt jelenti, hogy a goblinok nagy barátja vagy.",
           "buttons": [
             {
               "index": 1,
@@ -1575,7 +1565,7 @@ window.QR_CITY_QUEST_DATA = {
         "0617": {
           "id": "0617",
           "speaker": "Goblin",
-          "text": "Most elmegyek, mert az összes itteni kincs már a zsebemben van!",
+          "text": "Most elmegyek, mert minden kincs itt már a zsebemben van!",
           "buttons": [
             {
               "index": 1,
@@ -1593,7 +1583,7 @@ window.QR_CITY_QUEST_DATA = {
         "0618": {
           "id": "0618",
           "speaker": "Goblin",
-          "text": "A goblin elment az összes értékével.",
+          "text": "A goblin elment minden értékével együtt.",
           "buttons": [
             {
               "index": 1,
@@ -1616,7 +1606,7 @@ window.QR_CITY_QUEST_DATA = {
         "0701": {
           "id": "0701",
           "speaker": "Troll",
-          "text": "Te átmenni híd?",
+          "text": "Át akarsz menni a hídon?",
           "buttons": [
             {
               "index": 1,
@@ -1640,7 +1630,7 @@ window.QR_CITY_QUEST_DATA = {
         "0702": {
           "id": "0702",
           "speaker": "Troll",
-          "text": "Te előbb megfejteni találós kérdésem!",
+          "text": "Előbb oldd meg a találós kérdésemet!",
           "buttons": [
             {
               "index": 1,
@@ -1654,7 +1644,7 @@ window.QR_CITY_QUEST_DATA = {
         "0703": {
           "id": "0703",
           "speaker": "Troll",
-          "text": "Te nem átmenni, ha nem megfejteni. Én mondani találós kérdés.",
+          "text": "Nem mehetsz át, ha nem oldod meg találós kérdés. Mondok találós kérdést.",
           "buttons": [
             {
               "index": 1,
@@ -1673,7 +1663,7 @@ window.QR_CITY_QUEST_DATA = {
         "0704": {
           "id": "0704",
           "speaker": "Troll",
-          "text": "Te buta.",
+          "text": "Te buta",
           "buttons": [
             {
               "index": 1,
@@ -1691,7 +1681,7 @@ window.QR_CITY_QUEST_DATA = {
         "0705": {
           "id": "0705",
           "speaker": "Troll",
-          "text": "Első 6 betű: O, T, T, F, F, S... Mi következő 2?",
+          "text": "Az első 5 betű: O, T, T, F, F, S... Mi a következő 2?",
           "buttons": [
             {
               "index": 1,
@@ -1757,7 +1747,7 @@ window.QR_CITY_QUEST_DATA = {
         "0707": {
           "id": "0707",
           "speaker": "Troll",
-          "text": "A Troll a híd szélén ül, és egyáltalán nem törődik veled.",
+          "text": "A Troll a híd szélén ül, és ügyet sem vet rád.",
           "buttons": [
             {
               "index": 1,
@@ -1779,8 +1769,8 @@ window.QR_CITY_QUEST_DATA = {
       "pages": {
         "0801": {
           "id": "0801",
-          "speaker": "Halász",
-          "text": "Helló! Mit csinálsz a folyónál?",
+          "speaker": "Horgász",
+          "text": "Szia! Mit csinálsz a folyónál?",
           "buttons": [
             {
               "index": 1,
@@ -1798,8 +1788,8 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0802": {
           "id": "0802",
-          "speaker": "Halász",
-          "text": "Menj néhány métert, ott lesz. Innen fordulj jobbra, de előtte, ha már a Trollhoz mész, tudnál nekem segíteni valamiben?",
+          "speaker": "Horgász",
+          "text": "Nos, csak sétálsz pár métert, és már ott is van. Fordulj innen jobbra, de a Troll előtt tudnál segíteni nekem valamiben?",
           "buttons": [
             {
               "index": 1,
@@ -1817,12 +1807,12 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0803": {
           "id": "0803",
-          "speaker": "Halász",
-          "text": "Menj a folyóhoz. A Troll feltart, de a találós kérdése nem olyan nehéz.",
+          "speaker": "Horgász",
+          "text": "Menj a folyóhoz. A Troll megállít, de a találós kérdése nem olyan nehéz.",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben, megyek",
+              "label": "Oké, megyek",
               "next": "0805"
             },
             {
@@ -1836,17 +1826,17 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0804": {
           "id": "0804",
-          "speaker": "Halász",
-          "text": "Tessék, itt egy horgászbot. Vidd, és dobd be a vízbe. Próbálj nagy lazacot fogni. Általában 20–25 másodperc után jönnek.",
+          "speaker": "Horgász",
+          "text": "Itt egy horgászbot. Fogd, és dobd be! Próbálj meg nagy lazacot fogni. Általában 20–25 másodperc után jönnek.",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben",
+              "label": "Oké",
               "next": "0807"
             },
             {
               "index": 2,
-              "label": "És mi van a Blobfish-sel?",
+              "label": "Mit szólsz egy blobfishhez?",
               "next": "0817"
             }
           ],
@@ -1867,7 +1857,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0805": {
           "id": "0805",
-          "speaker": "Halász",
+          "speaker": "Horgász",
           "text": "Akkor majd legközelebb találkozunk.",
           "buttons": [
             {
@@ -1885,12 +1875,12 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0806": {
           "id": "0806",
-          "speaker": "Halász",
-          "text": "Türelmesen horgászom, és próbálok nagy lazacot fogni, de ebben a sáros folyóban csak apró halakat találok.",
+          "speaker": "Horgász",
+          "text": "Türelmesen horgászom, próbálok nagy lazacot fogni, de ebben a sáros folyóban csak kis halakat találok.",
           "buttons": [
             {
               "index": 1,
-              "label": "Segíthetek?",
+              "label": "Segíthetek",
               "next": "0804"
             },
             {
@@ -1904,7 +1894,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0807": {
           "id": "0807",
-          "speaker": "Halász",
+          "speaker": "Horgász",
           "text": "Nálad van a nagy lazac?",
           "buttons": [
             {
@@ -1923,8 +1913,8 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0808": {
           "id": "0808",
-          "speaker": "Halász",
-          "text": "Helló, mi hozott ide?",
+          "speaker": "Horgász",
+          "text": "Szia, mi hozott ide?",
           "buttons": [
             {
               "index": 1,
@@ -1942,8 +1932,8 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0809": {
           "id": "0809",
-          "speaker": "Halász",
-          "text": "Ezzel nem tudok mit kezdeni. Próbáljuk újra. Segítesz kifogni a zsákmányt?",
+          "speaker": "Horgász",
+          "text": "Ezzel nem tudok mit kezdeni. Próbáld újra. Tudsz segíteni elkapni a prédát?",
           "buttons": [
             {
               "index": 1,
@@ -1961,12 +1951,12 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0810": {
           "id": "0810",
-          "speaker": "Halász",
+          "speaker": "Horgász",
           "text": "Akkor add ide.",
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "0812"
             }
           ],
@@ -1975,26 +1965,24 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Great Salmon",
+                  "value": "Great Salmon",
+                  "label": "Nagy lazac",
                   "next": "0812"
-                },
-                {
-                  "label": "Other",
-                  "next": "0813"
                 }
-              ]
+              ],
+              "otherNext": "0813"
             }
           ],
           "condition": null
         },
         "0811": {
           "id": "0811",
-          "speaker": "Halász",
-          "text": "Legközelebb legyen nálad!",
+          "speaker": "Horgász",
+          "text": "Legyen nálad legközelebb!",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben",
+              "label": "Oké",
               "next": "0807"
             }
           ],
@@ -2007,12 +1995,12 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0812": {
           "id": "0812",
-          "speaker": "Halász",
-          "text": "Cserébe elárulom, hogy a Troll találós kérdésében az „o” jelentése „one”.",
+          "speaker": "Horgász",
+          "text": "Cserébe elmondhatom, hogy a Troll „o” betűje az „one”-t jelenti.",
           "buttons": [
             {
               "index": 1,
-              "label": "Köszönöm",
+              "label": "Köszi",
               "next": "0814"
             },
             {
@@ -2031,12 +2019,12 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0813": {
           "id": "0813",
-          "speaker": "Halász",
+          "speaker": "Horgász",
           "text": "Ez nem a nagy lazac.",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben",
+              "label": "Oké",
               "next": "0811"
             }
           ],
@@ -2049,12 +2037,12 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0814": {
           "id": "0814",
-          "speaker": "Halász",
-          "text": "Viszlát. Most már ne zavarj megint horgászás közben!",
+          "speaker": "Horgász",
+          "text": "Szia-szia. Most pedig ne zavarj megint horgászás közben!",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben",
+              "label": "Oké",
               "next": "0816"
             }
           ],
@@ -2067,8 +2055,8 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0815": {
           "id": "0815",
-          "speaker": "Halász",
-          "text": "Nos... ha ezt oda tudnád adni a Hírnöknek... szívességként kérlek, add oda neki ezeket a halakat. Talán mond neked valamit.",
+          "speaker": "Horgász",
+          "text": "Nos... ha ezt odaadnád a Hírnöknek... és viszonzásképp kérlek, add oda neki ezeket a halakat. Talán elmond neked valamit.",
           "buttons": [
             {
               "index": 1,
@@ -2090,12 +2078,12 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0816": {
           "id": "0816",
-          "speaker": "Halász",
-          "text": "A halász integet neked, majd az ujját a szája elé teszi: „pszt”. Most nem tudsz vele beszélni.",
+          "speaker": "Horgász",
+          "text": "A horgász integet neked, majd az ujját a szája elé teszi: „pszt”. Most nem tudsz vele beszélni.",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben",
+              "label": "Oké",
               "next": "0816"
             }
           ],
@@ -2108,12 +2096,12 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0817": {
           "id": "0817",
-          "speaker": "Halász",
-          "text": "Blobfish-t általában 12–15 másodperc után lehet fogni.",
+          "speaker": "Horgász",
+          "text": "A blobfish általában 12–15 másodperc után akad horogra.",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben, köszi",
+              "label": "Oké, köszi",
               "next": "0807"
             }
           ],
@@ -2133,7 +2121,7 @@ window.QR_CITY_QUEST_DATA = {
         "0901": {
           "id": "0901",
           "speaker": "Hírnök",
-          "text": "Helló, én vagyok a Hírnök. Mindig úton vagyok, és üzeneteket kézbesítek különböző embereknek.",
+          "text": "Szia, én vagyok a hírnök. Folyton úton vagyok, és üzeneteket viszek különböző embereknek.",
           "buttons": [
             {
               "index": 1,
@@ -2157,7 +2145,7 @@ window.QR_CITY_QUEST_DATA = {
         "0902": {
           "id": "0902",
           "speaker": "Hírnök",
-          "text": "Hé, nem, utálok futni. Soha nem futnék. Ha van valami fontos nálad...",
+          "text": "Hé, nem, utálok futni. Soha nem futnék. Na, ha van valami fontos...",
           "buttons": [
             {
               "index": 1,
@@ -2180,7 +2168,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "0905"
             }
           ],
@@ -2189,18 +2177,17 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Bundle of Letters",
+                  "value": "Bundle of Letters",
+                  "label": "Levélköteg",
                   "next": "0905"
                 },
                 {
-                  "label": "Fish",
+                  "value": "Fish",
+                  "label": "Hal",
                   "next": "0907"
-                },
-                {
-                  "label": "Other",
-                  "next": "0913"
                 }
-              ]
+              ],
+              "otherNext": "0913"
             }
           ],
           "condition": null
@@ -2208,11 +2195,11 @@ window.QR_CITY_QUEST_DATA = {
         "0904": {
           "id": "0904",
           "speaker": "Hírnök",
-          "text": "Nos... elvesztettem – hadd számoljam meg – három üzenetet, amikor a híd kastély felőli végén jártam. Elejtettem őket. Ha visszahoznád, nagyon örülnék.",
+          "text": "Nos... elvesztettem — hadd számoljam meg — három üzenetet a híd kastély felőli végén. Elejtettem őket. Ha visszahoznád, nagyon örülnék.",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben, megcsinálom",
+              "label": "Oké, megcsinálom",
               "next": "0906"
             }
           ],
@@ -2230,7 +2217,7 @@ window.QR_CITY_QUEST_DATA = {
         "0905": {
           "id": "0905",
           "speaker": "Hírnök",
-          "text": "Ó, köszönöm!!! Cserébe elárulhatom a jelszó első részét.",
+          "text": "Ó, köszönöm!!! Cserébe elmondom a jelszó első részét.",
           "buttons": [
             {
               "index": 1,
@@ -2272,7 +2259,7 @@ window.QR_CITY_QUEST_DATA = {
         "0907": {
           "id": "0907",
           "speaker": "Hírnök",
-          "text": "Ó, a Halász küldte ezeket a halakat? Szuper. Cserébe elárulom: ha valaha furcsa szavakat találsz egy papíron, használj megfejtőport, ami egy szürke por. Most mennem kell.",
+          "text": "Óóó, a Horgász küldte nekem ezeket a halakat? Remek. Cserébe elmondom: ha valaha furcsa szavakat találsz egy papíron, használj megfejtőport, ami csak egy szürke por. Most pedig mennem kell.",
           "buttons": [
             {
               "index": 1,
@@ -2298,7 +2285,7 @@ window.QR_CITY_QUEST_DATA = {
         "0908": {
           "id": "0908",
           "speaker": "Hírnök",
-          "text": "Kérlek, add oda őket. Nagyon szükségem van rájuk.",
+          "text": "Kérlek, add ide őket. Tényleg szükségem van rájuk.",
           "buttons": [
             {
               "index": 1,
@@ -2316,7 +2303,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0906"
             }
           ],
@@ -2330,7 +2317,7 @@ window.QR_CITY_QUEST_DATA = {
         "0910": {
           "id": "0910",
           "speaker": "Hírnök",
-          "text": "Helló, szeretnél segíteni nekem valamiben?",
+          "text": "Szia, akarsz segíteni nekem valamiben?",
           "buttons": [
             {
               "index": 1,
@@ -2358,7 +2345,7 @@ window.QR_CITY_QUEST_DATA = {
         "0911": {
           "id": "0911",
           "speaker": "Hírnök",
-          "text": "A jelszó első része „Apple”. Most mennem kell!",
+          "text": "A jelszó első része „Apple”, most pedig mennem kell!",
           "buttons": [
             {
               "index": 1,
@@ -2376,7 +2363,7 @@ window.QR_CITY_QUEST_DATA = {
         "0912": {
           "id": "0912",
           "speaker": "Hírnök",
-          "text": "A Hírnököt sehol sem látod.",
+          "text": "Nem látod a Hírnököt.",
           "buttons": [
             {
               "index": 1,
@@ -2418,11 +2405,11 @@ window.QR_CITY_QUEST_DATA = {
         "1001": {
           "id": "1001",
           "speaker": "Harcos",
-          "text": "Helló! Ha be akarsz jutni, tudnod kell a jelszót!",
+          "text": "Szia! Ha be akarsz jutni, tudnod kell a jelszót!",
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben, szia",
+              "label": "Oké, viszlát",
               "next": "1001"
             },
             {
@@ -2446,11 +2433,11 @@ window.QR_CITY_QUEST_DATA = {
         "1002": {
           "id": "1002",
           "speaker": "Harcos",
-          "text": "Válassz egy tárgyat a tárgyaid közül.",
+          "text": "Válassz egy tárgyat a felszerelésedből.",
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "1005"
             }
           ],
@@ -2459,18 +2446,17 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Ruby Sword",
+                  "value": "Ruby Sword",
+                  "label": "Rubinkard",
                   "next": "1005"
                 },
                 {
-                  "label": "Magic Branch",
+                  "value": "Magic Branch",
+                  "label": "Varázság",
                   "next": "1010"
-                },
-                {
-                  "label": "Other",
-                  "next": "1004"
                 }
-              ]
+              ],
+              "otherNext": "1004"
             }
           ],
           "condition": null
@@ -2482,7 +2468,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Első rész kiválasztása",
+              "label": "Válaszd ki az első részt",
               "next": "1006"
             }
           ],
@@ -2495,19 +2481,19 @@ window.QR_CITY_QUEST_DATA = {
                   "next": "1006"
                 },
                 {
-                  "label": "Orange",
+                  "label": "Narancs",
                   "next": "1008"
                 },
                 {
-                  "label": "Plum",
+                  "label": "Szilva",
                   "next": "1008"
                 },
                 {
-                  "label": "Pear",
+                  "label": "Körte",
                   "next": "1008"
                 },
                 {
-                  "label": "Peach",
+                  "label": "Őszibarack",
                   "next": "1008"
                 }
               ]
@@ -2536,16 +2522,16 @@ window.QR_CITY_QUEST_DATA = {
         "1005": {
           "id": "1005",
           "speaker": "Harcos",
-          "text": "Ha! Harcolni akarsz?",
+          "text": "Ha, harcolni akarsz?",
           "buttons": [
             {
               "index": 1,
-              "label": "Nem, szia",
+              "label": "Nem, viszlát",
               "next": "1001"
             },
             {
               "index": 2,
-              "label": "Neked akarom adni",
+              "label": "Oda akarom adni neked",
               "next": "1004"
             },
             {
@@ -2568,7 +2554,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Második rész kiválasztása",
+              "label": "Válaszd ki a második részt",
               "next": "1007"
             }
           ],
@@ -2581,19 +2567,19 @@ window.QR_CITY_QUEST_DATA = {
                   "next": "1007"
                 },
                 {
-                  "label": "Juice",
+                  "label": "Lé",
                   "next": "1008"
                 },
                 {
-                  "label": "Tree",
+                  "label": "Fa",
                   "next": "1008"
                 },
                 {
-                  "label": "Flavour",
+                  "label": "Íz",
                   "next": "1008"
                 },
                 {
-                  "label": "Fruit",
+                  "label": "Gyümölcs",
                   "next": "1008"
                 }
               ]
@@ -2626,7 +2612,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Rendben",
+              "label": "Oké",
               "next": "1001"
             }
           ],
@@ -2640,7 +2626,7 @@ window.QR_CITY_QUEST_DATA = {
         "1009": {
           "id": "1009",
           "speaker": "Harcos",
-          "text": "Gyerünk!! Semmi sem történik. Egy dinoszaurusz ugrik ki a kezedből, és két csapással legyőzi az őrt.",
+          "text": "Gyerünk!! Semmi sem történik. Egy dinoszaurusz kiugrik a kezedből, és két csapással legyőzi az őrt.",
           "buttons": [
             {
               "index": 1,
@@ -2654,7 +2640,7 @@ window.QR_CITY_QUEST_DATA = {
         "1010": {
           "id": "1010",
           "speaker": "Harcos",
-          "text": "Meglengeted. Apró szivárványszínű szikrák jelennek meg, de semmi más nem történik.",
+          "text": "Meglengeted. Apró szivárványszikrák jelennek meg, de semmi más.",
           "buttons": [
             {
               "index": 1,
@@ -2668,7 +2654,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 3,
-              "label": "Neked akarom adni",
+              "label": "Oda akarom adni neked",
               "next": "1004"
             }
           ],
@@ -2698,6 +2684,7 @@ window.QR_CITY_QUEST_DATA = {
   },
   "items": {
     "Sweets": {
+      "displayName": "Édesség",
       "startPage": "1101",
       "pages": {
         "1101": {
@@ -2742,7 +2729,7 @@ window.QR_CITY_QUEST_DATA = {
         "1102": {
           "id": "1102",
           "speaker": "Édesség",
-          "text": "Egy kis figyelmeztetés: NE TEDD!",
+          "text": "Egy kis figyelmeztetés: NE!",
           "buttons": [
             {
               "index": 1,
@@ -2756,7 +2743,7 @@ window.QR_CITY_QUEST_DATA = {
         "1103": {
           "id": "1103",
           "speaker": "Édesség",
-          "text": "Tényleg megetted őket. Most elvesztettél egy értékes erőforrást...\n\nRemek...",
+          "text": "Tényleg megetted. Most elvesztettél egy értékes erőforrást...\n\nRemek...",
           "buttons": [
             {
               "index": 1,
@@ -2775,16 +2762,17 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Old Scroll": {
+      "displayName": "Régi tekercs",
       "startPage": "1201",
       "pages": {
         "1201": {
           "id": "1201",
           "speaker": "Régi tekercs",
-          "text": "Ez csak egy összehajtott régi tekercs!",
+          "text": "Csak egy régi tekercs, összehajtva!",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             },
             {
@@ -2794,7 +2782,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 3,
-              "label": "Kihajtás",
+              "label": "Hajtsd ki",
               "next": "1203"
             }
           ],
@@ -2808,12 +2796,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "Kihajtás",
+              "label": "Hajtsd ki",
               "next": "1203"
             }
           ],
@@ -2823,7 +2811,7 @@ window.QR_CITY_QUEST_DATA = {
         "1203": {
           "id": "1203",
           "speaker": "Régi tekercs",
-          "text": "Kihajtod, és valami furcsa feliratot találsz rajta:\n\nRcuuygtf:Crrmgrkg",
+          "text": "Kihajtod, és egy furcsa feliratot találsz rajta:\n\nRcuuygtf:Crrmgrkg",
           "buttons": [
             {
               "index": 1,
@@ -2837,7 +2825,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 3,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -2847,7 +2835,7 @@ window.QR_CITY_QUEST_DATA = {
         "1204": {
           "id": "1204",
           "speaker": "Régi tekercs",
-          "text": "Elkezded összevissza felolvasni, de semmi különös nem történik, azon kívül, hogy úgy nézel ki, mint aki elvesztette az eszét.",
+          "text": "Összevissza kezdesz beszélni, de semmi különös nem történik, azon kívül, hogy úgy nézel ki, mint aki elvesztette az eszét.",
           "buttons": [
             {
               "index": 1,
@@ -2856,7 +2844,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -2866,11 +2854,11 @@ window.QR_CITY_QUEST_DATA = {
         "1205": {
           "id": "1205",
           "speaker": "Régi tekercs",
-          "text": "Válassz egy tárgyat a tárgyaid közül:",
+          "text": "válassz egy tárgyat a felszerelésedből:",
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "1207"
             }
           ],
@@ -2879,14 +2867,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Strange Powder",
+                  "value": "Strange Powder",
+                  "label": "Furcsa por",
                   "next": "1207"
-                },
-                {
-                  "label": "Other",
-                  "next": "1206"
                 }
-              ]
+              ],
+              "otherNext": "1206"
             }
           ],
           "condition": null
@@ -2894,11 +2880,11 @@ window.QR_CITY_QUEST_DATA = {
         "1206": {
           "id": "1206",
           "speaker": "Régi tekercs",
-          "text": "Semmi sem történik.",
+          "text": "Semmi sem történik",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -2908,11 +2894,11 @@ window.QR_CITY_QUEST_DATA = {
         "1207": {
           "id": "1207",
           "speaker": "Régi tekercs",
-          "text": "A szavak felcsillannak, a varázspor porrá válik és elpárolog. Alatta új szavakat találsz.\n\nJelszó: Applepie",
+          "text": "A szavak csillogni kezdenek, a varázspor pedig porrá válik és elpárolog. Alatta új szavakat találsz.\n\nPassword:Applepie",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -2935,6 +2921,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Magic Branch": {
+      "displayName": "Varázság",
       "startPage": "1301",
       "pages": {
         "1301": {
@@ -2944,7 +2931,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Lendítsd meg",
+              "label": "Suhints vele",
               "next": "1302"
             },
             {
@@ -2973,12 +2960,13 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Horn of Trees": {
+      "displayName": "A fák kürtje",
       "startPage": "1401",
       "pages": {
         "1401": {
           "id": "1401",
           "speaker": "A fák kürtje",
-          "text": "Ezt a furcsa kürtöt a fától kaptad. Úgy néz ki, mint egy hangszer.",
+          "text": "Ezt a furcsa kürtöt a fától kaptad. Olyan, mint egy hangszer.",
           "buttons": [
             {
               "index": 1,
@@ -2997,11 +2985,11 @@ window.QR_CITY_QUEST_DATA = {
         "1402": {
           "id": "1402",
           "speaker": "A fák kürtje",
-          "text": "Amikor megfújod, száraz levelek zizegéséhez hasonló hangot hallasz, majd a fa megszólal.",
+          "text": "Amikor megfújod, száraz levelek susogásához hasonló hangot hallasz, majd a fa megszólal.",
           "buttons": [
             {
               "index": 1,
-              "label": "Hallgassuk meg",
+              "label": "Halljuk",
               "next": "0410"
             }
           ],
@@ -3014,6 +3002,7 @@ window.QR_CITY_QUEST_DATA = {
       ]
     },
     "Bridge Key": {
+      "displayName": "Hídkulcs",
       "startPage": "1501",
       "pages": {
         "1501": {
@@ -3038,7 +3027,7 @@ window.QR_CITY_QUEST_DATA = {
         "1502": {
           "id": "1502",
           "speaker": "Hídkulcs",
-          "text": "A híd most nyitva van, és elérheted a Kastélybejárat területét.",
+          "text": "Most már nyitva van a híd, és elérheted a Kastélybejárat területét.",
           "buttons": [
             {
               "index": 1,
@@ -3057,12 +3046,13 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Golden Medal": {
+      "displayName": "Aranymedál",
       "startPage": "1601",
       "pages": {
         "1601": {
           "id": "1601",
           "speaker": "Aranymedál",
-          "text": "Egy selyemzsinórra erősített aranymedál. A Vadász adta neked, hogy barátsága jeléül add oda az Őrnek.",
+          "text": "Egy selyemzsinórra kötött aranymedál. A vadász adta neked, hogy add oda a barátjának, az őrnek, a barátság jeleként.",
           "buttons": [
             {
               "index": 1,
@@ -3071,7 +3061,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Add oda az Őrnek",
+              "label": "Add oda az őrnek",
               "next": "1602"
             }
           ],
@@ -3081,7 +3071,7 @@ window.QR_CITY_QUEST_DATA = {
         "1602": {
           "id": "1602",
           "speaker": "Aranymedál",
-          "text": "Akkor menj az Őrhöz!!!",
+          "text": "Akkor menj az őrhöz!!!",
           "buttons": [
             {
               "index": 1,
@@ -3095,16 +3085,17 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Mark of Goblins": {
+      "displayName": "Goblinok jele",
       "startPage": "1701",
       "pages": {
         "1701": {
           "id": "1701",
           "speaker": "Goblinok jele",
-          "text": "Egy ezüstérme, amelybe egy goblin arcát vésték. Az Őr szerint ezzel lenyűgözheted a goblinokat.",
+          "text": "Egy ezüst érme, amelybe goblinarcot véstek. Az őr szerint ez lenyűgözi a goblinokat.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3114,21 +3105,22 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Priclys Feather": {
+      "displayName": "Priclys tolla",
       "startPage": "1801",
       "pages": {
         "1801": {
           "id": "1801",
           "speaker": "Priclys tolla",
-          "text": "Egy sárgásbarna, fehér foltos toll, valószínűleg valamilyen furcsa lénytől.",
+          "text": "Egy sárgásbarna toll fehér pöttyökkel, valószínűleg valamilyen furcsa lénytől.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "Lendítsd meg",
+              "label": "Suhints vele",
               "next": "1802"
             }
           ],
@@ -3138,11 +3130,11 @@ window.QR_CITY_QUEST_DATA = {
         "1802": {
           "id": "1802",
           "speaker": "Priclys tolla",
-          "text": "Madárszárnyak csapkodását hallod, aztán a hang lassan elhal.",
+          "text": "Madarak szárnycsapkodását hallod, majd a hang elhal.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3152,12 +3144,13 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Strange Powder": {
+      "displayName": "Furcsa por",
       "startPage": "1901",
       "pages": {
         "1901": {
           "id": "1901",
           "speaker": "Furcsa por",
-          "text": "Ez a por nagyon furcsa. Megpróbálhatnád beledörzsölni valamibe, mert varázslatosnak tűnik.",
+          "text": "Ez a por tényleg furcsa. Megpróbálhatnád beledörzsölni valamibe, mert varázslatosnak tűnik.",
           "buttons": [
             {
               "index": 1,
@@ -3180,7 +3173,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Tárgy kiválasztása",
+              "label": "Válassz tárgyat",
               "next": "1903"
             }
           ],
@@ -3189,14 +3182,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
-                  "label": "Old Scroll",
+                  "value": "Old Scroll",
+                  "label": "Régi tekercs",
                   "next": "1903"
-                },
-                {
-                  "label": "Other",
-                  "next": "1904"
                 }
-              ]
+              ],
+              "otherNext": "1904"
             }
           ],
           "condition": null
@@ -3204,11 +3195,11 @@ window.QR_CITY_QUEST_DATA = {
         "1903": {
           "id": "1903",
           "speaker": "Furcsa por",
-          "text": "Amikor beledörzsölöd a régi papírba, felcsillan, és új szöveg jelenik meg. Jelszó: „apple pie”. Megszereztél egy jelszót valamihez.",
+          "text": "Amikor beledörzsölöd a régi papírba, csillogni kezd, és új szöveg jelenik meg rajta. Jelszó: „apple pie”. Megszerezted valamihez a jelszót.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3235,7 +3226,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3245,16 +3236,17 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Gold Coin": {
+      "displayName": "Aranyérme",
       "startPage": "2001",
       "pages": {
         "2001": {
           "id": "2001",
           "speaker": "Aranyérme",
-          "text": "Egy aranyérme, amit a goblin talált. Kereskedésre használható.",
+          "text": "Egy aranyérme, amit a goblinnál találtál. Kereskedésre használható.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3264,16 +3256,17 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Ruby Sword": {
+      "displayName": "Rubinkard",
       "startPage": "2101",
       "pages": {
         "2101": {
           "id": "2101",
           "speaker": "Rubinkard / Koji kardja",
-          "text": "A penge nagyon réginek és különlegesnek tűnik. Örülsz, hogy megszerezted a goblintól.",
+          "text": "A penge nagyon ősi és különleges. Örülsz, hogy a goblintól kaptad.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             },
             {
@@ -3297,7 +3290,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3307,11 +3300,11 @@ window.QR_CITY_QUEST_DATA = {
         "2103": {
           "id": "2103",
           "speaker": "Rubinkard / Koji kardja",
-          "text": "Amikor eldobod, bumerángként visszatér hozzád. Ez bizony varázsfegyvernek tűnik.",
+          "text": "Amikor eldobod, bumerángként visszatér hozzád. Ez valamilyen varázsfegyvernek tűnik.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3324,21 +3317,22 @@ window.QR_CITY_QUEST_DATA = {
       ]
     },
     "Staff of Goblins": {
+      "displayName": "Goblinbot",
       "startPage": "2201",
       "pages": {
         "2201": {
           "id": "2201",
           "speaker": "Goblinbot",
-          "text": "Ez a fa- és aranybot, amit egy goblintól kaptál, a barátság jelképe.",
+          "text": "Ez a fából és aranyból készült bot, amit egy goblintól kaptál, a barátság jelképe.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "üsd a földhöz",
+              "label": "taposs rá",
               "next": "2202"
             }
           ],
@@ -3348,11 +3342,11 @@ window.QR_CITY_QUEST_DATA = {
         "2202": {
           "id": "2202",
           "speaker": "Goblinbot",
-          "text": "A földhöz ütöd. Egy távolodó goblinkacajt hallasz, aztán csend lesz.",
+          "text": "Rátaposol. Egy távolodó goblinkacajt hallasz, aztán csend lesz.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3362,6 +3356,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Fishing Rod": {
+      "displayName": "Horgászbot",
       "startPage": "2301",
       "pages": {
         "2301": {
@@ -3376,7 +3371,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3390,12 +3385,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Húzd ki",
+              "label": "húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "Várj",
+              "label": "várj",
               "next": "2303"
             }
           ],
@@ -3409,12 +3404,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Húzd ki",
+              "label": "húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "Várj",
+              "label": "várj",
               "next": "2304"
             }
           ],
@@ -3428,16 +3423,30 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Húzd ki",
-              "next": "2311"
+              "label": "húzd ki",
+              "next": "2311",
+              "condition": "counter(\"blobfishCaught\") < 1"
             },
             {
               "index": 2,
-              "label": "Várj",
+              "label": "húzd ki",
+              "next": "2310",
+              "condition": "counter(\"blobfishCaught\") >= 1"
+            },
+            {
+              "index": 3,
+              "label": "várj",
               "next": "2305"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "SET_COUNTER",
+              "data": "blobfishCaught",
+              "value": 1,
+              "buttonIndex": 1
+            }
+          ],
           "condition": null
         },
         "2305": {
@@ -3447,12 +3456,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Húzd ki",
+              "label": "húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "Várj",
+              "label": "várj",
               "next": "2306"
             }
           ],
@@ -3466,12 +3475,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Húzd ki",
+              "label": "húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "Várj",
+              "label": "várj",
               "next": "2307"
             }
           ],
@@ -3485,16 +3494,30 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Húzd ki",
-              "next": "2312"
+              "label": "húzd ki",
+              "next": "2312",
+              "condition": "counter(\"salmonCaught\") < 1"
             },
             {
               "index": 2,
-              "label": "Várj",
+              "label": "húzd ki",
+              "next": "2310",
+              "condition": "counter(\"salmonCaught\") >= 1"
+            },
+            {
+              "index": 3,
+              "label": "várj",
               "next": "2308"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "SET_COUNTER",
+              "data": "salmonCaught",
+              "value": 1,
+              "buttonIndex": 1
+            }
+          ],
           "condition": null
         },
         "2308": {
@@ -3504,12 +3527,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Húzd ki",
+              "label": "húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "Várj",
+              "label": "várj",
               "next": "2309"
             }
           ],
@@ -3523,21 +3546,35 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Húzd ki",
-              "next": "2313"
+              "label": "húzd ki",
+              "next": "2313",
+              "condition": "counter(\"bootsCaught\") < 1"
+            },
+            {
+              "index": 2,
+              "label": "húzd ki",
+              "next": "2310",
+              "condition": "counter(\"bootsCaught\") >= 1"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "SET_COUNTER",
+              "data": "bootsCaught",
+              "value": 1,
+              "buttonIndex": 1
+            }
+          ],
           "condition": null
         },
         "2310": {
           "id": "2310",
           "speaker": "Horgászbot",
-          "text": "Semmi. Nem fogtál semmit. Elmész.",
+          "text": "Semmi. Nem fogtál semmit. Most pedig menj el.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3547,11 +3584,11 @@ window.QR_CITY_QUEST_DATA = {
         "2311": {
           "id": "2311",
           "speaker": "Horgászbot",
-          "text": "Küzdesz, miközben kihúzod, és a zsinór végén egy Blobfish van.",
+          "text": "Küszködsz a behúzással, és a végén egy blobfish lóg a horgon.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3566,11 +3603,11 @@ window.QR_CITY_QUEST_DATA = {
         "2312": {
           "id": "2312",
           "speaker": "Horgászbot",
-          "text": "Elkezded kihúzni, küzdesz vele, aztán ta-dam: egy nagy lazac van a horgon.",
+          "text": "Elkezded behúzni. Küszködsz, aztán ta-daa: egy nagy lazac van rajta.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3589,11 +3626,11 @@ window.QR_CITY_QUEST_DATA = {
         "2313": {
           "id": "2313",
           "speaker": "Horgászbot",
-          "text": "Találsz egy régi csizmát.",
+          "text": "Egy régi csizmát találsz.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3605,44 +3642,20 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "condition": null
         }
-      },
-      "specialMechanics": {
-        "oneTimeCatches": [
-          {
-            "fromPage": "2304",
-            "button": "Húzd ki",
-            "rewardPage": "2311",
-            "rewardItem": "Blobfish",
-            "repeatPage": "2310"
-          },
-          {
-            "fromPage": "2307",
-            "button": "Húzd ki",
-            "rewardPage": "2312",
-            "rewardItem": "Great Salmon",
-            "repeatPage": "2310"
-          },
-          {
-            "fromPage": "2309",
-            "button": "Húzd ki",
-            "rewardPage": "2313",
-            "rewardItem": "Old Boots",
-            "repeatPage": "2310"
-          }
-        ]
       }
     },
     "Crystal Shard": {
+      "displayName": "Kristályszilánk",
       "startPage": "2401",
       "pages": {
         "2401": {
           "id": "2401",
           "speaker": "Kristályszilánk",
-          "text": "Egy kék kristályszilánk. Ha a fény felé tartod, szivárványt vet.",
+          "text": "Egy kék szilánk. Ha a fény felé tartod, szivárványt bocsát ki.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3652,6 +3665,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Blobfish": {
+      "displayName": "Blobfish",
       "startPage": "2501",
       "pages": {
         "2501": {
@@ -3661,7 +3675,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             },
             {
@@ -3676,11 +3690,11 @@ window.QR_CITY_QUEST_DATA = {
         "2502": {
           "id": "2502",
           "speaker": "Blobfish",
-          "text": "Sokáig próbálkozol, de nem sikerül felfújni. Végül feladod.",
+          "text": "sokáig küszködsz és próbálkozol, de nem sikerül. Végül feladod.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3690,25 +3704,34 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Silver Ring": {
+      "displayName": "Ezüstgyűrű",
       "startPage": "2601",
       "pages": {
         "2601": {
           "id": "2601",
           "speaker": "Ezüstgyűrű",
-          "text": "Egy gyönyörű, fényes gyűrű, amit a folyónál találtál.",
+          "text": "Gyönyörű, fényesen csillogó gyűrű, amit a folyónál találtál.",
           "buttons": [
             {
               "index": 1,
               "label": "Vedd fel.",
-              "next": "2602"
+              "next": "2602",
+              "condition": "counter(\"worn\") < 1"
             },
             {
               "index": 2,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "SET_COUNTER",
+              "data": "worn",
+              "value": 1,
+              "buttonIndex": 1
+            }
+          ],
           "condition": null
         },
         "2602": {
@@ -3718,22 +3741,17 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
           "actions": [],
           "condition": null
         }
-      },
-      "specialMechanics": {
-        "hideButtonAfterUse": {
-          "page": "2601",
-          "buttonLabel": "Vedd fel."
-        }
       }
     },
     "Bundle of Letters": {
+      "displayName": "Levélköteg",
       "startPage": "2701",
       "pages": {
         "2701": {
@@ -3743,7 +3761,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3753,16 +3771,17 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Scroll with Password": {
+      "displayName": "Tekercs a jelszóval",
       "startPage": "2801",
       "pages": {
         "2801": {
           "id": "2801",
           "speaker": "Tekercs a jelszóval",
-          "text": "Ez ugyanaz a régi tekercs, csak most már megfejtve.",
+          "text": "Csak a régi tekercs, de megfejtve.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             },
             {
@@ -3781,7 +3800,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3791,16 +3810,17 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Old Boots": {
+      "displayName": "Régi csizma",
       "startPage": "2901",
       "pages": {
         "2901": {
           "id": "2901",
           "speaker": "Régi csizma",
-          "text": "Csak egy pár kopott bőrcsizma. Még mindig csöpög belőle a víz.",
+          "text": "Csak egy pár elnyűtt bőrcsizma. Még mindig csöpög belőle a víz.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             },
             {
@@ -3819,7 +3839,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3829,16 +3849,17 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Great Salmon": {
+      "displayName": "Nagy lazac",
       "startPage": "3001",
       "pages": {
         "3001": {
           "id": "3001",
           "speaker": "Nagy lazac",
-          "text": "Csak egy nagy hal. Várj... még mindig él!",
+          "text": "Csak egy nagy hal. Várj… még mindig él!",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3848,16 +3869,17 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Fish": {
+      "displayName": "Hal",
       "startPage": "3101",
       "pages": {
         "3101": {
           "id": "3101",
           "speaker": "Hal",
-          "text": "Csak néhány hal egy zsákban.",
+          "text": "Ezek csak halak egy zsákban.",
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "oké",
               "next": "HOME"
             }
           ],
@@ -3876,7 +3898,6 @@ window.QR_CITY_QUEST_DATA = {
     "Staff of Goblin is normalized to Staff of Goblins per the current item canon.",
     "Magic Branch on Warrior page 1002 links to the already-existing failed rainbow-sparkle page 1010.",
     "UNLOCK_AREA is represented for Bridge Key and requires an app action handler.",
-    "Sweets uses the generic ADD_COUNTER/RESET_COUNTER system; specialMechanics remains for Silver Ring one-time Wear and one-time Fishing Rod catches.",
     "Horn of Trees intentionally links to NPC page 0410.",
     "Objective fixes: Buy Sweets and Get Great Salmon now complete at their actual completion points.",
     "Added side objectives for the Merchant's Blobfish request and returning the Golden Medal to the Guard.",
@@ -3884,12 +3905,24 @@ window.QR_CITY_QUEST_DATA = {
     "Guard page 0307 now provides a route to the Golden Medal hand-in pages 0308-0310.",
     "Removed duplicate Gold Coin reward from Goblin page 0604; the reward remains on page 0608.",
     "Bridge Key now unlocks internal area id CASTLE_SIDE to match encounters 09 and 10.",
-    "Warrior page 1002 now uses DROPDOWN_INVENTORY so unavailable items cannot be selected."
+    "Warrior page 1002 now uses DROPDOWN_INVENTORY so unavailable items cannot be selected.",
+    "Generic counter actions and button conditions now enforce Sweets eating, Silver Ring one-time Wear, and one-time Fishing Rod catches.",
+    "Items use displayName for player-facing names while item object keys remain stable internal IDs.",
+    "DROPDOWN_INVENTORY options separate internal value from player-facing label; unmatched inventory items use otherNext."
   ],
   "compilerWarnings": [
     "The app must read gameData.items when an inventory item is tapped.",
     "The app must understand the HOME next target for item dialogue buttons.",
-    "The app must implement generic counter actions for Sweets, plus specialMechanics for Silver Ring and Fishing Rod.",
-    "Item dialogue navigation must allow Horn of Trees to open NPC page 0410."
-  ]
+    "Item dialogue navigation must allow Horn of Trees to open NPC page 0410.",
+    "The app must support generic counter actions and counter(...) button conditions."
+  ],
+  "questDisplayNames": {
+    "Buy Sweets": "Vegyél édességet",
+    "Get Blobfish for Merchant": "Szerezz Blobfisht a Kereskedőnek",
+    "Get Great Salmon": "Szerezz nagy lazacot",
+    "Give Fish to Messenger": "Add oda a halat a Hírnöknek",
+    "Lost Messages": "Elveszett üzenetek",
+    "Return Golden Medal to Guard": "Vidd vissza az aranymedált az őrnek"
+  }
 };
+
