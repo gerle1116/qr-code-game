@@ -1,0 +1,3895 @@
+window.QR_CITY_QUEST_DATA = {
+  "formatVersion": 1,
+  "generatedFrom": "Gergo-app-prototype-item-actions-fixed + QR_City_Quest_Item_Data.md",
+  "encounters": {
+    "01": {
+      "startPage": "0101",
+      "pages": {
+        "0101": {
+          "id": "0101",
+          "speaker": "Gyerek",
+          "text": "Veszel nekem egy kis édességet?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "0102"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "0103"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0102": {
+          "id": "0102",
+          "speaker": "Gyerek",
+          "text": "A Kereskedőtől tudsz venni.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0104"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Buy Sweets"
+            }
+          ],
+          "condition": null
+        },
+        "0103": {
+          "id": "0103",
+          "speaker": "Gyerek",
+          "text": "Akkor hagyj békén!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0101"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0104": {
+          "id": "0104",
+          "speaker": "Gyerek",
+          "text": "Van nálad édesség?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "0105"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "0103"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0105": {
+          "id": "0105",
+          "speaker": "Gyerek",
+          "text": "Mutasd!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "0106"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Sweets",
+                  "next": "0106"
+                },
+                {
+                  "label": "Other",
+                  "next": "0103"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0106": {
+          "id": "0106",
+          "speaker": "Gyerek",
+          "text": "Hallottam, ahogy a Hírnök egy jelszót mondott a Harcosnak. Valami olyasmi volt, hogy „...Pie”.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszönöm",
+              "next": "0107"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Sweets"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Buy Sweets"
+            }
+          ],
+          "condition": null
+        },
+        "0107": {
+          "id": "0107",
+          "speaker": "Gyerek",
+          "text": "A gyereket sehol sem látod.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0107"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "02": {
+      "startPage": "0201",
+      "pages": {
+        "0201": {
+          "id": "0201",
+          "speaker": "Kereskedő",
+          "text": "Üdv, vásárló! Akarsz venni valamit?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "0202"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "0203"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0202": {
+          "id": "0202",
+          "speaker": "Kereskedő",
+          "text": "Van néhány eladó holmim. Melyiket szeretnéd?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Sweets",
+              "next": "0204"
+            },
+            {
+              "index": 2,
+              "label": "Old Scroll",
+              "next": "0205"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0203": {
+          "id": "0203",
+          "speaker": "Kereskedő",
+          "text": "Rendben, de van egy kis szabadidőd? Örülnék, ha szereznél nekem néhány különleges hozzávalót.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nem, mennem kell",
+              "next": "0201"
+            },
+            {
+              "index": 2,
+              "label": "Igen",
+              "next": "0206"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0204": {
+          "id": "0204",
+          "speaker": "Kereskedő",
+          "text": "Rendben, egy aranyérme lesz az ára. Válassz egy tárgyat a tárgyaid közül.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "0207"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Gold Coin",
+                  "next": "0207"
+                },
+                {
+                  "label": "Other",
+                  "next": "0208"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0205": {
+          "id": "0205",
+          "speaker": "Kereskedő",
+          "text": "Rendben, egy Priclys toll lesz az ára. Válassz egy tárgyat a tárgyaid közül.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "0209"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Priclys Feather",
+                  "next": "0209"
+                },
+                {
+                  "label": "Other",
+                  "next": "0208"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0206": {
+          "id": "0206",
+          "speaker": "Kereskedő",
+          "text": "Ha tudnál hozni nekem egy Blobfish-t, nagyon örülnék. Viszlát!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0210"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Get Blobfish for Merchant"
+            }
+          ],
+          "condition": null
+        },
+        "0207": {
+          "id": "0207",
+          "speaker": "Kereskedő",
+          "text": "Tessék, itt az édesség! Van még egy kis szabadidőd?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nem, mennem kell",
+              "next": "0201"
+            },
+            {
+              "index": 2,
+              "label": "Igen",
+              "next": "0206"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Gold Coin"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Sweets"
+            },
+            {
+              "type": "RESET_COUNTER",
+              "item": "Sweets",
+              "data": "eatAttempts"
+            }
+          ],
+          "condition": null
+        },
+        "0208": {
+          "id": "0208",
+          "speaker": "Kereskedő",
+          "text": "Erre nincs szükségem!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0201"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0209": {
+          "id": "0209",
+          "speaker": "Kereskedő",
+          "text": "Tessék, itt a régi tekercs. Van még egy kis szabadidőd?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nem, mennem kell",
+              "next": "0201"
+            },
+            {
+              "index": 2,
+              "label": "Igen",
+              "next": "0206"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Priclys Feather"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Old Scroll"
+            }
+          ],
+          "condition": null
+        },
+        "0210": {
+          "id": "0210",
+          "speaker": "Kereskedő",
+          "text": "Nálad van a halam?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nem",
+              "next": "0211"
+            },
+            {
+              "index": 2,
+              "label": "Igen",
+              "next": "0212"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0211": {
+          "id": "0211",
+          "speaker": "Kereskedő",
+          "text": "Legalább venni akarsz valamit?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nem, mennem kell",
+              "next": "0201"
+            },
+            {
+              "index": 2,
+              "label": "Aha",
+              "next": "0202"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0212": {
+          "id": "0212",
+          "speaker": "Kereskedő",
+          "text": "Odaadnád nekem?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "0213"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Blobfish",
+                  "next": "0213"
+                },
+                {
+                  "label": "Other",
+                  "next": "0208"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0213": {
+          "id": "0213",
+          "speaker": "Kereskedő",
+          "text": "Rendben. Szép. Nem sok mindent tudok mondani, de úgy hallottam, hogy a Troll találós kérdésében a betűk valahogy számokhoz kapcsolódnak.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0201"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Blobfish"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Get Blobfish for Merchant"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "03": {
+      "startPage": "0301",
+      "pages": {
+        "0301": {
+          "id": "0301",
+          "speaker": "Őr",
+          "text": "Helló! Érdekel, hogyan működik ez az egész világ?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "0302"
+            },
+            {
+              "index": 2,
+              "label": "Nem, csak nézelődöm",
+              "next": "0303"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0302": {
+          "id": "0302",
+          "speaker": "Őr",
+          "text": "Akkor elmondom! Ez a hely több különböző területből áll. Most a Falu központjában vagyunk. Ezen kívül még 3 terület van...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Melyek azok?",
+              "next": "0304"
+            },
+            {
+              "index": 2,
+              "label": "Ennyi elég",
+              "next": "0306"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0303": {
+          "id": "0303",
+          "speaker": "Őr",
+          "text": "És tudod, hol vagy most?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nem igazán",
+              "next": "0302"
+            },
+            {
+              "index": 2,
+              "label": "Igen",
+              "next": "0306"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0304": {
+          "id": "0304",
+          "speaker": "Őr",
+          "text": "A Liget, a Híd és a Kastélybejárat. Minden területen van egy vagy több ember, akivel beszélhetsz. Könnyen eljuthatsz mindegyikhez, de a kastélyt egy Troll őrzi.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ki?",
+              "next": "0305"
+            },
+            {
+              "index": 2,
+              "label": "Nem kell több!",
+              "next": "0306"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0305": {
+          "id": "0305",
+          "speaker": "Őr",
+          "text": "Egy troll. Csak akkor juthatsz el a bejárathoz, ha legyőzöd. Ennyit tudtam mondani. Jó szórakozást itt!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0306": {
+          "id": "0306",
+          "speaker": "Őr",
+          "text": "Akkor nincs több mondanivalóm.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0307": {
+          "id": "0307",
+          "speaker": "Őr",
+          "text": "Szia! Fedezz fel tovább!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0307"
+            },
+            {
+              "index": 2,
+              "label": "Van nálam valami neked",
+              "next": "0308"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0308": {
+          "id": "0308",
+          "speaker": "Őr",
+          "text": "Válassz egy tárgyat a tárgyaid közül.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "0310"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Golden Medal",
+                  "next": "0310"
+                },
+                {
+                  "label": "Other",
+                  "next": "0309"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0309": {
+          "id": "0309",
+          "speaker": "Őr",
+          "text": "Erre nincs szükségem.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0310": {
+          "id": "0310",
+          "speaker": "Őr",
+          "text": "Ó, az érmem! Köszönöm, hogy visszahoztad. Ezért odaadom neked a Goblinok jelét. A goblinok barátságosabbak lesznek, ha megmutatod nekik. Még egyszer köszönöm!!!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Golden Medal"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Mark of Goblins"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Return Golden Medal to Guard"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "04": {
+      "startPage": "0401",
+      "pages": {
+        "0401": {
+          "id": "0401",
+          "speaker": "Beszélő fa",
+          "text": "Üdv, Ember! Mit keresel itt?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "TE TUDSZ BESZÉLNI??",
+              "next": "0402"
+            },
+            {
+              "index": 2,
+              "label": "Csak pletykákat keresek emberekről",
+              "next": "0403"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0402": {
+          "id": "0402",
+          "speaker": "Beszélő fa",
+          "text": "Örülök, hogy megkérdezted, bár nem fogom elárulni...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0404"
+            },
+            {
+              "index": 2,
+              "label": "Viszlát",
+              "next": "0407"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0403": {
+          "id": "0403",
+          "speaker": "Beszélő fa",
+          "text": "Sok mindent tudok az emberekről. Mesélhetek róluk. Kiről szeretnél hallani?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Hírnök",
+              "next": "0405"
+            },
+            {
+              "index": 2,
+              "label": "Harcos",
+              "next": "0406"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0404": {
+          "id": "0404",
+          "speaker": "Beszélő fa",
+          "text": "Hamarosan elalszom úgy körülbelül 20 percre. Utána megint beszélhetünk.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_TIMER",
+              "raw": "20 minutes",
+              "durationMs": 1200000
+            }
+          ],
+          "condition": null
+        },
+        "0405": {
+          "id": "0405",
+          "speaker": "Beszélő fa",
+          "text": "Annak a fickónak nagyon édesszájú a természete. Meglepő módon futni is utál! Most elmegyek aludni.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0406": {
+          "id": "0406",
+          "speaker": "Beszélő fa",
+          "text": "Az egy hatalmas harcos, és csak Koji kardjával lehet legyőzni. Most pihenek.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0407": {
+          "id": "0407",
+          "speaker": "Beszélő fa",
+          "text": "Legalább ezt a varázságat odaadhatom neked, segíteni fog a küldetésedben. Ragaszkodom hozzá. Most pedig pihenek.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Magic Branch"
+            }
+          ],
+          "condition": null
+        },
+        "0408": {
+          "id": "0408",
+          "speaker": "Beszélő fa",
+          "text": "A fa alszik.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0408"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0409": {
+          "id": "0409",
+          "speaker": "Beszélő fa",
+          "text": "Üdv újra. Emlékszem, mennyire meglepődtél, amikor megláttál egy olyan csodálatos fát, mint én. Ezért neked adom A fák kürtjét. Ha megfújod, felébredek az álmomból. Miben segíthetek?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Néhány infó",
+              "next": "0403"
+            },
+            {
+              "index": 2,
+              "label": "Nem tudom",
+              "next": "0407"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Horn of Trees"
+            }
+          ],
+          "condition": null
+        },
+        "0410": {
+          "id": "0410",
+          "speaker": "Beszélő fa",
+          "text": "Üdv újra. Tudok mesélni néhány emberről.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben",
+              "next": "0403"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "0408"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "05": {
+      "startPage": "0501",
+      "pages": {
+        "0501": {
+          "id": "0501",
+          "speaker": "Vadász",
+          "text": "Üdvözöllek, utazó! Sietek, de van rád néhány percem.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Miért sietsz?",
+              "next": "0502"
+            },
+            {
+              "index": 2,
+              "label": "Ki vagy?",
+              "next": "0503"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0502": {
+          "id": "0502",
+          "speaker": "Vadász",
+          "text": "Mindig sietek, mert azokat a különleges fajokat vadászom, amelyeket ez a liget vonz ide.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Miért vonzza őket ez a hely?",
+              "next": "0504"
+            },
+            {
+              "index": 2,
+              "label": "Ki vagy?",
+              "next": "0503"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0503": {
+          "id": "0503",
+          "speaker": "Vadász",
+          "text": "Én vagyok a vadász, aki az ebben a különleges ligetben rejtőző fajokra vadászik!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Miért különleges ez a liget?",
+              "next": "0504"
+            },
+            {
+              "index": 2,
+              "label": "Kérdezhetek valamit?",
+              "next": "0505"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0504": {
+          "id": "0504",
+          "speaker": "Vadász",
+          "text": "Nem tudom, de esküszöm, valami varázslatos dolog rejtőzik ebben a ligetben. Nézd meg a fákat! Most pedig mennem kell!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0507"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_TIMER",
+              "raw": "5 minutes",
+              "durationMs": 300000
+            }
+          ],
+          "condition": null
+        },
+        "0505": {
+          "id": "0505",
+          "speaker": "Vadász",
+          "text": "Igen, bár lehet, hogy nem tudom a választ.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Hogyan lehet bejutni a kastélyba?",
+              "next": "0504"
+            },
+            {
+              "index": 2,
+              "label": "Hol van a kard?",
+              "next": "0504"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0506": {
+          "id": "0506",
+          "speaker": "Vadász",
+          "text": "Üdv újra! Egy Pina Coalát üldözök, nincs időm, de láttam valami csillogót a szökőkút kövei között.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0507"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_TIMER",
+              "raw": "5 minutes",
+              "durationMs": 300000
+            }
+          ],
+          "condition": null
+        },
+        "0507": {
+          "id": "0507",
+          "speaker": "Vadász",
+          "text": "Üdv, kalandor! Visszatértem a vadászatról, és most tudok válaszolni néhány kérdésre, de előbb...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Folytasd",
+              "next": "0509"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0508": {
+          "id": "0508",
+          "speaker": "Vadász",
+          "text": "A vadászt sehol sem látod.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0508"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0509": {
+          "id": "0509",
+          "speaker": "Vadász",
+          "text": "Látod azokat az apró lábnyomokat? Az a lény jobban tud elbújni, mint bármi, amit eddig láttam. Talán valamelyik bokros helyen rejtőzik, ahová én nem férek be!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Folytasd",
+              "next": "0510"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0510": {
+          "id": "0510",
+          "speaker": "Vadász",
+          "text": "Na, lássuk a kérdéseidet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Láttál valami furcsát?",
+              "next": "0511"
+            },
+            {
+              "index": 2,
+              "label": "Ismersz itt valakit?",
+              "next": "0512"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0511": {
+          "id": "0511",
+          "speaker": "Vadász",
+          "text": "Nos, a hídnál furcsa faragásokat láttam a kövön, de semmi mást.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszönöm",
+              "next": "0514"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0512": {
+          "id": "0512",
+          "speaker": "Vadász",
+          "text": "Láttad már a városi őrt? A barátom. Mesélni fog neked erről a kis birodalomról!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0513"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0513": {
+          "id": "0513",
+          "speaker": "Vadász",
+          "text": "Megtennéd azt is, hogy odaadod ezt az aranymedált az Őrnek? Talán ad érte valamit cserébe.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Ennyi?",
+              "next": "0514"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Golden Medal"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Return Golden Medal to Guard"
+            }
+          ],
+          "condition": null
+        },
+        "0514": {
+          "id": "0514",
+          "speaker": "Vadász",
+          "text": "Rendben, és... Hallod azokat a farkasokat? Ez a vérhold éjszakája. Vadászni indulok, ilyenkor lehet a legjobb zsákmányt elejteni!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0508"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "06": {
+      "startPage": "0601",
+      "pages": {
+        "0601": {
+          "id": "0601",
+          "speaker": "Goblin",
+          "text": "Helló, ki vagy? Én vagyok az erdőben élő goblin. Örülök, hogy találkoztunk.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Helló!",
+              "next": "0602"
+            },
+            {
+              "index": 2,
+              "label": "Vannak tárgyaid?",
+              "next": "0603"
+            },
+            {
+              "index": 3,
+              "label": "Nézd, mim van",
+              "next": "0604",
+              "condition": "save.inventory.includes(\"Mark of Goblins\")"
+            }
+          ],
+          "actions": []
+        },
+        "0602": {
+          "id": "0602",
+          "speaker": "Goblin",
+          "text": "Helló, gyere velem! Hadd mutassam meg a gyűjteményemet!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Talán legközelebb",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0603": {
+          "id": "0603",
+          "speaker": "Goblin",
+          "text": "Igeeen. Határozottan. Van egy ritka tárgyakból álló gyűjteményem, amire nagyon büszke vagyok!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Majd legközelebb megnézem",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Mutasd",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0604": {
+          "id": "0604",
+          "speaker": "Goblin",
+          "text": "Ó, nálad van a Goblinok jele. Hadd adjak neked valamit ajándékba, barátom!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszönöm!",
+              "next": "0608"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0605": {
+          "id": "0605",
+          "speaker": "Goblin",
+          "text": "Szia újra! Most megmutathatom a gyűjteményemet?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Legközelebb",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Igen",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0606": {
+          "id": "0606",
+          "speaker": "Goblin",
+          "text": "Tessék! Nézd, miket gyűjtöttem! Ha szeretnél valamit, csak szólj!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Aranyérme",
+              "next": "0607",
+              "condition": "!had_item.includes(\"Gold Coin\")"
+            },
+            {
+              "index": 2,
+              "label": "Rubinkard",
+              "next": "0609",
+              "condition": "!had_item.includes(\"Ruby Sword\")"
+            },
+            {
+              "index": 3,
+              "label": "Por",
+              "next": "0610",
+              "condition": "!had_item.includes(\"Strange Powder\")"
+            },
+            {
+              "index": 4,
+              "label": "Nem kell több",
+              "next": "0616",
+              "condition": "[\"Strange Powder\", \"Ruby Sword\", \"Gold Coin\"].filter(item => had_item.includes(item)).length >= 2"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0607": {
+          "id": "0607",
+          "speaker": "Goblin",
+          "text": "Ez egy Aranyérme, amit az erdőben találtam. Elcserélném valamire, ami egy ritka állattól származik, például egy madártól.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK, szia",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Van ilyenem",
+              "next": "0611"
+            },
+            {
+              "index": 3,
+              "label": "Mutasd a többi tárgyat",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0608": {
+          "id": "0608",
+          "speaker": "Goblin",
+          "text": "Tessék, vidd ezt az Aranyérmét, amit találtam. Ez a kincs különösen jól néz ki.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszi, szia",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Van még valami más?",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Gold Coin"
+            }
+          ],
+          "condition": null
+        },
+        "0609": {
+          "id": "0609",
+          "speaker": "Goblin",
+          "text": "Ezt a rubinkardot a folyó fenekén találtam. Megláttam benne a rubint, és muszáj volt megszereznem. Ha akarod, adj érte valamilyen más drágakövet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK, szia",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Van ilyenem",
+              "next": "0611"
+            },
+            {
+              "index": 3,
+              "label": "Mutasd a többi tárgyat",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0610": {
+          "id": "0610",
+          "speaker": "Goblin",
+          "text": "Hé, ezt a port egy bőrzsákban találtam. Annyira furcsának tűnt, hogy megtartottam. Elcserélném egy fényesebb ékszerre.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK, szia",
+              "next": "0605"
+            },
+            {
+              "index": 2,
+              "label": "Van ilyenem",
+              "next": "0611"
+            },
+            {
+              "index": 3,
+              "label": "Mutasd a többi tárgyat",
+              "next": "0606"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0611": {
+          "id": "0611",
+          "speaker": "Goblin",
+          "text": "Mutasd!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "0612"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Silver Ring",
+                  "next": "0612"
+                },
+                {
+                  "label": "Crystal Shard",
+                  "next": "0613"
+                },
+                {
+                  "label": "Priclys Feather",
+                  "next": "0614"
+                },
+                {
+                  "label": "Other",
+                  "next": "0615"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0612": {
+          "id": "0612",
+          "speaker": "Goblin",
+          "text": "Tessék, itt a furcsa por. Szeretem a csillogó dolgokat, ember, még ha csak por is... A goblinoknak ez jó!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0605"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Silver Ring"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Strange Powder"
+            }
+          ],
+          "condition": null
+        },
+        "0613": {
+          "id": "0613",
+          "speaker": "Goblin",
+          "text": "Tessék, itt a rubinkard. Nekem jobban tetszik a kristályszilánk: fényesebb.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0605"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Crystal Shard"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Ruby Sword"
+            }
+          ],
+          "condition": null
+        },
+        "0614": {
+          "id": "0614",
+          "speaker": "Goblin",
+          "text": "Tessék, itt az aranyérme. A toll talán szemét az embereknek, de a goblinoknak kincs!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0605"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Priclys Feather"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Gold Coin"
+            }
+          ],
+          "condition": null
+        },
+        "0615": {
+          "id": "0615",
+          "speaker": "Goblin",
+          "text": "EZ nem kell!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0605"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0616": {
+          "id": "0616",
+          "speaker": "Goblin",
+          "text": "Adhatok még egy ajándékot, amiért ilyen jó kereskedőtársam voltál? Tessék, itt a Goblinbot. Ez azt jelenti, hogy a goblinok nagy barátja vagy.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszi",
+              "next": "0617"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Staff of Goblins"
+            }
+          ],
+          "condition": null
+        },
+        "0617": {
+          "id": "0617",
+          "speaker": "Goblin",
+          "text": "Most elmegyek, mert az összes itteni kincs már a zsebemben van!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0618"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0618": {
+          "id": "0618",
+          "speaker": "Goblin",
+          "text": "A goblin elment az összes értékével.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0618"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "07": {
+      "startPage": "0701",
+      "pages": {
+        "0701": {
+          "id": "0701",
+          "speaker": "Troll",
+          "text": "Te átmenni híd?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "0702"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "0703"
+            },
+            {
+              "index": 3,
+              "label": "Mi??",
+              "next": "0704"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0702": {
+          "id": "0702",
+          "speaker": "Troll",
+          "text": "Te előbb megfejteni találós kérdésem!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0705"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0703": {
+          "id": "0703",
+          "speaker": "Troll",
+          "text": "Te nem átmenni, ha nem megfejteni. Én mondani találós kérdés.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Mondd el",
+              "next": "0705"
+            },
+            {
+              "index": 2,
+              "label": "Hadd próbáljam meg",
+              "next": "0701"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0704": {
+          "id": "0704",
+          "speaker": "Troll",
+          "text": "Te buta.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0701"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0705": {
+          "id": "0705",
+          "speaker": "Troll",
+          "text": "Első 6 betű: O, T, T, F, F, S... Mi következő 2?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Választás",
+              "next": "0706"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_CHOICE",
+              "options": [
+                {
+                  "label": "SE",
+                  "next": "0706"
+                },
+                {
+                  "label": "EF",
+                  "next": "0704"
+                },
+                {
+                  "label": "ST",
+                  "next": "0704"
+                },
+                {
+                  "label": "TS",
+                  "next": "0704"
+                },
+                {
+                  "label": "ET",
+                  "next": "0704"
+                },
+                {
+                  "label": "FS",
+                  "next": "0704"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0706": {
+          "id": "0706",
+          "speaker": "Troll",
+          "text": "Te okos! Itt hídkulcs. Most menj!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0707"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Bridge Key"
+            }
+          ],
+          "condition": null
+        },
+        "0707": {
+          "id": "0707",
+          "speaker": "Troll",
+          "text": "A Troll a híd szélén ül, és egyáltalán nem törődik veled.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0707"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "08": {
+      "startPage": "0801",
+      "pages": {
+        "0801": {
+          "id": "0801",
+          "speaker": "Halász",
+          "text": "Helló! Mit csinálsz a folyónál?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Csak felfedezek",
+              "next": "0803"
+            },
+            {
+              "index": 2,
+              "label": "A hidat keresem",
+              "next": "0802"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0802": {
+          "id": "0802",
+          "speaker": "Halász",
+          "text": "Menj néhány métert, ott lesz. Innen fordulj jobbra, de előtte, ha már a Trollhoz mész, tudnál nekem segíteni valamiben?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Persze",
+              "next": "0804"
+            },
+            {
+              "index": 2,
+              "label": "Most nem",
+              "next": "0805"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0803": {
+          "id": "0803",
+          "speaker": "Halász",
+          "text": "Menj a folyóhoz. A Troll feltart, de a találós kérdése nem olyan nehéz.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben, megyek",
+              "next": "0805"
+            },
+            {
+              "index": 2,
+              "label": "Mit csinálsz itt?",
+              "next": "0806"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0804": {
+          "id": "0804",
+          "speaker": "Halász",
+          "text": "Tessék, itt egy horgászbot. Vidd, és dobd be a vízbe. Próbálj nagy lazacot fogni. Általában 20–25 másodperc után jönnek.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben",
+              "next": "0807"
+            },
+            {
+              "index": 2,
+              "label": "És mi van a Blobfish-sel?",
+              "next": "0817"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Fishing Rod"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Get Great Salmon"
+            }
+          ],
+          "condition": null
+        },
+        "0805": {
+          "id": "0805",
+          "speaker": "Halász",
+          "text": "Akkor majd legközelebb találkozunk.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0808"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0806": {
+          "id": "0806",
+          "speaker": "Halász",
+          "text": "Türelmesen horgászom, és próbálok nagy lazacot fogni, de ebben a sáros folyóban csak apró halakat találok.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Segíthetek?",
+              "next": "0804"
+            },
+            {
+              "index": 2,
+              "label": "Ez szomorú",
+              "next": "0809"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0807": {
+          "id": "0807",
+          "speaker": "Halász",
+          "text": "Nálad van a nagy lazac?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "0810"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "0811"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0808": {
+          "id": "0808",
+          "speaker": "Halász",
+          "text": "Helló, mi hozott ide?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Csak felfedezek",
+              "next": "0803"
+            },
+            {
+              "index": 2,
+              "label": "Segíteni akarok",
+              "next": "0804"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0809": {
+          "id": "0809",
+          "speaker": "Halász",
+          "text": "Ezzel nem tudok mit kezdeni. Próbáljuk újra. Segítesz kifogni a zsákmányt?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "0804"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "0805"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0810": {
+          "id": "0810",
+          "speaker": "Halász",
+          "text": "Akkor add ide.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "0812"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Great Salmon",
+                  "next": "0812"
+                },
+                {
+                  "label": "Other",
+                  "next": "0813"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0811": {
+          "id": "0811",
+          "speaker": "Halász",
+          "text": "Legközelebb legyen nálad!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben",
+              "next": "0807"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0812": {
+          "id": "0812",
+          "speaker": "Halász",
+          "text": "Cserébe elárulom, hogy a Troll találós kérdésében az „o” jelentése „one”.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszönöm",
+              "next": "0814"
+            },
+            {
+              "index": 2,
+              "label": "Segíthetek?",
+              "next": "0815"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Great Salmon"
+            }
+          ],
+          "condition": null
+        },
+        "0813": {
+          "id": "0813",
+          "speaker": "Halász",
+          "text": "Ez nem a nagy lazac.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben",
+              "next": "0811"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0814": {
+          "id": "0814",
+          "speaker": "Halász",
+          "text": "Viszlát. Most már ne zavarj megint horgászás közben!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben",
+              "next": "0816"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0815": {
+          "id": "0815",
+          "speaker": "Halász",
+          "text": "Nos... ha ezt oda tudnád adni a Hírnöknek... szívességként kérlek, add oda neki ezeket a halakat. Talán mond neked valamit.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Odaadom neki",
+              "next": "0814"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Fish"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Give Fish to Messenger"
+            }
+          ],
+          "condition": null
+        },
+        "0816": {
+          "id": "0816",
+          "speaker": "Halász",
+          "text": "A halász integet neked, majd az ujját a szája elé teszi: „pszt”. Most nem tudsz vele beszélni.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben",
+              "next": "0816"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0817": {
+          "id": "0817",
+          "speaker": "Halász",
+          "text": "Blobfish-t általában 12–15 másodperc után lehet fogni.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben, köszi",
+              "next": "0807"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "09": {
+      "requiredArea": "CASTLE_SIDE",
+      "startPage": "0901",
+      "pages": {
+        "0901": {
+          "id": "0901",
+          "speaker": "Hírnök",
+          "text": "Helló, én vagyok a Hírnök. Mindig úton vagyok, és üzeneteket kézbesítek különböző embereknek.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Miért nem futsz?",
+              "next": "0902"
+            },
+            {
+              "index": 2,
+              "label": "Adhatok neked valamit?",
+              "next": "0903"
+            },
+            {
+              "index": 3,
+              "label": "Segítség kell?",
+              "next": "0904"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0902": {
+          "id": "0902",
+          "speaker": "Hírnök",
+          "text": "Hé, nem, utálok futni. Soha nem futnék. Ha van valami fontos nálad...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Adhatok neked valamit?",
+              "next": "0903"
+            },
+            {
+              "index": 2,
+              "label": "Kell a segítségem?",
+              "next": "0904"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0903": {
+          "id": "0903",
+          "speaker": "Hírnök",
+          "text": "Akkor add ide.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "0905"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Bundle of Letters",
+                  "next": "0905"
+                },
+                {
+                  "label": "Fish",
+                  "next": "0907"
+                },
+                {
+                  "label": "Other",
+                  "next": "0913"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "0904": {
+          "id": "0904",
+          "speaker": "Hírnök",
+          "text": "Nos... elvesztettem – hadd számoljam meg – három üzenetet, amikor a híd kastély felőli végén jártam. Elejtettem őket. Ha visszahoznád, nagyon örülnék.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben, megcsinálom",
+              "next": "0906"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Lost Messages"
+            }
+          ],
+          "condition": null
+        },
+        "0905": {
+          "id": "0905",
+          "speaker": "Hírnök",
+          "text": "Ó, köszönöm!!! Cserébe elárulhatom a jelszó első részét.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0911"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Bundle of Letters"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Lost Messages"
+            }
+          ],
+          "condition": null
+        },
+        "0906": {
+          "id": "0906",
+          "speaker": "Hírnök",
+          "text": "Nálad vannak azok a levelek?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "0908"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "0909"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0907": {
+          "id": "0907",
+          "speaker": "Hírnök",
+          "text": "Ó, a Halász küldte ezeket a halakat? Szuper. Cserébe elárulom: ha valaha furcsa szavakat találsz egy papíron, használj megfejtőport, ami egy szürke por. Most mennem kell.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "0910"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Fish"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Give Fish to Messenger"
+            }
+          ],
+          "condition": null
+        },
+        "0908": {
+          "id": "0908",
+          "speaker": "Hírnök",
+          "text": "Kérlek, add oda őket. Nagyon szükségem van rájuk.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0903"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "0909": {
+          "id": "0909",
+          "speaker": "Hírnök",
+          "text": "Akkor miért jöttél vissza? Sietek. Csak akkor gyere vissza, ha nálad vannak azok a levelek.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0906"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0910": {
+          "id": "0910",
+          "speaker": "Hírnök",
+          "text": "Helló, szeretnél segíteni nekem valamiben?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nem",
+              "next": "0910"
+            },
+            {
+              "index": 2,
+              "label": "Igen",
+              "next": "0904"
+            },
+            {
+              "index": 3,
+              "label": "Adni akarok neked valamit",
+              "next": "0903"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0911": {
+          "id": "0911",
+          "speaker": "Hírnök",
+          "text": "A jelszó első része „Apple”. Most mennem kell!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszi",
+              "next": "0912"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0912": {
+          "id": "0912",
+          "speaker": "Hírnök",
+          "text": "A Hírnököt sehol sem látod.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0912"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "0913": {
+          "id": "0913",
+          "speaker": "Hírnök",
+          "text": "Nem erre van szükségem.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0906"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "10": {
+      "requiredArea": "CASTLE_SIDE",
+      "startPage": "1001",
+      "pages": {
+        "1001": {
+          "id": "1001",
+          "speaker": "Harcos",
+          "text": "Helló! Ha be akarsz jutni, tudnod kell a jelszót!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben, szia",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "Nem tudom, de mutatok valamit",
+              "next": "1002"
+            },
+            {
+              "index": 3,
+              "label": "Tudom",
+              "next": "1003"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1002": {
+          "id": "1002",
+          "speaker": "Harcos",
+          "text": "Válassz egy tárgyat a tárgyaid közül.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "1005"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Ruby Sword",
+                  "next": "1005"
+                },
+                {
+                  "label": "Magic Branch",
+                  "next": "1010"
+                },
+                {
+                  "label": "Other",
+                  "next": "1004"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1003": {
+          "id": "1003",
+          "speaker": "Harcos",
+          "text": "Akkor mi az?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Első rész kiválasztása",
+              "next": "1006"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_CHOICE",
+              "options": [
+                {
+                  "label": "Apple",
+                  "next": "1006"
+                },
+                {
+                  "label": "Orange",
+                  "next": "1008"
+                },
+                {
+                  "label": "Plum",
+                  "next": "1008"
+                },
+                {
+                  "label": "Pear",
+                  "next": "1008"
+                },
+                {
+                  "label": "Peach",
+                  "next": "1008"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1004": {
+          "id": "1004",
+          "speaker": "Harcos",
+          "text": "Nem, ezzel nem juthatsz be.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "1001"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1005": {
+          "id": "1005",
+          "speaker": "Harcos",
+          "text": "Ha! Harcolni akarsz?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nem, szia",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "Neked akarom adni",
+              "next": "1004"
+            },
+            {
+              "index": 3,
+              "label": "Igen",
+              "next": "1009"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1006": {
+          "id": "1006",
+          "speaker": "Harcos",
+          "text": "Válaszd ki a második részt.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Második rész kiválasztása",
+              "next": "1007"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_CHOICE",
+              "options": [
+                {
+                  "label": "Pie",
+                  "next": "1007"
+                },
+                {
+                  "label": "Juice",
+                  "next": "1008"
+                },
+                {
+                  "label": "Tree",
+                  "next": "1008"
+                },
+                {
+                  "label": "Flavour",
+                  "next": "1008"
+                },
+                {
+                  "label": "Fruit",
+                  "next": "1008"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1007": {
+          "id": "1007",
+          "speaker": "Harcos",
+          "text": "Nos... ez helyes! Bemehetsz.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "HURRÁ",
+              "next": "1011"
+            }
+          ],
+          "actions": [
+            {
+              "type": "OPEN_CASTLE"
+            }
+          ],
+          "condition": null
+        },
+        "1008": {
+          "id": "1008",
+          "speaker": "Harcos",
+          "text": "Nos... ez helytelen. Kint kell maradnod!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Rendben",
+              "next": "1001"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1009": {
+          "id": "1009",
+          "speaker": "Harcos",
+          "text": "Gyerünk!! Semmi sem történik. Egy dinoszaurusz ugrik ki a kezedből, és két csapással legyőzi az őrt.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bemehetek?",
+              "next": "1007"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1010": {
+          "id": "1010",
+          "speaker": "Harcos",
+          "text": "Meglengeted. Apró szivárványszínű szikrák jelennek meg, de semmi más nem történik.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Viszlát",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "Ha ha ha ha ha ha ha ha...",
+              "next": "1010"
+            },
+            {
+              "index": 3,
+              "label": "Neked akarom adni",
+              "next": "1004"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": null
+        },
+        "1011": {
+          "id": "1011",
+          "speaker": "Harcos",
+          "text": "Nyertél!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "TITLE_SCREEN"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    }
+  },
+  "items": {
+    "Sweets": {
+      "startPage": "1101",
+      "pages": {
+        "1101": {
+          "id": "1101",
+          "speaker": "Édesség",
+          "text": "Ezek csak édességek.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Edd meg",
+              "next": "1102",
+              "condition": "counter(\"eatAttempts\") < 4"
+            },
+            {
+              "index": 3,
+              "label": "Edd meg",
+              "next": "1103",
+              "condition": "counter(\"eatAttempts\") >= 4"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_COUNTER",
+              "data": "eatAttempts",
+              "amount": 1,
+              "buttonIndex": 2
+            },
+            {
+              "type": "ADD_COUNTER",
+              "data": "eatAttempts",
+              "amount": 1,
+              "buttonIndex": 3
+            }
+          ],
+          "condition": null
+        },
+        "1102": {
+          "id": "1102",
+          "speaker": "Édesség",
+          "text": "Egy kis figyelmeztetés: NE TEDD!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1103": {
+          "id": "1103",
+          "speaker": "Édesség",
+          "text": "Tényleg megetted őket. Most elvesztettél egy értékes erőforrást...\n\nRemek...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Sweets"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "Old Scroll": {
+      "startPage": "1201",
+      "pages": {
+        "1201": {
+          "id": "1201",
+          "speaker": "Régi tekercs",
+          "text": "Ez csak egy összehajtott régi tekercs!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Megvizsgálás",
+              "next": "1202"
+            },
+            {
+              "index": 3,
+              "label": "Kihajtás",
+              "next": "1203"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1202": {
+          "id": "1202",
+          "speaker": "Régi tekercs",
+          "text": "A papírja nagyon réginek tűnik, és egy kicsit koszos.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Kihajtás",
+              "next": "1203"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1203": {
+          "id": "1203",
+          "speaker": "Régi tekercs",
+          "text": "Kihajtod, és valami furcsa feliratot találsz rajta:\n\nRcuuygtf:Crrmgrkg",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Vizsgáld meg a papírt",
+              "next": "1202"
+            },
+            {
+              "index": 2,
+              "label": "Olvasd fel",
+              "next": "1204"
+            },
+            {
+              "index": 3,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1204": {
+          "id": "1204",
+          "speaker": "Régi tekercs",
+          "text": "Elkezded összevissza felolvasni, de semmi különös nem történik, azon kívül, hogy úgy nézel ki, mint aki elvesztette az eszét.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Kombináld egy tárggyal",
+              "next": "1205"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1205": {
+          "id": "1205",
+          "speaker": "Régi tekercs",
+          "text": "Válassz egy tárgyat a tárgyaid közül:",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "1207"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Strange Powder",
+                  "next": "1207"
+                },
+                {
+                  "label": "Other",
+                  "next": "1206"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1206": {
+          "id": "1206",
+          "speaker": "Régi tekercs",
+          "text": "Semmi sem történik.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1207": {
+          "id": "1207",
+          "speaker": "Régi tekercs",
+          "text": "A szavak felcsillannak, a varázspor porrá válik és elpárolog. Alatta új szavakat találsz.\n\nJelszó: Applepie",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Scroll with Password"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Old Scroll"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Strange Powder"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "Magic Branch": {
+      "startPage": "1301",
+      "pages": {
+        "1301": {
+          "id": "1301",
+          "speaker": "Varázság",
+          "text": "Ez egy ág, amit egy beszélő fától kaptál.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Lendítsd meg",
+              "next": "1302"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1302": {
+          "id": "1302",
+          "speaker": "Varázság",
+          "text": "Szivárványszínű csillámok jelennek meg, de semmi más nem változik.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Horn of Trees": {
+      "startPage": "1401",
+      "pages": {
+        "1401": {
+          "id": "1401",
+          "speaker": "A fák kürtje",
+          "text": "Ezt a furcsa kürtöt a fától kaptad. Úgy néz ki, mint egy hangszer.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Fújd meg",
+              "next": "1402"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1402": {
+          "id": "1402",
+          "speaker": "A fák kürtje",
+          "text": "Amikor megfújod, száraz levelek zizegéséhez hasonló hangot hallasz, majd a fa megszólal.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Hallgassuk meg",
+              "next": "0410"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      },
+      "crossEncounterTargets": [
+        "0410"
+      ]
+    },
+    "Bridge Key": {
+      "startPage": "1501",
+      "pages": {
+        "1501": {
+          "id": "1501",
+          "speaker": "Hídkulcs",
+          "text": "Egy ezüstkulcs. Ki tudod nyitni vele a hidat.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Használd",
+              "next": "1502"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1502": {
+          "id": "1502",
+          "speaker": "Hídkulcs",
+          "text": "A híd most nyitva van, és elérheted a Kastélybejárat területét.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "UNLOCK_AREA",
+              "data": "CASTLE_SIDE"
+            }
+          ],
+          "condition": null
+        }
+      }
+    },
+    "Golden Medal": {
+      "startPage": "1601",
+      "pages": {
+        "1601": {
+          "id": "1601",
+          "speaker": "Aranymedál",
+          "text": "Egy selyemzsinórra erősített aranymedál. A Vadász adta neked, hogy barátsága jeléül add oda az Őrnek.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Add oda az Őrnek",
+              "next": "1602"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1602": {
+          "id": "1602",
+          "speaker": "Aranymedál",
+          "text": "Akkor menj az Őrhöz!!!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Mark of Goblins": {
+      "startPage": "1701",
+      "pages": {
+        "1701": {
+          "id": "1701",
+          "speaker": "Goblinok jele",
+          "text": "Egy ezüstérme, amelybe egy goblin arcát vésték. Az Őr szerint ezzel lenyűgözheted a goblinokat.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Priclys Feather": {
+      "startPage": "1801",
+      "pages": {
+        "1801": {
+          "id": "1801",
+          "speaker": "Priclys tolla",
+          "text": "Egy sárgásbarna, fehér foltos toll, valószínűleg valamilyen furcsa lénytől.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Lendítsd meg",
+              "next": "1802"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1802": {
+          "id": "1802",
+          "speaker": "Priclys tolla",
+          "text": "Madárszárnyak csapkodását hallod, aztán a hang lassan elhal.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Strange Powder": {
+      "startPage": "1901",
+      "pages": {
+        "1901": {
+          "id": "1901",
+          "speaker": "Furcsa por",
+          "text": "Ez a por nagyon furcsa. Megpróbálhatnád beledörzsölni valamibe, mert varázslatosnak tűnik.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Most nem",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Próbáld meg",
+              "next": "1902"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "1902": {
+          "id": "1902",
+          "speaker": "Furcsa por",
+          "text": "Mibe?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgy kiválasztása",
+              "next": "1903"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "label": "Old Scroll",
+                  "next": "1903"
+                },
+                {
+                  "label": "Other",
+                  "next": "1904"
+                }
+              ]
+            }
+          ],
+          "condition": null
+        },
+        "1903": {
+          "id": "1903",
+          "speaker": "Furcsa por",
+          "text": "Amikor beledörzsölöd a régi papírba, felcsillan, és új szöveg jelenik meg. Jelszó: „apple pie”. Megszereztél egy jelszót valamihez.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Scroll with Password"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Old Scroll"
+            },
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Strange Powder"
+            }
+          ],
+          "condition": null
+        },
+        "1904": {
+          "id": "1904",
+          "speaker": "Furcsa por",
+          "text": "Semmi sem történik.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Gold Coin": {
+      "startPage": "2001",
+      "pages": {
+        "2001": {
+          "id": "2001",
+          "speaker": "Aranyérme",
+          "text": "Egy aranyérme, amit a goblin talált. Kereskedésre használható.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Ruby Sword": {
+      "startPage": "2101",
+      "pages": {
+        "2101": {
+          "id": "2101",
+          "speaker": "Rubinkard / Koji kardja",
+          "text": "A penge nagyon réginek és különlegesnek tűnik. Örülsz, hogy megszerezted a goblintól.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "gyakorolj",
+              "next": "2102"
+            },
+            {
+              "index": 3,
+              "label": "dobd el",
+              "next": "2103"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2102": {
+          "id": "2102",
+          "speaker": "Rubinkard / Koji kardja",
+          "text": "Amikor úgy fogod, mint egy kardforgató, hatalmas erőt érzel az ereidben. Kipróbálsz néhány bonyolult mozdulatot. Meglepően könnyűek. Nagyon jó harcossá váltál.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2103": {
+          "id": "2103",
+          "speaker": "Rubinkard / Koji kardja",
+          "text": "Amikor eldobod, bumerángként visszatér hozzád. Ez bizony varázsfegyvernek tűnik.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      },
+      "aliases": [
+        "Sword of Koji"
+      ]
+    },
+    "Staff of Goblins": {
+      "startPage": "2201",
+      "pages": {
+        "2201": {
+          "id": "2201",
+          "speaker": "Goblinbot",
+          "text": "Ez a fa- és aranybot, amit egy goblintól kaptál, a barátság jelképe.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "üsd a földhöz",
+              "next": "2202"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2202": {
+          "id": "2202",
+          "speaker": "Goblinbot",
+          "text": "A földhöz ütöd. Egy távolodó goblinkacajt hallasz, aztán csend lesz.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Fishing Rod": {
+      "startPage": "2301",
+      "pages": {
+        "2301": {
+          "id": "2301",
+          "speaker": "Horgászbot",
+          "text": "Csak egy horgászbot egy kis úszóval.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Dobd be",
+              "next": "2302"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2302": {
+          "id": "2302",
+          "speaker": "Horgászbot",
+          "text": "Bedobod, és vársz két-három másodpercet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Húzd ki",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "Várj",
+              "next": "2303"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2303": {
+          "id": "2303",
+          "speaker": "Horgászbot",
+          "text": "Vársz négy-öt másodpercet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Húzd ki",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "Várj",
+              "next": "2304"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2304": {
+          "id": "2304",
+          "speaker": "Horgászbot",
+          "text": "Vársz hat-hét másodpercet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Húzd ki",
+              "next": "2311"
+            },
+            {
+              "index": 2,
+              "label": "Várj",
+              "next": "2305"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2305": {
+          "id": "2305",
+          "speaker": "Horgászbot",
+          "text": "Vársz három-négy másodpercet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Húzd ki",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "Várj",
+              "next": "2306"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2306": {
+          "id": "2306",
+          "speaker": "Horgászbot",
+          "text": "Vársz három másodpercet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Húzd ki",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "Várj",
+              "next": "2307"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2307": {
+          "id": "2307",
+          "speaker": "Horgászbot",
+          "text": "Vársz két-három másodpercet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Húzd ki",
+              "next": "2312"
+            },
+            {
+              "index": 2,
+              "label": "Várj",
+              "next": "2308"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2308": {
+          "id": "2308",
+          "speaker": "Horgászbot",
+          "text": "Vársz négy-hat másodpercet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Húzd ki",
+              "next": "2310"
+            },
+            {
+              "index": 2,
+              "label": "Várj",
+              "next": "2309"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2309": {
+          "id": "2309",
+          "speaker": "Horgászbot",
+          "text": "Vársz még egy másodpercet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Húzd ki",
+              "next": "2313"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2310": {
+          "id": "2310",
+          "speaker": "Horgászbot",
+          "text": "Semmi. Nem fogtál semmit. Elmész.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2311": {
+          "id": "2311",
+          "speaker": "Horgászbot",
+          "text": "Küzdesz, miközben kihúzod, és a zsinór végén egy Blobfish van.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Blobfish"
+            }
+          ],
+          "condition": null
+        },
+        "2312": {
+          "id": "2312",
+          "speaker": "Horgászbot",
+          "text": "Elkezded kihúzni, küzdesz vele, aztán ta-dam: egy nagy lazac van a horgon.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Great Salmon"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Get Great Salmon"
+            }
+          ],
+          "condition": null
+        },
+        "2313": {
+          "id": "2313",
+          "speaker": "Horgászbot",
+          "text": "Találsz egy régi csizmát.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Old Boots"
+            }
+          ],
+          "condition": null
+        }
+      },
+      "specialMechanics": {
+        "oneTimeCatches": [
+          {
+            "fromPage": "2304",
+            "button": "Húzd ki",
+            "rewardPage": "2311",
+            "rewardItem": "Blobfish",
+            "repeatPage": "2310"
+          },
+          {
+            "fromPage": "2307",
+            "button": "Húzd ki",
+            "rewardPage": "2312",
+            "rewardItem": "Great Salmon",
+            "repeatPage": "2310"
+          },
+          {
+            "fromPage": "2309",
+            "button": "Húzd ki",
+            "rewardPage": "2313",
+            "rewardItem": "Old Boots",
+            "repeatPage": "2310"
+          }
+        ]
+      }
+    },
+    "Crystal Shard": {
+      "startPage": "2401",
+      "pages": {
+        "2401": {
+          "id": "2401",
+          "speaker": "Kristályszilánk",
+          "text": "Egy kék kristályszilánk. Ha a fény felé tartod, szivárványt vet.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Blobfish": {
+      "startPage": "2501",
+      "pages": {
+        "2501": {
+          "id": "2501",
+          "speaker": "Blobfish",
+          "text": "Pont úgy néz ki, mint egy leeresztett labda.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "fújd fel",
+              "next": "2502"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2502": {
+          "id": "2502",
+          "speaker": "Blobfish",
+          "text": "Sokáig próbálkozol, de nem sikerül felfújni. Végül feladod.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Silver Ring": {
+      "startPage": "2601",
+      "pages": {
+        "2601": {
+          "id": "2601",
+          "speaker": "Ezüstgyűrű",
+          "text": "Egy gyönyörű, fényes gyűrű, amit a folyónál találtál.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Vedd fel.",
+              "next": "2602"
+            },
+            {
+              "index": 2,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2602": {
+          "id": "2602",
+          "speaker": "Ezüstgyűrű",
+          "text": "Felveszed az ujjadra, és jól néz ki az ezüstös csillogásával.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      },
+      "specialMechanics": {
+        "hideButtonAfterUse": {
+          "page": "2601",
+          "buttonLabel": "Vedd fel."
+        }
+      }
+    },
+    "Bundle of Letters": {
+      "startPage": "2701",
+      "pages": {
+        "2701": {
+          "id": "2701",
+          "speaker": "Levélköteg",
+          "text": "Egy köteg levél, amit a hídnál találtál. Valaki elejthette.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Scroll with Password": {
+      "startPage": "2801",
+      "pages": {
+        "2801": {
+          "id": "2801",
+          "speaker": "Tekercs a jelszóval",
+          "text": "Ez ugyanaz a régi tekercs, csak most már megfejtve.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "vizsgáld meg",
+              "next": "2802"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2802": {
+          "id": "2802",
+          "speaker": "Tekercs a jelszóval",
+          "text": "A papíron ez áll: „password: applepie.” Vajon hol kellene használnod?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Old Boots": {
+      "startPage": "2901",
+      "pages": {
+        "2901": {
+          "id": "2901",
+          "speaker": "Régi csizma",
+          "text": "Csak egy pár kopott bőrcsizma. Még mindig csöpög belőle a víz.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Vedd fel",
+              "next": "2902"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        },
+        "2902": {
+          "id": "2902",
+          "speaker": "Régi csizma",
+          "text": "Felveszed, de annyira vizes és kényelmetlen, hogy azonnal le is veszed.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Great Salmon": {
+      "startPage": "3001",
+      "pages": {
+        "3001": {
+          "id": "3001",
+          "speaker": "Nagy lazac",
+          "text": "Csak egy nagy hal. Várj... még mindig él!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    },
+    "Fish": {
+      "startPage": "3101",
+      "pages": {
+        "3101": {
+          "id": "3101",
+          "speaker": "Hal",
+          "text": "Csak néhány hal egy zsákban.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
+        }
+      }
+    }
+  },
+  "compilerNotes": [
+    "PASSWORD_INPUT from the source spreadsheet is normalized to DROPDOWN_CHOICE.",
+    "Item dialogues use the same page/button/action/condition shape as NPC encounters.",
+    "Item dialogue buttons use next='HOME' when the design says the player returns Home.",
+    "Blobfish replaces Pufferfish everywhere per the current item canon.",
+    "Message Paper is normalized to Bundle of Letters per the current item canon.",
+    "Staff of Goblin is normalized to Staff of Goblins per the current item canon.",
+    "Magic Branch on Warrior page 1002 links to the already-existing failed rainbow-sparkle page 1010.",
+    "UNLOCK_AREA is represented for Bridge Key and requires an app action handler.",
+    "Sweets uses the generic ADD_COUNTER/RESET_COUNTER system; specialMechanics remains for Silver Ring one-time Wear and one-time Fishing Rod catches.",
+    "Horn of Trees intentionally links to NPC page 0410.",
+    "Objective fixes: Buy Sweets and Get Great Salmon now complete at their actual completion points.",
+    "Added side objectives for the Merchant's Blobfish request and returning the Golden Medal to the Guard.",
+    "Lost Messages now completes only after Bundle of Letters is actually handed to the Messenger.",
+    "Guard page 0307 now provides a route to the Golden Medal hand-in pages 0308-0310.",
+    "Removed duplicate Gold Coin reward from Goblin page 0604; the reward remains on page 0608.",
+    "Bridge Key now unlocks internal area id CASTLE_SIDE to match encounters 09 and 10.",
+    "Warrior page 1002 now uses DROPDOWN_INVENTORY so unavailable items cannot be selected."
+  ],
+  "compilerWarnings": [
+    "The app must read gameData.items when an inventory item is tapped.",
+    "The app must understand the HOME next target for item dialogue buttons.",
+    "The app must implement generic counter actions for Sweets, plus specialMechanics for Silver Ring and Fishing Rod.",
+    "Item dialogue navigation must allow Horn of Trees to open NPC page 0410."
+  ]
+};
