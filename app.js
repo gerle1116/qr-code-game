@@ -180,6 +180,64 @@
           ? oldItemState.oneTimeRewards
           : {};
 
+      // Migrate old special-mechanics save state
+      // into the new generic counter system.
+      const legacyCounterMigrations = [
+        {
+          oldKey: "Fishing Rod::Blobfish",
+          newKey: "Fishing Rod::blobfishCaught"
+        },
+        {
+          oldKey: "Fishing Rod::Great Salmon",
+          newKey: "Fishing Rod::salmonCaught"
+        },
+        {
+          oldKey: "Fishing Rod::Old Boots",
+          newKey: "Fishing Rod::bootsCaught"
+        }
+      ];
+
+      for (
+        const migration
+        of legacyCounterMigrations
+      ) {
+        if (
+          clean.itemState
+            .oneTimeRewards[
+              migration.oldKey
+            ] &&
+          !Number(
+            clean.itemState
+              .counters[
+                migration.newKey
+              ]
+          )
+        ) {
+          clean.itemState
+            .counters[
+              migration.newKey
+            ] = 1;
+        }
+      }
+
+      if (
+        clean.itemState
+          .usedButtons[
+            "Silver Ring::2601::Put it on."
+          ] &&
+        !Number(
+          clean.itemState
+            .counters[
+              "Silver Ring::worn"
+            ]
+        )
+      ) {
+        clean.itemState
+          .counters[
+            "Silver Ring::worn"
+          ] = 1;
+      }
+
       clean.lastSavedAt =
         Number(value.lastSavedAt) ||
         Date.now();
@@ -576,6 +634,26 @@
   }
 
 
+  function getItemDisplayName(itemName) {
+    const item =
+      getItemDefinition(itemName);
+
+    if (
+      item &&
+      item.data &&
+      typeof item.data.displayName === "string" &&
+      item.data.displayName.trim()
+    ) {
+      return item.data.displayName.trim();
+    }
+
+    return (
+      item &&
+      item.name
+    ) || String(itemName ?? "");
+  }
+
+
   function getItemDefinitionByQr(qr) {
     if (
       !GAME.items ||
@@ -641,7 +719,7 @@
                         cursor:pointer
                       "
                     >
-                      ${esc(item)}
+                      ${esc(getItemDisplayName(item))}
                     </button>
                   `
                 )
@@ -1029,7 +1107,9 @@
 
         toast(
           TEXT.itemAddedToInventory(
-            item.name
+            getItemDisplayName(
+              item.name
+            )
           )
         );
       }
@@ -1588,8 +1668,6 @@
     return page.buttons.filter(
       button => {
 
-        // BUTTON CONDITION
-
         if (
           button.condition &&
           !checkButtonCondition(
@@ -1600,47 +1678,6 @@
           )
         ) {
           return false;
-        }
-
-
-        // ITEM SPECIAL MECHANICS
-
-        if (
-          context.type === "item"
-        ) {
-          const item =
-            GAME.items &&
-            GAME.items[
-              context.itemName
-            ];
-
-          const mechanic =
-            item &&
-            item.specialMechanics &&
-            item.specialMechanics
-              .hideButtonAfterUse;
-
-          if (
-            mechanic &&
-            mechanic.page ===
-              page.id &&
-            mechanic.buttonLabel ===
-              button.label
-          ) {
-            const key =
-              usedButtonKey(
-                context.itemName,
-                mechanic.page,
-                mechanic.buttonLabel
-              );
-
-            if (
-              save.itemState
-                .usedButtons[key]
-            ) {
-              return false;
-            }
-          }
         }
 
         return true;
@@ -1658,12 +1695,17 @@
       action.type ===
       "DROPDOWN_CHOICE"
     ) {
+      const choiceOptions =
+        Array.isArray(action.options)
+          ? action.options
+          : [];
+
       return {
         empty:
-          !action.options.length,
+          choiceOptions.length === 0,
 
         options:
-          action.options.map(
+          choiceOptions.map(
             o => ({
               label: o.label,
               value: o.label
@@ -1672,12 +1714,37 @@
       };
     }
 
+    const specialOptions =
+      Array.isArray(action.options)
+        ? action.options
+        : [];
+
     const options =
       save.inventory.map(
-        item => ({
-          label: item,
-          value: item
-        })
+        itemName => {
+
+          const matchingOption =
+            specialOptions.find(
+              option =>
+                String(
+                  option.value ??
+                  option.label ??
+                  ""
+                ) === itemName
+            );
+
+          return {
+            value: itemName,
+            label:
+              (
+                matchingOption &&
+                matchingOption.label
+              ) ||
+              getItemDisplayName(
+                itemName
+              )
+          };
+        }
       );
 
     return {
@@ -1698,89 +1765,89 @@
         "dropdownSelect"
       );
 
-    let destination =
-      null;
-
     if (
-      action.type ===
-        "DROPDOWN_INVENTORY" &&
-      (
-        !select ||
-        !select.value
-      )
+      !select ||
+      !select.value
     ) {
-
-      /*
-       * IMPORTANT:
-       * "Other" stays in English here because this is an INTERNAL
-       * game-data identifier, not text being displayed by app.js.
-       */
-      const other =
-        action.options.find(
-          o =>
-            o.label === "Other"
-        );
-
-      if (!other) {
+      if (
+        action.type ===
+          "DROPDOWN_INVENTORY" &&
+        save.inventory.length === 0
+      ) {
         return toast(
           TEXT.noItems
         );
       }
 
+      return toast(
+        TEXT.chooseOptionFirst
+      );
+    }
+
+    let destination =
+      null;
+
+    if (
+      action.type ===
+      "DROPDOWN_CHOICE"
+    ) {
+      const match =
+        (
+          Array.isArray(
+            action.options
+          )
+            ? action.options
+            : []
+        ).find(
+          option =>
+            option.label ===
+            select.value
+        );
+
       destination =
-        other.next;
+        match &&
+        match.next;
 
     } else {
 
-      if (
-        !select ||
-        !select.value
-      ) {
-        return toast(
-          TEXT.chooseOptionFirst
+      const selectedItem =
+        select.value;
+
+      const options =
+        Array.isArray(action.options)
+          ? action.options
+          : [];
+
+      const matchingOption =
+        options.find(
+          option =>
+            option.label !== "Other" &&
+            String(
+              option.value ??
+              option.label ??
+              ""
+            ) === selectedItem
         );
-      }
 
-      if (
-        action.type ===
-        "DROPDOWN_CHOICE"
-      ) {
-        const match =
-          action.options.find(
-            o =>
-              o.label ===
-              select.value
-          );
-
+      if (matchingOption) {
         destination =
-          match &&
-          match.next;
+          matchingOption.next;
+
+      } else if (action.otherNext) {
+        destination =
+          action.otherNext;
 
       } else {
-
-        const specific =
-          action.options.find(
-            o =>
-              o.label ===
-              select.value
-          );
-
-        /*
-         * Same reason as above:
-         * "Other" is an internal game-data value.
-         */
-        const other =
-          action.options.find(
-            o =>
-              o.label === "Other"
+        // Backward compatibility with old game-data files.
+        const oldOther =
+          options.find(
+            option =>
+              option.label === "Other"
           );
 
         destination =
-          (
-            specific ||
-            other ||
-            {}
-          ).next;
+          oldOther &&
+          oldOther.next;
       }
     }
 
@@ -1801,23 +1868,14 @@
 
 
   // =========================================================
-  // ITEM SPECIAL MECHANICS
+  // GENERIC COUNTERS
   // =========================================================
-
-  function usedButtonKey(
-    itemName,
-    pageId,
-    label
-  ) {
-    return `${itemName}::${pageId}::${label}`;
-  }
-
 
   function counterKey(itemName, name) {
     return `${itemName}::${name}`;
   }
-  
-  
+
+
   function getCounterValue(itemName, name) {
     return Number(
       save.itemState.counters[
@@ -1825,8 +1883,8 @@
       ] || 0
     );
   }
-  
-  
+
+
   function getCounterActionTarget(action, context) {
     const itemName =
       (
@@ -1840,19 +1898,19 @@
               ? context.itemName
               : null
           );
-  
+
     const counterName =
       typeof action.data === "string"
         ? action.data.trim()
         : "";
-  
+
     return {
       itemName,
       counterName
     };
   }
-  
-  
+
+
   function counterActionMatchesButton(action, buttonIndex) {
     if (
       action.buttonIndex === undefined ||
@@ -1860,219 +1918,20 @@
     ) {
       return true;
     }
-  
+
     if (Array.isArray(action.buttonIndex)) {
       return action.buttonIndex
         .map(Number)
-        .includes(Number(buttonIndex));
+        .includes(
+          Number(buttonIndex)
+        );
     }
-  
+
     return (
       Number(action.buttonIndex) ===
       Number(buttonIndex)
     );
   }
-
-
-  function rewardKey(
-    itemName,
-    rewardItem
-  ) {
-    return `${itemName}::${rewardItem}`;
-  }
-
-
-  function applySpecialMechanicsBeforeTransition(
-    context,
-    page,
-    buttonIndex,
-    destination
-  ) {
-    if (
-      !context ||
-      context.type !== "item"
-    ) {
-      return {
-        destination,
-        mutated: false
-      };
-    }
-
-    const itemName =
-      context.itemName;
-
-    const item =
-      GAME.items &&
-      GAME.items[itemName];
-
-    const mechanics =
-      item &&
-      item.specialMechanics;
-
-    if (!mechanics) {
-      return {
-        destination,
-        mutated: false
-      };
-    }
-
-    const button =
-      page.buttons.find(
-        b =>
-          b.index === buttonIndex
-      );
-
-    if (!button) {
-      return {
-        destination,
-        mutated: false
-      };
-    }
-
-    let mutated =
-      false;
-
-
-    if (
-      mechanics.hideButtonAfterUse &&
-      mechanics.hideButtonAfterUse
-        .page ===
-        page.id &&
-      mechanics.hideButtonAfterUse
-        .buttonLabel ===
-        button.label
-    ) {
-      const key =
-        usedButtonKey(
-          itemName,
-          page.id,
-          button.label
-        );
-
-      if (
-        !save.itemState
-          .usedButtons[key]
-      ) {
-        save.itemState
-          .usedButtons[key] =
-            true;
-
-        mutated =
-          true;
-      }
-    }
-
-
-    if (
-      Array.isArray(
-        mechanics.oneTimeCatches
-      )
-    ) {
-      const catchRule =
-        mechanics.oneTimeCatches
-          .find(
-            rule =>
-              rule.fromPage ===
-                page.id &&
-              rule.button ===
-                button.label
-          );
-
-      if (catchRule) {
-        const key =
-          rewardKey(
-            itemName,
-            catchRule.rewardItem
-          );
-
-        if (
-          save.itemState
-            .oneTimeRewards[key]
-        ) {
-          destination =
-            catchRule.repeatPage;
-
-        } else {
-          destination =
-            catchRule.rewardPage;
-        }
-      }
-    }
-
-    return {
-      destination,
-      mutated
-    };
-  }
-
-
-  function applySpecialMechanicsAfterActions(
-    context,
-    page
-  ) {
-    if (
-      !context ||
-      context.type !== "item"
-    ) {
-      return false;
-    }
-
-    const item =
-      GAME.items &&
-      GAME.items[
-        context.itemName
-      ];
-
-    const mechanics =
-      item &&
-      item.specialMechanics;
-
-    if (
-      !mechanics ||
-      !Array.isArray(
-        mechanics.oneTimeCatches
-      )
-    ) {
-      return false;
-    }
-
-    let mutated =
-      false;
-
-    for (
-      const rule
-      of mechanics.oneTimeCatches
-    ) {
-      if (
-        rule.rewardPage !==
-        page.id
-      ) {
-        continue;
-      }
-
-      const key =
-        rewardKey(
-          context.itemName,
-          rule.rewardItem
-        );
-
-      if (
-        !save.itemState
-          .oneTimeRewards[key]
-      ) {
-        save.itemState
-          .oneTimeRewards[key] =
-            true;
-
-        mutated =
-          true;
-      }
-    }
-
-    return mutated;
-  }
-
-
 
 
   // =========================================================
@@ -2105,19 +1964,8 @@
         page.id
       );
 
-    const special =
-      applySpecialMechanicsBeforeTransition(
-        context,
-        page,
-        buttonIndex,
-        destination
-      );
-
-    destination =
-      special.destination;
-
     let mutated =
-      special.mutated;
+      false;
 
     let timerStarted =
       false;
@@ -2445,17 +2293,6 @@
             )
           );
       }
-    }
-
-
-    if (
-      applySpecialMechanicsAfterActions(
-        context,
-        page
-      )
-    ) {
-      mutated =
-        true;
     }
 
 
@@ -2808,22 +2645,30 @@
 
           if (
             action.type ===
-            "DROPDOWN_INVENTORY"
+            "DROPDOWN_INVENTORY" &&
+            Array.isArray(
+              action.options
+            )
           ) {
-            /*
-             * Internal game-data value.
-             * Do not translate this comparison.
-             */
             action.options
-              .filter(
-                o =>
-                  o.label !== "Other"
-              )
               .forEach(
-                o =>
-                  names.add(
-                    o.label
-                  )
+                option => {
+                  const value =
+                    String(
+                      option.value ??
+                      option.label ??
+                      ""
+                    );
+
+                  if (
+                    value &&
+                    value !== "Other"
+                  ) {
+                    names.add(
+                      value
+                    );
+                  }
+                }
               );
           }
         }
@@ -2834,7 +2679,10 @@
       ...names
     ].sort(
       (a, b) =>
-        a.localeCompare(b)
+        getItemDisplayName(a)
+          .localeCompare(
+            getItemDisplayName(b)
+          )
     );
   }
 
@@ -2921,8 +2769,12 @@
                 items
                   .map(
                     i => `
-                      <option>
-                        ${esc(i)}
+                      <option
+                        value="${esc(i)}"
+                      >
+                        ${esc(
+                          getItemDisplayName(i)
+                        )}
                       </option>
                     `
                   )
