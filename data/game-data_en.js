@@ -99,14 +99,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Sweets",
                   "label": "Sweets",
                   "next": "0106"
-                },
-                {
-                  "label": "Other",
-                  "next": "0103"
                 }
-              ]
+              ],
+              "otherNext": "0103"
             }
           ],
           "condition": null
@@ -237,14 +235,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Gold Coin",
                   "label": "Gold Coin",
                   "next": "0207"
-                },
-                {
-                  "label": "Other",
-                  "next": "0208"
                 }
-              ]
+              ],
+              "otherNext": "0208"
             }
           ],
           "condition": null
@@ -265,14 +261,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Priclys Feather",
                   "label": "Priclys Feather",
                   "next": "0209"
-                },
-                {
-                  "label": "Other",
-                  "next": "0208"
                 }
-              ]
+              ],
+              "otherNext": "0208"
             }
           ],
           "condition": null
@@ -442,14 +436,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Blobfish",
                   "label": "Blobfish",
                   "next": "0213"
-                },
-                {
-                  "label": "Other",
-                  "next": "0208"
                 }
-              ]
+              ],
+              "otherNext": "0208"
             }
           ],
           "condition": null
@@ -636,14 +628,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Golden Medal",
                   "label": "Golden Medal",
                   "next": "0310"
-                },
-                {
-                  "label": "Other",
-                  "next": "0309"
                 }
-              ]
+              ],
+              "otherNext": "0309"
             }
           ],
           "condition": null
@@ -1305,7 +1295,6 @@ window.QR_CITY_QUEST_DATA = {
               "label": "I don't need more",
               "next": "0616",
               "condition": "[\"Strange Powder\", \"Ruby Sword\", \"Gold Coin\"].filter(item => had_item.includes(item)).length >= 2"
-              
             }
           ],
           "actions": [],
@@ -1438,22 +1427,22 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Silver Ring",
                   "label": "Silver Ring",
                   "next": "0612"
                 },
                 {
+                  "value": "Crystal Shard",
                   "label": "Crystal Shard",
                   "next": "0613"
                 },
                 {
+                  "value": "Priclys Feather",
                   "label": "Priclys Feather",
                   "next": "0614"
-                },
-                {
-                  "label": "Other",
-                  "next": "0615"
                 }
-              ]
+              ],
+              "otherNext": "0615"
             }
           ],
           "condition": null
@@ -1976,14 +1965,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Great Salmon",
                   "label": "Great Salmon",
                   "next": "0812"
-                },
-                {
-                  "label": "Other",
-                  "next": "0813"
                 }
-              ]
+              ],
+              "otherNext": "0813"
             }
           ],
           "condition": null
@@ -2190,18 +2177,17 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Bundle of Letters",
                   "label": "Bundle of Letters",
                   "next": "0905"
                 },
                 {
+                  "value": "Fish",
                   "label": "Fish",
                   "next": "0907"
-                },
-                {
-                  "label": "Other",
-                  "next": "0913"
                 }
-              ]
+              ],
+              "otherNext": "0913"
             }
           ],
           "condition": null
@@ -2460,18 +2446,17 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Ruby Sword",
                   "label": "Ruby Sword",
                   "next": "1005"
                 },
                 {
+                  "value": "Magic Branch",
                   "label": "Magic Branch",
                   "next": "1010"
-                },
-                {
-                  "label": "Other",
-                  "next": "1004"
                 }
-              ]
+              ],
+              "otherNext": "1004"
             }
           ],
           "condition": null
@@ -2699,101 +2684,85 @@ window.QR_CITY_QUEST_DATA = {
   },
   "items": {
     "Sweets": {
-  "startPage": "1101",
-
-  "pages": {
-
-    "1101": {
-      "id": "1101",
-      "speaker": "Sweets",
-      "text": "These are just sweets.",
-
-      "buttons": [
-        {
-          "index": 1,
-          "label": "OK",
-          "next": "HOME"
+      "displayName": "Sweets",
+      "startPage": "1101",
+      "pages": {
+        "1101": {
+          "id": "1101",
+          "speaker": "Sweets",
+          "text": "These are just sweets.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Eat them",
+              "next": "1102",
+              "condition": "counter(\"eatAttempts\") < 4"
+            },
+            {
+              "index": 3,
+              "label": "Eat them",
+              "next": "1103",
+              "condition": "counter(\"eatAttempts\") >= 4"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_COUNTER",
+              "data": "eatAttempts",
+              "amount": 1,
+              "buttonIndex": 2
+            },
+            {
+              "type": "ADD_COUNTER",
+              "data": "eatAttempts",
+              "amount": 1,
+              "buttonIndex": 3
+            }
+          ],
+          "condition": null
         },
-
-        {
-          "index": 2,
-          "label": "Eat them",
-          "next": "1102",
-          "condition": "counter(\"eatAttempts\") < 4"
+        "1102": {
+          "id": "1102",
+          "speaker": "Sweets",
+          "text": "A small Warning: DONT!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": null
         },
-
-        {
-          "index": 3,
-          "label": "Eat them",
-          "next": "1103",
-          "condition": "counter(\"eatAttempts\") >= 4"
+        "1103": {
+          "id": "1103",
+          "speaker": "Sweets",
+          "text": "You actually ate them. Now you lost a valuable resource...\n\nJust great...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Sweets"
+            }
+          ],
+          "condition": null
         }
-      ],
-
-      "actions": [
-        {
-          "type": "ADD_COUNTER",
-          "data": "eatAttempts",
-          "amount": 1,
-          "buttonIndex": 2
-        },
-
-        {
-          "type": "ADD_COUNTER",
-          "data": "eatAttempts",
-          "amount": 1,
-          "buttonIndex": 3
-        }
-      ],
-
-      "condition": null
+      }
     },
-
-
-    "1102": {
-      "id": "1102",
-      "speaker": "Sweets",
-      "text": "A small Warning: DONT!",
-
-      "buttons": [
-        {
-          "index": 1,
-          "label": "OK",
-          "next": "HOME"
-        }
-      ],
-
-      "actions": [],
-      "condition": null
-    },
-
-
-    "1103": {
-      "id": "1103",
-      "speaker": "Sweets",
-      "text": "You actually ate them. Now you lost a valuable resource...\n\nJust great...",
-
-      "buttons": [
-        {
-          "index": 1,
-          "label": "OK",
-          "next": "HOME"
-        }
-      ],
-
-      "actions": [
-        {
-          "type": "REMOVE_ITEM",
-          "data": "Sweets"
-        }
-      ],
-
-      "condition": null
-    }
-
-  }
-},
     "Old Scroll": {
+      "displayName": "Old Scroll",
       "startPage": "1201",
       "pages": {
         "1201": {
@@ -2898,14 +2867,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Strange Powder",
                   "label": "Strange Powder",
                   "next": "1207"
-                },
-                {
-                  "label": "Other",
-                  "next": "1206"
                 }
-              ]
+              ],
+              "otherNext": "1206"
             }
           ],
           "condition": null
@@ -2954,6 +2921,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Magic Branch": {
+      "displayName": "Magic Branch",
       "startPage": "1301",
       "pages": {
         "1301": {
@@ -2992,6 +2960,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Horn of Trees": {
+      "displayName": "Horn of Trees",
       "startPage": "1401",
       "pages": {
         "1401": {
@@ -3033,6 +3002,7 @@ window.QR_CITY_QUEST_DATA = {
       ]
     },
     "Bridge Key": {
+      "displayName": "Bridge Key",
       "startPage": "1501",
       "pages": {
         "1501": {
@@ -3076,6 +3046,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Golden Medal": {
+      "displayName": "Golden Medal",
       "startPage": "1601",
       "pages": {
         "1601": {
@@ -3114,6 +3085,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Mark of Goblins": {
+      "displayName": "Mark of Goblins",
       "startPage": "1701",
       "pages": {
         "1701": {
@@ -3133,6 +3105,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Priclys Feather": {
+      "displayName": "Priclys Feather",
       "startPage": "1801",
       "pages": {
         "1801": {
@@ -3171,6 +3144,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Strange Powder": {
+      "displayName": "Strange Powder",
       "startPage": "1901",
       "pages": {
         "1901": {
@@ -3208,14 +3182,12 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_INVENTORY",
               "options": [
                 {
+                  "value": "Old Scroll",
                   "label": "Old Scroll",
                   "next": "1903"
-                },
-                {
-                  "label": "Other",
-                  "next": "1904"
                 }
-              ]
+              ],
+              "otherNext": "1904"
             }
           ],
           "condition": null
@@ -3264,6 +3236,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Gold Coin": {
+      "displayName": "Gold Coin",
       "startPage": "2001",
       "pages": {
         "2001": {
@@ -3283,6 +3256,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Ruby Sword": {
+      "displayName": "Ruby Sword",
       "startPage": "2101",
       "pages": {
         "2101": {
@@ -3343,6 +3317,7 @@ window.QR_CITY_QUEST_DATA = {
       ]
     },
     "Staff of Goblins": {
+      "displayName": "Staff of Goblins",
       "startPage": "2201",
       "pages": {
         "2201": {
@@ -3381,6 +3356,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Fishing Rod": {
+      "displayName": "Fishing Rod",
       "startPage": "2301",
       "pages": {
         "2301": {
@@ -3448,15 +3424,29 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "reel",
-              "next": "2311"
+              "next": "2311",
+              "condition": "counter(\"blobfishCaught\") < 1"
             },
             {
               "index": 2,
+              "label": "reel",
+              "next": "2310",
+              "condition": "counter(\"blobfishCaught\") >= 1"
+            },
+            {
+              "index": 3,
               "label": "wait",
               "next": "2305"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "SET_COUNTER",
+              "data": "blobfishCaught",
+              "value": 1,
+              "buttonIndex": 1
+            }
+          ],
           "condition": null
         },
         "2305": {
@@ -3505,15 +3495,29 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "reel",
-              "next": "2312"
+              "next": "2312",
+              "condition": "counter(\"salmonCaught\") < 1"
             },
             {
               "index": 2,
+              "label": "reel",
+              "next": "2310",
+              "condition": "counter(\"salmonCaught\") >= 1"
+            },
+            {
+              "index": 3,
               "label": "wait",
               "next": "2308"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "SET_COUNTER",
+              "data": "salmonCaught",
+              "value": 1,
+              "buttonIndex": 1
+            }
+          ],
           "condition": null
         },
         "2308": {
@@ -3543,10 +3547,24 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "reel",
-              "next": "2313"
+              "next": "2313",
+              "condition": "counter(\"bootsCaught\") < 1"
+            },
+            {
+              "index": 2,
+              "label": "reel",
+              "next": "2310",
+              "condition": "counter(\"bootsCaught\") >= 1"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "SET_COUNTER",
+              "data": "bootsCaught",
+              "value": 1,
+              "buttonIndex": 1
+            }
+          ],
           "condition": null
         },
         "2310": {
@@ -3624,34 +3642,10 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "condition": null
         }
-      },
-      "specialMechanics": {
-        "oneTimeCatches": [
-          {
-            "fromPage": "2304",
-            "button": "reel",
-            "rewardPage": "2311",
-            "rewardItem": "Blobfish",
-            "repeatPage": "2310"
-          },
-          {
-            "fromPage": "2307",
-            "button": "reel",
-            "rewardPage": "2312",
-            "rewardItem": "Great Salmon",
-            "repeatPage": "2310"
-          },
-          {
-            "fromPage": "2309",
-            "button": "reel",
-            "rewardPage": "2313",
-            "rewardItem": "Old Boots",
-            "repeatPage": "2310"
-          }
-        ]
       }
     },
     "Crystal Shard": {
+      "displayName": "Crystal Shard",
       "startPage": "2401",
       "pages": {
         "2401": {
@@ -3671,6 +3665,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Blobfish": {
+      "displayName": "Blobfish",
       "startPage": "2501",
       "pages": {
         "2501": {
@@ -3709,6 +3704,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Silver Ring": {
+      "displayName": "Silver Ring",
       "startPage": "2601",
       "pages": {
         "2601": {
@@ -3719,7 +3715,8 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Put it on.",
-              "next": "2602"
+              "next": "2602",
+              "condition": "counter(\"worn\") < 1"
             },
             {
               "index": 2,
@@ -3727,7 +3724,14 @@ window.QR_CITY_QUEST_DATA = {
               "next": "HOME"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "SET_COUNTER",
+              "data": "worn",
+              "value": 1,
+              "buttonIndex": 1
+            }
+          ],
           "condition": null
         },
         "2602": {
@@ -3744,15 +3748,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": null
         }
-      },
-      "specialMechanics": {
-        "hideButtonAfterUse": {
-          "page": "2601",
-          "buttonLabel": "Put it on."
-        }
       }
     },
     "Bundle of Letters": {
+      "displayName": "Bundle of Letters",
       "startPage": "2701",
       "pages": {
         "2701": {
@@ -3772,6 +3771,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Scroll with Password": {
+      "displayName": "Scroll with Password",
       "startPage": "2801",
       "pages": {
         "2801": {
@@ -3810,6 +3810,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Old Boots": {
+      "displayName": "Old Boots",
       "startPage": "2901",
       "pages": {
         "2901": {
@@ -3848,6 +3849,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Great Salmon": {
+      "displayName": "Great Salmon",
       "startPage": "3001",
       "pages": {
         "3001": {
@@ -3867,6 +3869,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Fish": {
+      "displayName": "Fish",
       "startPage": "3101",
       "pages": {
         "3101": {
@@ -3895,7 +3898,6 @@ window.QR_CITY_QUEST_DATA = {
     "Staff of Goblin is normalized to Staff of Goblins per the current item canon.",
     "Magic Branch on Warrior page 1002 links to the already-existing failed rainbow-sparkle page 1010.",
     "UNLOCK_AREA is represented for Bridge Key and requires an app action handler.",
-    "specialMechanics records Sweets five-attempt eating, Silver Ring one-time Wear, and one-time Fishing Rod catches.",
     "Horn of Trees intentionally links to NPC page 0410.",
     "Objective fixes: Buy Sweets and Get Great Salmon now complete at their actual completion points.",
     "Added side objectives for the Merchant's Blobfish request and returning the Golden Medal to the Guard.",
@@ -3903,12 +3905,16 @@ window.QR_CITY_QUEST_DATA = {
     "Guard page 0307 now provides a route to the Golden Medal hand-in pages 0308-0310.",
     "Removed duplicate Gold Coin reward from Goblin page 0604; the reward remains on page 0608.",
     "Bridge Key now unlocks internal area id CASTLE_SIDE to match encounters 09 and 10.",
-    "Warrior page 1002 now uses DROPDOWN_INVENTORY so unavailable items cannot be selected."
+    "Warrior page 1002 now uses DROPDOWN_INVENTORY so unavailable items cannot be selected.",
+    "Generic counter actions and button conditions now enforce Sweets eating, Silver Ring one-time Wear, and one-time Fishing Rod catches.",
+    "Items use displayName for player-facing names while item object keys remain stable internal IDs.",
+    "DROPDOWN_INVENTORY options separate internal value from player-facing label; unmatched inventory items use otherNext."
   ],
   "compilerWarnings": [
     "The app must read gameData.items when an inventory item is tapped.",
     "The app must understand the HOME next target for item dialogue buttons.",
-    "specialMechanics must be implemented to enforce the exact Sweets, Silver Ring, and Fishing Rod rules.",
-    "Item dialogue navigation must allow Horn of Trees to open NPC page 0410."
+    "Item dialogue navigation must allow Horn of Trees to open NPC page 0410.",
+    "The app must support generic counter actions and counter(...) button conditions."
   ]
 };
+
