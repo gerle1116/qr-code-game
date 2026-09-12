@@ -3900,149 +3900,149 @@ window.QR_CITY_QUEST_DATA = {
   grove: "Grove",
   bridge: "Bridge",
   fishing: "Fishing"
-},
-
-thingsIKnow: {
-  sweets_from_merchant: {
-    text: "Sweets can be bought from the Merchant.",
-    folder: "merchant"
   },
-
-  password_ending_pie: {
-    text: 'The password seems to end with "Pie".',
-    folder: "castle"
-  },
-
-  troll_letters_are_numbers: {
-    text: "The letters in the Troll's riddle somehow connect to numbers.",
-    folder: "troll"
-  },
-
-  village_centre: {
-    text: "The world is divided into different sections. You are in the Village Centre.",
-    folder: "world"
-  },
-
-  other_world_sections: {
-    text: "The other sections are the Grove, Bridge and Castle Entrance.",
-    folder: "world"
-  },
-
-  castle_guarded_by_troll: {
-    text: "The way to the Castle Entrance is guarded by a Troll.",
-    folder: "troll"
-  },
-
-  troll_blocks_castle: {
-    text: "The Troll must be defeated before you can reach the Castle Entrance.",
-    folder: "troll"
-  },
-
-  mark_of_goblins: {
-    text: "Goblins will be friendlier if you show them the Mark of Goblins.",
-    folder: "goblins"
-  },
-
-  messenger_personality: {
-    text: "The Messenger has a sweet tooth and hates running.",
-    folder: "messenger"
-  },
-
-  warrior_weakness: {
-    text: "The Warrior can only be defeated with the Sword of Koji.",
-    folder: "warrior"
-  },
-
-  grove_magic: {
-    text: "Something magical may be hidden in the Grove. The trees are worth checking.",
-    folder: "grove"
-  },
-
-  fountain_shiny_object: {
-    text: "The Hunter saw something shiny between the fountain stones.",
-    folder: "grove"
-  },
-
-  creature_in_bushes: {
-    text: "A strange creature may be hiding in one of the bushy places.",
-    folder: "grove"
-  },
-
-  bridge_carvings: {
-    text: "There are strange carvings in the stone at the Bridge.",
-    folder: "bridge"
-  },
-
-  guard_knows_world: {
-    text: "The city Guard knows a lot about this little empire.",
-    folder: "world"
-  },
-
-  goblin_gold_coin_trade: {
-    text: "The Goblin would trade the Gold Coin for something from a rare animal, like a bird.",
-    folder: "goblins"
-  },
-
-  goblin_ruby_sword_trade: {
-    text: "The Goblin would trade the Ruby Sword for another gem.",
-    folder: "goblins"
-  },
-
-  goblin_powder_trade: {
-    text: "The Goblin would trade the Strange Powder for a shiny jewel.",
-    folder: "goblins"
-  },
-
-  troll_riddle: {
-    text: 'The Troll\'s riddle is: "O, T, T, F, F, S... What are the next two letters?"',
-    folder: "troll"
-  },
-
-  bridge_direction: {
-    text: "From the Fisherman, the Bridge is a few meters away and to the right.",
-    folder: "bridge"
-  },
-
-  great_salmon_time: {
-    text: "Great Salmon usually bite after about 20–25 seconds.",
-    folder: "fishing"
-  },
-
-  troll_o_means_one: {
-    text: 'In the Troll\'s riddle, "O" means "One".',
-    folder: "troll"
-  },
-
-  blobfish_time: {
-    text: "Blobfish usually bite after about 12–15 seconds.",
-    folder: "fishing"
-  },
-
-  decoder_powder: {
-    text: "Strange words written on paper may be decoded using a gray decoder powder.",
-    folder: "castle"
-  },
-
-  password_first_part: {
-    text: 'The first part of the castle password is "Apple".',
-    folder: "castle"
-  },
-
-  castle_requires_password: {
-    text: "A password is required to enter the Castle.",
-    folder: "castle"
-  },
-
-  encoded_scroll: {
-    text: 'The Old Scroll contains the strange text: "Rcuuygtf:Crrmgrkg".',
-    folder: "castle"
-  },
-
-  castle_password: {
-    text: 'The Castle password is "ApplePie".',
-    folder: "castle"
+  
+  thingsIKnow: {
+    sweets_from_merchant: {
+      text: "Sweets can be bought from the Merchant.",
+      folder: "merchant"
+    },
+  
+    password_ending_pie: {
+      text: 'The password seems to end with "Pie".',
+      folder: "castle"
+    },
+  
+    troll_letters_are_numbers: {
+      text: "The letters in the Troll's riddle somehow connect to numbers.",
+      folder: "troll"
+    },
+  
+    village_centre: {
+      text: "The world is divided into different sections. You are in the Village Centre.",
+      folder: "world"
+    },
+  
+    other_world_sections: {
+      text: "The other sections are the Grove, Bridge and Castle Entrance.",
+      folder: "world"
+    },
+  
+    castle_guarded_by_troll: {
+      text: "The way to the Castle Entrance is guarded by a Troll.",
+      folder: "troll"
+    },
+  
+    troll_blocks_castle: {
+      text: "The Troll must be defeated before you can reach the Castle Entrance.",
+      folder: "troll"
+    },
+  
+    mark_of_goblins: {
+      text: "Goblins will be friendlier if you show them the Mark of Goblins.",
+      folder: "goblins"
+    },
+  
+    messenger_personality: {
+      text: "The Messenger has a sweet tooth and hates running.",
+      folder: "messenger"
+    },
+  
+    warrior_weakness: {
+      text: "The Warrior can only be defeated with the Sword of Koji.",
+      folder: "warrior"
+    },
+  
+    grove_magic: {
+      text: "Something magical may be hidden in the Grove. The trees are worth checking.",
+      folder: "grove"
+    },
+  
+    fountain_shiny_object: {
+      text: "The Hunter saw something shiny between the fountain stones.",
+      folder: "grove"
+    },
+  
+    creature_in_bushes: {
+      text: "A strange creature may be hiding in one of the bushy places.",
+      folder: "grove"
+    },
+  
+    bridge_carvings: {
+      text: "There are strange carvings in the stone at the Bridge.",
+      folder: "bridge"
+    },
+  
+    guard_knows_world: {
+      text: "The city Guard knows a lot about this little empire.",
+      folder: "world"
+    },
+  
+    goblin_gold_coin_trade: {
+      text: "The Goblin would trade the Gold Coin for something from a rare animal, like a bird.",
+      folder: "goblins"
+    },
+  
+    goblin_ruby_sword_trade: {
+      text: "The Goblin would trade the Ruby Sword for another gem.",
+      folder: "goblins"
+    },
+  
+    goblin_powder_trade: {
+      text: "The Goblin would trade the Strange Powder for a shiny jewel.",
+      folder: "goblins"
+    },
+  
+    troll_riddle: {
+      text: 'The Troll\'s riddle is: "O, T, T, F, F, S... What are the next two letters?"',
+      folder: "troll"
+    },
+  
+    bridge_direction: {
+      text: "From the Fisherman, the Bridge is a few meters away and to the right.",
+      folder: "bridge"
+    },
+  
+    great_salmon_time: {
+      text: "Great Salmon usually bite after about 20–25 seconds.",
+      folder: "fishing"
+    },
+  
+    troll_o_means_one: {
+      text: 'In the Troll\'s riddle, "O" means "One".',
+      folder: "troll"
+    },
+  
+    blobfish_time: {
+      text: "Blobfish usually bite after about 12–15 seconds.",
+      folder: "fishing"
+    },
+  
+    decoder_powder: {
+      text: "Strange words written on paper may be decoded using a gray decoder powder.",
+      folder: "castle"
+    },
+  
+    password_first_part: {
+      text: 'The first part of the castle password is "Apple".',
+      folder: "castle"
+    },
+  
+    castle_requires_password: {
+      text: "A password is required to enter the Castle.",
+      folder: "castle"
+    },
+  
+    encoded_scroll: {
+      text: 'The Old Scroll contains the strange text: "Rcuuygtf:Crrmgrkg".',
+      folder: "castle"
+    },
+  
+    castle_password: {
+      text: 'The Castle password is "ApplePie".',
+      folder: "castle"
+    }
   }
-}
   "compilerNotes": [
     "PASSWORD_INPUT from the source spreadsheet is normalized to DROPDOWN_CHOICE.",
     "Item dialogues use the same page/button/action/condition shape as NPC encounters.",
