@@ -1586,9 +1586,7 @@
 
         </div>
 
-        <p class="dialogue">
-          ${esc(page.text)}
-        </p>
+        <p class="dialogue">${esc(String(page.text ?? "").trim())}</p>  
 
         ${controls}
 
@@ -1809,93 +1807,127 @@
       document.getElementById(
         "dropdownSelect"
       );
-
-    if (
-      !select ||
-      !select.value
-    ) {
-      if (
-        action.type ===
-          "DROPDOWN_INVENTORY" &&
-        save.inventory.length === 0
-      ) {
-        return toast(
-          TEXT.noItems
-        );
-      }
-
-      return toast(
-        TEXT.chooseOptionFirst
-      );
-    }
-
-    let destination =
-      null;
-
+  
+    let destination = null;
+  
+    const options =
+      Array.isArray(action.options)
+        ? action.options
+        : [];
+  
+  
+    // =========================================
+    // NORMAL CHOICE DROPDOWN
+    // =========================================
+  
     if (
       action.type ===
       "DROPDOWN_CHOICE"
     ) {
+      if (
+        !select ||
+        !select.value
+      ) {
+        return toast(
+          TEXT.chooseOptionFirst
+        );
+      }
+  
       const match =
-        (
-          Array.isArray(
-            action.options
-          )
-            ? action.options
-            : []
-        ).find(
+        options.find(
           option =>
             option.label ===
-            select.value
+              select.value ||
+            option.value ===
+              select.value
         );
-
+  
       destination =
         match &&
         match.next;
-
-    } else {
-
+    }
+  
+  
+    // =========================================
+    // INVENTORY DROPDOWN
+    // =========================================
+  
+    else if (
+      action.type ===
+      "DROPDOWN_INVENTORY"
+    ) {
+  
       const selectedItem =
-        select.value;
-
-      const options =
-        Array.isArray(action.options)
-          ? action.options
-          : [];
-
-      const matchingOption =
-        options.find(
-          option =>
-            option.label !== "Other" &&
-            String(
-              option.value ??
-              option.label ??
-              ""
-            ) === selectedItem
-        );
-
-      if (matchingOption) {
-        destination =
-          matchingOption.next;
-
-      } else if (action.otherNext) {
-        destination =
-          action.otherNext;
-
+        select &&
+        select.value
+          ? select.value
+          : null;
+  
+  
+      // Nothing selected OR inventory empty:
+      // go to the normal "wrong/no item" page.
+      if (!selectedItem) {
+  
+        if (action.otherNext) {
+          destination =
+            action.otherNext;
+        }
+  
+        // Backward compatibility
+        else {
+          const oldOther =
+            options.find(
+              option =>
+                option.label ===
+                "Other"
+            );
+  
+          destination =
+            oldOther &&
+            oldOther.next;
+        }
+  
       } else {
-        // Backward compatibility with old game-data files.
-        const oldOther =
+  
+        const matchingOption =
           options.find(
             option =>
-              option.label === "Other"
+              (
+                option.value ??
+                option.label
+              ) ===
+              selectedItem
           );
-
-        destination =
-          oldOther &&
-          oldOther.next;
+  
+        if (matchingOption) {
+  
+          destination =
+            matchingOption.next;
+  
+        } else if (
+          action.otherNext
+        ) {
+  
+          destination =
+            action.otherNext;
+  
+        } else {
+  
+          const oldOther =
+            options.find(
+              option =>
+                option.label ===
+                "Other"
+            );
+  
+          destination =
+            oldOther &&
+            oldOther.next;
+        }
       }
     }
-
+  
+  
     if (!destination) {
       return showDataError(
         TEXT.noDropdownDestination(
@@ -1903,7 +1935,8 @@
         )
       );
     }
-
+  
+  
     handleTransition(
       page,
       1,
