@@ -600,7 +600,6 @@
     document
       .getElementById("knowledgeBtn")
       .onclick = showThingsIKnow;
-        );
   }
 
 
