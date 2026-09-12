@@ -274,7 +274,7 @@ window.QR_CITY_QUEST_DATA = {
         "0206": {
           "id": "0206",
           "speaker": "Kereskedő",
-          "text": "Ha tudnál szerezni nekem egy Blobfisht, nagyon örülnék. Szia-szia.",
+          "text": "Ha tudnál szerezni nekem egy Bluggyhalat, nagyon örülnék. Szia-szia.",
           "buttons": [
             {
               "index": 1,
@@ -437,7 +437,7 @@ window.QR_CITY_QUEST_DATA = {
               "options": [
                 {
                   "value": "Blobfish",
-                  "label": "Blobfish",
+                  "label": "Bluggyhal",
                   "next": "0213"
                 }
               ],
@@ -3665,12 +3665,12 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Blobfish": {
-      "displayName": "Blobfish",
+      "displayName": "Bluggyhal",
       "startPage": "2501",
       "pages": {
         "2501": {
           "id": "2501",
-          "speaker": "Blobfish",
+          "speaker": "Bluggyhal",
           "text": "Pont úgy néz ki, mint egy leeresztett labda.",
           "buttons": [
             {
@@ -3689,7 +3689,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "2502": {
           "id": "2502",
-          "speaker": "Blobfish",
+          "speaker": "Bluggyhal",
           "text": "sokáig küszködsz és próbálkozol, de nem sikerül. Végül feladod.",
           "buttons": [
             {
@@ -3918,7 +3918,7 @@ window.QR_CITY_QUEST_DATA = {
   ],
   "questDisplayNames": {
     "Buy Sweets": "Vegyél édességet",
-    "Get Blobfish for Merchant": "Szerezz Blobfisht a Kereskedőnek",
+    "Get Blobfish for Merchant": "Szerezz bluggyhalat a Kereskedőnek",
     "Get Great Salmon": "Szerezz nagy lazacot",
     "Give Fish to Messenger": "Add oda a halat a Hírnöknek",
     "Lost Messages": "Elveszett üzenetek",
