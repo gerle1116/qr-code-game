@@ -1606,6 +1606,49 @@
   // PAGE DISPLAY
   // =========================================================
 
+  function getPagePicture(page, context) {
+    const specific =
+      page &&
+      typeof page.picture === "string" &&
+      page.picture.trim()
+        ? page.picture.trim()
+        : null;
+
+    if (specific) {
+      return specific;
+    }
+
+    if (context && context.type === "encounter") {
+      const encounter =
+        GAME.encounters &&
+        GAME.encounters[context.encounterId];
+
+      if (
+        encounter &&
+        typeof encounter.defaultPicture === "string" &&
+        encounter.defaultPicture.trim()
+      ) {
+        return encounter.defaultPicture.trim();
+      }
+    }
+
+    if (context && context.type === "item") {
+      const item =
+        GAME.items &&
+        GAME.items[context.itemName];
+
+      if (
+        item &&
+        typeof item.defaultPicture === "string" &&
+        item.defaultPicture.trim()
+      ) {
+        return item.defaultPicture.trim();
+      }
+    }
+
+    return null;
+  }
+
   function showPage(pageId) {
     stopCamera();
 
@@ -1753,6 +1796,23 @@
           `;
     }
 
+    const picture =
+      getPagePicture(page, context);
+
+    const pictureMarkup =
+      picture
+        ? `
+          <div class="encounter-picture">
+            <img
+              src="./images/${esc(picture)}.png"
+              alt="${esc(page.speaker || TEXT.encounterFallback)}"
+              class="encounter-picture-image"
+              decoding="async"
+            >
+          </div>
+        `
+        : "";
+
     shell(`
       <section class="card screen-card encounter-card">
 
@@ -1780,6 +1840,7 @@
         <p class="dialogue">${esc(String(page.text ?? "").trim())}</p>  
 
         ${controls}
+        ${pictureMarkup}
 
       </section>
     `, {
@@ -1788,6 +1849,24 @@
           ? showInventory
           : showHome
     });
+
+    const pictureImage =
+      document.querySelector(
+        ".encounter-picture-image"
+      );
+
+    if (pictureImage) {
+      pictureImage.onerror = () => {
+        const wrapper =
+          pictureImage.closest(
+            ".encounter-picture"
+          );
+
+        if (wrapper) {
+          wrapper.remove();
+        }
+      };
+    }
 
     if (dropdown) {
       const confirm =

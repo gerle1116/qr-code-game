@@ -1,19 +1,19 @@
-const CACHE = "qr-city-quest-v9";
+const CACHE = "qr-city-quest-v10";
 
 const PRECACHE = [
   "./",
   "./index.html",
 
-  "./styles.css?v=9",
+  "./styles.css?v=10",
 
-  "./language-loader.js?v=9",
-  "./app.js?v=9",
+  "./language-loader.js?v=10",
+  "./app.js?v=10",
 
-  "./data/apptext_en.js?v=9",
-  "./data/apptext_hu.js?v=9",
+  "./data/apptext_en.js?v=10",
+  "./data/apptext_hu.js?v=10",
 
-  "./data/game-data_en.js?v=9",
-  "./data/game-data_hu.js?v=9",
+  "./data/game-data_en.js?v=10",
+  "./data/game-data_hu.js?v=10",
 
   "./manifest.webmanifest",
 

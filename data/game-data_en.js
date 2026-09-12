@@ -3,6 +3,7 @@ window.QR_CITY_QUEST_DATA = {
   "generatedFrom": "Gergo-app-prototype-item-actions-fixed + QR_City_Quest_Item_Data.md",
   "encounters": {
     "01": {
+      "defaultPicture": "child",
       "startPage": "0101",
       "pages": {
         "0101": {
@@ -164,6 +165,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "02": {
+      "defaultPicture": "merchant",
       "startPage": "0201",
       "pages": {
         "0201": {
@@ -487,6 +489,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "03": {
+      "defaultPicture": "guard",
       "startPage": "0301",
       "pages": {
         "0301": {
@@ -723,6 +726,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "04": {
+      "defaultPicture": "talking-tree",
       "startPage": "0401",
       "pages": {
         "0401": {
@@ -939,6 +943,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "05": {
+      "defaultPicture": "hunter",
       "startPage": "0501",
       "pages": {
         "0501": {
@@ -1223,6 +1228,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "06": {
+      "defaultPicture": "goblin",
       "startPage": "0601",
       "pages": {
         "0601": {
@@ -1678,6 +1684,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "07": {
+      "defaultPicture": "troll",
       "startPage": "0701",
       "pages": {
         "0701": {
@@ -1846,6 +1853,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "08": {
+      "defaultPicture": "fisherman",
       "startPage": "0801",
       "pages": {
         "0801": {
@@ -2213,6 +2221,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "09": {
+      "defaultPicture": "messenger",
       "requiredArea": "CASTLE_SIDE",
       "startPage": "0901",
       "pages": {
@@ -2505,6 +2514,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "10": {
+      "defaultPicture": "warrior",
       "requiredArea": "CASTLE_SIDE",
       "startPage": "1001",
       "pages": {
@@ -2794,6 +2804,7 @@ window.QR_CITY_QUEST_DATA = {
   },
   "items": {
     "Sweets": {
+      "defaultPicture": "sweets",
       "displayName": "Sweets",
       "startPage": "1101",
       "pages": {
@@ -2872,6 +2883,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Old Scroll": {
+      "defaultPicture": "old-scroll",
       "displayName": "Old Scroll",
       "startPage": "1201",
       "pages": {
@@ -3040,6 +3052,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Magic Branch": {
+      "defaultPicture": "magic-branch",
       "displayName": "Magic Branch",
       "startPage": "1301",
       "pages": {
@@ -3079,6 +3092,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Horn of Trees": {
+      "defaultPicture": "horn-of-trees",
       "displayName": "Horn of Trees",
       "startPage": "1401",
       "pages": {
@@ -3121,6 +3135,7 @@ window.QR_CITY_QUEST_DATA = {
       ]
     },
     "Bridge Key": {
+      "defaultPicture": "bridge-key",
       "displayName": "Bridge Key",
       "startPage": "1501",
       "pages": {
@@ -3165,6 +3180,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Golden Medal": {
+      "defaultPicture": "golden-medal",
       "displayName": "Golden Medal",
       "startPage": "1601",
       "pages": {
@@ -3204,6 +3220,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Mark of Goblins": {
+      "defaultPicture": "mark-of-goblins",
       "displayName": "Mark of Goblins",
       "startPage": "1701",
       "pages": {
@@ -3224,6 +3241,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Priclys Feather": {
+      "defaultPicture": "priclys-feather",
       "displayName": "Priclys Feather",
       "startPage": "1801",
       "pages": {
@@ -3263,6 +3281,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Strange Powder": {
+      "defaultPicture": "strange-powder",
       "displayName": "Strange Powder",
       "startPage": "1901",
       "pages": {
@@ -3359,6 +3378,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Gold Coin": {
+      "defaultPicture": "gold-coin",
       "displayName": "Gold Coin",
       "startPage": "2001",
       "pages": {
@@ -3379,6 +3399,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Ruby Sword": {
+      "defaultPicture": "ruby-sword",
       "displayName": "Ruby Sword",
       "startPage": "2101",
       "pages": {
@@ -3440,6 +3461,7 @@ window.QR_CITY_QUEST_DATA = {
       ]
     },
     "Staff of Goblins": {
+      "defaultPicture": "staff-of-goblins",
       "displayName": "Staff of Goblins",
       "startPage": "2201",
       "pages": {
@@ -3479,6 +3501,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Fishing Rod": {
+      "defaultPicture": "fishing-rod",
       "displayName": "Fishing Rod",
       "startPage": "2301",
       "pages": {
@@ -3768,6 +3791,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Crystal Shard": {
+      "defaultPicture": "crystal-shard",
       "displayName": "Crystal Shard",
       "startPage": "2401",
       "pages": {
@@ -3788,6 +3812,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Blobfish": {
+      "defaultPicture": "blobfish",
       "displayName": "Blobfish",
       "startPage": "2501",
       "pages": {
@@ -3827,6 +3852,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Silver Ring": {
+      "defaultPicture": "silver-ring",
       "displayName": "Silver Ring",
       "startPage": "2601",
       "pages": {
@@ -3874,6 +3900,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Bundle of Letters": {
+      "defaultPicture": "bundle-of-letters",
       "displayName": "Bundle of Letters",
       "startPage": "2701",
       "pages": {
@@ -3894,6 +3921,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Scroll with Password": {
+      "defaultPicture": "scroll-with-password",
       "displayName": "Scroll with Password",
       "startPage": "2801",
       "pages": {
@@ -3938,6 +3966,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Old Boots": {
+      "defaultPicture": "old-boots",
       "displayName": "Old Boots",
       "startPage": "2901",
       "pages": {
@@ -3977,6 +4006,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Great Salmon": {
+      "defaultPicture": "great-salmon",
       "displayName": "Great Salmon",
       "startPage": "3001",
       "pages": {
@@ -3997,6 +4027,7 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Fish": {
+      "defaultPicture": "fish",
       "displayName": "Fish",
       "startPage": "3101",
       "pages": {
