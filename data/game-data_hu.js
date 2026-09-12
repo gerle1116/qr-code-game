@@ -4238,4 +4238,3 @@ window.QR_CITY_QUEST_DATA = {
     "Return Golden Medal to Guard": "Vidd vissza az aranymedált az őrnek"
   }
 };
-Displaying game-data_hu.js.
