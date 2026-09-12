@@ -45,6 +45,7 @@
       schemaVersion: 1,
       inventory: [],
       hadItems: [],
+      knowledge: [],
       quests: {},
       encounters: {},
       timers: {},
@@ -111,12 +112,29 @@
             ]
           : [...clean.inventory];
 
+
+      
       for (const item of clean.inventory) {
         if (!clean.hadItems.includes(item)) {
           clean.hadItems.push(item);
         }
       }
 
+      clean.knowledge =
+        Array.isArray(value.knowledge)
+          ? [
+              ...new Set(
+                value.knowledge
+                  .filter(
+                    x =>
+                      typeof x === "string" &&
+                      x.trim()
+                  )
+                  .map(x => x.trim())
+              )
+            ]
+          : [];
+            
       clean.quests =
         value.quests &&
         typeof value.quests === "object"
@@ -258,6 +276,10 @@
 
     save.hadItems = [
       ...new Set(save.hadItems || [])
+    ];
+
+    save.knowledge = [
+      ...new Set(save.knowledge || [])
     ];
 
     for (const item of save.inventory) {
@@ -544,14 +566,18 @@
           <div class="home-icon-cell">
             <button
               class="home-icon-button"
-              id="extraBtn"
+              id="knowledgeBtn"
               type="button"
-              aria-label="${esc(TEXT.other)}"
+              aria-label="${esc(
+                d(
+                  "Things I Know",
+                  "Amit tudok"
+                )
+              )}"
             >
-              🧲
+              📖
             </button>
           </div>
-
         </div>
 
       </section>
@@ -572,10 +598,8 @@
       .onclick = showInventory;
 
     document
-      .getElementById("extraBtn")
-      .onclick = () =>
-        toast(
-          TEXT.notImplementedYet
+      .getElementById("knowledgeBtn")
+      .onclick = showThingsIKnow;
         );
   }
 
@@ -889,6 +913,174 @@
     });
   }
 
+
+  // =========================================================
+// THINGS I KNOW
+// =========================================================
+
+  function showThingsIKnow() {
+    stopCamera();
+  
+    currentEncounter = null;
+    currentItemName = null;
+    currentPageId = null;
+  
+    const definitions =
+      GAME.thingsIKnow &&
+      typeof GAME.thingsIKnow === "object"
+        ? GAME.thingsIKnow
+        : {};
+  
+    const folders =
+      GAME.knowledgeFolders &&
+      typeof GAME.knowledgeFolders === "object"
+        ? GAME.knowledgeFolders
+        : {};
+  
+    const known =
+      (save.knowledge || [])
+        .map(id => ({
+          id,
+          data: definitions[id]
+        }))
+        .filter(
+          entry =>
+            entry.data &&
+            typeof entry.data === "object" &&
+            typeof entry.data.text === "string"
+        );
+  
+    let body;
+  
+    if (!known.length) {
+      body = `
+        <div class="empty">
+          ${esc(
+            d(
+              "You haven't learned anything yet.",
+              "Még nem tudtál meg semmit."
+            )
+          )}
+        </div>
+      `;
+    } else {
+      const usedFolders =
+        [
+          ...new Set(
+            known.map(
+              entry =>
+                entry.data.folder || "other"
+            )
+          )
+        ];
+  
+      const configuredOrder =
+        Object.keys(folders);
+  
+      usedFolders.sort((a, b) => {
+        const aIndex =
+          configuredOrder.indexOf(a);
+  
+        const bIndex =
+          configuredOrder.indexOf(b);
+  
+        if (
+          aIndex !== -1 &&
+          bIndex !== -1
+        ) {
+          return aIndex - bIndex;
+        }
+  
+        if (aIndex !== -1) {
+          return -1;
+        }
+  
+        if (bIndex !== -1) {
+          return 1;
+        }
+  
+        return String(a)
+          .localeCompare(String(b));
+      });
+  
+      body =
+        usedFolders
+          .map(folderId => {
+            const folderName =
+              folders[folderId] ||
+              folderId;
+  
+            const entries =
+              known.filter(
+                entry =>
+                  (
+                    entry.data.folder ||
+                    "other"
+                  ) === folderId
+              );
+  
+            return `
+              <div
+                style="
+                  margin-bottom:24px;
+                "
+              >
+                <h2
+                  style="
+                    margin:0 0 10px;
+                    font-size:1.2rem;
+                  "
+                >
+                  ${esc(folderName)}
+                </h2>
+  
+                <div class="list">
+  
+                  ${entries
+                    .map(
+                      entry => `
+                        <div class="list-item">
+                          • ${esc(entry.data.text)}
+                        </div>
+                      `
+                    )
+                    .join("")}
+  
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+    }
+  
+    shell(`
+      <section class="card screen-card">
+  
+        <h1 class="screen-title">
+          ${esc(
+            d(
+              "Things I Know",
+              "Amit tudok"
+            )
+          )}
+        </h1>
+  
+        <p class="screen-subtitle">
+          ${esc(
+            d(
+              "Useful things you have learned during your adventure.",
+              "Hasznos dolgok, amiket a kalandod során megtudtál."
+            )
+          )}
+        </p>
+  
+        ${body}
+  
+      </section>
+    `, {
+      back: showHome
+    });
+  }
 
   // =========================================================
   // QR SCANNER
@@ -1651,7 +1843,7 @@
   
     try {
       const had_item = save.hadItems;
-  
+      const knowledge = save.knowledge;
       /*
        * counter("eatAttempts")
        *
@@ -2099,7 +2291,48 @@
           break;
         }
 
-
+        case "ADD_KNOWLEDGE": {
+          const knowledgeId =
+            typeof action.data === "string"
+              ? action.data.trim()
+              : "";
+        
+          if (!knowledgeId) {
+            return showDataError(
+              d(
+                `ADD_KNOWLEDGE has no knowledge ID on page ${page.id}.`,
+                `Az ADD_KNOWLEDGE actionnek nincs knowledge ID-je ezen az oldalon: ${page.id}.`
+              )
+            );
+          }
+        
+          if (
+            !GAME.thingsIKnow ||
+            !GAME.thingsIKnow[knowledgeId]
+          ) {
+            return showDataError(
+              d(
+                `Unknown Things I Know ID "${knowledgeId}" on page ${page.id}.`,
+                `Ismeretlen Things I Know ID: "${knowledgeId}" ezen az oldalon: ${page.id}.`
+              )
+            );
+          }
+        
+          if (
+            !save.knowledge.includes(
+              knowledgeId
+            )
+          ) {
+            save.knowledge.push(
+              knowledgeId
+            );
+        
+            mutated = true;
+          }
+        
+          break;
+        }
+          
         case "START_QUEST":
 
           if (
