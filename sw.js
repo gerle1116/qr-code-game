@@ -6,14 +6,14 @@ const PRECACHE = [
 
   "./styles.css?v=6",
 
-  "./language-loader.js?v=6",
+  "./language-loader.js?v=7",
   "./app.js?v=6",
 
-  "./data/apptext_en.js?v=6",
-  "./data/apptext_hu.js?v=6",
+  "./data/apptext_en.js?v=7",
+  "./data/apptext_hu.js?v=7",
 
-  "./data/game-data_en.js?v=6",
-  "./data/game-data_hu.js?v=6",
+  "./data/game-data_en.js?v=7",
+  "./data/game-data_hu.js?v=7",
 
   "./manifest.webmanifest",
 
