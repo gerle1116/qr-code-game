@@ -1,19 +1,19 @@
-const CACHE = "qr-city-quest-v8";
+const CACHE = "qr-city-quest-v9";
 
 const PRECACHE = [
   "./",
   "./index.html",
 
-  "./styles.css?v=6",
+  "./styles.css?v=9",
 
-  "./language-loader.js?v=7",
-  "./app.js?v=6",
+  "./language-loader.js?v=9",
+  "./app.js?v=9",
 
-  "./data/apptext_en.js?v=7",
-  "./data/apptext_hu.js?v=7",
+  "./data/apptext_en.js?v=9",
+  "./data/apptext_hu.js?v=9",
 
-  "./data/game-data_en.js?v=7",
-  "./data/game-data_hu.js?v=7",
+  "./data/game-data_en.js?v=9",
+  "./data/game-data_hu.js?v=9",
 
   "./manifest.webmanifest",
 
@@ -30,7 +30,6 @@ self.addEventListener("install", event => {
   );
 });
 
-
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches
@@ -46,7 +45,6 @@ self.addEventListener("activate", event => {
   );
 });
 
-
 self.addEventListener("fetch", event => {
   if (event.request.method !== "GET") {
     return;
@@ -54,12 +52,6 @@ self.addEventListener("fetch", event => {
 
   const request = event.request;
   const url = new URL(request.url);
-
-
-  // =========================================================
-  // HTML / PAGE NAVIGATION
-  // Network first, cache fallback
-  // =========================================================
 
   if (request.mode === "navigate") {
     event.respondWith(
@@ -87,30 +79,17 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-
-  // =========================================================
-  // OUR OWN FILES
-  // Network first, cache fallback
-  // =========================================================
-
   if (url.origin === self.location.origin) {
     event.respondWith(
       fetch(request)
         .then(response => {
-          if (
-            response &&
-            response.ok
-          ) {
-            const copy =
-              response.clone();
+          if (response && response.ok) {
+            const copy = response.clone();
 
             caches
               .open(CACHE)
               .then(cache => {
-                cache.put(
-                  request,
-                  copy
-                );
+                cache.put(request, copy);
               });
           }
 
@@ -123,9 +102,7 @@ self.addEventListener("fetch", event => {
               hit ||
               caches.match(
                 request,
-                {
-                  ignoreSearch: true
-                }
+                { ignoreSearch: true }
               )
             )
         )
@@ -133,12 +110,6 @@ self.addEventListener("fetch", event => {
 
     return;
   }
-
-
-  // =========================================================
-  // THIRD-PARTY FILES
-  // Example: ZXing
-  // =========================================================
 
   event.respondWith(
     caches
@@ -150,20 +121,13 @@ self.addEventListener("fetch", event => {
 
         return fetch(request)
           .then(response => {
-            if (
-              response &&
-              response.ok
-            ) {
-              const copy =
-                response.clone();
+            if (response && response.ok) {
+              const copy = response.clone();
 
               caches
                 .open(CACHE)
                 .then(cache => {
-                  cache.put(
-                    request,
-                    copy
-                  );
+                  cache.put(request, copy);
                 });
             }
 
