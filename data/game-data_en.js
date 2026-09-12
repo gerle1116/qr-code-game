@@ -1,5 +1,3 @@
-
-100%
 window.QR_CITY_QUEST_DATA = {
   "formatVersion": 1,
   "generatedFrom": "Gergo-app-prototype-item-actions-fixed + QR_City_Quest_Item_Data.md",
