@@ -3889,6 +3889,160 @@ window.QR_CITY_QUEST_DATA = {
       }
     }
   },
+  knowledgeFolders: {
+  merchant: "Kereskedő",
+  castle: "Kastély",
+  troll: "Troll",
+  world: "Világ és területek",
+  goblins: "Goblinok",
+  messenger: "Hírnök",
+  warrior: "Harcos",
+  grove: "Liget",
+  bridge: "Híd",
+  fishing: "Horgászat"
+  },
+  
+  thingsIKnow: {
+    sweets_from_merchant: {
+      text: "Édességet a Kereskedőtől lehet venni.",
+      folder: "merchant"
+    },
+  
+    password_ending_pie: {
+      text: 'A jelszó vége valószínűleg "Pie".',
+      folder: "castle"
+    },
+  
+    troll_letters_are_numbers: {
+      text: "A Troll rejtvényében a betűk valahogyan számokhoz kapcsolódnak.",
+      folder: "troll"
+    },
+  
+    village_centre: {
+      text: "A világ különböző területekre van osztva. Jelenleg a Village Centre-ben vagy.",
+      folder: "world"
+    },
+  
+    other_world_sections: {
+      text: "A többi terület a Grove, a Bridge és a Castle Entrance.",
+      folder: "world"
+    },
+  
+    castle_guarded_by_troll: {
+      text: "A Castle Entrance felé vezető utat egy Troll őrzi.",
+      folder: "troll"
+    },
+  
+    troll_blocks_castle: {
+      text: "A Trollt le kell győzni, mielőtt elérheted a Castle Entrance-t.",
+      folder: "troll"
+    },
+  
+    mark_of_goblins: {
+      text: "A goblinok barátságosabbak lesznek, ha megmutatod nekik a Mark of Goblinst.",
+      folder: "goblins"
+    },
+  
+    messenger_personality: {
+      text: "A Hírnök nagyon szereti az édességet, és utál futni.",
+      folder: "messenger"
+    },
+  
+    warrior_weakness: {
+      text: "A Harcost csak a Sword of Kojival lehet legyőzni.",
+      folder: "warrior"
+    },
+  
+    grove_magic: {
+      text: "Valami mágikus dolog rejtőzhet a Grove-ban. Érdemes megnézni a fákat.",
+      folder: "grove"
+    },
+  
+    fountain_shiny_object: {
+      text: "A Vadász valami fényes dolgot látott a szökőkút kövei között.",
+      folder: "grove"
+    },
+  
+    creature_in_bushes: {
+      text: "Egy különös lény valamelyik bokros helyen rejtőzhet.",
+      folder: "grove"
+    },
+  
+    bridge_carvings: {
+      text: "Furcsa faragások vannak a Bridge köveiben.",
+      folder: "bridge"
+    },
+  
+    guard_knows_world: {
+      text: "A városi Őr sok mindent tud erről a kis birodalomról.",
+      folder: "world"
+    },
+  
+    goblin_gold_coin_trade: {
+      text: "A Goblin a Gold Coint egy ritka állattól származó dologért adná, például valami madártól származóért.",
+      folder: "goblins"
+    },
+  
+    goblin_ruby_sword_trade: {
+      text: "A Goblin a Ruby Swordot egy másik drágakőért adná.",
+      folder: "goblins"
+    },
+  
+    goblin_powder_trade: {
+      text: "A Goblin a Strange Powdert egy fényes ékszerért adná.",
+      folder: "goblins"
+    },
+  
+    troll_riddle: {
+      text: 'A Troll rejtvénye: "O, T, T, F, F, S... Mi a következő két betű?"',
+      folder: "troll"
+    },
+  
+    bridge_direction: {
+      text: "A Halásztól a Bridge néhány méterre van, jobbra.",
+      folder: "bridge"
+    },
+  
+    great_salmon_time: {
+      text: "A Great Salmon általában körülbelül 20–25 másodperc után harap.",
+      folder: "fishing"
+    },
+  
+    troll_o_means_one: {
+      text: 'A Troll rejtvényében az "O" jelentése "One".',
+      folder: "troll"
+    },
+  
+    blobfish_time: {
+      text: "A Blobfish általában körülbelül 12–15 másodperc után harap.",
+      folder: "fishing"
+    },
+  
+    decoder_powder: {
+      text: "A papírra írt furcsa szavakat egy szürke dekódoló por segítségével lehet megfejteni.",
+      folder: "castle"
+    },
+  
+    password_first_part: {
+      text: 'A kastély jelszavának első része "Apple".',
+      folder: "castle"
+    },
+  
+    castle_requires_password: {
+      text: "A Kastélyba való bejutáshoz jelszó szükséges.",
+      folder: "castle"
+    },
+  
+    encoded_scroll: {
+      text: 'Az Old Scrollon ez a furcsa szöveg található: "Rcuuygtf:Crrmgrkg".',
+      folder: "castle"
+    },
+  
+    castle_password: {
+      text: 'A Kastély jelszava: "ApplePie".',
+      folder: "castle"
+    }
+  }
   "compilerNotes": [
     "PASSWORD_INPUT from the source spreadsheet is normalized to DROPDOWN_CHOICE.",
     "Item dialogues use the same page/button/action/condition shape as NPC encounters.",
