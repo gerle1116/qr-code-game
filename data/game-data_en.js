@@ -4042,7 +4042,7 @@ window.QR_CITY_QUEST_DATA = {
       text: 'The Castle password is "ApplePie".',
       folder: "castle"
     }
-  }
+  },
   "compilerNotes": [
     "PASSWORD_INPUT from the source spreadsheet is normalized to DROPDOWN_CHOICE.",
     "Item dialogues use the same page/button/action/condition shape as NPC encounters.",
