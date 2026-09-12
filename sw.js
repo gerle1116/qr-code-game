@@ -1,28 +1,40 @@
-const CACHE = "qr-city-quest-v6";
+const CACHE = "qr-city-quest-v7";
 
 const PRECACHE = [
   "./",
   "./index.html",
-  "./styles.css?v=3",
-  "./app.js?v=3",
-  "./data/game-data_en.js?v=3",
+
+  "./styles.css?v=6",
+
+  "./language-loader.js?v=6",
+  "./app.js?v=6",
+
+  "./data/apptext_en.js?v=6",
+  "./data/apptext_hu.js?v=6",
+
+  "./data/game-data_en.js?v=6",
+  "./data/game-data_hu.js?v=6",
+
   "./manifest.webmanifest",
+
   "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./data/apptext_en.js",
+  "./icons/icon-512.png"
 ];
 
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE)
+    caches
+      .open(CACHE)
       .then(cache => cache.addAll(PRECACHE))
       .then(() => self.skipWaiting())
   );
 });
 
+
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys()
+    caches
+      .keys()
       .then(keys =>
         Promise.all(
           keys
@@ -34,40 +46,22 @@ self.addEventListener("activate", event => {
   );
 });
 
+
 self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
+  if (event.request.method !== "GET") {
+    return;
+  }
 
   const request = event.request;
   const url = new URL(request.url);
 
-  // Pages:
-  // Try to get the newest version first.
-  // If offline, use the cached page.
+
+  // =========================================================
+  // HTML / PAGE NAVIGATION
+  // Network first, cache fallback
+  // =========================================================
+
   if (request.mode === "navigate") {
-    event.respondWith(
-      fetch(request)
-        .then(response => {
-          const copy = response.clone();
-
-          caches.open(CACHE).then(cache => {
-            cache.put("./index.html", copy);
-          });
-
-          return response;
-        })
-        .catch(() =>
-          caches.match("./index.html").then(hit =>
-            hit || caches.match("./")
-          )
-        )
-    );
-
-    return;
-  }
-
-  // Our own JS, CSS and game files:
-  // Prefer the newest network version.
-  if (url.origin === self.location.origin) {
     event.respondWith(
       fetch(request)
         .then(response => {
@@ -75,39 +69,106 @@ self.addEventListener("fetch", event => {
             const copy = response.clone();
 
             caches.open(CACHE).then(cache => {
-              cache.put(request, copy);
+              cache.put("./index.html", copy);
             });
           }
 
           return response;
         })
         .catch(() =>
-          caches.match(request).then(hit =>
-            hit ||
-            caches.match(request, {
-              ignoreSearch: true
-            })
-          )
+          caches
+            .match("./index.html")
+            .then(hit =>
+              hit || caches.match("./")
+            )
         )
     );
 
     return;
   }
 
-  // Third-party files such as ZXing.
+
+  // =========================================================
+  // OUR OWN FILES
+  // Network first, cache fallback
+  // =========================================================
+
+  if (url.origin === self.location.origin) {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          if (
+            response &&
+            response.ok
+          ) {
+            const copy =
+              response.clone();
+
+            caches
+              .open(CACHE)
+              .then(cache => {
+                cache.put(
+                  request,
+                  copy
+                );
+              });
+          }
+
+          return response;
+        })
+        .catch(() =>
+          caches
+            .match(request)
+            .then(hit =>
+              hit ||
+              caches.match(
+                request,
+                {
+                  ignoreSearch: true
+                }
+              )
+            )
+        )
+    );
+
+    return;
+  }
+
+
+  // =========================================================
+  // THIRD-PARTY FILES
+  // Example: ZXing
+  // =========================================================
+
   event.respondWith(
-    caches.match(request).then(hit => {
-      if (hit) return hit;
+    caches
+      .match(request)
+      .then(hit => {
+        if (hit) {
+          return hit;
+        }
 
-      return fetch(request).then(response => {
-        const copy = response.clone();
+        return fetch(request)
+          .then(response => {
+            if (
+              response &&
+              response.ok
+            ) {
+              const copy =
+                response.clone();
 
-        caches.open(CACHE).then(cache => {
-          cache.put(request, copy);
-        });
+              caches
+                .open(CACHE)
+                .then(cache => {
+                  cache.put(
+                    request,
+                    copy
+                  );
+                });
+            }
 
-        return response;
-      });
-    })
+            return response;
+          });
+      })
   );
 });
