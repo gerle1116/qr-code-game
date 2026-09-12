@@ -8,7 +8,7 @@ const PRECACHE = [
   "./data/game-data_en.js?v=3",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./icons/icon-512.png",
   "./data/apptext_en.js",
 ];
 
