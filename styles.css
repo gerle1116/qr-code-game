@@ -699,10 +699,41 @@ button {
 }
 
 
-/* empty lower space like your Talk screenshot */
+/* -------------------------------------------------
+   ENCOUNTER PICTURE
+------------------------------------------------- */
 
-.encounter-card {
-  padding-bottom: 310px;
+.encounter-picture {
+  margin: auto 7px 7px;
+
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--talk);
+
+  border-left: 5px solid var(--talk-dark);
+  border-right: 5px solid var(--talk-dark);
+  border-bottom: 5px solid var(--talk-dark);
+  border-top: 2px solid #eeeeee;
+
+  overflow: hidden;
+}
+
+.encounter-picture-image {
+  display: block;
+
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+
+  object-fit: contain;
+
+  border-radius: 2px;
+
+  background: rgba(255, 255, 255, 0.12);
 }
 
 
@@ -898,6 +929,10 @@ select {
 
   .home-icon-cell {
     min-height: 88px;
+  }
+
+  .encounter-picture-image {
+    max-height: 240px;
   }
 }
 
