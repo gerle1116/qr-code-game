@@ -42,6 +42,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "START_QUEST",
               "data": "Buy Sweets"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "sweets_from_merchant"
             }
           ],
           "condition": null
@@ -131,6 +135,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "COMPLETE_QUEST",
               "data": "Buy Sweets"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "password_ending_pie"
             }
           ],
           "condition": null
@@ -468,6 +476,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "COMPLETE_QUEST",
               "data": "Get Blobfish for Merchant"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "troll_letters_are_numbers"
             }
           ],
           "condition": null
@@ -512,7 +524,12 @@ window.QR_CITY_QUEST_DATA = {
               "next": "0306"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "village_centre"
+            }
+          ],
           "condition": null
         },
         "0303": {
@@ -550,7 +567,16 @@ window.QR_CITY_QUEST_DATA = {
               "next": "0306"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "other_world_sections"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "castle_guarded_by_troll"
+            }
+          ],
           "condition": null
         },
         "0305": {
@@ -567,6 +593,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "troll_blocks_castle"
             }
           ],
           "condition": null
@@ -682,6 +712,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "COMPLETE_QUEST",
               "data": "Return Golden Medal to Guard"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "mark_of_goblins"
             }
           ],
           "condition": null
@@ -789,6 +823,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "messenger_personality"
             }
           ],
           "condition": null
@@ -807,6 +845,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "warrior_weakness"
             }
           ],
           "condition": null
@@ -975,6 +1017,10 @@ window.QR_CITY_QUEST_DATA = {
               "type": "START_TIMER",
               "raw": "5 minutes",
               "durationMs": 300000
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "grove_magic"
             }
           ],
           "condition": null
@@ -1017,6 +1063,10 @@ window.QR_CITY_QUEST_DATA = {
               "type": "START_TIMER",
               "raw": "5 minutes",
               "durationMs": 300000
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "fountain_shiny_object"
             }
           ],
           "condition": null
@@ -1064,7 +1114,12 @@ window.QR_CITY_QUEST_DATA = {
               "next": "0510"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "creature_in_bushes"
+            }
+          ],
           "condition": null
         },
         "0510": {
@@ -1097,7 +1152,12 @@ window.QR_CITY_QUEST_DATA = {
               "next": "0514"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "bridge_carvings"
+            }
+          ],
           "condition": null
         },
         "0512": {
@@ -1111,7 +1171,12 @@ window.QR_CITY_QUEST_DATA = {
               "next": "0513"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "guard_knows_world"
+            }
+          ],
           "condition": null
         },
         "0513": {
@@ -1324,6 +1389,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "goblin_gold_coin_trade"
             }
           ],
           "condition": null
@@ -1379,6 +1448,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "goblin_ruby_sword_trade"
             }
           ],
           "condition": null
@@ -1407,6 +1480,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "goblin_powder_trade"
             }
           ],
           "condition": null
@@ -1718,6 +1795,10 @@ window.QR_CITY_QUEST_DATA = {
                   "next": "0704"
                 }
               ]
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "troll_riddle"
             }
           ],
           "condition": null
@@ -1802,7 +1883,12 @@ window.QR_CITY_QUEST_DATA = {
               "next": "0805"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "bridge_direction"
+            }
+          ],
           "condition": null
         },
         "0803": {
@@ -1851,6 +1937,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "START_QUEST",
               "data": "Get Great Salmon"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "great_salmon_time"
             }
           ],
           "condition": null
@@ -2013,6 +2103,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "REMOVE_ITEM",
               "data": "Great Salmon"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "troll_o_means_one"
             }
           ],
           "condition": null
@@ -2108,6 +2202,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "blobfish_time"
             }
           ],
           "condition": null
@@ -2278,6 +2376,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "COMPLETE_QUEST",
               "data": "Give Fish to Messenger"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "decoder_powder"
             }
           ],
           "condition": null
@@ -2356,6 +2458,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "password_first_part"
             }
           ],
           "condition": null
@@ -2426,6 +2532,10 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [
             {
               "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "castle_requires_password"
             }
           ],
           "condition": null
@@ -2829,7 +2939,12 @@ window.QR_CITY_QUEST_DATA = {
               "next": "HOME"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "encoded_scroll"
+            }
+          ],
           "condition": null
         },
         "1204": {
@@ -2914,6 +3029,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "REMOVE_ITEM",
               "data": "Strange Powder"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "castle_password"
             }
           ],
           "condition": null
@@ -3215,6 +3334,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "type": "REMOVE_ITEM",
               "data": "Strange Powder"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "castle_password"
             }
           ],
           "condition": null
@@ -3804,7 +3927,12 @@ window.QR_CITY_QUEST_DATA = {
               "next": "HOME"
             }
           ],
-          "actions": [],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "castle_password"
+            }
+          ],
           "condition": null
         }
       }
@@ -4079,4 +4207,3 @@ window.QR_CITY_QUEST_DATA = {
     "Return Golden Medal to Guard": "Vidd vissza az aranymedált az őrnek"
   }
 };
-
