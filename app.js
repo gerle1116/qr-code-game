@@ -1,7 +1,3 @@
-
-app.js
-
-100%
 ﻿(() => {
   "use strict";
 
