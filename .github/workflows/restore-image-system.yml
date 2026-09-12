@@ -26,7 +26,6 @@ jobs:
           app_path = Path('app.js')
           app = app_path.read_text(encoding='utf-8')
 
-          # Safety: only patch the recovered/new app, never the old branch.
           required = [
               'function showThingsIKnow()',
               'function debugMenuButton(',
@@ -36,147 +35,124 @@ jobs:
           if missing:
               raise SystemExit(f'Refusing to patch: categorized app markers missing: {missing}')
 
-          page_marker = '''  // =========================================================
-          // PAGE DISPLAY
-          // =========================================================
-          '''
-
-          helper = '''  function getPagePicture(page, context) {
-            const specific =
-              page &&
-              typeof page.picture === "string" &&
-              page.picture.trim()
-                ? page.picture.trim()
-                : null;
-
-            if (specific) {
-              return specific;
-            }
-
-            if (context && context.type === "encounter") {
-              const encounter =
-                GAME.encounters &&
-                GAME.encounters[context.encounterId];
-
-              if (
-                encounter &&
-                typeof encounter.defaultPicture === "string" &&
-                encounter.defaultPicture.trim()
-              ) {
-                return encounter.defaultPicture.trim();
-              }
-            }
-
-            if (context && context.type === "item") {
-              const item =
-                GAME.items &&
-                GAME.items[context.itemName];
-
-              if (
-                item &&
-                typeof item.defaultPicture === "string" &&
-                item.defaultPicture.trim()
-              ) {
-                return item.defaultPicture.trim();
-              }
-            }
-
-            return null;
-          }
-
-
-          '''
+          helper = "\n".join([
+              '  function getPagePicture(page, context) {',
+              '    const specific =',
+              '      page &&',
+              '      typeof page.picture === "string" &&',
+              '      page.picture.trim()',
+              '        ? page.picture.trim()',
+              '        : null;',
+              '',
+              '    if (specific) {',
+              '      return specific;',
+              '    }',
+              '',
+              '    if (context && context.type === "encounter") {',
+              '      const encounter =',
+              '        GAME.encounters &&',
+              '        GAME.encounters[context.encounterId];',
+              '',
+              '      if (',
+              '        encounter &&',
+              '        typeof encounter.defaultPicture === "string" &&',
+              '        encounter.defaultPicture.trim()',
+              '      ) {',
+              '        return encounter.defaultPicture.trim();',
+              '      }',
+              '    }',
+              '',
+              '    if (context && context.type === "item") {',
+              '      const item =',
+              '        GAME.items &&',
+              '        GAME.items[context.itemName];',
+              '',
+              '      if (',
+              '        item &&',
+              '        typeof item.defaultPicture === "string" &&',
+              '        item.defaultPicture.trim()',
+              '      ) {',
+              '        return item.defaultPicture.trim();',
+              '      }',
+              '    }',
+              '',
+              '    return null;',
+              '  }',
+              '',
+              '',
+          ])
 
           if 'function getPagePicture(page, context)' not in app:
-              if page_marker not in app:
-                  raise SystemExit('PAGE DISPLAY marker not found')
-              app = app.replace(page_marker, helper + page_marker, 1)
+              show_start = app.index('  function showPage(pageId)')
+              app = app[:show_start] + helper + app[show_start:]
 
           show_start = app.index('  function showPage(pageId)')
-          show_end = app.index(
-              '  // =========================================================\n  // BUTTON CONDITIONS',
-              show_start,
-          )
-          section = app[show_start:show_end]
-
-          picture_builder = '''    const picture =
-              getPagePicture(page, context);
-
-            const pictureMarkup =
-              picture
-                ? `
-                  <div class="encounter-picture">
-                    <img
-                      src="./images/${esc(picture)}.png"
-                      alt="${esc(page.speaker || TEXT.encounterFallback)}"
-                      class="encounter-picture-image"
-                      decoding="async"
-                    >
-                  </div>
-                `
-                : "";
-
-
-          '''
-
-          shell_marker = '''    shell(`
-              <section class="card screen-card encounter-card">
-          '''
+          button_conditions = app.index('function checkButtonCondition', show_start)
+          section = app[show_start:button_conditions]
 
           if 'const pictureMarkup' not in section:
-              if shell_marker not in section:
-                  raise SystemExit('showPage shell marker not found')
-              section = section.replace(
-                  shell_marker,
-                  picture_builder + shell_marker,
-                  1,
-              )
+              shell_pos = app.index('    shell(`', show_start)
+              picture_builder = "\n".join([
+                  '    const picture =',
+                  '      getPagePicture(page, context);',
+                  '',
+                  '    const pictureMarkup =',
+                  '      picture',
+                  '        ? `',
+                  '          <div class="encounter-picture">',
+                  '            <img',
+                  '              src="./images/${esc(picture)}.png"',
+                  '              alt="${esc(page.speaker || TEXT.encounterFallback)}"',
+                  '              class="encounter-picture-image"',
+                  '              decoding="async"',
+                  '            >',
+                  '          </div>',
+                  '        `',
+                  '        : "";',
+                  '',
+                  '',
+              ])
+              app = app[:shell_pos] + picture_builder + app[shell_pos:]
+
+          show_start = app.index('  function showPage(pageId)')
+          button_conditions = app.index('function checkButtonCondition', show_start)
+          section = app[show_start:button_conditions]
 
           if '${pictureMarkup}' not in section:
-              controls_marker = '''        ${controls}
+              controls_pos = app.index('        ${controls}\n', show_start)
+              insert_at = controls_pos + len('        ${controls}\n')
+              app = app[:insert_at] + '        ${pictureMarkup}\n' + app[insert_at:]
 
-              </section>'''
-              if controls_marker not in section:
-                  raise SystemExit('controls insertion point not found')
-              section = section.replace(
-                  controls_marker,
-                  '''        ${controls}
-                ${pictureMarkup}
-
-              </section>''',
-                  1,
-              )
+          show_start = app.index('  function showPage(pageId)')
+          button_conditions = app.index('function checkButtonCondition', show_start)
+          section = app[show_start:button_conditions]
 
           if 'pictureImage.onerror' not in section:
-              after_shell = '''    });
+              controls_pos = app.index('        ${pictureMarkup}\n', show_start)
+              post_if = app.index('    if (dropdown) {', controls_pos)
+              handler = "\n".join([
+                  '    const pictureImage =',
+                  '      document.querySelector(',
+                  '        ".encounter-picture-image"',
+                  '      );',
+                  '',
+                  '    if (pictureImage) {',
+                  '      pictureImage.onerror = () => {',
+                  '        const wrapper =',
+                  '          pictureImage.closest(',
+                  '            ".encounter-picture"',
+                  '          );',
+                  '',
+                  '        if (wrapper) {',
+                  '          wrapper.remove();',
+                  '        }',
+                  '      };',
+                  '    }',
+                  '',
+                  '',
+              ])
+              app = app[:post_if] + handler + app[post_if:]
 
-            if (dropdown) {'''
-              handler = '''    });
-
-            const pictureImage =
-              document.querySelector(
-                ".encounter-picture-image"
-              );
-
-            if (pictureImage) {
-              pictureImage.onerror = () => {
-                const wrapper =
-                  pictureImage.closest(
-                    ".encounter-picture"
-                  );
-
-                if (wrapper) {
-                  wrapper.remove();
-                }
-              };
-            }
-
-            if (dropdown) {'''
-              if after_shell not in section:
-                  raise SystemExit('post-shell insertion point not found')
-              section = section.replace(after_shell, handler, 1)
-
-          app = app[:show_start] + section + app[show_end:]
           app_path.write_text(app, encoding='utf-8')
 
           encounter_pictures = {
@@ -250,20 +226,17 @@ jobs:
           add_default_pictures(Path('data/game-data_en.js'))
           add_default_pictures(Path('data/game-data_hu.js'))
 
-          # Force browsers/PWA cache to fetch the restored image-capable files.
           index = Path('index.html')
-          text = index.read_text(encoding='utf-8').replace('?v=9', '?v=10')
-          index.write_text(text, encoding='utf-8')
+          index.write_text(index.read_text(encoding='utf-8').replace('?v=9', '?v=10'), encoding='utf-8')
 
           loader = Path('language-loader.js')
-          text = loader.read_text(encoding='utf-8').replace('?v=9', '?v=10')
-          loader.write_text(text, encoding='utf-8')
+          loader.write_text(loader.read_text(encoding='utf-8').replace('?v=9', '?v=10'), encoding='utf-8')
 
           sw = Path('sw.js')
-          text = sw.read_text(encoding='utf-8')
-          text = text.replace('qr-city-quest-v9', 'qr-city-quest-v10')
-          text = text.replace('?v=9', '?v=10')
-          sw.write_text(text, encoding='utf-8')
+          sw_text = sw.read_text(encoding='utf-8')
+          sw_text = sw_text.replace('qr-city-quest-v9', 'qr-city-quest-v10')
+          sw_text = sw_text.replace('?v=9', '?v=10')
+          sw.write_text(sw_text, encoding='utf-8')
           PY
 
       - name: Validate JavaScript
