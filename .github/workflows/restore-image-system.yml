@@ -1,0 +1,283 @@
+name: Restore image system
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/restore-image-system.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  restore-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch current categorized app
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          app_path = Path('app.js')
+          app = app_path.read_text(encoding='utf-8')
+
+          # Safety: only patch the recovered/new app, never the old branch.
+          required = [
+              'function showThingsIKnow()',
+              'function debugMenuButton(',
+              'function showDebugEncounters()',
+          ]
+          missing = [x for x in required if x not in app]
+          if missing:
+              raise SystemExit(f'Refusing to patch: categorized app markers missing: {missing}')
+
+          page_marker = '''  // =========================================================
+          // PAGE DISPLAY
+          // =========================================================
+          '''
+
+          helper = '''  function getPagePicture(page, context) {
+            const specific =
+              page &&
+              typeof page.picture === "string" &&
+              page.picture.trim()
+                ? page.picture.trim()
+                : null;
+
+            if (specific) {
+              return specific;
+            }
+
+            if (context && context.type === "encounter") {
+              const encounter =
+                GAME.encounters &&
+                GAME.encounters[context.encounterId];
+
+              if (
+                encounter &&
+                typeof encounter.defaultPicture === "string" &&
+                encounter.defaultPicture.trim()
+              ) {
+                return encounter.defaultPicture.trim();
+              }
+            }
+
+            if (context && context.type === "item") {
+              const item =
+                GAME.items &&
+                GAME.items[context.itemName];
+
+              if (
+                item &&
+                typeof item.defaultPicture === "string" &&
+                item.defaultPicture.trim()
+              ) {
+                return item.defaultPicture.trim();
+              }
+            }
+
+            return null;
+          }
+
+
+          '''
+
+          if 'function getPagePicture(page, context)' not in app:
+              if page_marker not in app:
+                  raise SystemExit('PAGE DISPLAY marker not found')
+              app = app.replace(page_marker, helper + page_marker, 1)
+
+          show_start = app.index('  function showPage(pageId)')
+          show_end = app.index(
+              '  // =========================================================\n  // BUTTON CONDITIONS',
+              show_start,
+          )
+          section = app[show_start:show_end]
+
+          picture_builder = '''    const picture =
+              getPagePicture(page, context);
+
+            const pictureMarkup =
+              picture
+                ? `
+                  <div class="encounter-picture">
+                    <img
+                      src="./images/${esc(picture)}.png"
+                      alt="${esc(page.speaker || TEXT.encounterFallback)}"
+                      class="encounter-picture-image"
+                      decoding="async"
+                    >
+                  </div>
+                `
+                : "";
+
+
+          '''
+
+          shell_marker = '''    shell(`
+              <section class="card screen-card encounter-card">
+          '''
+
+          if 'const pictureMarkup' not in section:
+              if shell_marker not in section:
+                  raise SystemExit('showPage shell marker not found')
+              section = section.replace(
+                  shell_marker,
+                  picture_builder + shell_marker,
+                  1,
+              )
+
+          if '${pictureMarkup}' not in section:
+              controls_marker = '''        ${controls}
+
+              </section>'''
+              if controls_marker not in section:
+                  raise SystemExit('controls insertion point not found')
+              section = section.replace(
+                  controls_marker,
+                  '''        ${controls}
+                ${pictureMarkup}
+
+              </section>''',
+                  1,
+              )
+
+          if 'pictureImage.onerror' not in section:
+              after_shell = '''    });
+
+            if (dropdown) {'''
+              handler = '''    });
+
+            const pictureImage =
+              document.querySelector(
+                ".encounter-picture-image"
+              );
+
+            if (pictureImage) {
+              pictureImage.onerror = () => {
+                const wrapper =
+                  pictureImage.closest(
+                    ".encounter-picture"
+                  );
+
+                if (wrapper) {
+                  wrapper.remove();
+                }
+              };
+            }
+
+            if (dropdown) {'''
+              if after_shell not in section:
+                  raise SystemExit('post-shell insertion point not found')
+              section = section.replace(after_shell, handler, 1)
+
+          app = app[:show_start] + section + app[show_end:]
+          app_path.write_text(app, encoding='utf-8')
+
+          encounter_pictures = {
+              '01': 'child',
+              '02': 'merchant',
+              '03': 'guard',
+              '04': 'talking-tree',
+              '05': 'hunter',
+              '06': 'goblin',
+              '07': 'troll',
+              '08': 'fisherman',
+              '09': 'messenger',
+              '10': 'warrior',
+          }
+
+          item_pictures = {
+              'Sweets': 'sweets',
+              'Old Scroll': 'old-scroll',
+              'Magic Branch': 'magic-branch',
+              'Horn of Trees': 'horn-of-trees',
+              'Bridge Key': 'bridge-key',
+              'Golden Medal': 'golden-medal',
+              'Mark of Goblins': 'mark-of-goblins',
+              'Priclys Feather': 'priclys-feather',
+              'Strange Powder': 'strange-powder',
+              'Gold Coin': 'gold-coin',
+              'Ruby Sword': 'ruby-sword',
+              'Staff of Goblins': 'staff-of-goblins',
+              'Fishing Rod': 'fishing-rod',
+              'Crystal Shard': 'crystal-shard',
+              'Blobfish': 'blobfish',
+              'Silver Ring': 'silver-ring',
+              'Bundle of Letters': 'bundle-of-letters',
+              'Scroll with Password': 'scroll-with-password',
+              'Old Boots': 'old-boots',
+              'Great Salmon': 'great-salmon',
+              'Fish': 'fish',
+          }
+
+          def add_default_pictures(path):
+              text = path.read_text(encoding='utf-8')
+
+              for encounter_id, picture in encounter_pictures.items():
+                  field = f'"defaultPicture": "{picture}"'
+                  if field in text:
+                      continue
+                  needle = f'    "{encounter_id}": {{\n'
+                  if needle not in text:
+                      raise SystemExit(f'{path}: encounter {encounter_id} not found')
+                  text = text.replace(
+                      needle,
+                      needle + f'      "defaultPicture": "{picture}",\n',
+                      1,
+                  )
+
+              for item_name, picture in item_pictures.items():
+                  field = f'"defaultPicture": "{picture}"'
+                  if field in text:
+                      continue
+                  needle = f'    "{item_name}": {{\n'
+                  if needle not in text:
+                      raise SystemExit(f'{path}: item {item_name} not found')
+                  text = text.replace(
+                      needle,
+                      needle + f'      "defaultPicture": "{picture}",\n',
+                      1,
+                  )
+
+              path.write_text(text, encoding='utf-8')
+
+          add_default_pictures(Path('data/game-data_en.js'))
+          add_default_pictures(Path('data/game-data_hu.js'))
+
+          # Force browsers/PWA cache to fetch the restored image-capable files.
+          index = Path('index.html')
+          text = index.read_text(encoding='utf-8').replace('?v=9', '?v=10')
+          index.write_text(text, encoding='utf-8')
+
+          loader = Path('language-loader.js')
+          text = loader.read_text(encoding='utf-8').replace('?v=9', '?v=10')
+          loader.write_text(text, encoding='utf-8')
+
+          sw = Path('sw.js')
+          text = sw.read_text(encoding='utf-8')
+          text = text.replace('qr-city-quest-v9', 'qr-city-quest-v10')
+          text = text.replace('?v=9', '?v=10')
+          sw.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Validate JavaScript
+        run: |
+          node --check app.js
+          node --check language-loader.js
+          node --check data/game-data_en.js
+          node --check data/game-data_hu.js
+          node --check sw.js
+
+      - name: Commit restored image system
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app.js data/game-data_en.js data/game-data_hu.js index.html language-loader.js sw.js
+          git commit -m "Restore image rendering on categorized app"
+          git push
