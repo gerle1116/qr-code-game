@@ -23,6 +23,7 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
 
           app_path = Path("app.js")
           index_path = Path("index.html")
@@ -79,22 +80,16 @@ jobs:
           }
           '''
 
-          objective_marker = '''
-
-          // =========================================================
-          // OBJECTIVES
-          // =========================================================
-          '''
-
-          if objective_marker not in app:
+          objective_match = re.search(
+              r'\n\s*// =========================================================\n\s*// OBJECTIVES\n\s*// =========================================================',
+              app,
+          )
+          if not objective_match:
               raise SystemExit("Objectives section marker not found")
 
           if "function openItemDialogue(itemName)" not in app:
-              app = app.replace(
-                  objective_marker,
-                  helpers + objective_marker,
-                  1,
-              )
+              insert_at = objective_match.start()
+              app = app[:insert_at] + helpers + app[insert_at:]
 
           if "function getQuestDisplayName(questName)" not in app:
               raise SystemExit("getQuestDisplayName was not restored")
@@ -118,7 +113,6 @@ jobs:
           )
           sw = sw.replace("?v=11", "?v=12")
 
-          # Final safety checks.
           final_markers = [
               "function openItemDialogue(itemName)",
               "function getQuestDisplayName(questName)",
