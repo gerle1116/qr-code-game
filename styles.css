@@ -345,6 +345,11 @@ button {
 
 .inventory-screen {
   overflow-y: auto;
+  background: var(--talk);
+}
+
+.inventory-screen > .empty {
+  background: var(--talk);
 }
 
 .inventory-grid {
@@ -361,7 +366,7 @@ button {
     calc(var(--inventory-gap) * 1.5);
 
   align-content: start;
-  background: var(--grey);
+  background: var(--talk);
 }
 
 .inventory-item-button {
@@ -376,10 +381,10 @@ button {
 
   overflow: hidden;
 
-  border: 1px solid rgba(255, 255, 255, 0.58);
-  border-radius: 9px;
+  border: 5px solid var(--talk-dark);
+  border-radius: 3px;
 
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.12);
   color: #111;
 
   transition:
@@ -389,7 +394,7 @@ button {
 
 .inventory-item-button:active {
   transform: scale(0.96);
-  background: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.24);
 }
 
 .inventory-item-icon {
