@@ -53,6 +53,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0103": {
           "id": "0103",
+          "picture": "child-back",
           "speaker": "Gyerek",
           "text": "Oké, akkor hagyj békén!",
           "buttons": [
@@ -146,6 +147,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0107": {
           "id": "0107",
+          "picture": "child-gone",
           "speaker": "Gyerek",
           "text": "A gyereket sehol sem látod.",
           "buttons": [
@@ -189,6 +191,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0202": {
           "id": "0202",
+          "picture": "merchant-choice-items",
           "speaker": "Kereskedő",
           "text": "Van néhány eladó dolgom. Melyiket szeretnéd?",
           "buttons": [
@@ -231,6 +234,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0204": {
           "id": "0204",
+          "picture": "merchant-asking-hand",
           "speaker": "Kereskedő",
           "text": "Oké, akkor aranyérme lesz. Válassz egy tárgyat a felszerelésedből.",
           "buttons": [
@@ -257,6 +261,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0205": {
           "id": "0205",
+          "picture": "merchant-asking-hand",
           "speaker": "Kereskedő",
           "text": "Oké, akkor Priclys tolla lesz. Válassz egy tárgyat a felszerelésedből.",
           "buttons": [
@@ -283,6 +288,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0206": {
           "id": "0206",
+          "picture": "merchant-reading-list",
           "speaker": "Kereskedő",
           "text": "Ha tudnál szerezni nekem egy Bluggyhalat, nagyon örülnék. Szia-szia.",
           "buttons": [
@@ -305,6 +311,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0207": {
           "id": "0207",
+          "picture": "merchant-offers-sweets",
           "speaker": "Kereskedő",
           "text": "Tessék, egy kis édesség! Van egy kis szabadidőd?",
           "buttons": [
@@ -359,6 +366,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0209": {
           "id": "0209",
+          "picture": "merchant-offers-scroll",
           "speaker": "Kereskedő",
           "text": "Itt a régi tekercs. Van egy kis szabadidőd?",
           "buttons": [
@@ -432,6 +440,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0212": {
           "id": "0212",
+          "picture": "merchant-asking-hand",
           "speaker": "Kereskedő",
           "text": "Odaadnád nekem őket?",
           "buttons": [
@@ -513,6 +522,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0302": {
           "id": "0302",
+          "picture": "guard-map-village-center",
           "speaker": "Őr",
           "text": "Elmondom! Ez a hely különböző részekből áll. Most a Faluközpontban vagyunk. Van még 3 másik rész...",
           "buttons": [
@@ -556,6 +566,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0304": {
           "id": "0304",
+          "picture": "guard-map-sections",
           "speaker": "Őr",
           "text": "A Liget, a Híd és a Kastélybejárat. Minden részen van egy vagy több ember, akivel beszélhetsz. Mindegyik rész könnyen elérhető, de a kastélyt a Troll őrzi.",
           "buttons": [
@@ -584,6 +595,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0305": {
           "id": "0305",
+          "picture": "guard-troll-sketch",
           "speaker": "Őr",
           "text": "Egy troll. Csak akkor érheted el a bejáratot, ha legyőzöd. Ennyit tudok mondani. Jó szórakozást itt!",
           "buttons": [
@@ -691,6 +703,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0310": {
           "id": "0310",
+          "picture": "guard-delighted",
           "speaker": "Őr",
           "text": "Ó, az érmem! Köszönöm, hogy visszahoztad. Ezért neked adom a Goblinok jelét. A goblinok barátságosabbak lesznek, ha megmutatod nekik. Még egyszer köszönöm!!!",
           "buttons": [
@@ -859,6 +872,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0407": {
           "id": "0407",
+          "picture": "talking-tree-magic-branch",
           "speaker": "Beszélő fa",
           "text": "Legalább ezt a varázságat odaadhatom neked, ami segíteni fog a küldetéseden. Ragaszkodom hozzá. Most pedig pihenni megyek.",
           "buttons": [
@@ -899,6 +913,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0409": {
           "id": "0409",
+          "picture": "talking-tree-horn-hole",
           "speaker": "Beszélő fa",
           "text": "Szia megint. Emlékszem, mennyire meglepődtél, hogy egy ilyen csodálatos fa tud beszélni. Ezért neked adom A fák kürtjét. Ha megfújod, felébredek az álmomból. És most miben segíthetek?",
           "buttons": [
@@ -1005,6 +1020,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0504": {
           "id": "0504",
+          "picture": "hunter-points-trees",
           "speaker": "Vadász",
           "text": "Nem tudom, de esküszöm, valami varázslatos rejtőzik ebben a ligetben. Nézd meg a fákat! Most pedig mennem kell!",
           "buttons": [
@@ -1051,6 +1067,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0506": {
           "id": "0506",
+          "picture": "hunter-points-fountain",
           "speaker": "Vadász",
           "text": "Szia megint! Egy Pina Coalát üldözök, nincs időm, de láttam valami csillogót a szökőkút kövei között.",
           "buttons": [
@@ -1110,6 +1127,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0509": {
           "id": "0509",
+          "picture": "hunter-points-footprints",
           "speaker": "Vadász",
           "text": "Látod azokat a kis lábnyomokat? Az a lény jobban tud rejtőzködni bárminél, amit valaha láttam. Talán valamelyik bokros helyen bújik, ahová én nem férek be!",
           "buttons": [
@@ -1186,6 +1204,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0513": {
           "id": "0513",
+          "picture": "hunter-gives-medal",
           "speaker": "Vadász",
           "text": "Ja, és kérlek, add oda ezt az aranymedált az őrnek! Talán ad érte valamit cserébe.",
           "buttons": [
@@ -1340,6 +1359,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0606": {
           "id": "0606",
+          "picture": "goblin-items-on-ground",
           "speaker": "Goblin",
           "text": "Itt! Nézd, miket gyűjtöttem! Ha szeretnél egyet, csak szólj!",
           "buttons": [
@@ -1373,6 +1393,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0607": {
           "id": "0607",
+          "picture": "goblin-holds-gold-coin",
           "speaker": "Goblin",
           "text": "Ez egy aranyérme, amit az erdőben találtam. Elcserélném valamire, ami egy ritka állattól származik, például egy madártól.",
           "buttons": [
@@ -1405,8 +1426,9 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0608": {
           "id": "0608",
+          "picture": "goblin-holds-lucky-pebble",
           "speaker": "Goblin",
-          "text": "Tessék, vidd ezt az aranyérmét, amit találtam. Ez a kincs különösen jól néz ki.",
+          "text": "Tessék! Vidd ezt a szerencsekavicsot.",
           "buttons": [
             {
               "index": 1,
@@ -1432,6 +1454,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0609": {
           "id": "0609",
+          "picture": "goblin-holds-ruby-sword",
           "speaker": "Goblin",
           "text": "Ezt a rubinkardot a folyó fenekén találtam. Megláttam a rubinját, és muszáj volt megszereznem. Ha szeretnéd, adj érte valamilyen másik drágakövet.",
           "buttons": [
@@ -1464,6 +1487,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0610": {
           "id": "0610",
+          "picture": "goblin-holds-powder-sack",
           "speaker": "Goblin",
           "text": "Hé, ezt a port egy bőrzsákban találtam, és olyan furcsának tűnt, hogy megtartottam. Elcserélném egy csillogóbb ékszerre.",
           "buttons": [
@@ -1496,6 +1520,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0611": {
           "id": "0611",
+          "picture": "goblin-empty-hand",
           "speaker": "Goblin",
           "text": "Mutasd!",
           "buttons": [
@@ -1532,6 +1557,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0612": {
           "id": "0612",
+          "picture": "goblin-holds-powder-sack",
           "speaker": "Goblin",
           "text": "Itt a furcsa por. Szeretem a csillogó dolgokat, ember, például a port... A goblinoknak ez jó!",
           "buttons": [
@@ -1558,6 +1584,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0613": {
           "id": "0613",
+          "picture": "goblin-holds-ruby-sword",
           "speaker": "Goblin",
           "text": "Itt a rubinkard. Én jobban szeretem a kristályszilánkot: csillogóbb.",
           "buttons": [
@@ -1584,6 +1611,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0614": {
           "id": "0614",
+          "picture": "goblin-holds-gold-coin",
           "speaker": "Goblin",
           "text": "Itt az aranyérme. A toll az embereknek talán szemét, de a goblinoknak kincs!",
           "buttons": [
@@ -1628,6 +1656,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0616": {
           "id": "0616",
+          "picture": "goblin-holds-staff-of-goblins",
           "speaker": "Goblin",
           "text": "Adhatok még egy ajándékot, amiért ilyen remek kereskedőtársam vagy? Itt a Goblinbot. Ez azt jelenti, hogy a goblinok nagy barátja vagy.",
           "buttons": [
@@ -1665,6 +1694,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0618": {
           "id": "0618",
+          "picture": "goblin-tent-by-tree",
           "speaker": "Goblin",
           "text": "A goblin elment minden értékével együtt.",
           "buttons": [
@@ -1727,6 +1757,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0703": {
           "id": "0703",
+          "picture": "troll-blocks-bridge",
           "speaker": "Troll",
           "text": "Nem mehetsz át, ha nem oldod meg találós kérdés. Mondok találós kérdést.",
           "buttons": [
@@ -1812,6 +1843,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0706": {
           "id": "0706",
+          "picture": "troll-holds-key",
           "speaker": "Troll",
           "text": "Te okos! Itt hídkulcs. Most menj!",
           "buttons": [
@@ -1834,6 +1866,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0707": {
           "id": "0707",
+          "picture": "troll-sits-by-bridge",
           "speaker": "Troll",
           "text": "A Troll a híd szélén ül, és ügyet sem vet rád.",
           "buttons": [
@@ -1877,6 +1910,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0802": {
           "id": "0802",
+          "picture": "fisherman-points-direction",
           "speaker": "Horgász",
           "text": "Nos, csak sétálsz pár métert, és már ott is van. Fordulj innen jobbra, de a Troll előtt tudnál segíteni nekem valamiben?",
           "buttons": [
@@ -1920,6 +1954,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0804": {
           "id": "0804",
+          "picture": "fisherman-gives-rod",
           "speaker": "Horgász",
           "text": "Itt egy horgászbot. Fogd, és dobd be! Próbálj meg nagy lazacot fogni. Általában 20–25 másodperc után jönnek.",
           "buttons": [
@@ -2049,6 +2084,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0810": {
           "id": "0810",
+          "picture": "fisherman-empty-hand",
           "speaker": "Horgász",
           "text": "Akkor add ide.",
           "buttons": [
@@ -2157,6 +2193,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0815": {
           "id": "0815",
+          "picture": "fisherman-gives-small-fish",
           "speaker": "Horgász",
           "text": "Nos... ha ezt odaadnád a Hírnöknek... és viszonzásképp kérlek, add oda neki ezeket a halakat. Talán elmond neked valamit.",
           "buttons": [
@@ -2180,6 +2217,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0816": {
           "id": "0816",
+          "picture": "fisherman-sits-on-dock",
           "speaker": "Horgász",
           "text": "A horgász integet neked, majd az ujját a szája elé teszi: „pszt”. Most nem tudsz vele beszélni.",
           "buttons": [
@@ -2270,6 +2308,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0903": {
           "id": "0903",
+          "picture": "messenger-open-gloved-hands",
           "speaker": "Hírnök",
           "text": "Akkor add ide.",
           "buttons": [
@@ -2323,6 +2362,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0905": {
           "id": "0905",
+          "picture": "messenger-delighted-letters",
           "speaker": "Hírnök",
           "text": "Ó, köszönöm!!! Cserébe elmondom a jelszó első részét.",
           "buttons": [
@@ -2365,6 +2405,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0907": {
           "id": "0907",
+          "picture": "messenger-delighted-fish",
           "speaker": "Hírnök",
           "text": "Óóó, a Horgász küldte nekem ezeket a halakat? Remek. Cserébe elmondom: ha valaha furcsa szavakat találsz egy papíron, használj megfejtőport, ami csak egy szürke por. Most pedig mennem kell.",
           "buttons": [
@@ -2552,6 +2593,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1002": {
           "id": "1002",
+          "picture": "warrior-arms-crossed",
           "speaker": "Harcos",
           "text": "Válassz egy tárgyat a felszerelésedből.",
           "buttons": [
@@ -2623,6 +2665,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1004": {
           "id": "1004",
+          "picture": "warrior-holds-sword",
           "speaker": "Harcos",
           "text": "Nem, ezzel nem juthatsz be.",
           "buttons": [
@@ -2709,6 +2752,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1007": {
           "id": "1007",
+          "picture": "warrior-open-gate-side",
           "speaker": "Harcos",
           "text": "Nos... ez helyes! Bemehetsz.",
           "buttons": [
@@ -2727,6 +2771,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1008": {
           "id": "1008",
+          "picture": "warrior-holds-sword",
           "speaker": "Harcos",
           "text": "Nos... ez helytelen. Kint kell maradnod!",
           "buttons": [
@@ -2745,6 +2790,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1009": {
           "id": "1009",
+          "picture": "warrior-defeated-weaponless",
           "speaker": "Harcos",
           "text": "Gyerünk!! Semmi sem történik. Egy dinoszaurusz kiugrik a kezedből, és két csapással legyőzi az őrt.",
           "buttons": [

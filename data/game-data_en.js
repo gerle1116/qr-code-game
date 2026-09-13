@@ -53,6 +53,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0103": {
           "id": "0103",
+          "picture": "child-back",
           "speaker": "Child",
           "text": "Okay then, leave me alone!",
           "buttons": [
@@ -146,6 +147,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0107": {
           "id": "0107",
+          "picture": "child-gone",
           "speaker": "Child",
           "text": "The child can't be seen.",
           "buttons": [
@@ -189,6 +191,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0202": {
           "id": "0202",
+          "picture": "merchant-choice-items",
           "speaker": "Merchant",
           "text": "I have a few things to sell. Which one do you prefer?",
           "buttons": [
@@ -231,6 +234,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0204": {
           "id": "0204",
+          "picture": "merchant-asking-hand",
           "speaker": "Merchant",
           "text": "Okay it will be a gold coin. Choose one of your items from your inventory.",
           "buttons": [
@@ -257,6 +261,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0205": {
           "id": "0205",
+          "picture": "merchant-asking-hand",
           "speaker": "Merchant",
           "text": "Okay it will be a Priclys Feather. Choose one of your items from your inventory.",
           "buttons": [
@@ -283,6 +288,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0206": {
           "id": "0206",
+          "picture": "merchant-reading-list",
           "speaker": "Merchant",
           "text": "So if you could get me a Blobfish I would be happy. Bye bye.",
           "buttons": [
@@ -305,6 +311,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0207": {
           "id": "0207",
+          "picture": "merchant-offers-sweets",
           "speaker": "Merchant",
           "text": "Here are some sweets for ya! You've got some spare time?",
           "buttons": [
@@ -359,6 +366,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0209": {
           "id": "0209",
+          "picture": "merchant-offers-scroll",
           "speaker": "Merchant",
           "text": "Here is the old scroll. You've got some spare time?",
           "buttons": [
@@ -432,6 +440,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0212": {
           "id": "0212",
+          "picture": "merchant-asking-hand",
           "speaker": "Merchant",
           "text": "Can you give them to me?",
           "buttons": [
@@ -513,6 +522,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0302": {
           "id": "0302",
+          "picture": "guard-map-village-center",
           "speaker": "Guard",
           "text": "So let me tell you! This place is made out of different sections. We are in the Village Centre part. There are 3 other sections...",
           "buttons": [
@@ -556,6 +566,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0304": {
           "id": "0304",
+          "picture": "guard-map-sections",
           "speaker": "Guard",
           "text": "The Grove, Bridge, and the Castle Entrance. At each section there are one or more people to talk with. You can get to each part easily but the castle is guarded by the Troll.",
           "buttons": [
@@ -584,6 +595,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0305": {
           "id": "0305",
+          "picture": "guard-troll-sketch",
           "speaker": "Guard",
           "text": "A troll. If you defeat it only then you can reach the entrance. But that's anything I could tell you. Have a fun time here!",
           "buttons": [
@@ -691,6 +703,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0310": {
           "id": "0310",
+          "picture": "guard-delighted",
           "speaker": "Guard",
           "text": "Oh my medal! Thank you for giving it back. For this I'll give you the Mark of Goblins. Goblins will be friendlier if you show them. Now thank you again!!!",
           "buttons": [
@@ -859,6 +872,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0407": {
           "id": "0407",
+          "picture": "talking-tree-magic-branch",
           "speaker": "Talking Tree",
           "text": "At least I can give you this magic branch that will help you on your mission. I insist. Now I'm going to rest.",
           "buttons": [
@@ -899,6 +913,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0409": {
           "id": "0409",
+          "picture": "talking-tree-horn-hole",
           "speaker": "Talking Tree",
           "text": "Hello again. I remember you were so surprised to see a wonderful tree like me. Because of that I give you the Horn of Trees. If you blow it I will wake up from my dream. And now how can I help you?",
           "buttons": [
@@ -1005,6 +1020,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0504": {
           "id": "0504",
+          "picture": "hunter-points-trees",
           "speaker": "Hunter",
           "text": "I don't know, but I swear there is something magical hidden in this grove. You should check the trees! And now I gotta go!",
           "buttons": [
@@ -1051,6 +1067,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0506": {
           "id": "0506",
+          "picture": "hunter-points-fountain",
           "speaker": "Hunter",
           "text": "Hello again! I'm chasing a Pina Coala, I've got no time, but I saw something shiny between the fountains stones.",
           "buttons": [
@@ -1110,6 +1127,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0509": {
           "id": "0509",
+          "picture": "hunter-points-footprints",
           "speaker": "Hunter",
           "text": "Do you see the little footprints? That creature is better at hiding than anything else I've ever seen before. He might be hiding in one of the bushy places where I can't fit in!",
           "buttons": [
@@ -1186,6 +1204,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0513": {
           "id": "0513",
+          "picture": "hunter-gives-medal",
           "speaker": "Hunter",
           "text": "Also could you please give this golden medal to the guard? He might give you something in exchange.",
           "buttons": [
@@ -1340,6 +1359,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0606": {
           "id": "0606",
+          "picture": "goblin-items-on-ground",
           "speaker": "Goblin",
           "text": "Here! Look what I've collected! If you want one just say!",
           "buttons": [
@@ -1373,6 +1393,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0607": {
           "id": "0607",
+          "picture": "goblin-holds-gold-coin",
           "speaker": "Goblin",
           "text": "This is a Gold Coin I found in the forest. I would trade it for something from a rare animal like a bird.",
           "buttons": [
@@ -1405,8 +1426,9 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0608": {
           "id": "0608",
+          "picture": "goblin-holds-lucky-pebble",
           "speaker": "Goblin",
-          "text": "Here take this Gold Coin I found. This treasure looks especially good.",
+          "text": "Here! take this lucky Pebble",
           "buttons": [
             {
               "index": 1,
@@ -1432,6 +1454,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0609": {
           "id": "0609",
+          "picture": "goblin-holds-ruby-sword",
           "speaker": "Goblin",
           "text": "This ruby sword was down in the bottom of the river. I saw its ruby and I had to have it. If you want it give me some other gem.",
           "buttons": [
@@ -1464,6 +1487,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0610": {
           "id": "0610",
+          "picture": "goblin-holds-powder-sack",
           "speaker": "Goblin",
           "text": "Hey I've found this powder in a leather sack and I thought it was really strange so I kept it. I would trade it for a shinier jewel.",
           "buttons": [
@@ -1496,6 +1520,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0611": {
           "id": "0611",
+          "picture": "goblin-empty-hand",
           "speaker": "Goblin",
           "text": "Show me!",
           "buttons": [
@@ -1532,6 +1557,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0612": {
           "id": "0612",
+          "picture": "goblin-holds-powder-sack",
           "speaker": "Goblin",
           "text": "Here is the strange powder. I like shinies, human, like dust... It's good for goblins!",
           "buttons": [
@@ -1558,6 +1584,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0613": {
           "id": "0613",
+          "picture": "goblin-holds-ruby-sword",
           "speaker": "Goblin",
           "text": "Here is the ruby sword. I like crystal shard better: It's shinier.",
           "buttons": [
@@ -1584,6 +1611,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0614": {
           "id": "0614",
+          "picture": "goblin-holds-gold-coin",
           "speaker": "Goblin",
           "text": "Here is the gold coin. Feather might be trash for humans but treasure for goblins!",
           "buttons": [
@@ -1628,6 +1656,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0616": {
           "id": "0616",
+          "picture": "goblin-holds-staff-of-goblins",
           "speaker": "Goblin",
           "text": "Can I give you one more gift for being my great trader mate? Here is the Staff of Goblins. This means you are the great friend of goblins.",
           "buttons": [
@@ -1665,6 +1694,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0618": {
           "id": "0618",
+          "picture": "goblin-tent-by-tree",
           "speaker": "Goblin",
           "text": "The goblin has left with all their valuables.",
           "buttons": [
@@ -1727,6 +1757,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0703": {
           "id": "0703",
+          "picture": "troll-blocks-bridge",
           "speaker": "Troll",
           "text": "You can no cross if no riddle solve. I tell you riddle.",
           "buttons": [
@@ -1812,6 +1843,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0706": {
           "id": "0706",
+          "picture": "troll-holds-key",
           "speaker": "Troll",
           "text": "You smart! Here bridge key. Now go!",
           "buttons": [
@@ -1834,6 +1866,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0707": {
           "id": "0707",
+          "picture": "troll-sits-by-bridge",
           "speaker": "Troll",
           "text": "The Troll sits at the edge of the bridge and does not care about you.",
           "buttons": [
@@ -1877,6 +1910,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0802": {
           "id": "0802",
+          "picture": "fisherman-points-direction",
           "speaker": "Fisherman",
           "text": "Well you walk a few meters it's right there. Turn right from here but before with the troll also could you help me with something?",
           "buttons": [
@@ -1920,6 +1954,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0804": {
           "id": "0804",
+          "picture": "fisherman-gives-rod",
           "speaker": "Fisherman",
           "text": "Here is a fishing rod. Take it and throw it in. Try catching great salmon. They usually come after 20-25 seconds.",
           "buttons": [
@@ -2049,6 +2084,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0810": {
           "id": "0810",
+          "picture": "fisherman-empty-hand",
           "speaker": "Fisherman",
           "text": "Then give it to me.",
           "buttons": [
@@ -2157,6 +2193,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0815": {
           "id": "0815",
+          "picture": "fisherman-gives-small-fish",
           "speaker": "Fisherman",
           "text": "Well... if you could give this to the messenger... and return of a favor please give these fish to him. He might tell you something.",
           "buttons": [
@@ -2180,6 +2217,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0816": {
           "id": "0816",
+          "picture": "fisherman-sits-on-dock",
           "speaker": "Fisherman",
           "text": "The fisherman waves at you and then puts the finger in front of his mouth \"shh\". You can't talk to him right now.",
           "buttons": [
@@ -2270,6 +2308,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0903": {
           "id": "0903",
+          "picture": "messenger-open-gloved-hands",
           "speaker": "Messenger",
           "text": "Then give it.",
           "buttons": [
@@ -2323,6 +2362,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0905": {
           "id": "0905",
+          "picture": "messenger-delighted-letters",
           "speaker": "Messenger",
           "text": "Oh thank you!!! In return I can tell you the first part of the password.",
           "buttons": [
@@ -2365,6 +2405,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "0907": {
           "id": "0907",
+          "picture": "messenger-delighted-fish",
           "speaker": "Messenger",
           "text": "Ooh the Fisherman sent me these fish? Nice. In return I'll tell you: if you ever find strange words on paper you should use a decoder powder which is just a gray powder. Now I gotta go.",
           "buttons": [
@@ -2552,6 +2593,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1002": {
           "id": "1002",
+          "picture": "warrior-arms-crossed",
           "speaker": "Warrior",
           "text": "Choose an item from your inventory.",
           "buttons": [
@@ -2623,6 +2665,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1004": {
           "id": "1004",
+          "picture": "warrior-holds-sword",
           "speaker": "Warrior",
           "text": "No you can't get inside with that.",
           "buttons": [
@@ -2709,6 +2752,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1007": {
           "id": "1007",
+          "picture": "warrior-open-gate-side",
           "speaker": "Warrior",
           "text": "Well... that's correct! You may go in.",
           "buttons": [
@@ -2727,6 +2771,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1008": {
           "id": "1008",
+          "picture": "warrior-holds-sword",
           "speaker": "Warrior",
           "text": "Well... that's incorrect. You must stay out!",
           "buttons": [
@@ -2745,6 +2790,7 @@ window.QR_CITY_QUEST_DATA = {
         },
         "1009": {
           "id": "1009",
+          "picture": "warrior-defeated-weaponless",
           "speaker": "Warrior",
           "text": "Let's go!! Nothing happens. A dinosaur jumps out of your hand and two strikes it defeats the guard.",
           "buttons": [
