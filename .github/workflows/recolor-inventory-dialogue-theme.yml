@@ -1,0 +1,196 @@
+name: Recolor inventory to dialogue theme
+
+on:
+  push:
+    paths:
+      - ".github/workflows/recolor-inventory-dialogue-theme.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  recolor-inventory:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply inventory dialogue colors and bump cache
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          styles_path = Path("styles.css")
+          index_path = Path("index.html")
+          loader_path = Path("language-loader.js")
+          sw_path = Path("sw.js")
+
+          styles = styles_path.read_text(encoding="utf-8")
+          index = index_path.read_text(encoding="utf-8")
+          loader = loader_path.read_text(encoding="utf-8")
+          sw = sw_path.read_text(encoding="utf-8")
+
+          old = '''.inventory-screen {
+            overflow-y: auto;
+          }
+
+          .inventory-grid {
+            --inventory-gap: 8px;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: var(--inventory-gap);
+            row-gap: var(--inventory-gap);
+
+            /* 12 + 8 + 8 + 12 = 40px = five 8px spacing units. */
+            padding:
+              var(--inventory-gap)
+              calc(var(--inventory-gap) * 1.5);
+
+            align-content: start;
+            background: var(--grey);
+          }
+
+          .inventory-item-button {
+            width: 100%;
+            min-width: 0;
+            aspect-ratio: 1 / 1;
+
+            padding: 8px;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 255, 255, 0.58);
+            border-radius: 9px;
+
+            background: rgba(255, 255, 255, 0.28);
+            color: #111;
+
+            transition:
+              transform 0.06s ease,
+              background 0.06s ease;
+          }
+
+          .inventory-item-button:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.42);
+          }
+          '''
+
+          new = '''.inventory-screen {
+            overflow-y: auto;
+            background: var(--talk);
+          }
+
+          .inventory-screen > .empty {
+            background: var(--talk);
+          }
+
+          .inventory-grid {
+            --inventory-gap: 8px;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: var(--inventory-gap);
+            row-gap: var(--inventory-gap);
+
+            /* 12 + 8 + 8 + 12 = 40px = five 8px spacing units. */
+            padding:
+              var(--inventory-gap)
+              calc(var(--inventory-gap) * 1.5);
+
+            align-content: start;
+            background: var(--talk);
+          }
+
+          .inventory-item-button {
+            width: 100%;
+            min-width: 0;
+            aspect-ratio: 1 / 1;
+
+            padding: 8px;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            border: 5px solid var(--talk-dark);
+            border-radius: 3px;
+
+            background: rgba(255, 255, 255, 0.12);
+            color: #111;
+
+            transition:
+              transform 0.06s ease,
+              background 0.06s ease;
+          }
+
+          .inventory-item-button:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.24);
+          }
+          '''
+
+          if old not in styles:
+              raise SystemExit("Expected inventory CSS block not found")
+
+          styles = styles.replace(old, new, 1)
+
+          # Force the browser/service worker to load the new CSS.
+          if "styles.css?v=12" not in index or "language-loader.js?v=12" not in index:
+              raise SystemExit("Expected v12 references not found in index.html")
+          index = index.replace("styles.css?v=12", "styles.css?v=13", 1)
+          index = index.replace("language-loader.js?v=12", "language-loader.js?v=13", 1)
+
+          if "?v=12" not in loader:
+              raise SystemExit("Expected v12 references not found in language-loader.js")
+          loader = loader.replace("?v=12", "?v=13")
+
+          if 'const CACHE = "qr-city-quest-v12";' not in sw:
+              raise SystemExit("Expected v12 cache not found in sw.js")
+          sw = sw.replace(
+              'const CACHE = "qr-city-quest-v12";',
+              'const CACHE = "qr-city-quest-v13";',
+              1,
+          )
+          sw = sw.replace("?v=12", "?v=13")
+
+          styles_path.write_text(styles, encoding="utf-8")
+          index_path.write_text(index, encoding="utf-8")
+          loader_path.write_text(loader, encoding="utf-8")
+          sw_path.write_text(sw, encoding="utf-8")
+          PY
+
+      - name: Validate files
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check language-loader.js
+          node --check sw.js
+          grep -q 'background: var(--talk);' styles.css
+          grep -q 'border: 5px solid var(--talk-dark);' styles.css
+          grep -q 'styles.css?v=13' index.html
+          grep -q 'qr-city-quest-v13' sw.js
+          git diff --check
+
+      - name: Commit recolor
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add styles.css index.html language-loader.js sw.js
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Match inventory colors to dialogue theme"
+          git push
