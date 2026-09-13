@@ -1,0 +1,167 @@
+name: Fix inventory helper functions
+
+on:
+  push:
+    paths:
+      - ".github/workflows/fix-inventory-helper-functions.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix-inventory-helpers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore helpers and bump cache
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          app_path = Path("app.js")
+          index_path = Path("index.html")
+          loader_path = Path("language-loader.js")
+          sw_path = Path("sw.js")
+
+          app = app_path.read_text(encoding="utf-8")
+          index = index_path.read_text(encoding="utf-8")
+          loader = loader_path.read_text(encoding="utf-8")
+          sw = sw_path.read_text(encoding="utf-8")
+
+          required = [
+              "function showInventory()",
+              "function showThingsIKnow()",
+              "function debugMenuButton(",
+              "function getPagePicture(page, context)",
+              "inventory-item-button",
+          ]
+          for marker in required:
+              if marker not in app:
+                  raise SystemExit(f"Required marker missing: {marker}")
+
+          helpers = r'''
+
+          function openItemDialogue(itemName) {
+            const item =
+              getItemDefinition(itemName);
+
+            if (!item) {
+              return toast(
+                TEXT.itemHasNoDialogue
+              );
+            }
+
+            currentItemName = item.name;
+            currentEncounter = null;
+
+            showPage(
+              item.data.startPage
+            );
+          }
+
+
+          function getQuestDisplayName(questName) {
+            if (
+              GAME.questDisplayNames &&
+              typeof GAME.questDisplayNames[questName] === "string" &&
+              GAME.questDisplayNames[questName].trim()
+            ) {
+              return GAME.questDisplayNames[questName].trim();
+            }
+
+            return questName;
+          }
+          '''
+
+          objective_marker = '''
+
+          // =========================================================
+          // OBJECTIVES
+          // =========================================================
+          '''
+
+          if objective_marker not in app:
+              raise SystemExit("Objectives section marker not found")
+
+          if "function openItemDialogue(itemName)" not in app:
+              app = app.replace(
+                  objective_marker,
+                  helpers + objective_marker,
+                  1,
+              )
+
+          if "function getQuestDisplayName(questName)" not in app:
+              raise SystemExit("getQuestDisplayName was not restored")
+
+          # v11 may already have reached a browser, so force a clean v12 load.
+          if "styles.css?v=11" not in index or "language-loader.js?v=11" not in index:
+              raise SystemExit("Expected v11 index references not found")
+          index = index.replace("styles.css?v=11", "styles.css?v=12")
+          index = index.replace("language-loader.js?v=11", "language-loader.js?v=12")
+
+          if "?v=11" not in loader:
+              raise SystemExit("Expected v11 loader references not found")
+          loader = loader.replace("?v=11", "?v=12")
+
+          if 'const CACHE = "qr-city-quest-v11";' not in sw:
+              raise SystemExit("Expected v11 service worker cache not found")
+          sw = sw.replace(
+              'const CACHE = "qr-city-quest-v11";',
+              'const CACHE = "qr-city-quest-v12";',
+              1,
+          )
+          sw = sw.replace("?v=11", "?v=12")
+
+          # Final safety checks.
+          final_markers = [
+              "function openItemDialogue(itemName)",
+              "function getQuestDisplayName(questName)",
+              "function showThingsIKnow()",
+              "function debugMenuButton(",
+              "function getPagePicture(page, context)",
+              "inventory-grid",
+          ]
+          for marker in final_markers:
+              if marker not in app:
+                  raise SystemExit(f"Final app marker missing: {marker}")
+
+          app_path.write_text(app, encoding="utf-8")
+          index_path.write_text(index, encoding="utf-8")
+          loader_path.write_text(loader, encoding="utf-8")
+          sw_path.write_text(sw, encoding="utf-8")
+          PY
+
+      - name: Validate JavaScript and critical functions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check app.js
+          node --check language-loader.js
+          node --check sw.js
+          grep -q 'function openItemDialogue(itemName)' app.js
+          grep -q 'function getQuestDisplayName(questName)' app.js
+          grep -q 'function showThingsIKnow()' app.js
+          grep -q 'function debugMenuButton(' app.js
+          grep -q 'function getPagePicture(page, context)' app.js
+
+      - name: Commit restoration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app.js index.html language-loader.js sw.js
+          git diff --check
+          git diff --cached --stat
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Restore inventory item helpers"
+          git push
