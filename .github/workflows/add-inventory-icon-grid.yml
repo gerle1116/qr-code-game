@@ -1,0 +1,426 @@
+name: Add inventory icon grid
+
+on:
+  push:
+    paths:
+      - ".github/workflows/add-inventory-icon-grid.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  update-inventory:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify item icon files
+        shell: bash
+        run: |
+          set -euo pipefail
+          icons=(
+            sweets.png
+            old-scroll.png
+            magic-branch.png
+            horn-of-trees.png
+            bridge-key.png
+            golden-medal.png
+            mark-of-goblins.png
+            priclys-feather.png
+            strange-powder.png
+            gold-coin.png
+            ruby-sword.png
+            staff-of-goblins.png
+            fishing-rod.png
+            crystal-shard.png
+            blobfish.png
+            silver-ring.png
+            bundle-of-letters.png
+            scroll-with-password.png
+            old-boots.png
+            great-salmon.png
+            fish.png
+          )
+          for icon in "${icons[@]}"; do
+            test -f "images/$icon" || { echo "Missing images/$icon"; exit 1; }
+          done
+
+      - name: Patch inventory UI and cache
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          app_path = Path("app.js")
+          css_path = Path("styles.css")
+          index_path = Path("index.html")
+          loader_path = Path("language-loader.js")
+          sw_path = Path("sw.js")
+
+          app = app_path.read_text(encoding="utf-8")
+          css = css_path.read_text(encoding="utf-8")
+          index = index_path.read_text(encoding="utf-8")
+          loader = loader_path.read_text(encoding="utf-8")
+          sw = sw_path.read_text(encoding="utf-8")
+
+          # Safety checks: only patch the newest categorized app branch.
+          required_app_markers = [
+              "function showInventory()",
+              "function showThingsIKnow()",
+              "function debugMenuButton(",
+              "function getPagePicture(page, context)",
+          ]
+          for marker in required_app_markers:
+              if marker not in app:
+                  raise SystemExit(f"Required current-app marker missing: {marker}")
+
+          new_inventory = r'''  function showInventory() {
+            stopCamera();
+
+            currentEncounter = null;
+            currentItemName = null;
+            currentPageId = null;
+
+            const items =
+              save.inventory.length
+                ? `
+                  <div class="inventory-grid">
+                    ${
+                      save.inventory
+                        .map((itemName, index) => {
+                          const item =
+                            getItemDefinition(itemName);
+
+                          const displayName =
+                            getItemDisplayName(itemName);
+
+                          const picture =
+                            item &&
+                            item.data &&
+                            typeof item.data.defaultPicture === "string" &&
+                            item.data.defaultPicture.trim()
+                              ? item.data.defaultPicture.trim()
+                              : "";
+
+                          return `
+                            <button
+                              class="inventory-item-button"
+                              type="button"
+                              data-inventory-index="${index}"
+                              aria-label="${esc(displayName)}"
+                              title="${esc(displayName)}"
+                            >
+                              ${
+                                picture
+                                  ? `
+                                    <img
+                                      class="inventory-item-icon"
+                                      src="./images/${esc(picture)}.png"
+                                      alt=""
+                                      loading="lazy"
+                                      decoding="async"
+                                    >
+                                  `
+                                  : `
+                                    <span class="inventory-item-fallback">
+                                      ${esc(displayName)}
+                                    </span>
+                                  `
+                              }
+                            </button>
+                          `;
+                        })
+                        .join("")
+                    }
+                  </div>
+                `
+                : `
+                  <div class="empty">
+                    ${esc(TEXT.noItemsYet)}
+                  </div>
+                `;
+
+            shell(`
+              <section class="card screen-card inventory-screen">
+                ${items}
+              </section>
+            `, {
+              back: showHome
+            });
+
+            document
+              .querySelectorAll(
+                "[data-inventory-index]"
+              )
+              .forEach(button => {
+                const image =
+                  button.querySelector(
+                    ".inventory-item-icon"
+                  );
+
+                if (image) {
+                  image.onerror = () => {
+                    image.remove();
+                    button.classList.add(
+                      "inventory-item-missing-image"
+                    );
+
+                    if (
+                      !button.querySelector(
+                        ".inventory-item-fallback"
+                      )
+                    ) {
+                      const fallback =
+                        document.createElement("span");
+
+                      fallback.className =
+                        "inventory-item-fallback";
+
+                      fallback.textContent =
+                        button.getAttribute(
+                          "aria-label"
+                        ) || "?";
+
+                      button.appendChild(fallback);
+                    }
+                  };
+                }
+
+                button.onclick = () => {
+                  const itemName =
+                    save.inventory[
+                      Number(
+                        button.dataset
+                          .inventoryIndex
+                      )
+                    ];
+
+                  openItemDialogue(
+                    itemName
+                  );
+                };
+              });
+          }'''
+
+          inventory_pattern = re.compile(
+              r'  function showInventory\(\) \{.*?\n  \}\n\n\n  // =========================================================\n  // OBJECTIVES',
+              re.S,
+          )
+          app, count = inventory_pattern.subn(
+              new_inventory
+              + "\n\n\n  // =========================================================\n  // OBJECTIVES",
+              app,
+              count=1,
+          )
+          if count != 1:
+              raise SystemExit(f"Expected to replace showInventory once, replaced {count}")
+
+          inventory_css = r'''/* -------------------------------------------------
+             INVENTORY ICON GRID
+          ------------------------------------------------- */
+
+          .inventory-screen {
+            overflow-y: auto;
+          }
+
+          .inventory-grid {
+            --inventory-gap: 8px;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: var(--inventory-gap);
+            row-gap: var(--inventory-gap);
+
+            /* 12 + 8 + 8 + 12 = 40px = five 8px spacing units. */
+            padding:
+              var(--inventory-gap)
+              calc(var(--inventory-gap) * 1.5);
+
+            align-content: start;
+            background: var(--grey);
+          }
+
+          .inventory-item-button {
+            width: 100%;
+            min-width: 0;
+            aspect-ratio: 1 / 1;
+
+            padding: 8px;
+
+            display: grid;
+            place-items: center;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255, 255, 255, 0.58);
+            border-radius: 9px;
+
+            background: rgba(255, 255, 255, 0.28);
+            color: #111;
+
+            transition:
+              transform 0.06s ease,
+              background 0.06s ease;
+          }
+
+          .inventory-item-button:active {
+            transform: scale(0.96);
+            background: rgba(255, 255, 255, 0.42);
+          }
+
+          .inventory-item-icon {
+            display: block;
+
+            width: 82%;
+            height: 82%;
+
+            object-fit: contain;
+            image-rendering: pixelated;
+
+            pointer-events: none;
+          }
+
+          .inventory-item-fallback {
+            max-width: 100%;
+
+            font-size: 0.78rem;
+            line-height: 1.15;
+            text-align: center;
+            overflow-wrap: anywhere;
+          }
+
+          .inventory-item-missing-image {
+            padding: 10px;
+          }
+
+          '''
+
+          css_marker = '''/* -------------------------------------------------
+             SCANNER
+          ------------------------------------------------- */'''
+
+          if "INVENTORY ICON GRID" not in css:
+              if css_marker not in css:
+                  raise SystemExit("Could not find SCANNER CSS marker")
+              css = css.replace(
+                  css_marker,
+                  inventory_css + css_marker,
+                  1,
+              )
+
+          # Bump the complete asset chain from v10 to v11.
+          expected_version_strings = [
+              ("styles.css?v=10", "styles.css?v=11"),
+              ("language-loader.js?v=10", "language-loader.js?v=11"),
+          ]
+          for old, new in expected_version_strings:
+              if old not in index:
+                  raise SystemExit(f"Expected index version string missing: {old}")
+              index = index.replace(old, new)
+
+          if "?v=10" not in loader:
+              raise SystemExit("Expected v10 loader URLs not found")
+          loader = loader.replace("?v=10", "?v=11")
+
+          if 'const CACHE = "qr-city-quest-v10";' not in sw:
+              raise SystemExit("Expected service-worker v10 cache name not found")
+          sw = sw.replace(
+              'const CACHE = "qr-city-quest-v10";',
+              'const CACHE = "qr-city-quest-v11";',
+              1,
+          )
+          sw = sw.replace("?v=10", "?v=11")
+
+          icon_paths = [
+              "./images/sweets.png",
+              "./images/old-scroll.png",
+              "./images/magic-branch.png",
+              "./images/horn-of-trees.png",
+              "./images/bridge-key.png",
+              "./images/golden-medal.png",
+              "./images/mark-of-goblins.png",
+              "./images/priclys-feather.png",
+              "./images/strange-powder.png",
+              "./images/gold-coin.png",
+              "./images/ruby-sword.png",
+              "./images/staff-of-goblins.png",
+              "./images/fishing-rod.png",
+              "./images/crystal-shard.png",
+              "./images/blobfish.png",
+              "./images/silver-ring.png",
+              "./images/bundle-of-letters.png",
+              "./images/scroll-with-password.png",
+              "./images/old-boots.png",
+              "./images/great-salmon.png",
+              "./images/fish.png",
+          ]
+
+          if icon_paths[0] not in sw:
+              manifest_line = '  "./manifest.webmanifest",'
+              if manifest_line not in sw:
+                  raise SystemExit("Could not find service-worker manifest entry")
+
+              icon_block = "\n".join(
+                  f'  "{path}",' for path in icon_paths
+              )
+
+              sw = sw.replace(
+                  manifest_line,
+                  icon_block + "\n\n" + manifest_line,
+                  1,
+              )
+
+          # Post-patch safety checks.
+          post_markers = [
+              "inventory-grid",
+              "inventory-item-button",
+              "openItemDialogue(",
+              "function showThingsIKnow()",
+              "function debugMenuButton(",
+              "function getPagePicture(page, context)",
+          ]
+          for marker in post_markers:
+              if marker not in app and marker not in css:
+                  raise SystemExit(f"Post-patch marker missing: {marker}")
+
+          app_path.write_text(app, encoding="utf-8")
+          css_path.write_text(css, encoding="utf-8")
+          index_path.write_text(index, encoding="utf-8")
+          loader_path.write_text(loader, encoding="utf-8")
+          sw_path.write_text(sw, encoding="utf-8")
+          PY
+
+      - name: Validate JavaScript
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check app.js
+          node --check language-loader.js
+          node --check sw.js
+          node --check data/apptext_en.js
+          node --check data/apptext_hu.js
+          node --check data/game-data_en.js
+          node --check data/game-data_hu.js
+
+      - name: Show changed files
+        shell: bash
+        run: git diff --check && git diff --stat && git diff -- app.js styles.css index.html language-loader.js sw.js
+
+      - name: Commit inventory icon grid
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app.js styles.css index.html language-loader.js sw.js
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Add inventory icon grid"
+          git push
