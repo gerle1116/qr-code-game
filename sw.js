@@ -1,20 +1,84 @@
-const CACHE = "qr-city-quest-v13";
+const CACHE = "qr-city-quest-v14";
 
 const PRECACHE = [
   "./",
   "./index.html",
 
-  "./styles.css?v=13",
+  "./styles.css?v=14",
 
-  "./language-loader.js?v=13",
-  "./app.js?v=13",
+  "./language-loader.js?v=14",
+  "./app.js?v=14",
 
-  "./data/apptext_en.js?v=13",
-  "./data/apptext_hu.js?v=13",
+  "./data/apptext_en.js?v=14",
+  "./data/apptext_hu.js?v=14",
 
-  "./data/game-data_en.js?v=13",
-  "./data/game-data_hu.js?v=13",
+  "./data/game-data_en.js?v=14",
+  "./data/game-data_hu.js?v=14",
 
+  // NPC default pictures
+  "./images/child.png",
+  "./images/merchant.png",
+  "./images/guard.png",
+  "./images/talking-tree.png",
+  "./images/hunter.png",
+  "./images/goblin.png",
+  "./images/troll.png",
+  "./images/fisherman.png",
+  "./images/messenger.png",
+  "./images/warrior.png",
+
+  // Special dialogue pictures
+  "./images/child-back.png",
+  "./images/child-gone.png",
+
+  "./images/merchant-choice-items.png",
+  "./images/merchant-asking-hand.png",
+  "./images/merchant-reading-list.png",
+  "./images/merchant-offers-sweets.png",
+  "./images/merchant-offers-scroll.png",
+
+  "./images/guard-map-village-center.png",
+  "./images/guard-map-sections.png",
+  "./images/guard-troll-sketch.png",
+  "./images/guard-delighted.png",
+
+  "./images/talking-tree-magic-branch.png",
+  "./images/talking-tree-horn-hole.png",
+
+  "./images/hunter-points-trees.png",
+  "./images/hunter-points-fountain.png",
+  "./images/hunter-points-footprints.png",
+  "./images/hunter-gives-medal.png",
+
+  "./images/goblin-items-on-ground.png",
+  "./images/goblin-holds-gold-coin.png",
+  "./images/goblin-holds-lucky-pebble.png",
+  "./images/goblin-holds-ruby-sword.png",
+  "./images/goblin-holds-powder-sack.png",
+  "./images/goblin-empty-hand.png",
+  "./images/goblin-holds-staff-of-goblins.png",
+  "./images/goblin-tent-by-tree.png",
+
+  "./images/troll-blocks-bridge.png",
+  "./images/troll-holds-key.png",
+  "./images/troll-sits-by-bridge.png",
+
+  "./images/fisherman-points-direction.png",
+  "./images/fisherman-gives-rod.png",
+  "./images/fisherman-empty-hand.png",
+  "./images/fisherman-gives-small-fish.png",
+  "./images/fisherman-sits-on-dock.png",
+
+  "./images/messenger-open-gloved-hands.png",
+  "./images/messenger-delighted-letters.png",
+  "./images/messenger-delighted-fish.png",
+
+  "./images/warrior-arms-crossed.png",
+  "./images/warrior-holds-sword.png",
+  "./images/warrior-open-gate-side.png",
+  "./images/warrior-defeated-weaponless.png",
+
+  // Item pictures
   "./images/sweets.png",
   "./images/old-scroll.png",
   "./images/magic-branch.png",
