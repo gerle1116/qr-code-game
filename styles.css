@@ -340,6 +340,84 @@ button {
 
 
 /* -------------------------------------------------
+   INVENTORY ICON GRID
+------------------------------------------------- */
+
+.inventory-screen {
+  overflow-y: auto;
+}
+
+.inventory-grid {
+  --inventory-gap: 8px;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: var(--inventory-gap);
+  row-gap: var(--inventory-gap);
+
+  /* 12 + 8 + 8 + 12 = 40px = five 8px spacing units. */
+  padding:
+    var(--inventory-gap)
+    calc(var(--inventory-gap) * 1.5);
+
+  align-content: start;
+  background: var(--grey);
+}
+
+.inventory-item-button {
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 1 / 1;
+
+  padding: 8px;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.28);
+  color: #111;
+
+  transition:
+    transform 0.06s ease,
+    background 0.06s ease;
+}
+
+.inventory-item-button:active {
+  transform: scale(0.96);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.inventory-item-icon {
+  display: block;
+
+  width: 82%;
+  height: 82%;
+
+  object-fit: contain;
+  image-rendering: pixelated;
+
+  pointer-events: none;
+}
+
+.inventory-item-fallback {
+  max-width: 100%;
+
+  font-size: 0.78rem;
+  line-height: 1.15;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.inventory-item-missing-image {
+  padding: 10px;
+}
+
+/* -------------------------------------------------
    SCANNER
 ------------------------------------------------- */
 

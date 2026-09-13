@@ -747,110 +747,132 @@
   // =========================================================
 
   function showInventory() {
-    stopCamera();
+  stopCamera();
 
-    currentEncounter = null;
-    currentItemName = null;
-    currentPageId = null;
+  currentEncounter = null;
+  currentItemName = null;
+  currentPageId = null;
 
-    const items =
-      save.inventory.length
-        ? `
-          <div class="list">
+  const items =
+    save.inventory.length
+      ? `
+        <div class="inventory-grid">
+          ${
+            save.inventory
+              .map((itemName, index) => {
+                const item =
+                  getItemDefinition(itemName);
 
-            ${
-              save.inventory
-                .map(
-                  (item, index) => `
-                    <button
-                      class="list-item"
-                      type="button"
-                      data-inventory-index="${index}"
-                      style="
-                        width:100%;
-                        text-align:left;
-                        color:inherit;
-                        font:inherit;
-                        cursor:pointer
-                      "
-                    >
-                      ${esc(getItemDisplayName(item))}
-                    </button>
-                  `
-                )
-                .join("")
-            }
+                const displayName =
+                  getItemDisplayName(itemName);
 
-          </div>
-        `
-        : `
-          <div class="empty">
-            ${esc(TEXT.noItemsYet)}
-          </div>
-        `;
+                const picture =
+                  item &&
+                  item.data &&
+                  typeof item.data.defaultPicture === "string" &&
+                  item.data.defaultPicture.trim()
+                    ? item.data.defaultPicture.trim()
+                    : "";
 
-    shell(`
-      <section class="card screen-card inventory-screen">
-        ${items}
-      </section>
-    `, {
-      back: showHome
-    });
+                return `
+                  <button
+                    class="inventory-item-button"
+                    type="button"
+                    data-inventory-index="${index}"
+                    aria-label="${esc(displayName)}"
+                    title="${esc(displayName)}"
+                  >
+                    ${
+                      picture
+                        ? `
+                          <img
+                            class="inventory-item-icon"
+                            src="./images/${esc(picture)}.png"
+                            alt=""
+                            loading="lazy"
+                            decoding="async"
+                          >
+                        `
+                        : `
+                          <span class="inventory-item-fallback">
+                            ${esc(displayName)}
+                          </span>
+                        `
+                    }
+                  </button>
+                `;
+              })
+              .join("")
+          }
+        </div>
+      `
+      : `
+        <div class="empty">
+          ${esc(TEXT.noItemsYet)}
+        </div>
+      `;
 
-    document
-      .querySelectorAll(
-        "[data-inventory-index]"
-      )
-      .forEach(button => {
+  shell(`
+    <section class="card screen-card inventory-screen">
+      ${items}
+    </section>
+  `, {
+    back: showHome
+  });
 
-        button.onclick = () => {
-          const itemName =
-            save.inventory[
-              Number(
-                button.dataset
-                  .inventoryIndex
-              )
-            ];
+  document
+    .querySelectorAll(
+      "[data-inventory-index]"
+    )
+    .forEach(button => {
+      const image =
+        button.querySelector(
+          ".inventory-item-icon"
+        );
 
-          openItemDialogue(
-            itemName
+      if (image) {
+        image.onerror = () => {
+          image.remove();
+          button.classList.add(
+            "inventory-item-missing-image"
           );
+
+          if (
+            !button.querySelector(
+              ".inventory-item-fallback"
+            )
+          ) {
+            const fallback =
+              document.createElement("span");
+
+            fallback.className =
+              "inventory-item-fallback";
+
+            fallback.textContent =
+              button.getAttribute(
+                "aria-label"
+              ) || "?";
+
+            button.appendChild(fallback);
+          }
         };
+      }
 
-      });
-  }
+      button.onclick = () => {
+        const itemName =
+          save.inventory[
+            Number(
+              button.dataset
+                .inventoryIndex
+            )
+          ];
 
-
-  function openItemDialogue(itemName) {
-    const item =
-      getItemDefinition(itemName);
-
-    if (!item) {
-      return toast(
-        TEXT.itemHasNoDialogue
-      );
-    }
-
-    currentItemName = item.name;
-    currentEncounter = null;
-
-    showPage(
-      item.data.startPage
-    );
-  }
-
-
-  function getQuestDisplayName(questName) {
-    if (
-      GAME.questDisplayNames &&
-      typeof GAME.questDisplayNames[questName] === "string" &&
-      GAME.questDisplayNames[questName].trim()
-    ) {
-      return GAME.questDisplayNames[questName].trim();
-    }
-
-    return questName;
-  }
+        openItemDialogue(
+          itemName
+        );
+      };
+    });
+}
 
 
   // =========================================================

@@ -1,19 +1,41 @@
-const CACHE = "qr-city-quest-v10";
+const CACHE = "qr-city-quest-v11";
 
 const PRECACHE = [
   "./",
   "./index.html",
 
-  "./styles.css?v=10",
+  "./styles.css?v=11",
 
-  "./language-loader.js?v=10",
-  "./app.js?v=10",
+  "./language-loader.js?v=11",
+  "./app.js?v=11",
 
-  "./data/apptext_en.js?v=10",
-  "./data/apptext_hu.js?v=10",
+  "./data/apptext_en.js?v=11",
+  "./data/apptext_hu.js?v=11",
 
-  "./data/game-data_en.js?v=10",
-  "./data/game-data_hu.js?v=10",
+  "./data/game-data_en.js?v=11",
+  "./data/game-data_hu.js?v=11",
+
+  "./images/sweets.png",
+  "./images/old-scroll.png",
+  "./images/magic-branch.png",
+  "./images/horn-of-trees.png",
+  "./images/bridge-key.png",
+  "./images/golden-medal.png",
+  "./images/mark-of-goblins.png",
+  "./images/priclys-feather.png",
+  "./images/strange-powder.png",
+  "./images/gold-coin.png",
+  "./images/ruby-sword.png",
+  "./images/staff-of-goblins.png",
+  "./images/fishing-rod.png",
+  "./images/crystal-shard.png",
+  "./images/blobfish.png",
+  "./images/silver-ring.png",
+  "./images/bundle-of-letters.png",
+  "./images/scroll-with-password.png",
+  "./images/old-boots.png",
+  "./images/great-salmon.png",
+  "./images/fish.png",
 
   "./manifest.webmanifest",
 
