@@ -874,6 +874,38 @@
     });
 }
 
+function openItemDialogue(itemName) {
+  const item =
+    getItemDefinition(itemName);
+
+  if (!item) {
+    return toast(
+      TEXT.itemHasNoDialogue
+    );
+  }
+
+  currentItemName = item.name;
+  currentEncounter = null;
+
+  showPage(
+    item.data.startPage
+  );
+}
+
+
+function getQuestDisplayName(questName) {
+  if (
+    GAME.questDisplayNames &&
+    typeof GAME.questDisplayNames[questName] === "string" &&
+    GAME.questDisplayNames[questName].trim()
+  ) {
+    return GAME.questDisplayNames[questName].trim();
+  }
+
+  return questName;
+}
+
+
 
   // =========================================================
   // OBJECTIVES
