@@ -32,121 +32,99 @@ jobs:
           en = en_path.read_text(encoding="utf-8")
           hu = hu_path.read_text(encoding="utf-8")
 
-          old_block = '''    if (item) {
-              if (
-                !save.inventory.includes(
-                  item.name
-                )
-              ) {
-                save.inventory.push(
-                  item.name
-                );
+          old_lines = [
+              "    if (item) {",
+              "      if (",
+              "        !save.inventory.includes(",
+              "          item.name",
+              "        )",
+              "      ) {",
+              "        save.inventory.push(",
+              "          item.name",
+              "        );",
+              "",
+              "        persist();",
+              "",
+              "        toast(",
+              "          TEXT.itemAddedToInventory(",
+              "            getItemDisplayName(",
+              "              item.name",
+              "            )",
+              "          )",
+              "        );",
+              "      }",
+              "",
+              "      openItemDialogue(",
+              "        item.name",
+              "      );",
+              "    }",
+              "  }",
+          ]
+          old_block = "\n".join(old_lines)
 
-                persist();
-
-                toast(
-                  TEXT.itemAddedToInventory(
-                    getItemDisplayName(
-                      item.name
-                    )
-                  )
-                );
-              }
-
-              openItemDialogue(
-                item.name
-              );
-            }
-          }'''
-
-          # The actual file uses four-space indentation at the scan branch.
-          old_block = '''    if (item) {
-      if (
-        !save.inventory.includes(
-          item.name
-        )
-      ) {
-        save.inventory.push(
-          item.name
-        );
-
-        persist();
-
-        toast(
-          TEXT.itemAddedToInventory(
-            getItemDisplayName(
-              item.name
-            )
-          )
-        );
-      }
-
-      openItemDialogue(
-        item.name
-      );
-    }
-  }'''
-
-          new_block = '''    if (item) {
-      const ownsItem =
-        save.inventory.includes(
-          item.name
-        );
-
-      const hadItemBefore =
-        save.hadItems.includes(
-          item.name
-        );
-
-      // First-ever acquisition from a physical item QR.
-      // Keep hadItems as the permanent collection history.
-      if (!hadItemBefore) {
-        if (!ownsItem) {
-          save.inventory.push(
-            item.name
-          );
-        }
-
-        save.hadItems.push(
-          item.name
-        );
-
-        persist();
-
-        if (!ownsItem) {
-          toast(
-            TEXT.itemAddedToInventory(
-              getItemDisplayName(
-                item.name
-              )
-            )
-          );
-        }
-
-        openItemDialogue(
-          item.name
-        );
-        return;
-      }
-
-      // Already collected and still owned: allow normal item use,
-      // but never create a duplicate copy.
-      if (ownsItem) {
-        openItemDialogue(
-          item.name
-        );
-        return;
-      }
-
-      // Already collected but later consumed/traded/lost:
-      // the physical QR cannot be used to reclaim the item.
-      showHome();
-      toast(
-        TEXT.itemAlreadyCollected
-      );
-      return;
-    }
-  }'''
+          new_lines = [
+              "    if (item) {",
+              "      const ownsItem =",
+              "        save.inventory.includes(",
+              "          item.name",
+              "        );",
+              "",
+              "      const hadItemBefore =",
+              "        save.hadItems.includes(",
+              "          item.name",
+              "        );",
+              "",
+              "      // First-ever acquisition from a physical item QR.",
+              "      // Keep hadItems as the permanent collection history.",
+              "      if (!hadItemBefore) {",
+              "        if (!ownsItem) {",
+              "          save.inventory.push(",
+              "            item.name",
+              "          );",
+              "        }",
+              "",
+              "        save.hadItems.push(",
+              "          item.name",
+              "        );",
+              "",
+              "        persist();",
+              "",
+              "        if (!ownsItem) {",
+              "          toast(",
+              "            TEXT.itemAddedToInventory(",
+              "              getItemDisplayName(",
+              "                item.name",
+              "              )",
+              "            )",
+              "          );",
+              "        }",
+              "",
+              "        openItemDialogue(",
+              "          item.name",
+              "        );",
+              "        return;",
+              "      }",
+              "",
+              "      // Already collected and still owned: allow normal item use,",
+              "      // but never create a duplicate copy.",
+              "      if (ownsItem) {",
+              "        openItemDialogue(",
+              "          item.name",
+              "        );",
+              "        return;",
+              "      }",
+              "",
+              "      // Already collected but later consumed/traded/lost:",
+              "      // the physical QR cannot be used to reclaim the item.",
+              "      showHome();",
+              "      toast(",
+              "        TEXT.itemAlreadyCollected",
+              "      );",
+              "      return;",
+              "    }",
+              "  }",
+          ]
+          new_block = "\n".join(new_lines)
 
           if "const hadItemBefore =" not in app:
               count = app.count(old_block)
@@ -156,23 +134,15 @@ jobs:
                   )
               app = app.replace(old_block, new_block, 1)
 
-          en_anchor = (
-              '  itemAddedToInventory: itemName => `${itemName} added to inventory.`,\n'
-          )
-          en_line = (
-              '  itemAlreadyCollected: "You have already collected this item.",\n'
-          )
+          en_anchor = '  itemAddedToInventory: itemName => `${itemName} added to inventory.`,\n'
+          en_line = '  itemAlreadyCollected: "You have already collected this item.",\n'
           if "itemAlreadyCollected:" not in en:
               if en_anchor not in en:
                   raise SystemExit("English item text anchor not found")
               en = en.replace(en_anchor, en_anchor + en_line, 1)
 
-          hu_anchor = (
-              '  itemAddedToInventory: itemName => `${itemName} bekerült a tárgyaid közé.`,\n'
-          )
-          hu_line = (
-              '  itemAlreadyCollected: "Ezt a tárgyat már begyűjtötted.",\n'
-          )
+          hu_anchor = '  itemAddedToInventory: itemName => `${itemName} bekerült a tárgyaid közé.`,\n'
+          hu_line = '  itemAlreadyCollected: "Ezt a tárgyat már begyűjtötted.",\n'
           if "itemAlreadyCollected:" not in hu:
               if hu_anchor not in hu:
                   raise SystemExit("Hungarian item text anchor not found")
