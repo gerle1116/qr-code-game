@@ -1027,7 +1027,7 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Viszlát",
-              "next": "0507"
+              "next": "0506"
             }
           ],
           "actions": [
