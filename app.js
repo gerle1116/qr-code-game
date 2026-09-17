@@ -1384,29 +1384,63 @@ function getQuestDisplayName(questName) {
     }
 
     if (item) {
-      if (
-        !save.inventory.includes(
+      const ownsItem =
+        save.inventory.includes(
           item.name
-        )
-      ) {
-        save.inventory.push(
+        );
+
+      const hadItemBefore =
+        save.hadItems.includes(
+          item.name
+        );
+
+      // First-ever acquisition from a physical item QR.
+      // Keep hadItems as the permanent collection history.
+      if (!hadItemBefore) {
+        if (!ownsItem) {
+          save.inventory.push(
+            item.name
+          );
+        }
+
+        save.hadItems.push(
           item.name
         );
 
         persist();
 
-        toast(
-          TEXT.itemAddedToInventory(
-            getItemDisplayName(
-              item.name
+        if (!ownsItem) {
+          toast(
+            TEXT.itemAddedToInventory(
+              getItemDisplayName(
+                item.name
+              )
             )
-          )
+          );
+        }
+
+        openItemDialogue(
+          item.name
         );
+        return;
       }
 
-      openItemDialogue(
-        item.name
+      // Already collected and still owned: allow normal item use,
+      // but never create a duplicate copy.
+      if (ownsItem) {
+        openItemDialogue(
+          item.name
+        );
+        return;
+      }
+
+      // Already collected but later consumed/traded/lost:
+      // the physical QR cannot be used to reclaim the item.
+      showHome();
+      toast(
+        TEXT.itemAlreadyCollected
       );
+      return;
     }
   }
 

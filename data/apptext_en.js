@@ -18,6 +18,7 @@ window.QR_CITY_QUEST_APP_TEXT = {
   noItemsYet: "You don't have any items yet.",
   itemHasNoDialogue: "This item has no dialogue.",
   itemAddedToInventory: itemName => `${itemName} added to inventory.`,
+  itemAlreadyCollected: "You have already collected this item.",
 
   noActiveObjectives: "No active objectives.",
   objectivesTitle: "Objectives",
