@@ -32,7 +32,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0104"
             }
           ],
@@ -153,7 +153,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0107"
             }
           ],
@@ -294,7 +294,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0210"
             }
           ],
@@ -353,7 +353,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0201"
             }
           ],
@@ -690,7 +690,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0307"
             }
           ],
@@ -768,7 +768,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0404"
             },
             {
@@ -833,7 +833,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0408"
             }
           ],
@@ -855,7 +855,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0408"
             }
           ],
@@ -878,7 +878,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0408"
             }
           ],
@@ -900,7 +900,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0408"
             }
           ],
@@ -915,7 +915,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0409",
           "picture": "talking-tree-horn-hole",
           "speaker": "Beszélő fa",
-          "text": "Szia megint. Emlékszem, mennyire meglepődtél, hogy egy ilyen csodálatos fa tud beszélni. Ezért neked adom A fák kürtjét. Ha megfújod, felébredek az álmomból. És most miben segíthetek?",
+          "text": "Szia megint. Emlékszem, mennyire meglepődtél, hogy egy ilyen csodálatos fa tud beszélni. Ezért neked adom a fák kürtjét. Ha megfújod, felébredek az álmomból. És most miben segíthetek?",
           "buttons": [
             {
               "index": 1,
@@ -1114,7 +1114,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0508"
             }
           ],
@@ -1190,7 +1190,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0513"
             }
           ],
@@ -1286,7 +1286,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "OK",
+              "label": "Oké",
               "next": "0606"
             }
           ],
@@ -1563,7 +1563,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0605"
             }
           ],
@@ -1590,7 +1590,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0605"
             }
           ],
@@ -1617,7 +1617,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0605"
             }
           ],
@@ -1643,7 +1643,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0605"
             }
           ],
@@ -1700,7 +1700,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0618"
             }
           ],
@@ -1748,7 +1748,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0705"
             }
           ],
@@ -1782,7 +1782,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0701"
             }
           ],
@@ -1849,7 +1849,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0707"
             }
           ],
@@ -1872,7 +1872,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0707"
             }
           ],
@@ -1995,7 +1995,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0808"
             }
           ],
@@ -2368,7 +2368,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0911"
             }
           ],
@@ -2441,7 +2441,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0903"
             }
           ],
@@ -2523,7 +2523,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0912"
             }
           ],
@@ -2541,7 +2541,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "0906"
             }
           ],
@@ -2671,7 +2671,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "1001"
             }
           ],
@@ -2726,7 +2726,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_CHOICE",
               "options": [
                 {
-                  "label": "pite",
+                  "label": "Pite",
                   "next": "1007"
                 },
                 {
@@ -2838,7 +2838,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "TITLE_SCREEN"
             }
           ],
@@ -2861,7 +2861,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             },
             {
@@ -2900,7 +2900,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -2914,7 +2914,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3027,7 +3027,7 @@ window.QR_CITY_QUEST_DATA = {
         "1205": {
           "id": "1205",
           "speaker": "Régi tekercs",
-          "text": "válassz egy tárgyat a felszerelésedből:",
+          "text": "Válassz egy tárgyat a felszerelésedből:",
           "buttons": [
             {
               "index": 1,
@@ -3053,7 +3053,7 @@ window.QR_CITY_QUEST_DATA = {
         "1206": {
           "id": "1206",
           "speaker": "Régi tekercs",
-          "text": "Semmi sem történik",
+          "text": "Semmi sem történik.",
           "buttons": [
             {
               "index": 1,
@@ -3114,7 +3114,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3128,7 +3128,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3149,7 +3149,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             },
             {
@@ -3197,7 +3197,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3211,7 +3211,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3237,7 +3237,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             },
             {
@@ -3256,7 +3256,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3277,7 +3277,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3317,7 +3317,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3383,7 +3383,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3414,7 +3414,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3435,7 +3435,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3456,17 +3456,17 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "gyakorolj",
+              "label": "Gyakorolj",
               "next": "2102"
             },
             {
               "index": 3,
-              "label": "dobd el",
+              "label": "Dobd el",
               "next": "2103"
             }
           ],
@@ -3480,7 +3480,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3494,7 +3494,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3518,12 +3518,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "taposs rá",
+              "label": "Taposs rá",
               "next": "2202"
             }
           ],
@@ -3537,7 +3537,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3563,7 +3563,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3577,12 +3577,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "várj",
+              "label": "Várj",
               "next": "2303"
             }
           ],
@@ -3596,12 +3596,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "várj",
+              "label": "Várj",
               "next": "2304"
             }
           ],
@@ -3615,19 +3615,19 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2311",
               "condition": "counter(\"blobfishCaught\") < 1"
             },
             {
               "index": 2,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2310",
               "condition": "counter(\"blobfishCaught\") >= 1"
             },
             {
               "index": 3,
-              "label": "várj",
+              "label": "Várj",
               "next": "2305"
             }
           ],
@@ -3648,12 +3648,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "várj",
+              "label": "Várj",
               "next": "2306"
             }
           ],
@@ -3667,12 +3667,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "várj",
+              "label": "Várj",
               "next": "2307"
             }
           ],
@@ -3686,19 +3686,19 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2312",
               "condition": "counter(\"salmonCaught\") < 1"
             },
             {
               "index": 2,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2310",
               "condition": "counter(\"salmonCaught\") >= 1"
             },
             {
               "index": 3,
-              "label": "várj",
+              "label": "Várj",
               "next": "2308"
             }
           ],
@@ -3719,12 +3719,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "várj",
+              "label": "Várj",
               "next": "2309"
             }
           ],
@@ -3738,13 +3738,13 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2313",
               "condition": "counter(\"bootsCaught\") < 1"
             },
             {
               "index": 2,
-              "label": "húzd ki",
+              "label": "Húzd ki",
               "next": "2310",
               "condition": "counter(\"bootsCaught\") >= 1"
             }
@@ -3766,7 +3766,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3780,7 +3780,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3799,7 +3799,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3822,7 +3822,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3848,7 +3848,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3869,12 +3869,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "fújd fel",
+              "label": "Fújd fel",
               "next": "2502"
             }
           ],
@@ -3884,11 +3884,11 @@ window.QR_CITY_QUEST_DATA = {
         "2502": {
           "id": "2502",
           "speaker": "Bluggyhal",
-          "text": "sokáig küszködsz és próbálkozol, de nem sikerül. Végül feladod.",
+          "text": "Sokáig küszködsz és próbálkozol, de nem sikerül. Végül feladod.",
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3915,7 +3915,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3936,7 +3936,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3957,7 +3957,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -3978,12 +3978,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "vizsgáld meg",
+              "label": "Vizsgáld meg",
               "next": "2802"
             }
           ],
@@ -3997,7 +3997,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -4023,7 +4023,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             },
             {
@@ -4042,7 +4042,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -4063,7 +4063,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
@@ -4084,7 +4084,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "oké",
+              "label": "Oké",
               "next": "HOME"
             }
           ],
