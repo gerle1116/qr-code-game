@@ -21,7 +21,7 @@ jobs:
       - name: Update Hungarian player-visible game text
         shell: bash
         run: |
-          python3 scripts/patch_english_visible_text.py <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
 
           path = Path("data/game-data_hu.js")
@@ -128,11 +128,11 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/game-data_hu.js data/game-data_en.js
+          git add data/game-data_hu.js
           git diff --cached --stat
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Fix English visible text casing and typos"
+          git commit -m "Localize Hungarian player-visible game text"
           git push
