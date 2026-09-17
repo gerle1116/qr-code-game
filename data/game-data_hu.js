@@ -118,7 +118,7 @@ window.QR_CITY_QUEST_DATA = {
         "0106": {
           "id": "0106",
           "speaker": "Gyerek",
-          "text": "Hallottam, amikor a Hírnök egy jelszót mondott a Harcosnak. Valami olyasmi volt, hogy „...Pie”.",
+          "text": "Hallottam, amikor a Hírnök egy jelszót mondott a Harcosnak. Valami olyasmi volt, hogy „...pite”.",
           "buttons": [
             {
               "index": 1,
@@ -1796,7 +1796,7 @@ window.QR_CITY_QUEST_DATA = {
         "0705": {
           "id": "0705",
           "speaker": "Troll",
-          "text": "Az első 5 betű: O, T, T, F, F, S... Mi a következő 2?",
+          "text": "Az első 6 betű: E, K, H, N, Ö, H... Mi a következő 2?",
           "buttons": [
             {
               "index": 1,
@@ -1809,27 +1809,27 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_CHOICE",
               "options": [
                 {
-                  "label": "SE",
+                  "label": "HN",
                   "next": "0706"
                 },
                 {
-                  "label": "EF",
+                  "label": "EK",
                   "next": "0704"
                 },
                 {
-                  "label": "ST",
+                  "label": "KH",
                   "next": "0704"
                 },
                 {
-                  "label": "TS",
+                  "label": "NH",
                   "next": "0704"
                 },
                 {
-                  "label": "ET",
+                  "label": "ÖH",
                   "next": "0704"
                 },
                 {
-                  "label": "FS",
+                  "label": "HE",
                   "next": "0704"
                 }
               ]
@@ -1965,7 +1965,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Mit szólsz egy blobfishhez?",
+              "label": "Mit szólsz egy bluggyhalhoz?",
               "next": "0817"
             }
           ],
@@ -2130,7 +2130,7 @@ window.QR_CITY_QUEST_DATA = {
         "0812": {
           "id": "0812",
           "speaker": "Horgász",
-          "text": "Cserébe elmondhatom, hogy a Troll „o” betűje az „one”-t jelenti.",
+          "text": "Cserébe elmondhatom, hogy a Troll „E” betűje az „egy” szó kezdőbetűje.",
           "buttons": [
             {
               "index": 1,
@@ -2237,7 +2237,7 @@ window.QR_CITY_QUEST_DATA = {
         "0817": {
           "id": "0817",
           "speaker": "Horgász",
-          "text": "A blobfish általában 12–15 másodperc után akad horogra.",
+          "text": "A bluggyhal általában 12–15 másodperc után akad horogra.",
           "buttons": [
             {
               "index": 1,
@@ -2497,7 +2497,7 @@ window.QR_CITY_QUEST_DATA = {
         "0911": {
           "id": "0911",
           "speaker": "Hírnök",
-          "text": "A jelszó első része „Apple”, most pedig mennem kell!",
+          "text": "A jelszó első része „Almás”, most pedig mennem kell!",
           "buttons": [
             {
               "index": 1,
@@ -2639,7 +2639,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_CHOICE",
               "options": [
                 {
-                  "label": "Apple",
+                  "label": "Almás",
                   "next": "1006"
                 },
                 {
@@ -2726,7 +2726,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "DROPDOWN_CHOICE",
               "options": [
                 {
-                  "label": "Pie",
+                  "label": "pite",
                   "next": "1007"
                 },
                 {
@@ -3067,7 +3067,7 @@ window.QR_CITY_QUEST_DATA = {
         "1207": {
           "id": "1207",
           "speaker": "Régi tekercs",
-          "text": "A szavak csillogni kezdenek, a varázspor pedig porrá válik és elpárolog. Alatta új szavakat találsz.\n\nPassword:Applepie",
+          "text": "A szavak csillogni kezdenek, a varázspor pedig porrá válik és elpárolog. Alatta új szavakat találsz.\n\nJelszó: Almás pite",
           "buttons": [
             {
               "index": 1,
@@ -3379,7 +3379,7 @@ window.QR_CITY_QUEST_DATA = {
         "1903": {
           "id": "1903",
           "speaker": "Furcsa por",
-          "text": "Amikor beledörzsölöd a régi papírba, csillogni kezd, és új szöveg jelenik meg rajta. Jelszó: „apple pie”. Megszerezted valamihez a jelszót.",
+          "text": "Amikor beledörzsölöd a régi papírba, csillogni kezd, és új szöveg jelenik meg rajta. Jelszó: „almás pite”. Megszerezted valamihez a jelszót.",
           "buttons": [
             {
               "index": 1,
@@ -3776,7 +3776,7 @@ window.QR_CITY_QUEST_DATA = {
         "2311": {
           "id": "2311",
           "speaker": "Horgászbot",
-          "text": "Küszködsz a behúzással, és a végén egy blobfish lóg a horgon.",
+          "text": "Küszködsz a behúzással, és a végén egy bluggyhal lóg a horgon.",
           "buttons": [
             {
               "index": 1,
@@ -3993,7 +3993,7 @@ window.QR_CITY_QUEST_DATA = {
         "2802": {
           "id": "2802",
           "speaker": "Tekercs a jelszóval",
-          "text": "A papíron ez áll: „password: applepie.” Vajon hol kellene használnod?",
+          "text": "A papíron ez áll: „jelszó: almás pite.” Vajon hol kellene használnod?",
           "buttons": [
             {
               "index": 1,
@@ -4114,7 +4114,7 @@ window.QR_CITY_QUEST_DATA = {
     },
   
     password_ending_pie: {
-      text: 'A jelszó vége valószínűleg "Pie".',
+      text: 'A jelszó vége valószínűleg "pite".',
       folder: "castle"
     },
   
@@ -4124,27 +4124,27 @@ window.QR_CITY_QUEST_DATA = {
     },
   
     village_centre: {
-      text: "A világ különböző területekre van osztva. Jelenleg a Village Centre-ben vagy.",
+      text: "A világ különböző területekre van osztva. Jelenleg a Faluközpontban vagy.",
       folder: "world"
     },
   
     other_world_sections: {
-      text: "A többi terület a Grove, a Bridge és a Castle Entrance.",
+      text: "A többi terület a Liget, a Híd és a Kastélybejárat.",
       folder: "world"
     },
   
     castle_guarded_by_troll: {
-      text: "A Castle Entrance felé vezető utat egy Troll őrzi.",
+      text: "A Kastélybejárat felé vezető utat egy Troll őrzi.",
       folder: "troll"
     },
   
     troll_blocks_castle: {
-      text: "A Trollt le kell győzni, mielőtt elérheted a Castle Entrance-t.",
+      text: "A Trollt le kell győzni, mielőtt elérheted a Kastélybejáratot.",
       folder: "troll"
     },
   
     mark_of_goblins: {
-      text: "A goblinok barátságosabbak lesznek, ha megmutatod nekik a Mark of Goblinst.",
+      text: "A goblinok barátságosabbak lesznek, ha megmutatod nekik a Goblinok jelét.",
       folder: "goblins"
     },
   
@@ -4154,12 +4154,12 @@ window.QR_CITY_QUEST_DATA = {
     },
   
     warrior_weakness: {
-      text: "A Harcost csak a Sword of Kojival lehet legyőzni.",
+      text: "A Harcost csak Koji kardjával lehet legyőzni.",
       folder: "warrior"
     },
   
     grove_magic: {
-      text: "Valami mágikus dolog rejtőzhet a Grove-ban. Érdemes megnézni a fákat.",
+      text: "Valami mágikus dolog rejtőzhet a Ligetben. Érdemes megnézni a fákat.",
       folder: "grove"
     },
   
@@ -4174,7 +4174,7 @@ window.QR_CITY_QUEST_DATA = {
     },
   
     bridge_carvings: {
-      text: "Furcsa faragások vannak a Bridge köveiben.",
+      text: "Furcsa faragások vannak a Híd köveiben.",
       folder: "bridge"
     },
   
@@ -4184,42 +4184,42 @@ window.QR_CITY_QUEST_DATA = {
     },
   
     goblin_gold_coin_trade: {
-      text: "A Goblin a Gold Coint egy ritka állattól származó dologért adná, például valami madártól származóért.",
+      text: "A Goblin az aranyérmét egy ritka állattól származó dologért adná, például valami madártól származóért.",
       folder: "goblins"
     },
   
     goblin_ruby_sword_trade: {
-      text: "A Goblin a Ruby Swordot egy másik drágakőért adná.",
+      text: "A Goblin a rubinkardot egy másik drágakőért adná.",
       folder: "goblins"
     },
   
     goblin_powder_trade: {
-      text: "A Goblin a Strange Powdert egy fényes ékszerért adná.",
+      text: "A Goblin a furcsa port egy fényes ékszerért adná.",
       folder: "goblins"
     },
   
     troll_riddle: {
-      text: 'A Troll rejtvénye: "O, T, T, F, F, S... Mi a következő két betű?"',
+      text: 'A Troll rejtvénye: "E, K, H, N, Ö, H... Mi a következő két betű?"',
       folder: "troll"
     },
   
     bridge_direction: {
-      text: "A Halásztól a Bridge néhány méterre van, jobbra.",
+      text: "A Halásztól a Híd néhány méterre van, jobbra.",
       folder: "bridge"
     },
   
     great_salmon_time: {
-      text: "A Great Salmon általában körülbelül 20–25 másodperc után harap.",
+      text: "A nagy lazac általában körülbelül 20–25 másodperc után harap.",
       folder: "fishing"
     },
   
     troll_o_means_one: {
-      text: 'A Troll rejtvényében az "O" jelentése "One".',
+      text: 'A Troll rejtvényében az "E" az "Egy" szó kezdőbetűje.',
       folder: "troll"
     },
   
     blobfish_time: {
-      text: "A Blobfish általában körülbelül 12–15 másodperc után harap.",
+      text: "A bluggyhal általában körülbelül 12–15 másodperc után harap.",
       folder: "fishing"
     },
   
@@ -4229,7 +4229,7 @@ window.QR_CITY_QUEST_DATA = {
     },
   
     password_first_part: {
-      text: 'A kastély jelszavának első része "Apple".',
+      text: 'A kastély jelszavának első része "Almás".',
       folder: "castle"
     },
   
@@ -4239,12 +4239,12 @@ window.QR_CITY_QUEST_DATA = {
     },
   
     encoded_scroll: {
-      text: 'Az Old Scrollon ez a furcsa szöveg található: "Rcuuygtf:Crrmgrkg".',
+      text: 'A régi tekercsen ez a furcsa szöveg található: "Rcuuygtf:Crrmgrkg".',
       folder: "castle"
     },
   
     castle_password: {
-      text: 'A Kastély jelszava: "ApplePie".',
+      text: 'A Kastély jelszava: "Almás pite".',
       folder: "castle"
     }
   },
