@@ -13,7 +13,7 @@ window.QR_CITY_QUEST_APP_TEXT = {
 
   areaLockedTitle: "Lezárt terület",
   areaLockedText: "Erre a területre még nem léphetsz be.",
-  ok: "OK",
+  ok: "Oké",
 
   noItemsYet: "Még nincs nálad semmilyen tárgy.",
   itemHasNoDialogue: "Ehhez a tárgyhoz nem tartozik párbeszéd.",
