@@ -504,7 +504,7 @@ window.QR_CITY_QUEST_DATA = {
         "0301": {
           "id": "0301",
           "speaker": "Guard",
-          "text": "Hello Boy. Are you interested in how this whole world works?",
+          "text": "Hello, boy. Are you interested in how this whole world works?",
           "buttons": [
             {
               "index": 1,
@@ -528,7 +528,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "What are they",
+              "label": "What are they?",
               "next": "0304"
             },
             {
@@ -572,7 +572,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Who",
+              "label": "Who?",
               "next": "0305"
             },
             {
@@ -943,7 +943,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Okay",
+              "label": "OK",
               "next": "0403"
             },
             {
@@ -964,7 +964,7 @@ window.QR_CITY_QUEST_DATA = {
         "0501": {
           "id": "0501",
           "speaker": "Hunter",
-          "text": "Greetings traveler! I'm on a hurry but I can give you a few minutes.",
+          "text": "Greetings traveler! I'm in a hurry but I can give you a few minutes.",
           "buttons": [
             {
               "index": 1,
@@ -973,7 +973,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Who are you",
+              "label": "Who are you?",
               "next": "0503"
             }
           ],
@@ -1053,7 +1053,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "How to get in to the castle?",
+              "label": "How do I get into the castle?",
               "next": "0504"
             },
             {
@@ -1069,7 +1069,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0506",
           "picture": "hunter-points-fountain",
           "speaker": "Hunter",
-          "text": "Hello again! I'm chasing a Pina Coala, I've got no time, but I saw something shiny between the fountains stones.",
+          "text": "Hello again! I'm chasing a Pina Coala, I've got no time, but I saw something shiny between the fountain stones.",
           "buttons": [
             {
               "index": 1,
@@ -1186,7 +1186,7 @@ window.QR_CITY_QUEST_DATA = {
         "0512": {
           "id": "0512",
           "speaker": "Hunter",
-          "text": "Well have you seen the city guard? He is a friend of mine. He will tell you things about this little empire!",
+          "text": "Well, have you seen the city guard? He is a friend of mine. He will tell you things about this little empire!",
           "buttons": [
             {
               "index": 1,
@@ -1253,7 +1253,7 @@ window.QR_CITY_QUEST_DATA = {
         "0601": {
           "id": "0601",
           "speaker": "Goblin",
-          "text": "Hello who are you? I'm the goblin living in the forest. I'm glad we met.",
+          "text": "Hello, who are you? I'm the goblin living in the forest. I'm glad we met.",
           "buttons": [
             {
               "index": 1,
@@ -1277,7 +1277,7 @@ window.QR_CITY_QUEST_DATA = {
         "0602": {
           "id": "0602",
           "speaker": "Goblin",
-          "text": "Hello come with me! Let me show you my collection!",
+          "text": "Hello, come with me! Let me show you my collection!",
           "buttons": [
             {
               "index": 1,
@@ -1323,7 +1323,7 @@ window.QR_CITY_QUEST_DATA = {
         "0604": {
           "id": "0604",
           "speaker": "Goblin",
-          "text": "Oh you've got the mark of goblins. Let me gift you something my friend!",
+          "text": "Oh you've got the Mark of Goblins. Let me gift you something my friend!",
           "buttons": [
             {
               "index": 1,
@@ -1399,7 +1399,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Ok bye",
+              "label": "Okay, bye",
               "next": "0605"
             },
             {
@@ -1428,7 +1428,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0608",
           "picture": "goblin-holds-lucky-pebble",
           "speaker": "Goblin",
-          "text": "Here! take this lucky Pebble",
+          "text": "Here! Take this lucky pebble.",
           "buttons": [
             {
               "index": 1,
@@ -1437,7 +1437,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Do you have something else",
+              "label": "Do you have something else?",
               "next": "0606"
             }
           ],
@@ -1460,7 +1460,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Ok bye",
+              "label": "Okay, bye",
               "next": "0605"
             },
             {
@@ -1493,7 +1493,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Ok bye",
+              "label": "Okay, bye",
               "next": "0605"
             },
             {
@@ -1586,7 +1586,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0613",
           "picture": "goblin-holds-ruby-sword",
           "speaker": "Goblin",
-          "text": "Here is the ruby sword. I like crystal shard better: It's shinier.",
+          "text": "Here is the ruby sword. I like Crystal Shard better: It's shinier.",
           "buttons": [
             {
               "index": 1,
@@ -1796,11 +1796,11 @@ window.QR_CITY_QUEST_DATA = {
         "0705": {
           "id": "0705",
           "speaker": "Troll",
-          "text": "First 5 letter: O, T, T, F, F, S... Whats next 2?",
+          "text": "First 6 letters: O, T, T, F, F, S... What's next 2?",
           "buttons": [
             {
               "index": 1,
-              "label": "DROPDOWN",
+              "label": "Choose answer",
               "next": "0706"
             }
           ],
@@ -1945,7 +1945,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "What are you doing here",
+              "label": "What are you doing here?",
               "next": "0806"
             }
           ],
@@ -1960,12 +1960,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Okay",
+              "label": "OK",
               "next": "0807"
             },
             {
               "index": 2,
-              "label": "What about a blobfish",
+              "label": "What about a blobfish?",
               "next": "0817"
             }
           ],
@@ -2009,11 +2009,11 @@ window.QR_CITY_QUEST_DATA = {
         "0806": {
           "id": "0806",
           "speaker": "Fisherman",
-          "text": "I'm fishing patiently trying catching a great salmon but I can only find small fish in this muddy river.",
+          "text": "I'm fishing patiently trying to catch a great salmon but I can only find small fish in this muddy river.",
           "buttons": [
             {
               "index": 1,
-              "label": "Can I help you",
+              "label": "Can I help you?",
               "next": "0804"
             },
             {
@@ -2116,7 +2116,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Okay",
+              "label": "OK",
               "next": "0807"
             }
           ],
@@ -2162,7 +2162,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Okay",
+              "label": "OK",
               "next": "0811"
             }
           ],
@@ -2180,7 +2180,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Okay",
+              "label": "OK",
               "next": "0816"
             }
           ],
@@ -2223,7 +2223,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Okay",
+              "label": "OK",
               "next": "0816"
             }
           ],
@@ -2451,11 +2451,11 @@ window.QR_CITY_QUEST_DATA = {
         "0909": {
           "id": "0909",
           "speaker": "Messenger",
-          "text": "Then why did you come back? I'm in hurry. Only come back when you have those letters.",
+          "text": "Then why did you come back? I'm in a hurry. Only come back when you have those letters.",
           "buttons": [
             {
               "index": 1,
-              "label": "Ok",
+              "label": "OK",
               "next": "0906"
             }
           ],
@@ -2469,7 +2469,7 @@ window.QR_CITY_QUEST_DATA = {
         "0910": {
           "id": "0910",
           "speaker": "Messenger",
-          "text": "Hello do you want to help me in something?",
+          "text": "Hello, do you want to help me in something?",
           "buttons": [
             {
               "index": 1,
@@ -2777,7 +2777,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Okay",
+              "label": "OK",
               "next": "1001"
             }
           ],
@@ -2896,7 +2896,7 @@ window.QR_CITY_QUEST_DATA = {
         "1102": {
           "id": "1102",
           "speaker": "Sweets",
-          "text": "A small Warning: DONT!",
+          "text": "A small warning: DON'T!",
           "buttons": [
             {
               "index": 1,
@@ -2936,11 +2936,11 @@ window.QR_CITY_QUEST_DATA = {
         "1201": {
           "id": "1201",
           "speaker": "Old Scroll",
-          "text": "Its just an old scroll folded up!",
+          "text": "It's just an old scroll folded up!",
           "buttons": [
             {
               "index": 1,
-              "label": "Ok",
+              "label": "OK",
               "next": "HOME"
             },
             {
@@ -2960,11 +2960,11 @@ window.QR_CITY_QUEST_DATA = {
         "1202": {
           "id": "1202",
           "speaker": "Old Scroll",
-          "text": "Its paper looks very old, and its a little bit dirty.",
+          "text": "Its paper looks very old, and it's a little bit dirty.",
           "buttons": [
             {
               "index": 1,
-              "label": "Ok",
+              "label": "OK",
               "next": "HOME"
             },
             {
@@ -2979,7 +2979,7 @@ window.QR_CITY_QUEST_DATA = {
         "1203": {
           "id": "1203",
           "speaker": "Old Scroll",
-          "text": "Ypu unfold it and find a strange thing written on it:\n\nRcuuygtf:Crrmgrkg",
+          "text": "You unfold it and find a strange thing written on it:\n\nRcuuygtf:Crrmgrkg",
           "buttons": [
             {
               "index": 1,
@@ -2993,7 +2993,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 3,
-              "label": "Ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3008,16 +3008,16 @@ window.QR_CITY_QUEST_DATA = {
         "1204": {
           "id": "1204",
           "speaker": "Old Scroll",
-          "text": "You start babbling but nothing extraordinary happens wxpect you look like you lost your mind.",
+          "text": "You start babbling but nothing extraordinary happens except you look like you lost your mind.",
           "buttons": [
             {
               "index": 1,
-              "label": "Combin it with an item",
+              "label": "Combine it with an item",
               "next": "1205"
             },
             {
               "index": 2,
-              "label": "Ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3027,7 +3027,7 @@ window.QR_CITY_QUEST_DATA = {
         "1205": {
           "id": "1205",
           "speaker": "Old Scroll",
-          "text": "choose an item from inventory:",
+          "text": "Choose an item from inventory:",
           "buttons": [
             {
               "index": 1,
@@ -3053,11 +3053,11 @@ window.QR_CITY_QUEST_DATA = {
         "1206": {
           "id": "1206",
           "speaker": "Old Scroll",
-          "text": "Nothing happens",
+          "text": "Nothing happens.",
           "buttons": [
             {
               "index": 1,
-              "label": "Ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3067,11 +3067,11 @@ window.QR_CITY_QUEST_DATA = {
         "1207": {
           "id": "1207",
           "speaker": "Old Scroll",
-          "text": "The words shimmer and the magic powder turns into dust and the evaporates under it you find new words.\n\nPassword:Applepie",
+          "text": "The words shimmer and the magic powder turns into dust and the evaporates under it you find new words.\n\nPassword:ApplePie",
           "buttons": [
             {
               "index": 1,
-              "label": "Ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3109,7 +3109,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Swing It",
+              "label": "Swing it",
               "next": "1302"
             },
             {
@@ -3145,7 +3145,7 @@ window.QR_CITY_QUEST_DATA = {
         "1401": {
           "id": "1401",
           "speaker": "Horn of Trees",
-          "text": "This strange horn You've got from tree. It looks like an instrument.",
+          "text": "This strange horn you've got from tree. It looks like an instrument.",
           "buttons": [
             {
               "index": 1,
@@ -3168,7 +3168,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Lets hear her",
+              "label": "Let's hear her",
               "next": "0410"
             }
           ],
@@ -3188,7 +3188,7 @@ window.QR_CITY_QUEST_DATA = {
         "1501": {
           "id": "1501",
           "speaker": "Bridge Key",
-          "text": "A silver Key. You can open the bridge with it.",
+          "text": "A silver key. You can open the bridge with it.",
           "buttons": [
             {
               "index": 1,
@@ -3277,7 +3277,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3298,7 +3298,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Ok",
+              "label": "OK",
               "next": "HOME"
             },
             {
@@ -3317,7 +3317,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3379,11 +3379,11 @@ window.QR_CITY_QUEST_DATA = {
         "1903": {
           "id": "1903",
           "speaker": "Strange Powder",
-          "text": "When you rub it into the old paper, it shimmers and the new text appears. Password:”apple pie”. You got the password to something.",
+          "text": "When you rub it into the old paper, it shimmers and the new text appears. Password:”ApplePie”. You got the password to something.",
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3414,7 +3414,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3435,7 +3435,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3456,17 +3456,17 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "practice",
+              "label": "Practice",
               "next": "2102"
             },
             {
               "index": 3,
-              "label": "throw it",
+              "label": "Throw it",
               "next": "2103"
             }
           ],
@@ -3480,7 +3480,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3494,7 +3494,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3518,12 +3518,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "stomp it",
+              "label": "Stomp it",
               "next": "2202"
             }
           ],
@@ -3537,7 +3537,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3563,7 +3563,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3577,12 +3577,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "reel",
+              "label": "Reel",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "wait",
+              "label": "Wait",
               "next": "2303"
             }
           ],
@@ -3596,12 +3596,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "reel",
+              "label": "Reel",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "wait",
+              "label": "Wait",
               "next": "2304"
             }
           ],
@@ -3615,19 +3615,19 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "reel",
+              "label": "Reel",
               "next": "2311",
               "condition": "counter(\"blobfishCaught\") < 1"
             },
             {
               "index": 2,
-              "label": "reel",
+              "label": "Reel",
               "next": "2310",
               "condition": "counter(\"blobfishCaught\") >= 1"
             },
             {
               "index": 3,
-              "label": "wait",
+              "label": "Wait",
               "next": "2305"
             }
           ],
@@ -3648,12 +3648,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "reel",
+              "label": "Reel",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "wait",
+              "label": "Wait",
               "next": "2306"
             }
           ],
@@ -3667,12 +3667,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "reel",
+              "label": "Reel",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "wait",
+              "label": "Wait",
               "next": "2307"
             }
           ],
@@ -3686,19 +3686,19 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "reel",
+              "label": "Reel",
               "next": "2312",
               "condition": "counter(\"salmonCaught\") < 1"
             },
             {
               "index": 2,
-              "label": "reel",
+              "label": "Reel",
               "next": "2310",
               "condition": "counter(\"salmonCaught\") >= 1"
             },
             {
               "index": 3,
-              "label": "wait",
+              "label": "Wait",
               "next": "2308"
             }
           ],
@@ -3719,12 +3719,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "reel",
+              "label": "Reel",
               "next": "2310"
             },
             {
               "index": 2,
-              "label": "wait",
+              "label": "Wait",
               "next": "2309"
             }
           ],
@@ -3738,13 +3738,13 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "reel",
+              "label": "Reel",
               "next": "2313",
               "condition": "counter(\"bootsCaught\") < 1"
             },
             {
               "index": 2,
-              "label": "reel",
+              "label": "Reel",
               "next": "2310",
               "condition": "counter(\"bootsCaught\") >= 1"
             }
@@ -3766,7 +3766,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3780,7 +3780,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3795,11 +3795,11 @@ window.QR_CITY_QUEST_DATA = {
         "2312": {
           "id": "2312",
           "speaker": "Fishing Rod",
-          "text": "You start pulling it in, you struggle, and then ta-da, there is a large salmon",
+          "text": "You start pulling it in, you struggle, and then ta-da, there is a large salmon.",
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3822,7 +3822,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3848,7 +3848,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3869,12 +3869,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "inflate",
+              "label": "Inflate",
               "next": "2502"
             }
           ],
@@ -3884,11 +3884,11 @@ window.QR_CITY_QUEST_DATA = {
         "2502": {
           "id": "2502",
           "speaker": "Blobfish",
-          "text": "you struggle and fail for a long time. Then you give up.",
+          "text": "You struggle and fail for a long time. Then you give up.",
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3915,7 +3915,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3936,7 +3936,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3957,7 +3957,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -3978,12 +3978,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             },
             {
               "index": 2,
-              "label": "inspect",
+              "label": "Inspect",
               "next": "2802"
             }
           ],
@@ -3993,11 +3993,11 @@ window.QR_CITY_QUEST_DATA = {
         "2802": {
           "id": "2802",
           "speaker": "Scroll with Password",
-          "text": "The words On the paper read, “password: applepie.” Though, where should you use it?",
+          "text": "The words on the paper read, “password: ApplePie.” Though, where should you use it?",
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -4023,7 +4023,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             },
             {
@@ -4042,7 +4042,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -4059,11 +4059,11 @@ window.QR_CITY_QUEST_DATA = {
         "3001": {
           "id": "3001",
           "speaker": "Great Salmon",
-          "text": "It's just a large fish. Wait…its still alive!",
+          "text": "It's just a large fish. Wait… it's still alive!",
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
@@ -4084,7 +4084,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "ok",
+              "label": "OK",
               "next": "HOME"
             }
           ],
