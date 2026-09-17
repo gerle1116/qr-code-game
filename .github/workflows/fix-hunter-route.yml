@@ -1,0 +1,62 @@
+name: Fix Hunter route once
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/fix-hunter-route.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix-hunter-route:
+    if: github.event.head_commit.message == 'Run Hunter route fix'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Patch Hunter timer route in both languages
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          for filename in ("data/game-data_en.js", "data/game-data_hu.js"):
+              path = Path(filename)
+              text = path.read_text(encoding="utf-8")
+              start = text.index('"0504": {')
+              end = text.index('"0505": {', start)
+              block = text[start:end]
+
+              old = '"next": "0507"'
+              new = '"next": "0506"'
+
+              if block.count(old) != 1:
+                  raise SystemExit(
+                      f"Expected exactly one {old} inside 0504 in {filename}, "
+                      f"found {block.count(old)}"
+                  )
+
+              updated_block = block.replace(old, new, 1)
+              path.write_text(
+                  text[:start] + updated_block + text[end:],
+                  encoding="utf-8"
+              )
+          PY
+
+      - name: Verify only intended route changed
+        run: |
+          git diff --check
+          git diff -- data/game-data_en.js data/game-data_hu.js
+
+      - name: Commit fix and remove helper workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/fix-hunter-route.yml
+          git add data/game-data_en.js data/game-data_hu.js
+          git diff --cached --check
+          git commit -m "Fix Hunter timer route"
+          git push
