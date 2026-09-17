@@ -20,6 +20,11 @@ for old, new in [
         raise SystemExit(f"Missing expected label: {old}")
     text = text.replace(old, new)
 
+old = '"label": "Ok bye"'
+if text.count(old) != 3:
+    raise SystemExit(f"Expected 3 Ok bye buttons, found {text.count(old)}")
+text = text.replace(old, '"label": "Okay, bye"')
+
 replacements = [
     ('Hello Boy. Are you interested in how this whole world works?', 'Hello, boy. Are you interested in how this whole world works?'),
     ('"label": "What are they"', '"label": "What are they?"'),
@@ -32,7 +37,6 @@ replacements = [
     ('Hello who are you?', 'Hello, who are you?'),
     ('Hello come with me!', 'Hello, come with me!'),
     ('the mark of goblins. Let me gift', 'the Mark of Goblins. Let me gift'),
-    ('"label": "Ok bye"', '"label": "Okay, bye"'),
     ('Here! take this lucky Pebble', 'Here! Take this lucky pebble.'),
     ('"label": "Do you have something else"', '"label": "Do you have something else?"'),
     ('I like crystal shard better:', 'I like Crystal Shard better:'),
