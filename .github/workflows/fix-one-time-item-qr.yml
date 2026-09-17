@@ -1,4 +1,4 @@
-name: Fix one-time item QR pickups
+name: Hungarian localization cleanup
 
 on:
   push:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  fix-one-time-item-qr:
+  localize-hungarian:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,182 +18,121 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Patch item QR pickup logic and translations
+      - name: Update Hungarian player-visible game text
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
 
-          app_path = Path("app.js")
-          en_path = Path("data/apptext_en.js")
-          hu_path = Path("data/apptext_hu.js")
+          path = Path("data/game-data_hu.js")
+          text = path.read_text(encoding="utf-8")
 
-          app = app_path.read_text(encoding="utf-8")
-          en = en_path.read_text(encoding="utf-8")
-          hu = hu_path.read_text(encoding="utf-8")
+          replacements = [
+              ('"label": "Mit szólsz egy blobfishhez?"', '"label": "Mit szólsz egy bluggyhalhoz?"'),
+              ('"text": "A blobfish általában 12–15 másodperc után akad horogra."', '"text": "A bluggyhal általában 12–15 másodperc után akad horogra."'),
+              ('"text": "Küszködsz a behúzással, és a végén egy blobfish lóg a horgon."', '"text": "Küszködsz a behúzással, és a végén egy bluggyhal lóg a horgon."'),
 
-          old_lines = [
-              "    if (item) {",
-              "      if (",
-              "        !save.inventory.includes(",
-              "          item.name",
-              "        )",
-              "      ) {",
-              "        save.inventory.push(",
-              "          item.name",
-              "        );",
-              "",
-              "        persist();",
-              "",
-              "        toast(",
-              "          TEXT.itemAddedToInventory(",
-              "            getItemDisplayName(",
-              "              item.name",
-              "            )",
-              "          )",
-              "        );",
-              "      }",
-              "",
-              "      openItemDialogue(",
-              "        item.name",
-              "      );",
-              "    }",
-              "  }",
+              ('"text": "Hallottam, amikor a Hírnök egy jelszót mondott a Harcosnak. Valami olyasmi volt, hogy „...Pie”."', '"text": "Hallottam, amikor a Hírnök egy jelszót mondott a Harcosnak. Valami olyasmi volt, hogy „...pite”."'),
+              ('"text": "A jelszó első része „Apple”, most pedig mennem kell!"', '"text": "A jelszó első része „Almás”, most pedig mennem kell!"'),
+              ('"label": "Apple"', '"label": "Almás"'),
+              ('"label": "Pie"', '"label": "pite"'),
+              ('Password:Applepie', 'Jelszó: Almás pite'),
+              ('Jelszó: „apple pie”.', 'Jelszó: „almás pite”.'),
+              ('„password: applepie.”', '„jelszó: almás pite.”'),
+
+              ('"text": "Az első 5 betű: O, T, T, F, F, S... Mi a következő 2?"', '"text": "Az első 6 betű: E, K, H, N, Ö, H... Mi a következő 2?"'),
+              ('"label": "SE"', '"label": "HN"'),
+              ('"label": "EF"', '"label": "EK"'),
+              ('"label": "ST"', '"label": "KH"'),
+              ('"label": "TS"', '"label": "NH"'),
+              ('"label": "ET"', '"label": "ÖH"'),
+              ('"label": "FS"', '"label": "HE"'),
+              ('"text": "Cserébe elmondhatom, hogy a Troll „o” betűje az „one”-t jelenti."', '"text": "Cserébe elmondhatom, hogy a Troll „E” betűje az „egy” szó kezdőbetűje."'),
+
+              ('text: "A világ különböző területekre van osztva. Jelenleg a Village Centre-ben vagy."', 'text: "A világ különböző területekre van osztva. Jelenleg a Faluközpontban vagy."'),
+              ('text: "A többi terület a Grove, a Bridge és a Castle Entrance."', 'text: "A többi terület a Liget, a Híd és a Kastélybejárat."'),
+              ('text: "A Castle Entrance felé vezető utat egy Troll őrzi."', 'text: "A Kastélybejárat felé vezető utat egy Troll őrzi."'),
+              ('text: "A Trollt le kell győzni, mielőtt elérheted a Castle Entrance-t."', 'text: "A Trollt le kell győzni, mielőtt elérheted a Kastélybejáratot."'),
+              ('text: "A goblinok barátságosabbak lesznek, ha megmutatod nekik a Mark of Goblinst."', 'text: "A goblinok barátságosabbak lesznek, ha megmutatod nekik a Goblinok jelét."'),
+              ('text: "A Harcost csak a Sword of Kojival lehet legyőzni."', 'text: "A Harcost csak Koji kardjával lehet legyőzni."'),
+              ('text: "Valami mágikus dolog rejtőzhet a Grove-ban. Érdemes megnézni a fákat."', 'text: "Valami mágikus dolog rejtőzhet a Ligetben. Érdemes megnézni a fákat."'),
+              ('text: "Furcsa faragások vannak a Bridge köveiben."', 'text: "Furcsa faragások vannak a Híd köveiben."'),
+              ('text: "A Goblin a Gold Coint egy ritka állattól származó dologért adná, például valami madártól származóért."', 'text: "A Goblin az aranyérmét egy ritka állattól származó dologért adná, például valami madártól származóért."'),
+              ('text: "A Goblin a Ruby Swordot egy másik drágakőért adná."', 'text: "A Goblin a rubinkardot egy másik drágakőért adná."'),
+              ('text: "A Goblin a Strange Powdert egy fényes ékszerért adná."', 'text: "A Goblin a furcsa port egy fényes ékszerért adná."'),
+              ('text: "A Halásztól a Bridge néhány méterre van, jobbra."', 'text: "A Halásztól a Híd néhány méterre van, jobbra."'),
+              ('text: "A Great Salmon általában körülbelül 20–25 másodperc után harap."', 'text: "A nagy lazac általában körülbelül 20–25 másodperc után harap."'),
+              ('text: "A Blobfish általában körülbelül 12–15 másodperc után harap."', 'text: "A bluggyhal általában körülbelül 12–15 másodperc után harap."'),
+              ('text: \'Az Old Scrollon ez a furcsa szöveg található: "Rcuuygtf:Crrmgrkg".\'', 'text: \'A régi tekercsen ez a furcsa szöveg található: "Rcuuygtf:Crrmgrkg".\''),
+
+              ('text: \'A jelszó vége valószínűleg "Pie".\'', 'text: \'A jelszó vége valószínűleg "pite".\''),
+              ('text: \'A Troll rejtvénye: "O, T, T, F, F, S... Mi a következő két betű?"\'', 'text: \'A Troll rejtvénye: "E, K, H, N, Ö, H... Mi a következő két betű?"\''),
+              ('text: \'A Troll rejtvényében az "O" jelentése "One".\'', 'text: \'A Troll rejtvényében az "E" az "Egy" szó kezdőbetűje.\''),
+              ('text: \'A kastély jelszavának első része "Apple".\'', 'text: \'A kastély jelszavának első része "Almás".\''),
+              ('text: \'A Kastély jelszava: "ApplePie".\'', 'text: \'A Kastély jelszava: "Almás pite".\''),
           ]
-          old_block = "\n".join(old_lines)
 
-          new_lines = [
-              "    if (item) {",
-              "      const ownsItem =",
-              "        save.inventory.includes(",
-              "          item.name",
-              "        );",
-              "",
-              "      const hadItemBefore =",
-              "        save.hadItems.includes(",
-              "          item.name",
-              "        );",
-              "",
-              "      // First-ever acquisition from a physical item QR.",
-              "      // Keep hadItems as the permanent collection history.",
-              "      if (!hadItemBefore) {",
-              "        if (!ownsItem) {",
-              "          save.inventory.push(",
-              "            item.name",
-              "          );",
-              "        }",
-              "",
-              "        save.hadItems.push(",
-              "          item.name",
-              "        );",
-              "",
-              "        persist();",
-              "",
-              "        if (!ownsItem) {",
-              "          toast(",
-              "            TEXT.itemAddedToInventory(",
-              "              getItemDisplayName(",
-              "                item.name",
-              "              )",
-              "            )",
-              "          );",
-              "        }",
-              "",
-              "        openItemDialogue(",
-              "          item.name",
-              "        );",
-              "        return;",
-              "      }",
-              "",
-              "      // Already collected and still owned: allow normal item use,",
-              "      // but never create a duplicate copy.",
-              "      if (ownsItem) {",
-              "        openItemDialogue(",
-              "          item.name",
-              "        );",
-              "        return;",
-              "      }",
-              "",
-              "      // Already collected but later consumed/traded/lost:",
-              "      // the physical QR cannot be used to reclaim the item.",
-              "      showHome();",
-              "      toast(",
-              "        TEXT.itemAlreadyCollected",
-              "      );",
-              "      return;",
-              "    }",
-              "  }",
-          ]
-          new_block = "\n".join(new_lines)
-
-          if "const hadItemBefore =" not in app:
-              count = app.count(old_block)
+          for old, new in replacements:
+              count = text.count(old)
               if count != 1:
-                  raise SystemExit(
-                      f"Expected exactly one item QR pickup block, found {count}"
-                  )
-              app = app.replace(old_block, new_block, 1)
+                  raise SystemExit(f"Expected exactly one match for {old!r}, found {count}")
+              text = text.replace(old, new, 1)
 
-          en_anchor = '  itemAddedToInventory: itemName => `${itemName} added to inventory.`,\n'
-          en_line = '  itemAlreadyCollected: "You have already collected this item.",\n'
-          if "itemAlreadyCollected:" not in en:
-              if en_anchor not in en:
-                  raise SystemExit("English item text anchor not found")
-              en = en.replace(en_anchor, en_anchor + en_line, 1)
-
-          hu_anchor = '  itemAddedToInventory: itemName => `${itemName} bekerült a tárgyaid közé.`,\n'
-          hu_line = '  itemAlreadyCollected: "Ezt a tárgyat már begyűjtötted.",\n'
-          if "itemAlreadyCollected:" not in hu:
-              if hu_anchor not in hu:
-                  raise SystemExit("Hungarian item text anchor not found")
-              hu = hu.replace(hu_anchor, hu_anchor + hu_line, 1)
-
-          required_app_markers = [
-              "const ownsItem =",
-              "const hadItemBefore =",
-              "save.hadItems.push(",
-              "TEXT.itemAlreadyCollected",
-              'case "ADD_ITEM":',
+          required_internal = [
+              '"data": "Blobfish"',
+              '"value": "Blobfish"',
+              '"data": "Get Blobfish for Merchant"',
+              '"data": "Gold Coin"',
+              '"data": "Ruby Sword"',
+              '"data": "Strange Powder"',
+              '"requiredArea": "CASTLE_SIDE"',
+              '"type": "ADD_ITEM"',
+              '"type": "REMOVE_ITEM"',
+              '"type": "START_QUEST"',
+              '"next": "HOME"',
           ]
-          for marker in required_app_markers:
-              if marker not in app:
-                  raise SystemExit(f"Missing final app marker: {marker}")
+          for marker in required_internal:
+              if marker not in text:
+                  raise SystemExit(f"Internal marker unexpectedly missing: {marker}")
 
-          if 'itemAlreadyCollected: "You have already collected this item."' not in en:
-              raise SystemExit("English already-collected text missing")
-          if 'itemAlreadyCollected: "Ezt a tárgyat már begyűjtötted."' not in hu:
-              raise SystemExit("Hungarian already-collected text missing")
+          required_visible = [
+              'Mit szólsz egy bluggyhalhoz?',
+              'A bluggyhal általában 12–15 másodperc után akad horogra.',
+              'egy bluggyhal lóg a horgon.',
+              'E, K, H, N, Ö, H... Mi a következő 2?',
+              '"label": "HN"',
+              'Jelszó: Almás pite',
+              '„jelszó: almás pite.”',
+              'A többi terület a Liget, a Híd és a Kastélybejárat.',
+              'A bluggyhal általában körülbelül 12–15 másodperc után harap.',
+              'A Kastély jelszava: "Almás pite".',
+          ]
+          for marker in required_visible:
+              if marker not in text:
+                  raise SystemExit(f"Visible localization marker missing: {marker}")
 
-          app_path.write_text(app, encoding="utf-8")
-          en_path.write_text(en, encoding="utf-8")
-          hu_path.write_text(hu, encoding="utf-8")
+          path.write_text(text, encoding="utf-8")
+          print(f"Applied {len(replacements)} guarded visible-text replacements.")
           PY
 
-      - name: Validate JavaScript and targeted behavior markers
+      - name: Validate JavaScript
         shell: bash
         run: |
           set -euo pipefail
-          node --check app.js
-          node --check data/apptext_en.js
-          node --check data/apptext_hu.js
-          grep -q 'const hadItemBefore =' app.js
-          grep -q 'TEXT.itemAlreadyCollected' app.js
-          grep -q 'case "ADD_ITEM"' app.js
-          grep -q 'itemAlreadyCollected:' data/apptext_en.js
-          grep -q 'itemAlreadyCollected:' data/apptext_hu.js
+          node --check data/game-data_hu.js
           git diff --check
 
-      - name: Commit one-time QR pickup fix
+      - name: Commit localization cleanup
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app.js data/apptext_en.js data/apptext_hu.js
+          git add data/game-data_hu.js
           git diff --cached --stat
           if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git commit -m "Prevent reclaiming consumed QR items"
+          git commit -m "Localize Hungarian player-visible game text"
           git push
