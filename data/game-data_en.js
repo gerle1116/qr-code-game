@@ -23,7 +23,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0102": {
           "id": "0102",
@@ -49,7 +49,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "sweets_from_merchant"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0103": {
           "id": "0103",
@@ -68,7 +68,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0104": {
           "id": "0104",
@@ -87,7 +87,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0105": {
           "id": "0105",
@@ -113,7 +113,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "0103"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0106": {
           "id": "0106",
@@ -143,7 +143,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "password_ending_pie"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0107": {
           "id": "0107",
@@ -162,7 +162,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -187,7 +187,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0202": {
           "id": "0202",
@@ -204,10 +204,19 @@ window.QR_CITY_QUEST_DATA = {
               "index": 2,
               "label": "Old Scroll",
               "next": "0205"
+            },
+            {
+              "index": 3,
+              "label": "I don't need any now.",
+              "next": "0203"
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {
+            1:"!had_item.includes(\"Sweets\")",
+            2:"!had_item.includes(\"Old Scroll\")",
+            3:"had_item.includes(\"Sweets\") || had_item.includes(\"Old Scroll\")"
+          }
         },
         "0203": {
           "id": "0203",
@@ -223,14 +232,21 @@ window.QR_CITY_QUEST_DATA = {
               "index": 2,
               "label": "Yeah",
               "next": "0206"
-            }
+            },
+            {
+              "index": 3,
+              "label": "Yeah",
+              "next": "0214"
           ],
           "actions": [
             {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {
+            2: "save.quests[\"Get Blobfish for Merchant\"] === undefined",
+            3: "save.quests[\"Get Blobfish for Merchant\"] !== undefined",
+          }
         },
         "0204": {
           "id": "0204",
@@ -257,7 +273,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "0208"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0205": {
           "id": "0205",
@@ -284,7 +300,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "0208"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0206": {
           "id": "0206",
@@ -307,7 +323,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Get Blobfish for Merchant"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0207": {
           "id": "0207",
@@ -344,7 +360,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "eatAttempts"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0208": {
           "id": "0208",
@@ -362,7 +378,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0209": {
           "id": "0209",
@@ -394,7 +410,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Old Scroll"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0210": {
           "id": "0210",
@@ -413,7 +429,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0211": {
           "id": "0211",
@@ -436,7 +452,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0212": {
           "id": "0212",
@@ -463,7 +479,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "0208"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0213": {
           "id": "0213",
@@ -493,7 +509,25 @@ window.QR_CITY_QUEST_DATA = {
               "data": "troll_letters_are_numbers"
             }
           ],
-          "condition": null
+          "condition": {}
+        },
+        "0214": {
+          "id": "0214",
+          "speaker": "Merchant",
+          "text": "Okay then do your tasks!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "0201"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
         }
       }
     },
@@ -518,7 +552,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0302": {
           "id": "0302",
@@ -543,7 +577,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "village_centre"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0303": {
           "id": "0303",
@@ -562,7 +596,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0304": {
           "id": "0304",
@@ -591,7 +625,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "castle_guarded_by_troll"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0305": {
           "id": "0305",
@@ -614,7 +648,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "troll_blocks_castle"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0306": {
           "id": "0306",
@@ -632,7 +666,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0307": {
           "id": "0307",
@@ -655,7 +689,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0308": {
           "id": "0308",
@@ -681,7 +715,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "0309"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0309": {
           "id": "0309",
@@ -699,7 +733,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0310": {
           "id": "0310",
@@ -734,7 +768,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "mark_of_goblins"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -759,7 +793,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0402": {
           "id": "0402",
@@ -782,7 +816,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0403": {
           "id": "0403",
@@ -801,7 +835,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0404": {
           "id": "0404",
@@ -824,7 +858,7 @@ window.QR_CITY_QUEST_DATA = {
               "durationMs": 1200000
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0405": {
           "id": "0405",
@@ -846,7 +880,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "messenger_personality"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0406": {
           "id": "0406",
@@ -868,7 +902,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "warrior_weakness"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0407": {
           "id": "0407",
@@ -891,7 +925,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Magic Branch"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0408": {
           "id": "0408",
@@ -909,7 +943,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0409": {
           "id": "0409",
@@ -934,7 +968,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Horn of Trees"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0410": {
           "id": "0410",
@@ -953,7 +987,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -978,7 +1012,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0502": {
           "id": "0502",
@@ -997,7 +1031,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0503": {
           "id": "0503",
@@ -1016,7 +1050,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0504": {
           "id": "0504",
@@ -1044,7 +1078,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "grove_magic"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0505": {
           "id": "0505",
@@ -1063,7 +1097,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0506": {
           "id": "0506",
@@ -1091,7 +1125,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "fountain_shiny_object"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0507": {
           "id": "0507",
@@ -1105,7 +1139,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0508": {
           "id": "0508",
@@ -1123,7 +1157,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0509": {
           "id": "0509",
@@ -1143,7 +1177,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "creature_in_bushes"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0510": {
           "id": "0510",
@@ -1162,7 +1196,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0511": {
           "id": "0511",
@@ -1181,7 +1215,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "bridge_carvings"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0512": {
           "id": "0512",
@@ -1200,7 +1234,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "guard_knows_world"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0513": {
           "id": "0513",
@@ -1224,7 +1258,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Return Golden Medal to Guard"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0514": {
           "id": "0514",
@@ -1242,7 +1276,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -1295,7 +1329,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0603": {
           "id": "0603",
@@ -1318,7 +1352,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0604": {
           "id": "0604",
@@ -1332,7 +1366,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0605": {
           "id": "0605",
@@ -1355,7 +1389,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0606": {
           "id": "0606",
@@ -1389,7 +1423,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0607": {
           "id": "0607",
@@ -1422,7 +1456,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "goblin_gold_coin_trade"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0608": {
           "id": "0608",
@@ -1450,7 +1484,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Gold Coin"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0609": {
           "id": "0609",
@@ -1483,7 +1517,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "goblin_ruby_sword_trade"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0610": {
           "id": "0610",
@@ -1516,7 +1550,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "goblin_powder_trade"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0611": {
           "id": "0611",
@@ -1553,7 +1587,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "0615"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0612": {
           "id": "0612",
@@ -1580,7 +1614,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Strange Powder"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0613": {
           "id": "0613",
@@ -1607,7 +1641,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Ruby Sword"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0614": {
           "id": "0614",
@@ -1634,7 +1668,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Gold Coin"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0615": {
           "id": "0615",
@@ -1652,7 +1686,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0616": {
           "id": "0616",
@@ -1672,7 +1706,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Staff of Goblins"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0617": {
           "id": "0617",
@@ -1690,7 +1724,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0618": {
           "id": "0618",
@@ -1709,7 +1743,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -1739,7 +1773,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0702": {
           "id": "0702",
@@ -1753,7 +1787,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0703": {
           "id": "0703",
@@ -1773,7 +1807,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0704": {
           "id": "0704",
@@ -1791,7 +1825,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0705": {
           "id": "0705",
@@ -1839,7 +1873,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "troll_riddle"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0706": {
           "id": "0706",
@@ -1862,7 +1896,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Bridge Key"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0707": {
           "id": "0707",
@@ -1881,7 +1915,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -1906,7 +1940,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0802": {
           "id": "0802",
@@ -1931,7 +1965,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "bridge_direction"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0803": {
           "id": "0803",
@@ -1950,7 +1984,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0804": {
           "id": "0804",
@@ -1986,7 +2020,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "great_salmon_time"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0805": {
           "id": "0805",
@@ -2004,7 +2038,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0806": {
           "id": "0806",
@@ -2023,7 +2057,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0807": {
           "id": "0807",
@@ -2042,7 +2076,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0808": {
           "id": "0808",
@@ -2061,7 +2095,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0809": {
           "id": "0809",
@@ -2080,7 +2114,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0810": {
           "id": "0810",
@@ -2107,7 +2141,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "0813"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0811": {
           "id": "0811",
@@ -2125,7 +2159,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0812": {
           "id": "0812",
@@ -2153,7 +2187,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "troll_o_means_one"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0813": {
           "id": "0813",
@@ -2171,7 +2205,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0814": {
           "id": "0814",
@@ -2189,7 +2223,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0815": {
           "id": "0815",
@@ -2213,7 +2247,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Give Fish to Messenger"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0816": {
           "id": "0816",
@@ -2232,7 +2266,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0817": {
           "id": "0817",
@@ -2254,7 +2288,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "blobfish_time"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -2285,7 +2319,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0902": {
           "id": "0902",
@@ -2304,7 +2338,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0903": {
           "id": "0903",
@@ -2336,7 +2370,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "0913"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0904": {
           "id": "0904",
@@ -2358,7 +2392,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Lost Messages"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0905": {
           "id": "0905",
@@ -2382,7 +2416,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Lost Messages"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0906": {
           "id": "0906",
@@ -2401,7 +2435,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0907": {
           "id": "0907",
@@ -2432,7 +2466,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "decoder_powder"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0908": {
           "id": "0908",
@@ -2446,7 +2480,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "0909": {
           "id": "0909",
@@ -2464,7 +2498,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0910": {
           "id": "0910",
@@ -2492,7 +2526,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0911": {
           "id": "0911",
@@ -2514,7 +2548,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "password_first_part"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0912": {
           "id": "0912",
@@ -2532,7 +2566,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "0913": {
           "id": "0913",
@@ -2550,7 +2584,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -2589,7 +2623,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "castle_requires_password"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1002": {
           "id": "1002",
@@ -2621,7 +2655,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "1004"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1003": {
           "id": "1003",
@@ -2661,7 +2695,7 @@ window.QR_CITY_QUEST_DATA = {
               ]
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1004": {
           "id": "1004",
@@ -2680,7 +2714,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1005": {
           "id": "1005",
@@ -2708,7 +2742,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1006": {
           "id": "1006",
@@ -2748,7 +2782,7 @@ window.QR_CITY_QUEST_DATA = {
               ]
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1007": {
           "id": "1007",
@@ -2767,7 +2801,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "OPEN_CASTLE"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1008": {
           "id": "1008",
@@ -2786,7 +2820,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1009": {
           "id": "1009",
@@ -2801,7 +2835,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1010": {
           "id": "1010",
@@ -2829,7 +2863,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1011": {
           "id": "1011",
@@ -2843,7 +2877,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     }
@@ -2891,7 +2925,7 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 3
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1102": {
           "id": "1102",
@@ -2905,7 +2939,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1103": {
           "id": "1103",
@@ -2924,7 +2958,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Sweets"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -2955,7 +2989,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1202": {
           "id": "1202",
@@ -2974,7 +3008,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1203": {
           "id": "1203",
@@ -3003,7 +3037,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "encoded_scroll"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1204": {
           "id": "1204",
@@ -3022,7 +3056,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1205": {
           "id": "1205",
@@ -3048,7 +3082,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "1206"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1206": {
           "id": "1206",
@@ -3062,7 +3096,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1207": {
           "id": "1207",
@@ -3093,7 +3127,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "castle_password"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3119,7 +3153,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1302": {
           "id": "1302",
@@ -3133,7 +3167,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3159,7 +3193,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1402": {
           "id": "1402",
@@ -3173,7 +3207,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       },
       "crossEncounterTargets": [
@@ -3202,7 +3236,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1502": {
           "id": "1502",
@@ -3221,7 +3255,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "CASTLE_SIDE"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3247,7 +3281,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1602": {
           "id": "1602",
@@ -3261,7 +3295,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3282,7 +3316,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3308,7 +3342,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1802": {
           "id": "1802",
@@ -3322,7 +3356,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3348,7 +3382,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "1902": {
           "id": "1902",
@@ -3374,7 +3408,7 @@ window.QR_CITY_QUEST_DATA = {
               "otherNext": "1904"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1903": {
           "id": "1903",
@@ -3405,7 +3439,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "castle_password"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "1904": {
           "id": "1904",
@@ -3419,7 +3453,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3440,7 +3474,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3471,7 +3505,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2102": {
           "id": "2102",
@@ -3485,7 +3519,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2103": {
           "id": "2103",
@@ -3499,7 +3533,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       },
       "aliases": [
@@ -3528,7 +3562,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2202": {
           "id": "2202",
@@ -3542,7 +3576,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3568,7 +3602,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2302": {
           "id": "2302",
@@ -3587,7 +3621,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2303": {
           "id": "2303",
@@ -3606,7 +3640,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2304": {
           "id": "2304",
@@ -3639,7 +3673,7 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 1
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "2305": {
           "id": "2305",
@@ -3658,7 +3692,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2306": {
           "id": "2306",
@@ -3677,7 +3711,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2307": {
           "id": "2307",
@@ -3710,7 +3744,7 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 1
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "2308": {
           "id": "2308",
@@ -3729,7 +3763,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2309": {
           "id": "2309",
@@ -3757,7 +3791,7 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 1
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "2310": {
           "id": "2310",
@@ -3771,7 +3805,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2311": {
           "id": "2311",
@@ -3790,7 +3824,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Blobfish"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "2312": {
           "id": "2312",
@@ -3813,7 +3847,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Get Great Salmon"
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "2313": {
           "id": "2313",
@@ -3832,7 +3866,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "Old Boots"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3853,7 +3887,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3879,7 +3913,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2502": {
           "id": "2502",
@@ -3893,7 +3927,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3927,7 +3961,7 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 1
             }
           ],
-          "condition": null
+          "condition": {}
         },
         "2602": {
           "id": "2602",
@@ -3941,7 +3975,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3962,7 +3996,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -3988,7 +4022,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2802": {
           "id": "2802",
@@ -4007,7 +4041,7 @@ window.QR_CITY_QUEST_DATA = {
               "data": "castle_password"
             }
           ],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -4033,7 +4067,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         },
         "2902": {
           "id": "2902",
@@ -4047,7 +4081,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -4068,7 +4102,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     },
@@ -4089,7 +4123,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": null
+          "condition": {}
         }
       }
     }
