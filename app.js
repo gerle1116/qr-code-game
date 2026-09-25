@@ -2066,22 +2066,24 @@ function getQuestDisplayName(questName) {
     page,
     context
   ) {
+    const conditions =
+      page &&
+      page.condition &&
+      typeof page.condition === "object"
+        ? page.condition
+        : {};
+
     return page.buttons.filter(
       button => {
+        const condition =
+          conditions[button.index];
 
-        if (
-          button.condition &&
-          !checkButtonCondition(
-            button.condition,
-            page,
-            button,
-            context
-          )
-        ) {
-          return false;
-        }
-
-        return true;
+        return checkButtonCondition(
+          condition,
+          page,
+          button,
+          context
+        );
       }
     );
   }
@@ -3305,14 +3307,16 @@ function getQuestDisplayName(questName) {
         }
       }
 
-      for (
-        const button
-        of Array.isArray(page.buttons)
-          ? page.buttons
-          : []
-      ) {
+      const conditions =
+        page &&
+        page.condition &&
+        typeof page.condition === "object"
+          ? Object.values(page.condition)
+          : [];
+
+      for (const condition of conditions) {
         if (
-          typeof button.condition !== "string"
+          typeof condition !== "string"
         ) {
           continue;
         }
@@ -3325,7 +3329,7 @@ function getQuestDisplayName(questName) {
         while (
           (
             match = regex.exec(
-              button.condition
+              condition
             )
           )
         ) {
