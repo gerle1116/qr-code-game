@@ -1,19 +1,19 @@
-const CACHE = "qr-city-quest-v14";
+const CACHE = "qr-city-quest-v16";
 
 const PRECACHE = [
   "./",
   "./index.html",
 
-  "./styles.css?v=14",
+  "./styles.css?v=16",
 
-  "./language-loader.js?v=14",
-  "./app.js?v=14",
+  "./language-loader.js?v=16",
+  "./app.js?v=16",
 
-  "./data/apptext_en.js?v=14",
-  "./data/apptext_hu.js?v=14",
+  "./data/apptext_en.js?v=16",
+  "./data/apptext_hu.js?v=16",
 
-  "./data/game-data_en.js?v=14",
-  "./data/game-data_hu.js?v=14",
+  "./data/game-data_en.js?v=16",
+  "./data/game-data_hu.js?v=16",
 
   // NPC default pictures
   "./images/child.png",
