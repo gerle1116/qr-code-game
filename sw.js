@@ -1,19 +1,19 @@
-const CACHE = "qr-city-quest-v16";
+const CACHE = "qr-city-quest-v17";
 
 const PRECACHE = [
   "./",
   "./index.html",
 
-  "./styles.css?v=16",
+  "./styles.css?v=17",
 
-  "./language-loader.js?v=16",
-  "./app.js?v=16",
+  "./language-loader.js?v=17",
+  "./app.js?v=17",
 
-  "./data/apptext_en.js?v=16",
-  "./data/apptext_hu.js?v=16",
+  "./data/apptext_en.js?v=17",
+  "./data/apptext_hu.js?v=17",
 
-  "./data/game-data_en.js?v=16",
-  "./data/game-data_hu.js?v=16",
+  "./data/game-data_en.js?v=17",
+  "./data/game-data_hu.js?v=17",
 
   // NPC default pictures
   "./images/child.png",
@@ -89,6 +89,7 @@ const PRECACHE = [
   "./images/priclys-feather.png",
   "./images/strange-powder.png",
   "./images/gold-coin.png",
+  "./images/lucky-pebble.png",
   "./images/ruby-sword.png",
   "./images/staff-of-goblins.png",
   "./images/fishing-rod.png",
