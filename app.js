@@ -5,6 +5,7 @@
   const TEXT = window.QR_CITY_QUEST_APP_TEXT;
 
   const SAVE_KEY = "qr-city-quest-save-v1";
+  const DEBUG_VISIBLE_KEY = "qr-city-quest-debug-visible-v1";
   const DEBUG = new URLSearchParams(location.search).get("debug") === "1";
   const DEBUG_SECRET = "QRCITY";
   const LANGUAGE = window.QR_CITY_QUEST_LANGUAGE || "en";
@@ -26,6 +27,7 @@
   let scanLoopToken = 0;
   let zxingControls = null;
   let debugSecretBuffer = "";
+  let secretDebugVisible = loadSecretDebugVisibility();
 
   let offlineStatus =
     location.protocol === "file:"
@@ -325,6 +327,51 @@
   }
 
 
+  function loadSecretDebugVisibility() {
+    try {
+      return (
+        localStorage.getItem(
+          DEBUG_VISIBLE_KEY
+        ) === "1"
+      );
+    } catch (_) {
+      return false;
+    }
+  }
+
+
+  function saveSecretDebugVisibility() {
+    try {
+      localStorage.setItem(
+        DEBUG_VISIBLE_KEY,
+        secretDebugVisible ? "1" : "0"
+      );
+    } catch (_) {}
+  }
+
+
+  function toggleSecretDebugVisibility() {
+    secretDebugVisible =
+      !secretDebugVisible;
+
+    saveSecretDebugVisibility();
+
+    showHome();
+
+    toast(
+      secretDebugVisible
+        ? d(
+            "Debug button enabled.",
+            "Debug gomb bekapcsolva."
+          )
+        : d(
+            "Debug button hidden.",
+            "Debug gomb elrejtve."
+          )
+    );
+  }
+
+
   // =========================================================
   // HELPERS
   // =========================================================
@@ -584,7 +631,9 @@
 
       </section>
     `, {
-      debugButton: DEBUG
+      debugButton:
+        DEBUG ||
+        secretDebugVisible
     });
 
     document
@@ -657,7 +706,7 @@
               .toUpperCase() ===
             DEBUG_SECRET
           ) {
-            showDebug();
+            toggleSecretDebugVisibility();
           }
         }
       );
@@ -5082,7 +5131,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=19");
+        .register("./sw.js?v=20");
 
       await navigator
         .serviceWorker
@@ -5149,7 +5198,7 @@ function getQuestDisplayName(questName) {
         DEBUG_SECRET
       ) {
         debugSecretBuffer = "";
-        showDebug();
+        toggleSecretDebugVisibility();
       }
     }
   );
