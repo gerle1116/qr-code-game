@@ -5020,7 +5020,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=16");
+        .register("./sw.js?v=17");
 
       await navigator
         .serviceWorker
