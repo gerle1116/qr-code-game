@@ -1,4 +1,5 @@
 window.QR_CITY_QUEST_DATA = {
+
   "formatVersion": 1,
   "generatedFrom": "Gergo-app-prototype-item-actions-fixed + QR_City_Quest_Item_Data.md",
   "encounters": {
@@ -83,7 +84,7 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 2,
               "label": "No",
-              "next": "0103"
+              "next": "0108"
             }
           ],
           "actions": [],
@@ -163,6 +164,25 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {}
+        },
+        "0108": {
+            "id": "0108",
+            "picture": "child-back",
+            "speaker": "Child",
+            "text": "Next time, have them!",
+            "buttons": [
+                {
+                    "index": 1,
+                    "label": "OK",
+                    "next": "0104"
+                }
+            ],
+            "actions": [
+                {
+                    "type": "NEXT_SCAN"
+                }
+            ],
+            "condition": {}
         }
       }
     },
@@ -184,10 +204,18 @@ window.QR_CITY_QUEST_DATA = {
               "index": 2,
               "label": "No",
               "next": "0203"
+            },
+            {
+                "index": 3,
+                "label": "Yes",
+                "next":"0215"
             }
           ],
           "actions": [],
-          "condition": {}
+          "condition": {
+            1:"!had_item.includes(\"Sweets\") || !had_item.includes(\"Old Scroll\")",
+            3:"had_item.includes(\"Sweets\") && had_item.includes(\"Old Scroll\")"
+          }
         },
         "0202": {
           "id": "0202",
@@ -237,6 +265,7 @@ window.QR_CITY_QUEST_DATA = {
               "index": 3,
               "label": "Yeah",
               "next": "0214"
+            }
           ],
           "actions": [
             {
@@ -528,6 +557,24 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {}
+        },
+        "0215": {
+          "id": "0215",
+          "speaker": "Merchant",
+          "text": "Sorry but I don't have anything to sell for you now.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay Bye",
+              "next": "0201"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
         }
       }
     },
@@ -689,7 +736,9 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": {}
+          "condition": {
+            2: "save.inventory.includes(\"Golden Medal\")"
+          }
         },
         "0308": {
           "id": "0308",
@@ -845,7 +894,7 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Bye",
-              "next": "0408"
+              "next": "0409"
             }
           ],
           "actions": [
@@ -1302,11 +1351,13 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 3,
               "label": "Look what I have",
-              "next": "0604",
-              "condition": "save.inventory.includes(\"Mark of Goblins\")"
+              "next": "0604"
             }
           ],
-          "actions": []
+          "actions": [],
+          "condition": {
+            3: "save.inventory.includes(\"Mark of Goblins\")"
+          }
         },
         "0602": {
           "id": "0602",
@@ -1401,29 +1452,30 @@ window.QR_CITY_QUEST_DATA = {
               "index": 1,
               "label": "Gold Coin",
               "next": "0607",
-              "condition": "!had_item.includes(\"Gold Coin\")"
             },
             {
               "index": 2,
               "label": "Ruby Sword",
               "next": "0609",
-              "condition": "!had_item.includes(\"Ruby Sword\")"
             },
             {
               "index": 3,
               "label": "Powder",
               "next": "0610",
-              "condition": "!had_item.includes(\"Strange Powder\")"
             },
             {
               "index": 4,
               "label": "I don't need more",
               "next": "0616",
-              "condition": "[\"Strange Powder\", \"Ruby Sword\", \"Gold Coin\"].filter(item => had_item.includes(item)).length >= 2"
             }
           ],
           "actions": [],
-          "condition": {}
+          "condition": {
+            1: "!had_item.includes(\"Gold Coin\")",
+            2: "!had_item.includes(\"Ruby Sword\")",
+            3: "!had_item.includes(\"Strange Powder\")",
+            4: "[\"Strange Powder\", \"Ruby Sword\", \"Gold Coin\"].filter(item => had_item.includes(item)).length >= 2"
+          }
         },
         "0607": {
           "id": "0607",
@@ -1481,7 +1533,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "type": "ADD_ITEM",
-              "data": "Gold Coin"
+              "data": "Lucky Pebble"
             }
           ],
           "condition": {}
@@ -2559,6 +2611,11 @@ window.QR_CITY_QUEST_DATA = {
               "index": 1,
               "label": "OK",
               "next": "0912"
+            },
+            {
+                "index": 2,
+                "label": "Shout for him",
+                "next": "0914"
             }
           ],
           "actions": [
@@ -2585,6 +2642,19 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {}
+        },
+        "0914": {
+            "id": "0914",
+            "speaker": "Messenger",
+            "text": "After a couple of minutes the messenger comes back. He is a bit angry but he is happy to see you.",
+            "buttons": [
+              {
+                "index": 1,
+                "label": "Wanna give you something",
+                "next": "0903"
+              },
+            ],
+            "actions": []
         }
       }
     },
@@ -2902,13 +2972,11 @@ window.QR_CITY_QUEST_DATA = {
               "index": 2,
               "label": "Eat them",
               "next": "1102",
-              "condition": "counter(\"eatAttempts\") < 4"
             },
             {
               "index": 3,
               "label": "Eat them",
               "next": "1103",
-              "condition": "counter(\"eatAttempts\") >= 4"
             }
           ],
           "actions": [
@@ -2925,7 +2993,10 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 3
             }
           ],
-          "condition": {}
+          "condition": {
+            2: "counter(\"eatAttempts\") < 4",
+            3: "counter(\"eatAttempts\") >= 4"
+          }
         },
         "1102": {
           "id": "1102",
@@ -3604,6 +3675,7 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
+
         "2302": {
           "id": "2302",
           "speaker": "Fishing Rod",
@@ -3623,6 +3695,7 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
+
         "2303": {
           "id": "2303",
           "speaker": "Fishing Rod",
@@ -3642,6 +3715,7 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
+
         "2304": {
           "id": "2304",
           "speaker": "Fishing Rod",
@@ -3650,14 +3724,12 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Reel",
-              "next": "2311",
-              "condition": "counter(\"blobfishCaught\") < 1"
+              "next": "2311"
             },
             {
               "index": 2,
               "label": "Reel",
-              "next": "2310",
-              "condition": "counter(\"blobfishCaught\") >= 1"
+              "next": "2310"
             },
             {
               "index": 3,
@@ -3673,8 +3745,12 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 1
             }
           ],
-          "condition": {}
+          "condition": {
+            1: "counter(\"blobfishCaught\") < 1",
+            2: "counter(\"blobfishCaught\") >= 1"
+          }
         },
+
         "2305": {
           "id": "2305",
           "speaker": "Fishing Rod",
@@ -3694,6 +3770,7 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
+
         "2306": {
           "id": "2306",
           "speaker": "Fishing Rod",
@@ -3713,6 +3790,7 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
+
         "2307": {
           "id": "2307",
           "speaker": "Fishing Rod",
@@ -3721,14 +3799,12 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Reel",
-              "next": "2312",
-              "condition": "counter(\"salmonCaught\") < 1"
+              "next": "2312"
             },
             {
               "index": 2,
               "label": "Reel",
-              "next": "2310",
-              "condition": "counter(\"salmonCaught\") >= 1"
+              "next": "2310"
             },
             {
               "index": 3,
@@ -3744,8 +3820,12 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 1
             }
           ],
-          "condition": {}
+          "condition": {
+            1: "counter(\"salmonCaught\") < 1",
+            2: "counter(\"salmonCaught\") >= 1"
+          }
         },
+
         "2308": {
           "id": "2308",
           "speaker": "Fishing Rod",
@@ -3765,6 +3845,7 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
+
         "2309": {
           "id": "2309",
           "speaker": "Fishing Rod",
@@ -3773,14 +3854,12 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Reel",
-              "next": "2313",
-              "condition": "counter(\"bootsCaught\") < 1"
+              "next": "2313"
             },
             {
               "index": 2,
               "label": "Reel",
-              "next": "2310",
-              "condition": "counter(\"bootsCaught\") >= 1"
+              "next": "2310"
             }
           ],
           "actions": [
@@ -3791,8 +3870,12 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 1
             }
           ],
-          "condition": {}
+          "condition": {
+            1: "counter(\"bootsCaught\") < 1",
+            2: "counter(\"bootsCaught\") >= 1"
+          }
         },
+
         "2310": {
           "id": "2310",
           "speaker": "Fishing Rod",
@@ -3807,6 +3890,7 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
+
         "2311": {
           "id": "2311",
           "speaker": "Fishing Rod",
@@ -3826,6 +3910,7 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "condition": {}
         },
+
         "2312": {
           "id": "2312",
           "speaker": "Fishing Rod",
@@ -3849,6 +3934,7 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "condition": {}
         },
+
         "2313": {
           "id": "2313",
           "speaker": "Fishing Rod",
@@ -3945,7 +4031,6 @@ window.QR_CITY_QUEST_DATA = {
               "index": 1,
               "label": "Put it on.",
               "next": "2602",
-              "condition": "counter(\"worn\") < 1"
             },
             {
               "index": 2,
@@ -3961,7 +4046,9 @@ window.QR_CITY_QUEST_DATA = {
               "buttonIndex": 1
             }
           ],
-          "condition": {}
+          "condition": {
+              1: "counter(\"worn\") < 1"
+          }
         },
         "2602": {
           "id": "2602",
@@ -4126,8 +4213,29 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {}
         }
       }
-    }
-  },
+    },
+    "Lucky Pebble": {
+        "defaultPicture": "lucky-pebble",
+        "displayName": "Lucky Pebble",
+        "startPage": "3201",
+        "pages": {
+          "3201": {
+            "id": "3201",
+            "speaker": "Lucky Pebble",
+            "text": "A small pebble that seems to bring luck.",
+            "buttons": [
+              {
+                "index": 1,
+                "label": "OK",
+                "next": "HOME"
+              }
+            ],
+            "actions": [],
+            "condition": {}
+          }
+        }
+      }
+    },
   knowledgeFolders: {
   merchant: "Merchant",
   castle: "Castle",
@@ -4299,7 +4407,7 @@ window.QR_CITY_QUEST_DATA = {
     "Removed duplicate Gold Coin reward from Goblin page 0604; the reward remains on page 0608.",
     "Bridge Key now unlocks internal area id CASTLE_SIDE to match encounters 09 and 10.",
     "Warrior page 1002 now uses DROPDOWN_INVENTORY so unavailable items cannot be selected.",
-    "Generic counter actions and button conditions now enforce Sweets eating, Silver Ring one-time Wear, and one-time Fishing Rod catches.",
+    "Generic counter actions and page-level button conditions now enforce Sweets eating, Silver Ring one-time Wear, and one-time Fishing Rod catches.",
     "Items use displayName for player-facing names while item object keys remain stable internal IDs.",
     "DROPDOWN_INVENTORY options separate internal value from player-facing label; unmatched inventory items use otherNext."
   ],
@@ -4307,6 +4415,6 @@ window.QR_CITY_QUEST_DATA = {
     "The app must read gameData.items when an inventory item is tapped.",
     "The app must understand the HOME next target for item dialogue buttons.",
     "Item dialogue navigation must allow Horn of Trees to open NPC page 0410.",
-    "The app must support generic counter actions and counter(...) button conditions."
+    "The app must support generic counter actions and counter(...) page-level conditions."
   ]
 };
