@@ -1,13 +1,13 @@
-const CACHE = "qr-city-quest-v19";
+const CACHE = "qr-city-quest-v20";
 
 const PRECACHE = [
   "./",
   "./index.html",
 
-  "./styles.css?v=18",
+  "./styles.css?v=20",
 
-  "./language-loader.js?v=19",
-  "./app.js?v=19",
+  "./language-loader.js?v=20",
+  "./app.js?v=20",
 
   "./data/apptext_en.js?v=18",
   "./data/apptext_hu.js?v=18",
