@@ -525,7 +525,7 @@
 
     shell(`
       <section class="hero">
-        <h1>${esc(TEXT.homeTitle)}</h1>
+        <h1 id="homeTitleSecret">${esc(TEXT.homeTitle)}</h1>
       </section>
 
       <section class="card home-grid">
@@ -602,6 +602,66 @@
     document
       .getElementById("knowledgeBtn")
       .onclick = showThingsIKnow;
+
+    const secretTitle =
+      document.getElementById(
+        "homeTitleSecret"
+      );
+
+    if (secretTitle) {
+      let secretTapCount = 0;
+      let secretTapTimer = null;
+
+      secretTitle.addEventListener(
+        "click",
+        () => {
+          secretTapCount += 1;
+
+          if (secretTapTimer) {
+            clearTimeout(
+              secretTapTimer
+            );
+          }
+
+          secretTapTimer =
+            setTimeout(
+              () => {
+                secretTapCount = 0;
+              },
+              2500
+            );
+
+          if (
+            secretTapCount < 5
+          ) {
+            return;
+          }
+
+          secretTapCount = 0;
+
+          clearTimeout(
+            secretTapTimer
+          );
+
+          const code =
+            window.prompt(
+              d(
+                "Enter secret code:",
+                "Írd be a titkos kódot:"
+              )
+            );
+
+          if (
+            String(code ?? "")
+              .trim()
+              .toUpperCase() ===
+            DEBUG_SECRET
+          ) {
+            showDebug();
+          }
+        }
+      );
+    }
   }
 
 
@@ -5022,7 +5082,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=18");
+        .register("./sw.js?v=19");
 
       await navigator
         .serviceWorker
