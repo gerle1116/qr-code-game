@@ -6,6 +6,7 @@
 
   const SAVE_KEY = "qr-city-quest-save-v1";
   const DEBUG = new URLSearchParams(location.search).get("debug") === "1";
+  const DEBUG_SECRET = "QRCITY";
   const LANGUAGE = window.QR_CITY_QUEST_LANGUAGE || "en";
   const app = document.getElementById("app");
 
@@ -24,6 +25,7 @@
   let cameraStream = null;
   let scanLoopToken = 0;
   let zxingControls = null;
+  let debugSecretBuffer = "";
 
   let offlineStatus =
     location.protocol === "file:"
@@ -5047,6 +5049,51 @@ function getQuestDisplayName(questName) {
   // =========================================================
   // EVENTS / START
   // =========================================================
+
+  document.addEventListener(
+    "keydown",
+    event => {
+      if (
+        event.ctrlKey ||
+        event.altKey ||
+        event.metaKey ||
+        event.key.length !== 1
+      ) {
+        return;
+      }
+
+      const target = event.target;
+
+      if (
+        target &&
+        (
+          target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.tagName === "SELECT" ||
+          target.isContentEditable
+        )
+      ) {
+        return;
+      }
+
+      debugSecretBuffer =
+        (
+          debugSecretBuffer +
+          event.key.toUpperCase()
+        ).slice(
+          -DEBUG_SECRET.length
+        );
+
+      if (
+        debugSecretBuffer ===
+        DEBUG_SECRET
+      ) {
+        debugSecretBuffer = "";
+        showDebug();
+      }
+    }
+  );
+
 
   window.addEventListener(
     "pagehide",
