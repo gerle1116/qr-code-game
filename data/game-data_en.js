@@ -1,8 +1,300 @@
 window.QR_CITY_QUEST_DATA = {
-
   "formatVersion": 1,
   "generatedFrom": "Gergo-app-prototype-item-actions-fixed + QR_City_Quest_Item_Data.md",
   "encounters": {
+    "10": {
+      "defaultPicture": "warrior",
+      "requiredArea": "CASTLE_SIDE",
+      "startPage": "1001",
+      "pages": {
+        "1001": {
+          "id": "1001",
+          "speaker": "Warrior",
+          "text": "Hello! If you wanna get inside, you have to know the password!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay, bye",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "I don't know, but I show you something",
+              "next": "1002"
+            },
+            {
+              "index": 3,
+              "label": "I know",
+              "next": "1003"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "castle_requires_password"
+            }
+          ],
+          "condition": {}
+        },
+        "1002": {
+          "id": "1002",
+          "picture": "warrior-arms-crossed",
+          "speaker": "Warrior",
+          "text": "Choose an item from your inventory.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Item",
+              "next": "1005"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Ruby Sword",
+                  "label": "Ruby Sword",
+                  "next": "1005"
+                },
+                {
+                  "value": "Magic Branch",
+                  "label": "Magic Branch",
+                  "next": "1010"
+                }
+              ],
+              "otherNext": "1004"
+            }
+          ],
+          "condition": {}
+        },
+        "1003": {
+          "id": "1003",
+          "speaker": "Warrior",
+          "text": "Then what is it?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose First Part",
+              "next": "1006"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_CHOICE",
+              "options": [
+                {
+                  "label": "Apple",
+                  "next": "1006"
+                },
+                {
+                  "label": "Orange",
+                  "next": "1008"
+                },
+                {
+                  "label": "Plum",
+                  "next": "1008"
+                },
+                {
+                  "label": "Pear",
+                  "next": "1008"
+                },
+                {
+                  "label": "Peach",
+                  "next": "1008"
+                }
+              ]
+            }
+          ],
+          "condition": {}
+        },
+        "1004": {
+          "id": "1004",
+          "picture": "warrior-holds-sword",
+          "speaker": "Warrior",
+          "text": "No you can't get inside with that.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "1001"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "1005": {
+          "id": "1005",
+          "speaker": "Warrior",
+          "text": "Ha you wanna fight?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "No bye",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "I wanna give it to you",
+              "next": "1004"
+            },
+            {
+              "index": 3,
+              "label": "Yes",
+              "next": "1009"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "1006": {
+          "id": "1006",
+          "speaker": "Warrior",
+          "text": "Choose the second part.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose Second Part",
+              "next": "1007"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_CHOICE",
+              "options": [
+                {
+                  "label": "Pie",
+                  "next": "1007"
+                },
+                {
+                  "label": "Juice",
+                  "next": "1008"
+                },
+                {
+                  "label": "Tree",
+                  "next": "1008"
+                },
+                {
+                  "label": "Flavour",
+                  "next": "1008"
+                },
+                {
+                  "label": "Fruit",
+                  "next": "1008"
+                }
+              ]
+            }
+          ],
+          "condition": {}
+        },
+        "1007": {
+          "id": "1007",
+          "picture": "warrior-open-gate-side",
+          "speaker": "Warrior",
+          "text": "Well... that's correct! You may go in.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "YAY",
+              "next": "1011"
+            }
+          ],
+          "actions": [
+            {
+              "type": "OPEN_CASTLE"
+            }
+          ],
+          "condition": {}
+        },
+        "1008": {
+          "id": "1008",
+          "picture": "warrior-holds-sword",
+          "speaker": "Warrior",
+          "text": "Well... that's incorrect. You must stay out!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "1001"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "1009": {
+          "id": "1009",
+          "picture": "warrior-defeated-weaponless",
+          "speaker": "Warrior",
+          "text": "Let's go!! Nothing happens. A dinosaur jumps out of your hand and two strikes it defeats the guard.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "May I go in?",
+              "next": "1007"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "1010": {
+          "id": "1010",
+          "speaker": "Warrior",
+          "text": "You swing it. Little rainbow sparkles, but nothing else.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "1001"
+            },
+            {
+              "index": 2,
+              "label": "Ha ha ha ha ha ha ha ha...",
+              "next": "1010"
+            },
+            {
+              "index": 3,
+              "label": "I wanna give it to you",
+              "next": "1004"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "1011": {
+          "id": "1011",
+          "speaker": "Warrior",
+          "text": "You won!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "TITLE_SCREEN"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
     "01": {
       "defaultPicture": "child",
       "startPage": "0101",
@@ -166,23 +458,23 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {}
         },
         "0108": {
-            "id": "0108",
-            "picture": "child-back",
-            "speaker": "Child",
-            "text": "Next time, have them!",
-            "buttons": [
-                {
-                    "index": 1,
-                    "label": "OK",
-                    "next": "0104"
-                }
-            ],
-            "actions": [
-                {
-                    "type": "NEXT_SCAN"
-                }
-            ],
-            "condition": {}
+          "id": "0108",
+          "picture": "child-back",
+          "speaker": "Child",
+          "text": "Next time, have them!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "0104"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
         }
       }
     },
@@ -206,15 +498,15 @@ window.QR_CITY_QUEST_DATA = {
               "next": "0203"
             },
             {
-                "index": 3,
-                "label": "Yes",
-                "next":"0215"
+              "index": 3,
+              "label": "Yes",
+              "next": "0215"
             }
           ],
           "actions": [],
           "condition": {
-            1:"!had_item.includes(\"Sweets\") || !had_item.includes(\"Old Scroll\")",
-            3:"had_item.includes(\"Sweets\") && had_item.includes(\"Old Scroll\")"
+            "1": "!had_item.includes(\"Sweets\") || !had_item.includes(\"Old Scroll\")",
+            "3": "had_item.includes(\"Sweets\") && had_item.includes(\"Old Scroll\")"
           }
         },
         "0202": {
@@ -241,9 +533,9 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "actions": [],
           "condition": {
-            1:"!had_item.includes(\"Sweets\")",
-            2:"!had_item.includes(\"Old Scroll\")",
-            3:"had_item.includes(\"Sweets\") || had_item.includes(\"Old Scroll\")"
+            "1": "!had_item.includes(\"Sweets\")",
+            "2": "!had_item.includes(\"Old Scroll\")",
+            "3": "had_item.includes(\"Sweets\") || had_item.includes(\"Old Scroll\")"
           }
         },
         "0203": {
@@ -273,8 +565,8 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {
-            2: "save.quests[\"Get Blobfish for Merchant\"] === undefined",
-            3: "save.quests[\"Get Blobfish for Merchant\"] !== undefined",
+            "2": "save.quests[\"Get Blobfish for Merchant\"] === undefined",
+            "3": "save.quests[\"Get Blobfish for Merchant\"] !== undefined"
           }
         },
         "0204": {
@@ -605,7 +897,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0302",
           "picture": "guard-map-village-center",
           "speaker": "Guard",
-          "text": "So let me tell you! This place is made out of different sections. We are in the Village Centre part. There are 3 other sections...",
+          "text": "So let me tell you! This place is made up of different sections. We are in the Village Centre. There are 3 other sections...",
           "buttons": [
             {
               "index": 1,
@@ -737,7 +1029,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {
-            2: "save.inventory.includes(\"Golden Medal\")"
+            "2": "save.inventory.includes(\"Golden Medal\")"
           }
         },
         "0308": {
@@ -851,12 +1143,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "OK",
+              "label": "Wait and talk later",
               "next": "0404"
             },
             {
               "index": 2,
-              "label": "Bye",
+              "label": "Leave now",
               "next": "0407"
             }
           ],
@@ -1356,7 +1648,7 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "actions": [],
           "condition": {
-            3: "save.inventory.includes(\"Mark of Goblins\")"
+            "3": "save.inventory.includes(\"Mark of Goblins\")"
           }
         },
         "0602": {
@@ -1451,30 +1743,30 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Gold Coin",
-              "next": "0607",
+              "next": "0607"
             },
             {
               "index": 2,
               "label": "Ruby Sword",
-              "next": "0609",
+              "next": "0609"
             },
             {
               "index": 3,
               "label": "Powder",
-              "next": "0610",
+              "next": "0610"
             },
             {
               "index": 4,
               "label": "I don't need more",
-              "next": "0616",
+              "next": "0616"
             }
           ],
           "actions": [],
           "condition": {
-            1: "!had_item.includes(\"Gold Coin\")",
-            2: "!had_item.includes(\"Ruby Sword\")",
-            3: "!had_item.includes(\"Strange Powder\")",
-            4: "[\"Strange Powder\", \"Ruby Sword\", \"Gold Coin\"].filter(item => had_item.includes(item)).length >= 2"
+            "1": "!had_item.includes(\"Gold Coin\")",
+            "2": "!had_item.includes(\"Ruby Sword\")",
+            "3": "!had_item.includes(\"Strange Powder\")",
+            "4": "[\"Strange Powder\", \"Ruby Sword\", \"Gold Coin\"].filter(item => had_item.includes(item)).length >= 2"
           }
         },
         "0607": {
@@ -1998,7 +2290,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0802",
           "picture": "fisherman-points-direction",
           "speaker": "Fisherman",
-          "text": "Well you walk a few meters it's right there. Turn right from here but before with the troll also could you help me with something?",
+          "text": "Walk a few meters and turn right; the bridge is right there. Beware of the Troll. Also, could you help me with something?",
           "buttons": [
             {
               "index": 1,
@@ -2613,9 +2905,9 @@ window.QR_CITY_QUEST_DATA = {
               "next": "0912"
             },
             {
-                "index": 2,
-                "label": "Shout for him",
-                "next": "0914"
+              "index": 2,
+              "label": "Shout for him",
+              "next": "0914"
             }
           ],
           "actions": [
@@ -2644,310 +2936,17 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {}
         },
         "0914": {
-            "id": "0914",
-            "speaker": "Messenger",
-            "text": "After a couple of minutes the messenger comes back. He is a bit angry but he is happy to see you.",
-            "buttons": [
-              {
-                "index": 1,
-                "label": "Wanna give you something",
-                "next": "0903"
-              },
-            ],
-            "actions": []
-        }
-      }
-    },
-    "10": {
-      "defaultPicture": "warrior",
-      "requiredArea": "CASTLE_SIDE",
-      "startPage": "1001",
-      "pages": {
-        "1001": {
-          "id": "1001",
-          "speaker": "Warrior",
-          "text": "Hello! If you wanna get inside, you have to know the password!",
+          "id": "0914",
+          "speaker": "Messenger",
+          "text": "After a couple of minutes the messenger comes back. He is a bit angry but he is happy to see you.",
           "buttons": [
             {
               "index": 1,
-              "label": "Okay, bye",
-              "next": "1001"
-            },
-            {
-              "index": 2,
-              "label": "I don't know, but I show you something",
-              "next": "1002"
-            },
-            {
-              "index": 3,
-              "label": "I know",
-              "next": "1003"
+              "label": "Wanna give you something",
+              "next": "0903"
             }
           ],
-          "actions": [
-            {
-              "type": "NEXT_SCAN"
-            },
-            {
-              "type": "ADD_KNOWLEDGE",
-              "data": "castle_requires_password"
-            }
-          ],
-          "condition": {}
-        },
-        "1002": {
-          "id": "1002",
-          "picture": "warrior-arms-crossed",
-          "speaker": "Warrior",
-          "text": "Choose an item from your inventory.",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "Choose Item",
-              "next": "1005"
-            }
-          ],
-          "actions": [
-            {
-              "type": "DROPDOWN_INVENTORY",
-              "options": [
-                {
-                  "value": "Ruby Sword",
-                  "label": "Ruby Sword",
-                  "next": "1005"
-                },
-                {
-                  "value": "Magic Branch",
-                  "label": "Magic Branch",
-                  "next": "1010"
-                }
-              ],
-              "otherNext": "1004"
-            }
-          ],
-          "condition": {}
-        },
-        "1003": {
-          "id": "1003",
-          "speaker": "Warrior",
-          "text": "Then what is it?",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "Choose First Part",
-              "next": "1006"
-            }
-          ],
-          "actions": [
-            {
-              "type": "DROPDOWN_CHOICE",
-              "options": [
-                {
-                  "label": "Apple",
-                  "next": "1006"
-                },
-                {
-                  "label": "Orange",
-                  "next": "1008"
-                },
-                {
-                  "label": "Plum",
-                  "next": "1008"
-                },
-                {
-                  "label": "Pear",
-                  "next": "1008"
-                },
-                {
-                  "label": "Peach",
-                  "next": "1008"
-                }
-              ]
-            }
-          ],
-          "condition": {}
-        },
-        "1004": {
-          "id": "1004",
-          "picture": "warrior-holds-sword",
-          "speaker": "Warrior",
-          "text": "No you can't get inside with that.",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "OK",
-              "next": "1001"
-            }
-          ],
-          "actions": [
-            {
-              "type": "NEXT_SCAN"
-            }
-          ],
-          "condition": {}
-        },
-        "1005": {
-          "id": "1005",
-          "speaker": "Warrior",
-          "text": "Ha you wanna fight?",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "No bye",
-              "next": "1001"
-            },
-            {
-              "index": 2,
-              "label": "I wanna give it to you",
-              "next": "1004"
-            },
-            {
-              "index": 3,
-              "label": "Yes",
-              "next": "1009"
-            }
-          ],
-          "actions": [
-            {
-              "type": "NEXT_SCAN"
-            }
-          ],
-          "condition": {}
-        },
-        "1006": {
-          "id": "1006",
-          "speaker": "Warrior",
-          "text": "Choose the second part.",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "Choose Second Part",
-              "next": "1007"
-            }
-          ],
-          "actions": [
-            {
-              "type": "DROPDOWN_CHOICE",
-              "options": [
-                {
-                  "label": "Pie",
-                  "next": "1007"
-                },
-                {
-                  "label": "Juice",
-                  "next": "1008"
-                },
-                {
-                  "label": "Tree",
-                  "next": "1008"
-                },
-                {
-                  "label": "Flavour",
-                  "next": "1008"
-                },
-                {
-                  "label": "Fruit",
-                  "next": "1008"
-                }
-              ]
-            }
-          ],
-          "condition": {}
-        },
-        "1007": {
-          "id": "1007",
-          "picture": "warrior-open-gate-side",
-          "speaker": "Warrior",
-          "text": "Well... that's correct! You may go in.",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "YAY",
-              "next": "1011"
-            }
-          ],
-          "actions": [
-            {
-              "type": "OPEN_CASTLE"
-            }
-          ],
-          "condition": {}
-        },
-        "1008": {
-          "id": "1008",
-          "picture": "warrior-holds-sword",
-          "speaker": "Warrior",
-          "text": "Well... that's incorrect. You must stay out!",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "OK",
-              "next": "1001"
-            }
-          ],
-          "actions": [
-            {
-              "type": "NEXT_SCAN"
-            }
-          ],
-          "condition": {}
-        },
-        "1009": {
-          "id": "1009",
-          "picture": "warrior-defeated-weaponless",
-          "speaker": "Warrior",
-          "text": "Let's go!! Nothing happens. A dinosaur jumps out of your hand and two strikes it defeats the guard.",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "May I go in?",
-              "next": "1007"
-            }
-          ],
-          "actions": [],
-          "condition": {}
-        },
-        "1010": {
-          "id": "1010",
-          "speaker": "Warrior",
-          "text": "You swing it. Little rainbow sparkles, but nothing else.",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "Bye",
-              "next": "1001"
-            },
-            {
-              "index": 2,
-              "label": "Ha ha ha ha ha ha ha ha...",
-              "next": "1010"
-            },
-            {
-              "index": 3,
-              "label": "I wanna give it to you",
-              "next": "1004"
-            }
-          ],
-          "actions": [
-            {
-              "type": "NEXT_SCAN"
-            }
-          ],
-          "condition": {}
-        },
-        "1011": {
-          "id": "1011",
-          "speaker": "Warrior",
-          "text": "You won!",
-          "buttons": [
-            {
-              "index": 1,
-              "label": "OK",
-              "next": "TITLE_SCREEN"
-            }
-          ],
-          "actions": [],
-          "condition": {}
+          "actions": []
         }
       }
     }
@@ -2971,12 +2970,12 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 2,
               "label": "Eat them",
-              "next": "1102",
+              "next": "1102"
             },
             {
               "index": 3,
               "label": "Eat them",
-              "next": "1103",
+              "next": "1103"
             }
           ],
           "actions": [
@@ -2994,8 +2993,8 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {
-            2: "counter(\"eatAttempts\") < 4",
-            3: "counter(\"eatAttempts\") >= 4"
+            "2": "counter(\"eatAttempts\") < 4",
+            "3": "counter(\"eatAttempts\") >= 4"
           }
         },
         "1102": {
@@ -3378,7 +3377,7 @@ window.QR_CITY_QUEST_DATA = {
         "1701": {
           "id": "1701",
           "speaker": "Mark of Goblins",
-          "text": "A silver coin with a goblin face carved into it. The guard believes it impresses goblins.",
+          "text": "A small wooden token with a goblin face carved into it. The guard believes it impresses goblins.",
           "buttons": [
             {
               "index": 1,
@@ -3399,7 +3398,7 @@ window.QR_CITY_QUEST_DATA = {
         "1801": {
           "id": "1801",
           "speaker": "Priclys Feather",
-          "text": "A yellowish-brown feather with white spots, probably from a strange creature.",
+          "text": "A yellowish-brown feather dotted with white spots. It probably came from an unusual creature.",
           "buttons": [
             {
               "index": 1,
@@ -3408,7 +3407,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Swing it",
+              "label": "Wave it",
               "next": "1802"
             }
           ],
@@ -3418,7 +3417,7 @@ window.QR_CITY_QUEST_DATA = {
         "1802": {
           "id": "1802",
           "speaker": "Priclys Feather",
-          "text": "You hear the voices of birds flapping their wings, and then it fades away.",
+          "text": "You hear the flutter of wings, then the sound slowly fades away.",
           "buttons": [
             {
               "index": 1,
@@ -3675,7 +3674,6 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
-
         "2302": {
           "id": "2302",
           "speaker": "Fishing Rod",
@@ -3695,7 +3693,6 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
-
         "2303": {
           "id": "2303",
           "speaker": "Fishing Rod",
@@ -3715,7 +3712,6 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
-
         "2304": {
           "id": "2304",
           "speaker": "Fishing Rod",
@@ -3746,11 +3742,10 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {
-            1: "counter(\"blobfishCaught\") < 1",
-            2: "counter(\"blobfishCaught\") >= 1"
+            "1": "counter(\"blobfishCaught\") < 1",
+            "2": "counter(\"blobfishCaught\") >= 1"
           }
         },
-
         "2305": {
           "id": "2305",
           "speaker": "Fishing Rod",
@@ -3770,7 +3765,6 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
-
         "2306": {
           "id": "2306",
           "speaker": "Fishing Rod",
@@ -3790,7 +3784,6 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
-
         "2307": {
           "id": "2307",
           "speaker": "Fishing Rod",
@@ -3821,11 +3814,10 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {
-            1: "counter(\"salmonCaught\") < 1",
-            2: "counter(\"salmonCaught\") >= 1"
+            "1": "counter(\"salmonCaught\") < 1",
+            "2": "counter(\"salmonCaught\") >= 1"
           }
         },
-
         "2308": {
           "id": "2308",
           "speaker": "Fishing Rod",
@@ -3845,7 +3837,6 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
-
         "2309": {
           "id": "2309",
           "speaker": "Fishing Rod",
@@ -3871,11 +3862,10 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {
-            1: "counter(\"bootsCaught\") < 1",
-            2: "counter(\"bootsCaught\") >= 1"
+            "1": "counter(\"bootsCaught\") < 1",
+            "2": "counter(\"bootsCaught\") >= 1"
           }
         },
-
         "2310": {
           "id": "2310",
           "speaker": "Fishing Rod",
@@ -3890,7 +3880,6 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         },
-
         "2311": {
           "id": "2311",
           "speaker": "Fishing Rod",
@@ -3910,7 +3899,6 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "condition": {}
         },
-
         "2312": {
           "id": "2312",
           "speaker": "Fishing Rod",
@@ -3934,7 +3922,6 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "condition": {}
         },
-
         "2313": {
           "id": "2313",
           "speaker": "Fishing Rod",
@@ -3964,7 +3951,7 @@ window.QR_CITY_QUEST_DATA = {
         "2401": {
           "id": "2401",
           "speaker": "Crystal Shard",
-          "text": "A blue shard, when you put it towards the light, it emits a rainbow.",
+          "text": "A blue crystal shard. When you hold it up to the light, it scatters the light into rainbow colors.",
           "buttons": [
             {
               "index": 1,
@@ -4030,7 +4017,7 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Put it on.",
-              "next": "2602",
+              "next": "2602"
             },
             {
               "index": 2,
@@ -4047,7 +4034,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "condition": {
-              1: "counter(\"worn\") < 1"
+            "1": "counter(\"worn\") < 1"
           }
         },
         "2602": {
@@ -4215,179 +4202,151 @@ window.QR_CITY_QUEST_DATA = {
       }
     },
     "Lucky Pebble": {
-        "defaultPicture": "lucky-pebble",
-        "displayName": "Lucky Pebble",
-        "startPage": "3201",
-        "pages": {
-          "3201": {
-            "id": "3201",
-            "speaker": "Lucky Pebble",
-            "text": "A small pebble that seems to bring luck.",
-            "buttons": [
-              {
-                "index": 1,
-                "label": "OK",
-                "next": "HOME"
-              }
-            ],
-            "actions": [],
-            "condition": {}
-          }
+      "defaultPicture": "lucky-pebble",
+      "displayName": "Lucky Pebble",
+      "startPage": "3201",
+      "pages": {
+        "3201": {
+          "id": "3201",
+          "speaker": "Lucky Pebble",
+          "text": "A small pebble that seems to bring luck.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
         }
       }
-    },
-  knowledgeFolders: {
-  merchant: "Merchant",
-  castle: "Castle",
-  troll: "Troll",
-  world: "World & Areas",
-  goblins: "Goblins",
-  messenger: "Messenger",
-  warrior: "Warrior",
-  grove: "Grove",
-  bridge: "Bridge",
-  fishing: "Fishing"
+    }
   },
-  
-  thingsIKnow: {
-    sweets_from_merchant: {
-      text: "Sweets can be bought from the Merchant.",
-      folder: "merchant"
+  "knowledgeFolders": {
+    "merchant": "Merchant",
+    "castle": "Castle",
+    "troll": "Troll",
+    "world": "World & Areas",
+    "goblins": "Goblins",
+    "messenger": "Messenger",
+    "warrior": "Warrior",
+    "grove": "Grove",
+    "bridge": "Bridge",
+    "fishing": "Fishing"
+  },
+  "thingsIKnow": {
+    "sweets_from_merchant": {
+      "text": "Sweets can be bought from the Merchant.",
+      "folder": "merchant"
     },
-  
-    password_ending_pie: {
-      text: 'The password seems to end with "Pie".',
-      folder: "castle"
+    "password_ending_pie": {
+      "text": "The password seems to end with \"Pie\".",
+      "folder": "castle"
     },
-  
-    troll_letters_are_numbers: {
-      text: "The letters in the Troll's riddle somehow connect to numbers.",
-      folder: "troll"
+    "troll_letters_are_numbers": {
+      "text": "The letters in the Troll's riddle somehow connect to numbers.",
+      "folder": "troll"
     },
-  
-    village_centre: {
-      text: "The world is divided into different sections. You are in the Village Centre.",
-      folder: "world"
+    "village_centre": {
+      "text": "The Village Centre is one of the world's main sections.",
+      "folder": "world"
     },
-  
-    other_world_sections: {
-      text: "The other sections are the Grove, Bridge and Castle Entrance.",
-      folder: "world"
+    "other_world_sections": {
+      "text": "The other sections are the Grove, Bridge and Castle Entrance.",
+      "folder": "world"
     },
-  
-    castle_guarded_by_troll: {
-      text: "The way to the Castle Entrance is guarded by a Troll.",
-      folder: "troll"
+    "castle_guarded_by_troll": {
+      "text": "The way to the Castle Entrance is guarded by a Troll.",
+      "folder": "troll"
     },
-  
-    troll_blocks_castle: {
-      text: "The Troll must be defeated before you can reach the Castle Entrance.",
-      folder: "troll"
+    "troll_blocks_castle": {
+      "text": "The Troll must be defeated before you can reach the Castle Entrance.",
+      "folder": "troll"
     },
-  
-    mark_of_goblins: {
-      text: "Goblins will be friendlier if you show them the Mark of Goblins.",
-      folder: "goblins"
+    "mark_of_goblins": {
+      "text": "Goblins will be friendlier if you show them the Mark of Goblins.",
+      "folder": "goblins"
     },
-  
-    messenger_personality: {
-      text: "The Messenger has a sweet tooth and hates running.",
-      folder: "messenger"
+    "messenger_personality": {
+      "text": "The Messenger has a sweet tooth and hates running.",
+      "folder": "messenger"
     },
-  
-    warrior_weakness: {
-      text: "The Warrior can only be defeated with the Sword of Koji.",
-      folder: "warrior"
+    "warrior_weakness": {
+      "text": "The Warrior can only be defeated with the Sword of Koji.",
+      "folder": "warrior"
     },
-  
-    grove_magic: {
-      text: "Something magical may be hidden in the Grove. The trees are worth checking.",
-      folder: "grove"
+    "grove_magic": {
+      "text": "Something magical may be hidden in the Grove. The trees are worth checking.",
+      "folder": "grove"
     },
-  
-    fountain_shiny_object: {
-      text: "The Hunter saw something shiny between the fountain stones.",
-      folder: "grove"
+    "fountain_shiny_object": {
+      "text": "The Hunter saw something shiny between the fountain stones.",
+      "folder": "grove"
     },
-  
-    creature_in_bushes: {
-      text: "A strange creature may be hiding in one of the bushy places.",
-      folder: "grove"
+    "creature_in_bushes": {
+      "text": "A strange creature may be hiding in one of the bushy places.",
+      "folder": "grove"
     },
-  
-    bridge_carvings: {
-      text: "There are strange carvings in the stone at the Bridge.",
-      folder: "bridge"
+    "bridge_carvings": {
+      "text": "There are strange carvings in the stone at the Bridge.",
+      "folder": "bridge"
     },
-  
-    guard_knows_world: {
-      text: "The city Guard knows a lot about this little empire.",
-      folder: "world"
+    "guard_knows_world": {
+      "text": "The city Guard knows a lot about this little empire.",
+      "folder": "world"
     },
-  
-    goblin_gold_coin_trade: {
-      text: "The Goblin would trade the Gold Coin for something from a rare animal, like a bird.",
-      folder: "goblins"
+    "goblin_gold_coin_trade": {
+      "text": "The Goblin would trade the Gold Coin for something from a rare animal, like a bird.",
+      "folder": "goblins"
     },
-  
-    goblin_ruby_sword_trade: {
-      text: "The Goblin would trade the Ruby Sword for another gem.",
-      folder: "goblins"
+    "goblin_ruby_sword_trade": {
+      "text": "The Goblin would trade the Ruby Sword for another gem.",
+      "folder": "goblins"
     },
-  
-    goblin_powder_trade: {
-      text: "The Goblin would trade the Strange Powder for a shiny jewel.",
-      folder: "goblins"
+    "goblin_powder_trade": {
+      "text": "The Goblin would trade the Strange Powder for a shiny jewel.",
+      "folder": "goblins"
     },
-  
-    troll_riddle: {
-      text: 'The Troll\'s riddle is: "O, T, T, F, F, S... What are the next two letters?"',
-      folder: "troll"
+    "troll_riddle": {
+      "text": "The Troll's riddle is: \"O, T, T, F, F, S... What are the next two letters?\"",
+      "folder": "troll"
     },
-  
-    bridge_direction: {
-      text: "From the Fisherman, the Bridge is a few meters away and to the right.",
-      folder: "bridge"
+    "bridge_direction": {
+      "text": "From the Fisherman, the Bridge is a few meters away and to the right.",
+      "folder": "bridge"
     },
-  
-    great_salmon_time: {
-      text: "Great Salmon usually bite after about 20–25 seconds.",
-      folder: "fishing"
+    "great_salmon_time": {
+      "text": "Great Salmon usually bite after about 20–25 seconds.",
+      "folder": "fishing"
     },
-  
-    troll_o_means_one: {
-      text: 'In the Troll\'s riddle, "O" means "One".',
-      folder: "troll"
+    "troll_o_means_one": {
+      "text": "In the Troll's riddle, \"O\" means \"One\".",
+      "folder": "troll"
     },
-  
-    blobfish_time: {
-      text: "Blobfish usually bite after about 12–15 seconds.",
-      folder: "fishing"
+    "blobfish_time": {
+      "text": "Blobfish usually bite after about 12–15 seconds.",
+      "folder": "fishing"
     },
-  
-    decoder_powder: {
-      text: "Strange words written on paper may be decoded using a gray decoder powder.",
-      folder: "castle"
+    "decoder_powder": {
+      "text": "Strange words written on paper may be decoded using a gray decoder powder.",
+      "folder": "castle"
     },
-  
-    password_first_part: {
-      text: 'The first part of the castle password is "Apple".',
-      folder: "castle"
+    "password_first_part": {
+      "text": "The first part of the castle password is \"Apple\".",
+      "folder": "castle"
     },
-  
-    castle_requires_password: {
-      text: "A password is required to enter the Castle.",
-      folder: "castle"
+    "castle_requires_password": {
+      "text": "A password is required to enter the Castle.",
+      "folder": "castle"
     },
-  
-    encoded_scroll: {
-      text: 'The Old Scroll contains the strange text: "Rcuuygtf:Crrmgrkg".',
-      folder: "castle"
+    "encoded_scroll": {
+      "text": "The Old Scroll contains the strange text: \"Rcuuygtf:Crrmgrkg\".",
+      "folder": "castle"
     },
-  
-    castle_password: {
-      text: 'The Castle password is "ApplePie".',
-      folder: "castle"
+    "castle_password": {
+      "text": "The Castle password is \"ApplePie\".",
+      "folder": "castle"
     }
   },
   "compilerNotes": [
