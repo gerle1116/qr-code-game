@@ -897,7 +897,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0302",
           "picture": "guard-map-village-center",
           "speaker": "Őr",
-          "text": "Elmondom! Ez a hely különböző részekből áll. Most a Faluközpontban vagyunk. Van még 3 másik rész...",
+          "text": "Elmondom! Ez a hely különböző területekből áll. Ez a Faluközpont. Van még 3 másik terület...",
           "buttons": [
             {
               "index": 1,
@@ -1143,12 +1143,12 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Oké",
+              "label": "Várok, beszéljünk később",
               "next": "0404"
             },
             {
               "index": 2,
-              "label": "Viszlát",
+              "label": "Most elmegyek",
               "next": "0407"
             }
           ],
@@ -1632,7 +1632,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Helló!",
+              "label": "Szia!",
               "next": "0602"
             },
             {
@@ -1810,7 +1810,7 @@ window.QR_CITY_QUEST_DATA = {
           "buttons": [
             {
               "index": 1,
-              "label": "Köszi, szia",
+              "label": "Köszi, viszlát",
               "next": "0605"
             },
             {
@@ -2098,7 +2098,7 @@ window.QR_CITY_QUEST_DATA = {
         "0701": {
           "id": "0701",
           "speaker": "Troll",
-          "text": "Át akarsz menni a hídon?",
+          "text": "Te át akarsz menni hídon?",
           "buttons": [
             {
               "index": 1,
@@ -2122,7 +2122,7 @@ window.QR_CITY_QUEST_DATA = {
         "0702": {
           "id": "0702",
           "speaker": "Troll",
-          "text": "Előbb oldd meg a találós kérdésemet!",
+          "text": "Előbb megold találós kérdés!",
           "buttons": [
             {
               "index": 1,
@@ -2137,7 +2137,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0703",
           "picture": "troll-blocks-bridge",
           "speaker": "Troll",
-          "text": "Nem mehetsz át, ha nem oldod meg találós kérdés. Mondok találós kérdést.",
+          "text": "Nem mehetsz át, ha nem megold találós kérdés. Én mond találós kérdés.",
           "buttons": [
             {
               "index": 1,
@@ -2156,7 +2156,7 @@ window.QR_CITY_QUEST_DATA = {
         "0704": {
           "id": "0704",
           "speaker": "Troll",
-          "text": "Te buta",
+          "text": "Te buta!",
           "buttons": [
             {
               "index": 1,
@@ -2174,7 +2174,7 @@ window.QR_CITY_QUEST_DATA = {
         "0705": {
           "id": "0705",
           "speaker": "Troll",
-          "text": "Az első 6 betű: E, K, H, N, Ö, H... Mi a következő 2?",
+          "text": "Első 6 betű: E, K, H, N, Ö, H... Mi következő 2?",
           "buttons": [
             {
               "index": 1,
@@ -2290,7 +2290,7 @@ window.QR_CITY_QUEST_DATA = {
           "id": "0802",
           "picture": "fisherman-points-direction",
           "speaker": "Horgász",
-          "text": "Nos, csak sétálsz pár métert, és már ott is van. Fordulj innen jobbra, de a Troll előtt tudnál segíteni nekem valamiben?",
+          "text": "Sétálj pár métert, aztán fordulj jobbra; ott lesz a híd. Óvakodj a Trolltól! Egyébként tudnál segíteni valamiben?",
           "buttons": [
             {
               "index": 1,
@@ -3377,7 +3377,7 @@ window.QR_CITY_QUEST_DATA = {
         "1701": {
           "id": "1701",
           "speaker": "Goblinok jele",
-          "text": "Egy ezüst érme, amelybe goblinarcot véstek. Az őr szerint ez lenyűgözi a goblinokat.",
+          "text": "Egy kis fa korong, amelybe goblinarcot véstek. Az őr szerint ez lenyűgözi a goblinokat.",
           "buttons": [
             {
               "index": 1,
@@ -3398,7 +3398,7 @@ window.QR_CITY_QUEST_DATA = {
         "1801": {
           "id": "1801",
           "speaker": "Priclys tolla",
-          "text": "Egy sárgásbarna toll fehér pöttyökkel, valószínűleg valamilyen furcsa lénytől.",
+          "text": "Egy sárgásbarna, fehér pettyes toll. Valamilyen különös lénytől származhat.",
           "buttons": [
             {
               "index": 1,
@@ -3407,7 +3407,7 @@ window.QR_CITY_QUEST_DATA = {
             },
             {
               "index": 2,
-              "label": "Suhints vele",
+              "label": "Lengesd meg",
               "next": "1802"
             }
           ],
@@ -3417,7 +3417,7 @@ window.QR_CITY_QUEST_DATA = {
         "1802": {
           "id": "1802",
           "speaker": "Priclys tolla",
-          "text": "Madarak szárnycsapkodását hallod, majd a hang elhal.",
+          "text": "Szárnycsapások halk suhogását hallod, aztán a hang lassan elhal.",
           "buttons": [
             {
               "index": 1,
@@ -3951,7 +3951,7 @@ window.QR_CITY_QUEST_DATA = {
         "2401": {
           "id": "2401",
           "speaker": "Kristályszilánk",
-          "text": "Egy kék szilánk. Ha a fény felé tartod, szivárványt bocsát ki.",
+          "text": "Egy kék kristályszilánk. Ha a fény felé tartod, a fényt szivárványszínekre bontja.",
           "buttons": [
             {
               "index": 1,
@@ -4249,7 +4249,7 @@ window.QR_CITY_QUEST_DATA = {
       "folder": "troll"
     },
     "village_centre": {
-      "text": "A világ különböző területekre van osztva. Jelenleg a Faluközpontban vagy.",
+      "text": "A Faluközpont a világ egyik fő területe.",
       "folder": "world"
     },
     "other_world_sections": {
