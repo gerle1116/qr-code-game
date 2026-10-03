@@ -295,6 +295,714 @@ window.QR_CITY_QUEST_DATA = {
         }
       }
     },
+    "33": {
+      "startPage": "3301",
+      "pages": {
+        "3301": {
+          "id": "3301",
+          "speaker": "Bird",
+          "text": "Hi! Could you bring me some things?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "3302"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "3303"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3302": {
+          "id": "3302",
+          "speaker": "Bird",
+          "text": "First, I need some straw for building my nest.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "3304"
+            },
+            {
+              "index": 2,
+              "label": "I have some straw",
+              "next": "3305"
+            }
+          ],
+          "actions": [
+            {
+              "type": "START_QUEST",
+              "data": "Bird1"
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 1
+            }
+          ],
+          "condition": {}
+        },
+        "3303": {
+          "id": "3303",
+          "speaker": "Bird",
+          "text": "Then please let me work.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "3301"
+            },
+            {
+              "index": 2,
+              "label": "Sure",
+              "next": "3304"
+            },
+            {
+              "index": 3,
+              "label": "Alright",
+              "next": "3307"
+            },
+            {
+              "index": 4,
+              "label": "Okay",
+              "next": "3309"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 1
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 3
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 4
+            }
+          ],
+          "condition": {
+            "1": "save.quests[\"Bird1\"] !== \"active\" && save.quests[\"Bird2\"] !== \"active\" && save.quests[\"Bird3\"] !== \"active\"",
+            "2": "save.quests[\"Bird1\"] === \"active\"",
+            "3": "save.quests[\"Bird2\"] === \"active\"",
+            "4": "save.quests[\"Bird3\"] === \"active\""
+          }
+        },
+        "3304": {
+          "id": "3304",
+          "speaker": "Bird",
+          "text": "Hello!!! Did you bring straw?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "3305"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "3303"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3305": {
+          "id": "3305",
+          "speaker": "Bird",
+          "text": "Well, show me!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Items",
+              "next": "3306"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Straw",
+                  "label": "Straw",
+                  "next": "3306"
+                },
+                {
+                  "value": "Mosquito",
+                  "label": "Mosquito",
+                  "next": "3308"
+                },
+                {
+                  "value": "Sketch3",
+                  "label": "Sketch 3",
+                  "next": "3310"
+                }
+              ],
+              "otherNext": "3303"
+            }
+          ],
+          "condition": {}
+        },
+        "3306": {
+          "id": "3306",
+          "speaker": "Bird",
+          "text": "Next, please get me a mosquito from the mosquito hunters.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "3307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Straw"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Bird1"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Bird2"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3307": {
+          "id": "3307",
+          "speaker": "Bird",
+          "text": "Did you bring a mosquito?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "3305"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "3303"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3308": {
+          "id": "3308",
+          "speaker": "Bird",
+          "text": "Finally, could you find me a sketch of a suitable place where I could build my nest?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "3309"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Mosquito"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Bird2"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Bird3"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3309": {
+          "id": "3309",
+          "speaker": "Bird",
+          "text": "Hello! Did you bring the sketch of a suitable nesting place?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "3305"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "3303"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3310": {
+          "id": "3310",
+          "speaker": "Bird",
+          "text": "Thank you! Now I can finally build my nest! In return, I can tell you that the 3rd part of the password is \"011\". Now I have to hurry and build my nest.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye!",
+              "next": "3311"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Sketch3"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Bird3"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "Password3"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3311": {
+          "id": "3311",
+          "speaker": "Bird",
+          "text": "The little bird isn't here.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "3311"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
+    "34": {
+      "startPage": "3401",
+      "pages": {
+        "3401": {
+          "id": "3401",
+          "speaker": "Otter",
+          "text": "Hi! How's your day? Are you looking for something?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "I'm having a good day!",
+              "next": "3402"
+            },
+            {
+              "index": 2,
+              "label": "Maybe...",
+              "next": "3403"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3402": {
+          "id": "3402",
+          "speaker": "Otter",
+          "text": "Really? That's fantastic! That reminds me... I don't even know...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "What is it?",
+              "next": "3404"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3403": {
+          "id": "3403",
+          "speaker": "Otter",
+          "text": "Wow! That sounds exciting! I wanted to look for something too...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "What?",
+              "next": "3404"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3404": {
+          "id": "3404",
+          "speaker": "Otter",
+          "text": "Yeah! I should catch a big fish because I'm already hungry! Well, bye! I'll be back.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "3405"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3405": {
+          "id": "3405",
+          "speaker": "Otter",
+          "text": "The otter isn't here right now...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "3406"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3406": {
+          "id": "3406",
+          "speaker": "Otter",
+          "text": "Hi! My belly is full now!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "How are you?",
+              "next": "3407"
+            },
+            {
+              "index": 2,
+              "label": "What fish did you catch?",
+              "next": "3408"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3407": {
+          "id": "3407",
+          "speaker": "Otter",
+          "text": "Good. A tasty lunch always cheers me up! But now I have to go meet someone...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye!",
+              "next": "3409"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3408": {
+          "id": "3408",
+          "speaker": "Otter",
+          "text": "I caught a big carp. And a blobfish too. But that was yummy, my boy... Anyway, I'm off now. I've got something to gobble up!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "3409"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3409": {
+          "id": "3409",
+          "speaker": "Otter",
+          "text": "Hi! It was so nice talking with you! Are we friends now?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "3410"
+            },
+            {
+              "index": 2,
+              "label": "No. Bye!",
+              "next": "3409"
+            },
+            {
+              "index": 3,
+              "label": "Of course",
+              "next": "3411"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "!knowledge.includes(\"Password1\")",
+            "2": "!knowledge.includes(\"Password1\")",
+            "3": "knowledge.includes(\"Password1\")"
+          }
+        },
+        "3410": {
+          "id": "3410",
+          "speaker": "Otter",
+          "text": "Then I will tell you that the first part of the password is: \"7\".",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thanks",
+              "next": "3409"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "Password1"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3411": {
+          "id": "3411",
+          "speaker": "Otter",
+          "text": "Good to know we still feel the same way about each other.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "3409"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
+    "35": {
+      "startPage": "3501",
+      "pages": {
+        "3501": {
+          "id": "3501",
+          "speaker": "Heron",
+          "text": "What are you looking for here?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Nothing",
+              "next": "3502"
+            },
+            {
+              "index": 2,
+              "label": "Anything",
+              "next": "3503"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3502": {
+          "id": "3502",
+          "speaker": "Heron",
+          "text": "Then get out of here!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay...",
+              "next": "3506"
+            },
+            {
+              "index": 2,
+              "label": "Fine...",
+              "next": "3504"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 1
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "save.quests[\"Gém1\"] === \"active\"",
+            "2": "save.quests[\"Gém1\"] === undefined"
+          }
+        },
+        "3503": {
+          "id": "3503",
+          "speaker": "Heron",
+          "text": "Well, you can find quite a lot of \"anything\" around here! You did not need to bother me for that!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay. Bye...",
+              "next": "3504"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3504": {
+          "id": "3504",
+          "speaker": "Heron",
+          "text": "Why are you bothering me again?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "I was just wandering",
+              "next": "3505"
+            },
+            {
+              "index": 2,
+              "label": "Nothing",
+              "next": "3502"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3505": {
+          "id": "3505",
+          "speaker": "Heron",
+          "text": "I won't tell you anything until you get me a golden apple from the tree!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "3506"
+            }
+          ],
+          "actions": [
+            {
+              "type": "START_QUEST",
+              "data": "Gém1"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3506": {
+          "id": "3506",
+          "speaker": "Heron",
+          "text": "Did you get it?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Items",
+              "next": "3507"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Golden Apple",
+                  "label": "Golden Apple",
+                  "next": "3507"
+                }
+              ],
+              "otherNext": "3504"
+            }
+          ],
+          "condition": {}
+        },
+        "3507": {
+          "id": "3507",
+          "speaker": "Heron",
+          "text": "Thanks, thank you! In return I will tell you that the second part of the password is \"891\". Now get out of here!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "3508"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Golden Apple"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Gém1"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "Password2"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3508": {
+          "id": "3508",
+          "speaker": "Heron",
+          "text": "Scram.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bye",
+              "next": "3508"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
     "01": {
       "defaultPicture": "child",
       "startPage": "0101",
@@ -4221,6 +4929,30 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {}
         }
       }
+    },
+    "Straw": {
+      "displayName": "Straw",
+      "startPage": "3601",
+      "implemented": false,
+      "pages": {}
+    },
+    "Mosquito": {
+      "displayName": "Mosquito",
+      "startPage": "3701",
+      "implemented": false,
+      "pages": {}
+    },
+    "Sketch3": {
+      "displayName": "Sketch 3",
+      "startPage": "3801",
+      "implemented": false,
+      "pages": {}
+    },
+    "Golden Apple": {
+      "displayName": "Golden Apple",
+      "startPage": "3901",
+      "implemented": false,
+      "pages": {}
     }
   },
   "knowledgeFolders": {
@@ -4233,7 +4965,8 @@ window.QR_CITY_QUEST_DATA = {
     "warrior": "Warrior",
     "grove": "Grove",
     "bridge": "Bridge",
-    "fishing": "Fishing"
+    "fishing": "Fishing",
+    "password": "Password"
   },
   "thingsIKnow": {
     "sweets_from_merchant": {
@@ -4347,6 +5080,18 @@ window.QR_CITY_QUEST_DATA = {
     "castle_password": {
       "text": "The Castle password is \"ApplePie\".",
       "folder": "castle"
+    },
+    "Password1": {
+      "text": "Password part 1 is \"7\".",
+      "folder": "password"
+    },
+    "Password2": {
+      "text": "Password part 2 is \"891\".",
+      "folder": "password"
+    },
+    "Password3": {
+      "text": "Password part 3 is \"011\".",
+      "folder": "password"
     }
   },
   "compilerNotes": [
@@ -4375,5 +5120,11 @@ window.QR_CITY_QUEST_DATA = {
     "The app must understand the HOME next target for item dialogue buttons.",
     "Item dialogue navigation must allow Horn of Trees to open NPC page 0410.",
     "The app must support generic counter actions and counter(...) page-level conditions."
-  ]
+  ],
+  "questDisplayNames": {
+    "Bird1": "Find straw for the Bird",
+    "Bird2": "Find a mosquito for the Bird",
+    "Bird3": "Find a nesting-place sketch for the Bird",
+    "Gém1": "Bring the Heron a Golden Apple"
+  }
 };

@@ -295,6 +295,714 @@ window.QR_CITY_QUEST_DATA = {
         }
       }
     },
+    "33": {
+      "startPage": "3301",
+      "pages": {
+        "3301": {
+          "id": "3301",
+          "speaker": "Madár",
+          "text": "Szia! Tudnál hozni nekem dolgokat?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "3302"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "3303"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3302": {
+          "id": "3302",
+          "speaker": "Madár",
+          "text": "Elsősorban egy kis szalmára lenne szükségem a fészek rakásához.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "3304"
+            },
+            {
+              "index": 2,
+              "label": "Van nálam szalma",
+              "next": "3305"
+            }
+          ],
+          "actions": [
+            {
+              "type": "START_QUEST",
+              "data": "Bird1"
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 1
+            }
+          ],
+          "condition": {}
+        },
+        "3303": {
+          "id": "3303",
+          "speaker": "Madár",
+          "text": "Akkor viszont hagyj dolgozni kérlek.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "3301"
+            },
+            {
+              "index": 2,
+              "label": "Jó",
+              "next": "3304"
+            },
+            {
+              "index": 3,
+              "label": "Rendben",
+              "next": "3307"
+            },
+            {
+              "index": 4,
+              "label": "Okés",
+              "next": "3309"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 1
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 3
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 4
+            }
+          ],
+          "condition": {
+            "1": "save.quests[\"Bird1\"] !== \"active\" && save.quests[\"Bird2\"] !== \"active\" && save.quests[\"Bird3\"] !== \"active\"",
+            "2": "save.quests[\"Bird1\"] === \"active\"",
+            "3": "save.quests[\"Bird2\"] === \"active\"",
+            "4": "save.quests[\"Bird3\"] === \"active\""
+          }
+        },
+        "3304": {
+          "id": "3304",
+          "speaker": "Madár",
+          "text": "Helló!!! Hoztál szalmát?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "3305"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "3303"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3305": {
+          "id": "3305",
+          "speaker": "Madár",
+          "text": "Na, muti!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgyak",
+              "next": "3306"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Straw",
+                  "label": "Szalma",
+                  "next": "3306"
+                },
+                {
+                  "value": "Mosquito",
+                  "label": "Szúnyog",
+                  "next": "3308"
+                },
+                {
+                  "value": "Sketch3",
+                  "label": "Vázlat3",
+                  "next": "3310"
+                }
+              ],
+              "otherNext": "3303"
+            }
+          ],
+          "condition": {}
+        },
+        "3306": {
+          "id": "3306",
+          "speaker": "Madár",
+          "text": "Következőleg kérlek szerezzél szúnyogot a szúnyogvadászoktól.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "3307"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Straw"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Bird1"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Bird2"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3307": {
+          "id": "3307",
+          "speaker": "Madár",
+          "text": "Hoztál szúnyogot?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "3305"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "3303"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3308": {
+          "id": "3308",
+          "speaker": "Madár",
+          "text": "Végül utoljára tudnál keresni egy vázlatot egy megfelelő helyről, ahova a fészkemet tudnám rakni?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "3309"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Mosquito"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Bird2"
+            },
+            {
+              "type": "START_QUEST",
+              "data": "Bird3"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3309": {
+          "id": "3309",
+          "speaker": "Madár",
+          "text": "Helló! Meghoztad a vázlatot a megfelelő fészkelőhelyről?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "3305"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "3303"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3310": {
+          "id": "3310",
+          "speaker": "Madár",
+          "text": "Köszönöm szépen! Most már végre fészket rakhatok! Cserébe elmondom, hogy a jelszónak a 3. része \"011\". Most sietek fészket rakni.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Szia!",
+              "next": "3311"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Sketch3"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Bird3"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "Password3"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3311": {
+          "id": "3311",
+          "speaker": "Madár",
+          "text": "A madárka nincsen itt.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "3311"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
+    "34": {
+      "startPage": "3401",
+      "pages": {
+        "3401": {
+          "id": "3401",
+          "speaker": "Vidra",
+          "text": "Hali! Milyen napod van? Keresel valamit?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó napom van!",
+              "next": "3402"
+            },
+            {
+              "index": 2,
+              "label": "Talán...",
+              "next": "3403"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3402": {
+          "id": "3402",
+          "speaker": "Vidra",
+          "text": "Tényleg? Az fantasztikus! Erről jut eszembe... Nem is tudom...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Mi az?",
+              "next": "3404"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3403": {
+          "id": "3403",
+          "speaker": "Vidra",
+          "text": "Azta! Ez biztos izgalmas! Én is keresni akartam valamit...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Mit?",
+              "next": "3404"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3404": {
+          "id": "3404",
+          "speaker": "Vidra",
+          "text": "Ja! Nagy halat kéne halásznom, mert már éhes vagyok! Na! Szia! Majd jövök.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Szervusz",
+              "next": "3405"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3405": {
+          "id": "3405",
+          "speaker": "Vidra",
+          "text": "Most nincs itt a vidra...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "3406"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3406": {
+          "id": "3406",
+          "speaker": "Vidra",
+          "text": "Hali! Most már tele a pocak!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Hogy vagy?",
+              "next": "3407"
+            },
+            {
+              "index": 2,
+              "label": "Milyen halat fogtál?",
+              "next": "3408"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3407": {
+          "id": "3407",
+          "speaker": "Vidra",
+          "text": "Jó. Egy finom ebéd mindig jó kedvre derít! Viszont most mennem kell találkozni valakivel...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Szia!",
+              "next": "3409"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3408": {
+          "id": "3408",
+          "speaker": "Vidra",
+          "text": "Én egy nagy pontyot fogtam. Meg egy bluggyhalat. De az hami volt fiam... Most viszont megyek. Fölfalnivalóm van!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Szia",
+              "next": "3409"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3409": {
+          "id": "3409",
+          "speaker": "Vidra",
+          "text": "Hali! Olyan jó volt veled beszélgetni! Most már barátok vagyunk?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "3410"
+            },
+            {
+              "index": 2,
+              "label": "Nem. Szia!",
+              "next": "3409"
+            },
+            {
+              "index": 3,
+              "label": "Naná",
+              "next": "3411"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "!knowledge.includes(\"Password1\")",
+            "2": "!knowledge.includes(\"Password1\")",
+            "3": "knowledge.includes(\"Password1\")"
+          }
+        },
+        "3410": {
+          "id": "3410",
+          "speaker": "Vidra",
+          "text": "Akkor elárulom, hogy a jelszó első része: \"7\".",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszi",
+              "next": "3409"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "Password1"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3411": {
+          "id": "3411",
+          "speaker": "Vidra",
+          "text": "Jó, hogy még mindig így gondolunk egymásról.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "3409"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
+    "35": {
+      "startPage": "3501",
+      "pages": {
+        "3501": {
+          "id": "3501",
+          "speaker": "Gém",
+          "text": "Mit keresel itt?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Semmit",
+              "next": "3502"
+            },
+            {
+              "index": 2,
+              "label": "Akármit",
+              "next": "3503"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3502": {
+          "id": "3502",
+          "speaker": "Gém",
+          "text": "Na akkor lódulj innen!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké...",
+              "next": "3506"
+            },
+            {
+              "index": 2,
+              "label": "Jó...",
+              "next": "3504"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 1
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "save.quests[\"Gém1\"] === \"active\"",
+            "2": "save.quests[\"Gém1\"] === undefined"
+          }
+        },
+        "3503": {
+          "id": "3503",
+          "speaker": "Gém",
+          "text": "Na, \"akármit\" elég sokat találsz errefelé! Ehhez nem kellett volna engem zavarni!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké. Szia...",
+              "next": "3504"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3504": {
+          "id": "3504",
+          "speaker": "Gém",
+          "text": "Minek zavarsz megint?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Csak barangoltam",
+              "next": "3505"
+            },
+            {
+              "index": 2,
+              "label": "Semmit",
+              "next": "3502"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "3505": {
+          "id": "3505",
+          "speaker": "Gém",
+          "text": "Addig nem mondok semmit, amíg nem szerzel nekem egy aranyalmát a fáról!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "3506"
+            }
+          ],
+          "actions": [
+            {
+              "type": "START_QUEST",
+              "data": "Gém1"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3506": {
+          "id": "3506",
+          "speaker": "Gém",
+          "text": "Megszerezted?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgyak",
+              "next": "3507"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Golden Apple",
+                  "label": "Aranyalma",
+                  "next": "3507"
+                }
+              ],
+              "otherNext": "3504"
+            }
+          ],
+          "condition": {}
+        },
+        "3507": {
+          "id": "3507",
+          "speaker": "Gém",
+          "text": "Kösz, köszönöm! Cserébe elárulom, hogy a jelszó második része \"891\". Most viszont lódulj innen!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "3508"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Golden Apple"
+            },
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "Gém1"
+            },
+            {
+              "type": "ADD_KNOWLEDGE",
+              "data": "Password2"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "3508": {
+          "id": "3508",
+          "speaker": "Gém",
+          "text": "Sipirc.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Szia",
+              "next": "3508"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
     "01": {
       "defaultPicture": "child",
       "startPage": "0101",
@@ -4221,6 +4929,30 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {}
         }
       }
+    },
+    "Straw": {
+      "displayName": "Szalma",
+      "startPage": "3601",
+      "implemented": false,
+      "pages": {}
+    },
+    "Mosquito": {
+      "displayName": "Szúnyog",
+      "startPage": "3701",
+      "implemented": false,
+      "pages": {}
+    },
+    "Sketch3": {
+      "displayName": "Vázlat3",
+      "startPage": "3801",
+      "implemented": false,
+      "pages": {}
+    },
+    "Golden Apple": {
+      "displayName": "Aranyalma",
+      "startPage": "3901",
+      "implemented": false,
+      "pages": {}
     }
   },
   "knowledgeFolders": {
@@ -4233,7 +4965,8 @@ window.QR_CITY_QUEST_DATA = {
     "warrior": "Harcos",
     "grove": "Liget",
     "bridge": "Híd",
-    "fishing": "Horgászat"
+    "fishing": "Horgászat",
+    "password": "Jelszó"
   },
   "thingsIKnow": {
     "sweets_from_merchant": {
@@ -4347,6 +5080,18 @@ window.QR_CITY_QUEST_DATA = {
     "castle_password": {
       "text": "A Kastély jelszava: \"Almás pite\".",
       "folder": "castle"
+    },
+    "Password1": {
+      "text": "A jelszó 1. része: \"7\".",
+      "folder": "password"
+    },
+    "Password2": {
+      "text": "A jelszó 2. része: \"891\".",
+      "folder": "password"
+    },
+    "Password3": {
+      "text": "A jelszó 3. része: \"011\".",
+      "folder": "password"
     }
   },
   "compilerNotes": [
@@ -4382,6 +5127,10 @@ window.QR_CITY_QUEST_DATA = {
     "Get Great Salmon": "Szerezz nagy lazacot",
     "Give Fish to Messenger": "Add oda a halat a Hírnöknek",
     "Lost Messages": "Elveszett üzenetek",
-    "Return Golden Medal to Guard": "Vidd vissza az aranymedált az őrnek"
+    "Return Golden Medal to Guard": "Vidd vissza az aranymedált az őrnek",
+    "Bird1": "Szerezz szalmát a Madárnak",
+    "Bird2": "Szerezz szúnyogot a Madárnak",
+    "Bird3": "Szerezz vázlatot egy megfelelő fészkelőhelyről a Madárnak",
+    "Gém1": "Hozz egy aranyalmát a Gémnek"
   }
 };

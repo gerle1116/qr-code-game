@@ -17,6 +17,7 @@ window.QR_CITY_QUEST_APP_TEXT = {
 
   noItemsYet: "Még nincs nálad semmilyen tárgy.",
   itemHasNoDialogue: "Ehhez a tárgyhoz nem tartozik párbeszéd.",
+  itemNotImplementedYet: "Ez a tárgy még nincs megvalósítva.",
   itemAddedToInventory: itemName => `${itemName} bekerült a tárgyaid közé.`,
   itemAlreadyCollected: "Ezt a tárgyat már begyűjtötted.",
 
