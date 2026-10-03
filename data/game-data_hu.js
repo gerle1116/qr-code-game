@@ -595,9 +595,11 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": {}
+          "condition": {},
+          "picture": "bird-gone"
         }
-      }
+      },
+      "defaultPicture": "bird"
     },
     "34": {
       "startPage": "3401",
@@ -683,7 +685,8 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": {}
+          "condition": {},
+          "picture": "otter-gone"
         },
         "3406": {
           "id": "3406",
@@ -813,7 +816,8 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "condition": {}
         }
-      }
+      },
+      "defaultPicture": "otter"
     },
     "35": {
       "startPage": "3501",
@@ -1001,7 +1005,8 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "condition": {}
         }
-      }
+      },
+      "defaultPicture": "heron"
     },
     "01": {
       "defaultPicture": "child",
