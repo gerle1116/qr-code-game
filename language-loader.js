@@ -94,8 +94,8 @@
     app.innerHTML = "";
 
     try {
-      await loadScript(`data/apptext_${lang}.js?v=19`);
-      await loadScript(`data/game-data_${lang}.js?v=19`);
+      await loadScript(`data/apptext_${lang}.js?v=20`);
+      await loadScript(`data/game-data_${lang}.js?v=20`);
       await loadScript("app.js?v=20");
     } catch (error) {
       console.error("QR City Quest language loading error:", error);
