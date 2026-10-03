@@ -997,6 +997,44 @@ function openItemDialogue(itemName) {
 
   currentItemName = item.name;
   currentEncounter = null;
+  currentPageId = null;
+
+  if (
+    item.data &&
+    item.data.implemented === false
+  ) {
+    shell(`
+      <section class="card screen-card encounter-card">
+        <div class="speaker-row">
+          <div class="speaker">
+            ${esc(getItemDisplayName(item.name))}
+          </div>
+        </div>
+
+        <p class="dialogue">
+          ${esc(TEXT.itemNotImplementedYet)}
+        </p>
+
+        <div class="choices">
+          <button
+            class="choice-btn"
+            id="unimplementedItemOk"
+            type="button"
+          >
+            ${esc(TEXT.ok)}
+          </button>
+        </div>
+      </section>
+    `, {
+      back: showInventory
+    });
+
+    document
+      .getElementById("unimplementedItemOk")
+      .onclick = showInventory;
+
+    return;
+  }
 
   showPage(
     item.data.startPage
@@ -2862,16 +2900,24 @@ function getQuestDisplayName(questName) {
           break;
 
 
-        case "NEXT_SCAN":
+        case "NEXT_SCAN": {
 
-          if (
-            buttonIndex === 1
-          ) {
+          const matchesButton =
+            action.buttonIndex === undefined ||
+            action.buttonIndex === null
+              ? buttonIndex === 1
+              : counterActionMatchesButton(
+                  action,
+                  buttonIndex
+                );
+
+          if (matchesButton) {
             nextScan =
               true;
           }
 
           break;
+        }
 
 
         default:
@@ -3189,6 +3235,7 @@ function getQuestDisplayName(questName) {
 
   let debugSelectedItem = null;
   let debugSelectedQuest = null;
+  let debugSelectedKnowledge = null;
   let debugSelectedCounter = null;
 
 
@@ -3297,6 +3344,40 @@ function getQuestDisplayName(questName) {
             getItemDisplayName(b)
           )
     );
+  }
+
+
+  function allKnowledgeIds() {
+    const ids = new Set(
+      save.knowledge || []
+    );
+
+    if (
+      GAME.thingsIKnow &&
+      typeof GAME.thingsIKnow === "object"
+    ) {
+      Object.keys(GAME.thingsIKnow)
+        .forEach(id => ids.add(id));
+    }
+
+    return [...ids].sort((a, b) => {
+      const aText =
+        GAME.thingsIKnow &&
+        GAME.thingsIKnow[a] &&
+        GAME.thingsIKnow[a].text
+          ? GAME.thingsIKnow[a].text
+          : a;
+
+      const bText =
+        GAME.thingsIKnow &&
+        GAME.thingsIKnow[b] &&
+        GAME.thingsIKnow[b].text
+          ? GAME.thingsIKnow[b].text
+          : b;
+
+      return String(aText)
+        .localeCompare(String(bText));
+    });
   }
 
 
@@ -3590,6 +3671,13 @@ function getQuestDisplayName(questName) {
           )}
 
           ${debugMenuButton(
+            "knowledge",
+            "📖",
+            d("Things I Know", "Amit tudok"),
+            d("Add or remove knowledge", "Tudás hozzáadása vagy törlése")
+          )}
+
+          ${debugMenuButton(
             "counters",
             "🔢",
             d("Counters", "Számlálók"),
@@ -3629,6 +3717,7 @@ function getQuestDisplayName(questName) {
       encounters: showDebugEncounters,
       inventory: showDebugInventory,
       quests: showDebugQuests,
+      knowledge: showDebugKnowledge,
       counters: showDebugCounters,
       flags: showDebugFlags,
       timers: showDebugTimers,
@@ -4372,6 +4461,197 @@ function getQuestDisplayName(questName) {
 
         persist();
         showDebugQuests();
+      };
+    }
+  }
+
+
+  function showDebugKnowledge() {
+    stopCamera();
+
+    const ids =
+      allKnowledgeIds();
+
+    if (
+      !debugSelectedKnowledge ||
+      !ids.includes(debugSelectedKnowledge)
+    ) {
+      debugSelectedKnowledge =
+        ids[0] || null;
+    }
+
+    const selected =
+      debugSelectedKnowledge;
+
+    const selectedData =
+      selected &&
+      GAME.thingsIKnow
+        ? GAME.thingsIKnow[selected]
+        : null;
+
+    const known =
+      selected
+        ? save.knowledge.includes(selected)
+        : false;
+
+    shell(`
+      <section class="card screen-card">
+
+        <h1 class="screen-title">
+          ${esc(d("Things I Know", "Amit tudok"))}
+        </h1>
+
+        <p class="screen-subtitle">
+          ${esc(d(
+            "Add or remove knowledge for testing dialogue conditions.",
+            "Adj hozzá vagy törölj tudást a párbeszédfeltételek teszteléséhez."
+          ))}
+        </p>
+
+        ${
+          selected
+            ? `
+              <div class="debug-section">
+                <select
+                  id="debugKnowledge"
+                  style="width:100%"
+                >
+                  ${ids
+                    .map(id => {
+                      const entry =
+                        GAME.thingsIKnow &&
+                        GAME.thingsIKnow[id];
+
+                      const label =
+                        entry &&
+                        entry.text
+                          ? entry.text
+                          : id;
+
+                      return `
+                        <option
+                          value="${esc(id)}"
+                          ${id === selected ? "selected" : ""}
+                        >
+                          ${esc(label)}
+                        </option>
+                      `;
+                    })
+                    .join("")}
+                </select>
+
+                <div
+                  class="notice"
+                  style="margin-top:10px"
+                >
+                  <div>
+                    <strong>${esc(d("Internal ID", "Belső ID"))}:</strong>
+                    ${esc(selected)}
+                  </div>
+                  <div style="margin-top:6px">
+                    ${esc(d("Known", "Ismert"))}:
+                    <strong>${known ? "YES" : "NO"}</strong>
+                  </div>
+                  ${
+                    selectedData &&
+                    selectedData.text
+                      ? `
+                        <div style="margin-top:6px">
+                          ${esc(selectedData.text)}
+                        </div>
+                      `
+                      : ""
+                  }
+                </div>
+
+                <div
+                  style="
+                    display:grid;
+                    grid-template-columns:1fr 1fr;
+                    gap:8px;
+                    margin-top:10px;
+                  "
+                >
+                  <button
+                    class="primary"
+                    id="debugAddKnowledge"
+                    type="button"
+                  >
+                    ${esc(d("Add knowledge", "Tudás hozzáadása"))}
+                  </button>
+
+                  <button
+                    class="secondary"
+                    id="debugRemoveKnowledge"
+                    type="button"
+                  >
+                    ${esc(d("Remove knowledge", "Tudás törlése"))}
+                  </button>
+                </div>
+              </div>
+            `
+            : `
+              <div class="empty">
+                ${esc(d(
+                  "No knowledge entries found in game data.",
+                  "Nem található tudásbejegyzés a game data-ban."
+                ))}
+              </div>
+            `
+        }
+
+      </section>
+    `, {
+      back: showDebug
+    });
+
+    const select =
+      document.getElementById(
+        "debugKnowledge"
+      );
+
+    if (select) {
+      select.onchange = () => {
+        debugSelectedKnowledge =
+          select.value;
+
+        showDebugKnowledge();
+      };
+    }
+
+    const add =
+      document.getElementById(
+        "debugAddKnowledge"
+      );
+
+    if (add) {
+      add.onclick = () => {
+        if (
+          selected &&
+          !save.knowledge.includes(selected)
+        ) {
+          save.knowledge.push(selected);
+        }
+
+        persist();
+        showDebugKnowledge();
+      };
+    }
+
+    const remove =
+      document.getElementById(
+        "debugRemoveKnowledge"
+      );
+
+    if (remove) {
+      remove.onclick = () => {
+        save.knowledge =
+          save.knowledge.filter(
+            id => id !== selected
+          );
+
+        persist();
+        showDebugKnowledge();
       };
     }
   }
