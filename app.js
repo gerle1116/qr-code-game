@@ -853,7 +853,7 @@
                         ? `
                           <img
                             class="inventory-item-icon"
-                            src="./images/${esc(picture)}.png?v=27"
+                            src="./images/${esc(picture)}.png?v=28"
                             alt=""
                             loading="lazy"
                             decoding="async"
@@ -2219,7 +2219,7 @@ function getQuestDisplayName(questName) {
         ? `
           <div class="encounter-picture">
             <img
-              src="./images/${esc(picture)}.png?v=27"
+              src="./images/${esc(picture)}.png?v=28"
               alt="${esc(page.speaker || TEXT.encounterFallback)}"
               class="encounter-picture-image"
               decoding="async"
@@ -5623,7 +5623,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=27");
+        .register("./sw.js?v=28");
 
       await navigator
         .serviceWorker
