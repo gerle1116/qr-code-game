@@ -414,13 +414,13 @@
     {
       back = null,
       label = TEXT.appName,
-      debugButton = false
+      home = false
     } = {}
   ) {
     app.innerHTML = `
       <main class="shell">
 
-        <header class="topbar">
+        <header class="topbar${home ? " home-topbar" : ""}">
 
           <div>
             ${
@@ -442,32 +442,6 @@
             }
           </div>
 
-          <div class="top-actions">
-            <button
-              class="icon-button"
-              id="languageBtn"
-              type="button"
-              aria-label="${esc(TEXT.switchLanguage)}"
-              title="${esc(TEXT.switchLanguage)}"
-            >
-              ${LANGUAGE === "hu" ? "EN" : "HU"}
-            </button>
-
-            ${
-              debugButton
-                ? `
-                  <button
-                    class="icon-button"
-                    id="debugBtn"
-                    type="button"
-                  >
-                    ${esc(TEXT.debug)}
-                  </button>
-                `
-                : ""
-            }
-          </div>
-
         </header>
 
         ${content}
@@ -481,32 +455,7 @@
         .onclick = back;
     }
 
-    const languageBtn =
-      document.getElementById("languageBtn");
-
-    if (languageBtn) {
-      languageBtn.onclick = () => {
-        const nextLanguage =
-          LANGUAGE === "hu"
-            ? "en"
-            : "hu";
-
-        if (
-          typeof window.QR_CITY_QUEST_SET_LANGUAGE ===
-          "function"
-        ) {
-          window.QR_CITY_QUEST_SET_LANGUAGE(
-            nextLanguage
-          );
-        }
-      };
-    }
-
-    if (debugButton) {
-      document
-        .getElementById("debugBtn")
-        .onclick = showDebug;
-    }
+    // Settings now contains both language selection and debug tools.
   }
 
 
@@ -630,11 +579,13 @@
         </div>
 
       </section>
-    `, {
-      debugButton:
-        DEBUG ||
-        secretDebugVisible
-    });
+
+      <footer class="home-settings-footer">
+        <button class="home-settings-button" id="settingsBtn" type="button">
+          ⚙ ${esc(TEXT.settings)}
+        </button>
+      </footer>
+    `, { home: true });
 
     document
       .getElementById("scanBtn")
@@ -651,6 +602,10 @@
     document
       .getElementById("knowledgeBtn")
       .onclick = showThingsIKnow;
+
+    document
+      .getElementById("settingsBtn")
+      .onclick = showSettings;
 
     const secretTitle =
       document.getElementById(
@@ -898,7 +853,7 @@
                         ? `
                           <img
                             class="inventory-item-icon"
-                            src="./images/${esc(picture)}.png?v=21"
+                            src="./images/${esc(picture)}.png?v=22"
                             alt=""
                             loading="lazy"
                             decoding="async"
@@ -1281,6 +1236,105 @@ function getQuestDisplayName(questName) {
       </section>
     `, {
       back: showHome
+    });
+  }
+
+
+  // =========================================================
+  // SETTINGS
+  // =========================================================
+
+  function isDebugEnabled() {
+    return DEBUG || secretDebugVisible;
+  }
+
+  function showSettings() {
+    stopCamera();
+
+    shell(`
+      <section class="card screen-card settings-screen">
+        <h1 class="screen-title">${esc(TEXT.settings)}</h1>
+        <nav class="settings-menu" aria-label="${esc(TEXT.settings)}">
+          <button class="settings-option" id="settingsModsBtn" type="button">
+            <span>
+              <span class="settings-option-label">🧩 ${esc(TEXT.mods)}</span>
+              <span class="settings-option-detail">${esc(TEXT.modsDescription)}</span>
+            </span>
+            <span aria-hidden="true">›</span>
+          </button>
+          <button class="settings-option" id="settingsLanguageBtn" type="button">
+            <span>
+              <span class="settings-option-label">🌐 ${esc(TEXT.language)}</span>
+              <span class="settings-option-detail">${esc(TEXT.languageDescription)}</span>
+            </span>
+            <span aria-hidden="true">›</span>
+          </button>
+          ${isDebugEnabled() ? `
+            <button class="settings-option" id="settingsDebugBtn" type="button">
+              <span>
+                <span class="settings-option-label">🛠 ${esc(TEXT.debugTools)}</span>
+                <span class="settings-option-detail">${esc(TEXT.debugDescription)}</span>
+              </span>
+              <span aria-hidden="true">›</span>
+            </button>
+          ` : ""}
+        </nav>
+      </section>
+    `, { back: showHome });
+
+    document.getElementById("settingsModsBtn").onclick = showModsSettings;
+    document.getElementById("settingsLanguageBtn").onclick = showLanguageSettings;
+
+    const debugEntry = document.getElementById("settingsDebugBtn");
+    if (debugEntry) {
+      debugEntry.onclick = showDebug;
+    }
+  }
+
+  function showModsSettings() {
+    stopCamera();
+
+    shell(`
+      <section class="card screen-card settings-screen">
+        <h1 class="screen-title">${esc(TEXT.mods)}</h1>
+        <p class="settings-placeholder">${esc(TEXT.modsComingSoon)}</p>
+      </section>
+    `, { back: showSettings });
+  }
+
+  function showLanguageSettings() {
+    stopCamera();
+
+    const languages = [
+      { code: "en", name: "English" },
+      { code: "hu", name: "Magyar" }
+    ];
+
+    shell(`
+      <section class="card screen-card settings-screen">
+        <h1 class="screen-title">${esc(TEXT.language)}</h1>
+        <p class="settings-hint">${esc(TEXT.selectLanguage)}</p>
+        <div class="settings-menu">
+          ${languages.map(({ code, name }) => `
+            <button class="settings-option" type="button"
+              data-language-option="${code}"
+              aria-pressed="${code === LANGUAGE}">
+              <span class="settings-option-label">${esc(name)}</span>
+              <span aria-hidden="true">${code === LANGUAGE ? "✓" : ""}</span>
+            </button>
+          `).join("")}
+        </div>
+      </section>
+    `, { back: showSettings });
+
+    document.querySelectorAll("[data-language-option]").forEach(button => {
+      button.onclick = () => {
+        const selected = button.dataset.languageOption;
+        if (selected === LANGUAGE) return;
+        if (typeof window.QR_CITY_QUEST_SET_LANGUAGE === "function") {
+          window.QR_CITY_QUEST_SET_LANGUAGE(selected);
+        }
+      };
     });
   }
 
@@ -2041,7 +2095,7 @@ function getQuestDisplayName(questName) {
         ? `
           <div class="encounter-picture">
             <img
-              src="./images/${esc(picture)}.png?v=21"
+              src="./images/${esc(picture)}.png?v=22"
               alt="${esc(page.speaker || TEXT.encounterFallback)}"
               class="encounter-picture-image"
               decoding="async"
@@ -3628,6 +3682,7 @@ function getQuestDisplayName(questName) {
 
 
   function showDebug() {
+    if (!isDebugEnabled()) return showSettings();
     stopCamera();
 
     shell(`
@@ -3710,7 +3765,7 @@ function getQuestDisplayName(questName) {
 
       </section>
     `, {
-      back: showHome
+      back: showSettings
     });
 
     const routes = {
@@ -5411,7 +5466,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=21");
+        .register("./sw.js?v=22");
 
       await navigator
         .serviceWorker

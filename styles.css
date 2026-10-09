@@ -1032,3 +1032,69 @@ select {
 .inventory-screen .list-item {
   min-height: 65px;
 }
+
+/* Settings navigation: bottom of the home screen and future-proof submenus. */
+.home-topbar { display: none; }
+
+.home-settings-footer {
+  margin-top: auto;
+  padding: 14px 14px calc(14px + env(safe-area-inset-bottom, 0px));
+  background: var(--yellow);
+}
+.home-settings-button {
+  width: 100%;
+  min-height: 54px;
+  border: 1px solid #d8bf75;
+  border-radius: 12px;
+  background: var(--yellow-light);
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+.settings-screen .screen-title {
+  font-size: clamp(2rem, 9vw, 2.9rem);
+}
+.settings-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px 14px;
+}
+.settings-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 70px;
+  padding: 14px 16px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  background: #f6f6f6;
+  color: #111;
+  text-align: left;
+  font: inherit;
+  transition: transform 0.06s ease;
+}
+.home-settings-button:active,
+.settings-option:active { transform: scale(0.98); }
+.settings-option-label {
+  display: block;
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+.settings-option-detail {
+  display: block;
+  margin-top: 5px;
+  color: #555;
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+.settings-hint,
+.settings-placeholder {
+  padding: 22px 18px 0;
+  margin: 0;
+  line-height: 1.55;
+}
+.settings-placeholder { text-align: center; }
