@@ -4938,14 +4938,42 @@ window.QR_CITY_QUEST_DATA = {
     "Straw": {
       "displayName": "Straw",
       "startPage": "3601",
-      "implemented": false,
-      "pages": {}
+      "pages": {
+        "3601": {
+          "id": "3601",
+          "speaker": "Straw",
+          "text": "A bundle of straw that someone must have lost.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
     },
     "Mosquito": {
       "displayName": "Mosquito",
       "startPage": "3701",
-      "implemented": false,
-      "pages": {}
+      "pages": {
+        "3701": {
+          "id": "3701",
+          "speaker": "Mosquito",
+          "text": "A couple of mosquitoes wrapped in spiderweb.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
     },
     "Sketch3": {
       "displayName": "Sketch 3",
@@ -4958,6 +4986,265 @@ window.QR_CITY_QUEST_DATA = {
       "startPage": "3901",
       "implemented": false,
       "pages": {}
+    },
+    "Magic Book": {
+      "displayName": "The Magic Pebble",
+      "startPage": "4001",
+      "pages": {
+        "4001": {
+          "id": "4001",
+          "speaker": "The Magic Pebble",
+          "text": "A book with a glowing white pebble on its cover.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Open it",
+              "next": "4002"
+            },
+            {
+              "index": 3,
+              "label": "Open it",
+              "next": "4009"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "2": "save.inventory.includes(\"Magnifying Glass\")",
+            "3": "!save.inventory.includes(\"Magnifying Glass\")"
+          }
+        },
+        "4002": {
+          "id": "4002",
+          "speaker": "The Magic Pebble",
+          "text": "Once upon a time, there was a child named Márió. He had a beautiful pebble that was as smooth as a mirror.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Next page",
+              "next": "4003"
+            },
+            {
+              "index": 2,
+              "label": "Close the book",
+              "next": "4001"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4003": {
+          "id": "4003",
+          "speaker": "The Magic Pebble",
+          "text": "Sometimes the pebble seemed as if it wandered around. Márió put it down in one place, and a little while later he found it somewhere else.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4002"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4004"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4004": {
+          "id": "4004",
+          "speaker": "The Magic Pebble",
+          "text": "One day his father examined the pebble too, and with a magnifying glass he discovered strange symbols on it. The symbols seemed to be written in some ancient language.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4003"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4005"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4005": {
+          "id": "4005",
+          "speaker": "The Magic Pebble",
+          "text": "They took it to Mógi, the local wizard, hoping he would know what it was. When they arrived, he was already waiting for them with a smile.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4004"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4006"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4006": {
+          "id": "4006",
+          "speaker": "The Magic Pebble",
+          "text": "“Hi!” said Mógi. “May I see the pebble?”\n“Where did you—” Márió exclaimed, but Mógi interrupted him.\n“I saw you coming!”\nDad handed him the pebble. The wizard examined it and exclaimed:\n“My goodness! This is incredible!”",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4005"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4007"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4007": {
+          "id": "4007",
+          "speaker": "The Magic Pebble",
+          "text": "“What is it?” asked Márió.\n“It is written in an ancient magical language,” said Mógi. “If someone gives this pebble to somebody else purely out of friendship, as a gift, the person they give it to will have great luck.”",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4006"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4008"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4008": {
+          "id": "4008",
+          "speaker": "The Magic Pebble",
+          "text": "Márió remained lucky for the rest of his life, and whatever he tried, he succeeded at it.\n\nTHE END\nChronicler Tivadar",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4007"
+            },
+            {
+              "index": 2,
+              "label": "Close the book",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4009": {
+          "id": "4009",
+          "speaker": "The Magic Pebble",
+          "text": "The letters (and the book itself) are too small for you to read with the naked eye.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "Magnifying Glass": {
+      "displayName": "Magnifying Glass",
+      "startPage": "4101",
+      "pages": {
+        "4101": {
+          "id": "4101",
+          "speaker": "Magnifying Glass",
+          "text": "This magnifying glass helps you inspect things you cannot see with the naked eye.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Inspect something",
+              "next": "4102"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4102": {
+          "id": "4102",
+          "speaker": "Magnifying Glass",
+          "text": "What?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Choose item",
+              "next": "4103"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [],
+              "otherNext": "4103"
+            }
+          ],
+          "condition": {}
+        },
+        "4103": {
+          "id": "4103",
+          "speaker": "Magnifying Glass",
+          "text": "Now you can see the smaller details too.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "Premium Library Card": {
+      "displayName": "Premium Library Card",
+      "startPage": "4201",
+      "pages": {
+        "4201": {
+          "id": "4201",
+          "speaker": "Premium Library Card",
+          "text": "This gives you unlimited access to the library books!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
     }
   },
   "knowledgeFolders": {
