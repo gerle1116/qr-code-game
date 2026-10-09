@@ -5245,6 +5245,186 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {}
         }
       }
+    },
+    "Worm Book": {
+      "displayName": "The History of the Worms",
+      "startPage": "4301",
+      "pages": {
+        "4301": {
+          "id": "4301",
+          "speaker": "The History of the Worms",
+          "text": "A book showing worms dressed in all kinds of different outfits.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Open it",
+              "next": "4302"
+            },
+            {
+              "index": 3,
+              "label": "Open it",
+              "next": "4309"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "2": "save.inventory.includes(\"Magnifying Glass\")",
+            "3": "!save.inventory.includes(\"Magnifying Glass\")"
+          }
+        },
+        "4302": {
+          "id": "4302",
+          "speaker": "The History of the Worms",
+          "text": "The history of the Worm People goes back centuries. I, the writer, would begin with our settlement in Dombház. Our ancestors, long, long ago, 1600 worm-years ago...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Next page",
+              "next": "4303"
+            },
+            {
+              "index": 2,
+              "label": "Close the book",
+              "next": "4301"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4303": {
+          "id": "4303",
+          "speaker": "The History of the Worms",
+          "text": "They settled here, where we are now. Our ancestors tell us that three animals invited us here so that we could put this place in order.\n\nNext chapter: The Reign of the Three Animals",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4302"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4304"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4304": {
+          "id": "4304",
+          "speaker": "The History of the Worms",
+          "text": "The three animals hid their treasure in a safe, but each of them knows only one part of the code. This is what our ancestors tell us. At first, the worms lived above ground, but as time passed, they withdrew farther and farther underground. Away from the birds. By now, perhaps the birds have even forgotten about us. However...",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4303"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4305"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4305": {
+          "id": "4305",
+          "speaker": "The History of the Worms",
+          "text": "By now we have divided up the tasks and live in a kingdom. Every king is called the Chief Worm, so the current one is also the Chief Worm. His job is to decide who will have which job.\n\nNext chapter: The Jobs of the Worms",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4304"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4306"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4306": {
+          "id": "4306",
+          "speaker": "The History of the Worms",
+          "text": "The worms have many different jobs. The Miner Worm mines different kinds of crystals. The Scribe Worm's job is to look after the library and write down the stories.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4305"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4307"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4307": {
+          "id": "4307",
+          "speaker": "The History of the Worms",
+          "text": "The Messenger Worm's job is to carry the Chief Worm's messages and inform him about what he sees. The Tree-Climber Worm watches the surroundings in case he finds something valuable.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4306"
+            },
+            {
+              "index": 2,
+              "label": "Next page",
+              "next": "4308"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4308": {
+          "id": "4308",
+          "speaker": "The History of the Worms",
+          "text": "And that was the short history of the worms. I hope I taught you something.\n\nChronicler Teodor",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Previous page",
+              "next": "4307"
+            },
+            {
+              "index": 2,
+              "label": "Close the book",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4309": {
+          "id": "4309",
+          "speaker": "The History of the Worms",
+          "text": "The letters (and the book itself) are so tiny that you cannot read them with the naked eye.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "OK",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
     }
   },
   "knowledgeFolders": {
