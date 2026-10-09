@@ -853,7 +853,7 @@
                         ? `
                           <img
                             class="inventory-item-icon"
-                            src="./images/${esc(picture)}.png?v=24"
+                            src="./images/${esc(picture)}.png?v=25"
                             alt=""
                             loading="lazy"
                             decoding="async"
@@ -2210,7 +2210,7 @@ function getQuestDisplayName(questName) {
         ? `
           <div class="encounter-picture">
             <img
-              src="./images/${esc(picture)}.png?v=24"
+              src="./images/${esc(picture)}.png?v=25"
               alt="${esc(page.speaker || TEXT.encounterFallback)}"
               class="encounter-picture-image"
               decoding="async"
@@ -3952,18 +3952,6 @@ function getQuestDisplayName(questName) {
         </div>
 
         <div class="debug-section">
-          <h3>${esc(d("Jump to NPC", "Ugrás NPC-re"))}</h3>
-          <div class="debug-grid">
-            ${encounterIds.map(id => `
-              <button type="button" data-debug-jump-npc="${esc(id)}"
-                aria-label="${esc(d("Jump to NPC", "Ugrás NPC-re"))} ${esc(id)}">
-                ${esc(id)}
-              </button>
-            `).join("")}
-          </div>
-        </div>
-
-        <div class="debug-section">
           <h3>${esc(TEXT.jumpToPageId)}</h3>
 
           <div class="debug-row debug-jump-row">
@@ -4094,20 +4082,6 @@ function getQuestDisplayName(questName) {
           resolveScan(
             button.dataset.debugScan
           );
-      });
-
-    document
-      .querySelectorAll("[data-debug-jump-npc]")
-      .forEach(button => {
-        button.onclick = () => {
-          const id = button.dataset.debugJumpNpc;
-          const encounter = GAME.encounters && GAME.encounters[id];
-          if (!encounter || !encounter.startPage || !findPage(encounter.startPage)) {
-            return toast(TEXT.pageNotFound);
-          }
-          // Debug jump: open the NPC's start page regardless of scan/area locks.
-          showPage(encounter.startPage);
-        };
       });
 
     const pageInput = document.getElementById("jumpPage");
@@ -5616,7 +5590,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=24");
+        .register("./sw.js?v=25");
 
       await navigator
         .serviceWorker
