@@ -4938,14 +4938,42 @@ window.QR_CITY_QUEST_DATA = {
     "Straw": {
       "displayName": "Szalma",
       "startPage": "3601",
-      "implemented": false,
-      "pages": {}
+      "pages": {
+        "3601": {
+          "id": "3601",
+          "speaker": "Szalma",
+          "text": "Egy köteg szalma, amit valaki biztosan elveszített.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
     },
     "Mosquito": {
       "displayName": "Szúnyog",
       "startPage": "3701",
-      "implemented": false,
-      "pages": {}
+      "pages": {
+        "3701": {
+          "id": "3701",
+          "speaker": "Szúnyog",
+          "text": "Egy pár szúnyog pókhálóval beburkolva.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
     },
     "Sketch3": {
       "displayName": "Vázlat3",
@@ -4958,6 +4986,265 @@ window.QR_CITY_QUEST_DATA = {
       "startPage": "3901",
       "implemented": false,
       "pages": {}
+    },
+    "Magic Book": {
+      "displayName": "A varázskavics",
+      "startPage": "4001",
+      "pages": {
+        "4001": {
+          "id": "4001",
+          "speaker": "A varázskavics",
+          "text": "Egy könyv, aminek a borítóján egy fénylő fehér kavics látható.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Fellapozom",
+              "next": "4002"
+            },
+            {
+              "index": 3,
+              "label": "Fellapozom",
+              "next": "4009"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "2": "save.inventory.includes(\"Magnifying Glass\")",
+            "3": "!save.inventory.includes(\"Magnifying Glass\")"
+          }
+        },
+        "4002": {
+          "id": "4002",
+          "speaker": "A varázskavics",
+          "text": "Egyszer volt, hol nem volt, volt egyszer egy gyerek, akit Máriónak hívtak. Volt neki egy gyönyörű kavicsa, ami olyan sima volt, mint a tükör.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Kövi oldal",
+              "next": "4003"
+            },
+            {
+              "index": 2,
+              "label": "Becsukom",
+              "next": "4001"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4003": {
+          "id": "4003",
+          "speaker": "A varázskavics",
+          "text": "Ez a kavics néha olyan volt, mintha vándorolna. Márió lerakta egy helyre, és pár idő múlva máshol találta meg.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4002"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4004"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4004": {
+          "id": "4004",
+          "speaker": "A varázskavics",
+          "text": "Egyszer az apukája is megvizsgálta a követ, és egy nagyítóval furcsa jeleket fedezett fel rajta. A jelek valamilyen régi nyelven íródhattak.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4003"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4005"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4005": {
+          "id": "4005",
+          "speaker": "A varázskavics",
+          "text": "Elvitték Mógihoz, az ottani varázslóhoz, hogy hátha ő tudja, mi lehet ez. Amikor odaértek, ő már mosolyogva várta őket.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4004"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4006"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4006": {
+          "id": "4006",
+          "speaker": "A varázskavics",
+          "text": "„Sziasztok!” – szólt Mógi. – „Megnézhetem a kavicsot?”\n„Honnan…” – kiáltott Márió, de Mógi félbeszakította:\n„Láttam, hogy jöttök!”\nApa odaadta a kavicsot. A varázsló megvizsgálta és felkiáltott:\n„A mindenit! Ez hihetetlen!”",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4005"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4007"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4007": {
+          "id": "4007",
+          "speaker": "A varázskavics",
+          "text": "„Mi az?” – kérdezte Márió.\n„Ez egy régi varázsnyelven íródott” – mondta Mógi. – „Ha valaki odaadja ezt a kavicsot valaki másnak pusztán barátságból, ajándékba, akinek odaadta, nagy szerencséje lesz.”",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4006"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4008"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4008": {
+          "id": "4008",
+          "speaker": "A varázskavics",
+          "text": "Márió élete végéig szerencsés maradt, és amihez csak hozzáért, abban sikerrel járt.\n\nVÉGE\nKrónikás Tivadar",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4007"
+            },
+            {
+              "index": 2,
+              "label": "Becsukom",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4009": {
+          "id": "4009",
+          "speaker": "A varázskavics",
+          "text": "A betűk (és a könyv is) túl kicsik ahhoz, hogy el tudd őket szabad szemmel olvasni.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "Magnifying Glass": {
+      "displayName": "Nagyító",
+      "startPage": "4101",
+      "pages": {
+        "4101": {
+          "id": "4101",
+          "speaker": "Nagyító",
+          "text": "Ez a nagyító segít megnézni azokat a dolgokat is, amit nem látsz szabad szemmel.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Megvizsgálok valamit",
+              "next": "4102"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4102": {
+          "id": "4102",
+          "speaker": "Nagyító",
+          "text": "Mit?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Items",
+              "next": "4103"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [],
+              "otherNext": "4103"
+            }
+          ],
+          "condition": {}
+        },
+        "4103": {
+          "id": "4103",
+          "speaker": "Nagyító",
+          "text": "Most már az apróbb részleteket is látod.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "Premium Library Card": {
+      "displayName": "Prémium olvasójegy",
+      "startPage": "4201",
+      "pages": {
+        "4201": {
+          "id": "4201",
+          "speaker": "Prémium olvasójegy",
+          "text": "Ez végtelen hozzáférést biztosít a könyvtári könyvekhez!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
     }
   },
   "knowledgeFolders": {
