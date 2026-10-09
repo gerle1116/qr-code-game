@@ -5245,6 +5245,186 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {}
         }
       }
+    },
+    "Worm Book": {
+      "displayName": "A kukacok története",
+      "startPage": "4301",
+      "pages": {
+        "4301": {
+          "id": "4301",
+          "speaker": "A kukacok története",
+          "text": "Egy könyv, amin kukacok láthatók különféle öltözetekben.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Lapozz fel",
+              "next": "4302"
+            },
+            {
+              "index": 3,
+              "label": "Lapozz fel",
+              "next": "4309"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "2": "save.inventory.includes(\"Magnifying Glass\")",
+            "3": "!save.inventory.includes(\"Magnifying Glass\")"
+          }
+        },
+        "4302": {
+          "id": "4302",
+          "speaker": "A kukacok története",
+          "text": "A kukacok népének története évszázadokra nyúlik vissza. Én, az író, a dombházi megtelepedésünknél kezdeném. Az őseink réges-régen, 1600 kukacöltővel ezelőtt…",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Kövi oldal",
+              "next": "4303"
+            },
+            {
+              "index": 2,
+              "label": "Becsukom",
+              "next": "4301"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4303": {
+          "id": "4303",
+          "speaker": "A kukacok története",
+          "text": "Telepedtek meg itt, ahol vagyunk. Őseink azt mesélik, hogy 3 állat hívott ide, hogy rendbeszedjük ezt a helyet.\n\nKövetkező fejezet: A 3 állat uralma",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4302"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4304"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4304": {
+          "id": "4304",
+          "speaker": "A kukacok története",
+          "text": "A 3 állat egy széfbe rejtette kincsét, de mindegyikük csak a kód egy részét tudja. Ezt mesélik eleink. A kukacok először a föld felett éltek, de ahogy telt az idő, egyre inkább a föld alá húzódtak. A madarak elől. Mostanra talán már el is felejtettek minket. Viszont…",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4303"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4305"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4305": {
+          "id": "4305",
+          "speaker": "A kukacok története",
+          "text": "Már megosztottuk a feladatokat és királyságban élünk. Az összes királyt Főkukacnak nevezzük, így a mostani is Fő Kukac. A feladata az, hogy kiosztja, kinek milyen munkája lesz.\n\nKövetkező fejezet: A kukacok feladatai",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4304"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4306"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4306": {
+          "id": "4306",
+          "speaker": "A kukacok története",
+          "text": "A Kukacoknak különféle feladataik vannak. A Bányász Kukac különféle kristályokat bányászik ki. Az Írnok Kukac feladata, hogy a könyvtárra vigyáz és leírja a történeteket.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4305"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4307"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4307": {
+          "id": "4307",
+          "speaker": "A kukacok története",
+          "text": "A Hírnök Kukacnak az a dolga, hogy a Fő Kukac üzeneteit szállítja és értesíti arról, amit lát. A Fáramászó Kukac meg nézi a környezetet, hátha talál valami értékeset.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4306"
+            },
+            {
+              "index": 2,
+              "label": "Kövi oldal",
+              "next": "4308"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4308": {
+          "id": "4308",
+          "speaker": "A kukacok története",
+          "text": "Ez volt hát a kukacok rövid története. Remélem, tanítottam valamit.\n\nKrónikás Teodor",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Előző oldal",
+              "next": "4307"
+            },
+            {
+              "index": 2,
+              "label": "Becsukom",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        },
+        "4309": {
+          "id": "4309",
+          "speaker": "A kukacok története",
+          "text": "A betűk (és a könyv is) olyan aprók, hogy nem tudod szabad szemmel elolvasni.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Oké",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
     }
   },
   "knowledgeFolders": {
