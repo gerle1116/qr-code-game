@@ -1,0 +1,19 @@
+name: Mod installer regression tests
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mod-system/**'
+      - 'tests/test-mod-installer.js'
+      - '.github/workflows/mod-installer-tests.yml'
+  workflow_dispatch:
+jobs:
+  mod-installer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate ZIP importer and mod manager
+        run: node tests/test-mod-installer.js
