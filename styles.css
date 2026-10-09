@@ -1098,3 +1098,20 @@ select {
   line-height: 1.55;
 }
 .settings-placeholder { text-align: center; }
+
+/* Mod manager: compact cards, large phone-friendly buttons. */
+.mods-install-row { padding: 16px 14px 4px; }
+.mods-install-row .primary { width: 100%; font-size: 1.05rem; }
+.mods-install-row button:disabled,
+.mod-actions button:disabled { opacity: .5; cursor: wait; }
+.mods-list { padding: 12px 14px 4px; display: grid; gap: 14px; }
+.mods-empty { text-align: center; padding: 24px 12px; }
+.mod-card { padding: 15px; border: 1px solid #888; border-radius: 12px; background: #f8f8f8; }
+.mod-card-heading { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+.mod-state { font-size: .86rem; opacity: .8; }
+.mod-meta { font-size: .86rem; color: #454545; margin: 8px 0 0; overflow-wrap: anywhere; }
+.mod-description { font-size: .94rem; margin: 12px 0 0; }
+.mod-actions { display: flex; gap: 10px; margin-top: 14px; }
+.mod-actions button { flex: 1; min-width: 0; }
+.mods-note { font-size: .88rem; padding: 12px 16px 24px; margin: 0; color: #303030; line-height: 1.5; }
+#modsStatus { white-space: pre-wrap; overflow-wrap: anywhere; }

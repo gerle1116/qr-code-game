@@ -853,7 +853,7 @@
                         ? `
                           <img
                             class="inventory-item-icon"
-                            src="./images/${esc(picture)}.png?v=22"
+                            src="./images/${esc(picture)}.png?v=23"
                             alt=""
                             loading="lazy"
                             decoding="async"
@@ -1291,15 +1291,130 @@ function getQuestDisplayName(questName) {
     }
   }
 
-  function showModsSettings() {
+
+  async function showModsSettings(message = "") {
     stopCamera();
 
     shell(`
       <section class="card screen-card settings-screen">
         <h1 class="screen-title">${esc(TEXT.mods)}</h1>
-        <p class="settings-placeholder">${esc(TEXT.modsComingSoon)}</p>
+        <p class="settings-hint" id="modsStatus" role="status" aria-live="polite">${esc(message || TEXT.modsInstallHelp)}</p>
+        <div class="mods-install-row">
+          <button class="primary" type="button" id="installModBtn">${esc(TEXT.installMod)}</button>
+          <input type="file" accept=".zip,application/zip" id="modFileInput" hidden>
+        </div>
+        <div id="installedMods" class="mods-list">${esc(TEXT.modsLoading)}</div>
+        <p class="mods-note">${esc(TEXT.modsNotYetPlayable)}</p>
       </section>
     `, { back: showSettings });
+
+    const api = window.QRCQModInstaller;
+    const picker = document.getElementById("modFileInput");
+    const installButton = document.getElementById("installModBtn");
+    const status = document.getElementById("modsStatus");
+    let working = false;
+
+    function setStatus(text) {
+      if (document.getElementById("modsStatus") === status) status.textContent = text;
+    }
+
+    async function runTask(action) {
+      if (working) return;
+      working = true;
+      installButton.disabled = true;
+      document.querySelectorAll("[data-mod-toggle], [data-mod-remove]").forEach(b => { b.disabled = true; });
+      try {
+        await action();
+      } catch (error) {
+        console.error("Mod manager:", error);
+        setStatus(error && error.message ? error.message : TEXT.modOperationFailed);
+      } finally {
+        working = false;
+        if (document.getElementById("installModBtn") === installButton)
+          installButton.disabled = !api;
+      }
+    }
+
+    async function refreshMods() {
+      const rows = await api.list();
+      const region = document.getElementById("installedMods");
+      if (!region) return;
+
+      if (!rows.length) {
+        region.innerHTML = `<p class="mods-empty">${esc(TEXT.noModsInstalled)}</p>`;
+        return;
+      }
+
+      region.innerHTML = rows.map(mod => `
+        <article class="mod-card">
+          <div class="mod-card-heading">
+            <strong>${esc(mod.name)}</strong>
+            <span class="mod-state">${esc(mod.enabled ? TEXT.modEnabled : TEXT.modDisabled)}</span>
+          </div>
+          <div class="mod-meta">${esc(mod.id)} · v${esc(mod.version)} ·
+            ${esc(mod.kind === "language" ? TEXT.modLanguagePack : TEXT.modExpansion)}</div>
+          ${mod.target ? `<p class="mod-meta">${esc(TEXT.modTarget)}: ${esc(mod.target)}</p>` : ""}
+          <p class="mod-meta">${esc(TEXT.modLanguages)}: ${esc(mod.languages.join(", "))}</p>
+          ${mod.description ? `<p class="mod-description">${esc(mod.description)}</p>` : ""}
+          <div class="mod-actions">
+            <button class="secondary" type="button" data-mod-toggle="${esc(mod.id)}" data-mod-enable="${!mod.enabled}">
+              ${esc(mod.enabled ? TEXT.disableMod : TEXT.enableMod)}
+            </button>
+            <button class="secondary" type="button" data-mod-remove="${esc(mod.id)}">
+              ${esc(TEXT.removeMod)}
+            </button>
+          </div>
+        </article>
+      `).join("");
+
+      region.querySelectorAll("[data-mod-toggle]").forEach(button => {
+        button.onclick = () => runTask(async () => {
+          const id = button.dataset.modToggle;
+          const enabled = button.dataset.modEnable === "true";
+          const changed = await api.setEnabled(id, enabled);
+          setStatus(changed.name + ": " + (enabled ? TEXT.modEnabled : TEXT.modDisabled));
+          await refreshMods();
+        });
+      });
+
+      region.querySelectorAll("[data-mod-remove]").forEach(button => {
+        button.onclick = () => {
+          if (!confirm(TEXT.confirmRemoveMod)) return;
+          runTask(async () => {
+            await api.remove(button.dataset.modRemove);
+            setStatus(TEXT.modRemoved);
+            await refreshMods();
+          });
+        };
+      });
+    }
+
+    if (!api) {
+      setStatus(TEXT.modManagerUnavailable);
+      installButton.disabled = true;
+      return;
+    }
+
+    installButton.onclick = () => picker.click();
+    picker.onchange = () => {
+      const selected = picker.files && picker.files[0];
+      picker.value = "";
+      if (!selected) return;
+      runTask(async () => {
+        setStatus(TEXT.modsInstalling);
+        const installed = await api.install(selected);
+        setStatus(TEXT.modInstalled(installed.name));
+        await refreshMods();
+      });
+    };
+
+    try {
+      await refreshMods();
+    } catch (error) {
+      console.error("Mod storage:", error);
+      setStatus(TEXT.modStorageUnavailable + " " + error.message);
+      installButton.disabled = true;
+    }
   }
 
   function showLanguageSettings() {
@@ -2095,7 +2210,7 @@ function getQuestDisplayName(questName) {
         ? `
           <div class="encounter-picture">
             <img
-              src="./images/${esc(picture)}.png?v=22"
+              src="./images/${esc(picture)}.png?v=23"
               alt="${esc(page.speaker || TEXT.encounterFallback)}"
               class="encounter-picture-image"
               decoding="async"
@@ -5466,7 +5581,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=22");
+        .register("./sw.js?v=23");
 
       await navigator
         .serviceWorker
