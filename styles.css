@@ -1115,3 +1115,22 @@ select {
 .mod-actions button { flex: 1; min-width: 0; }
 .mods-note { font-size: .88rem; padding: 12px 16px 24px; margin: 0; color: #303030; line-height: 1.5; }
 #modsStatus { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* Debug: allow text/page namespace entry without squeezing the Jump button. */
+.debug-jump-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+.debug-jump-row .debug-page-input {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  background: #f8f8f8;
+  border: 1px solid #777;
+  outline-offset: 2px;
+}
+.debug-jump-row .primary {
+  flex: 0 0 auto;
+}

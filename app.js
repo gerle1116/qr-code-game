@@ -853,7 +853,7 @@
                         ? `
                           <img
                             class="inventory-item-icon"
-                            src="./images/${esc(picture)}.png?v=23"
+                            src="./images/${esc(picture)}.png?v=24"
                             alt=""
                             loading="lazy"
                             decoding="async"
@@ -2210,7 +2210,7 @@ function getQuestDisplayName(questName) {
         ? `
           <div class="encounter-picture">
             <img
-              src="./images/${esc(picture)}.png?v=23"
+              src="./images/${esc(picture)}.png?v=24"
               alt="${esc(page.speaker || TEXT.encounterFallback)}"
               class="encounter-picture-image"
               decoding="async"
@@ -3952,15 +3952,33 @@ function getQuestDisplayName(questName) {
         </div>
 
         <div class="debug-section">
+          <h3>${esc(d("Jump to NPC", "Ugrás NPC-re"))}</h3>
+          <div class="debug-grid">
+            ${encounterIds.map(id => `
+              <button type="button" data-debug-jump-npc="${esc(id)}"
+                aria-label="${esc(d("Jump to NPC", "Ugrás NPC-re"))} ${esc(id)}">
+                ${esc(id)}
+              </button>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="debug-section">
           <h3>${esc(TEXT.jumpToPageId)}</h3>
 
-          <div class="debug-row">
+          <div class="debug-row debug-jump-row">
             <input
-              class="code-input"
+              class="code-input debug-page-input"
+              type="text"
               id="jumpPage"
-              inputmode="numeric"
-              maxlength="4"
-              placeholder="2301"
+              inputmode="text"
+              autocapitalize="off"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              maxlength="80"
+              aria-label="${esc(TEXT.jumpToPageId)}"
+              placeholder="0201 / london:0201"
             >
 
             <button
@@ -4079,22 +4097,39 @@ function getQuestDisplayName(questName) {
       });
 
     document
-      .getElementById("jumpBtn")
-      .onclick = () => {
-        const id =
-          document
-            .getElementById("jumpPage")
-            .value
-            .trim();
+      .querySelectorAll("[data-debug-jump-npc]")
+      .forEach(button => {
+        button.onclick = () => {
+          const id = button.dataset.debugJumpNpc;
+          const encounter = GAME.encounters && GAME.encounters[id];
+          if (!encounter || !encounter.startPage || !findPage(encounter.startPage)) {
+            return toast(TEXT.pageNotFound);
+          }
+          // Debug jump: open the NPC's start page regardless of scan/area locks.
+          showPage(encounter.startPage);
+        };
+      });
 
-        if (!findPage(id)) {
-          return toast(
-            TEXT.pageNotFound
-          );
-        }
+    const pageInput = document.getElementById("jumpPage");
+    const jumpButton = document.getElementById("jumpBtn");
 
-        showPage(id);
-      };
+    const jumpToPage = () => {
+      const id = pageInput.value.trim();
+
+      if (!id || !findPage(id)) {
+        return toast(TEXT.pageNotFound);
+      }
+
+      showPage(id);
+    };
+
+    jumpButton.onclick = jumpToPage;
+    pageInput.addEventListener("keydown", event => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        jumpToPage();
+      }
+    });
 
     document
       .querySelectorAll(
@@ -5581,7 +5616,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=23");
+        .register("./sw.js?v=24");
 
       await navigator
         .serviceWorker
