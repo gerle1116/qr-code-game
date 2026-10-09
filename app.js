@@ -1824,6 +1824,15 @@ function getQuestDisplayName(questName) {
       Date.now() <
       Number(timer.endAt)
     ) {
+      if (
+        timer.waitPage &&
+        findPage(timer.waitPage)
+      ) {
+        return showPage(
+          timer.waitPage
+        );
+      }
+
       return showTimerWait(
         encounterId,
         timer
@@ -2886,6 +2895,25 @@ function getQuestDisplayName(questName) {
             context.encounterId
           ] = "-1";
 
+          if (
+            action.waitPage &&
+            (
+              !/^\d{4}$/.test(
+                String(action.waitPage)
+              ) ||
+              !findPage(
+                String(action.waitPage)
+              )
+            )
+          ) {
+            return showDataError(
+              d(
+                `START_TIMER has an invalid waitPage on page ${page.id}.`,
+                `A START_TIMER waitPage értéke érvénytelen ezen az oldalon: ${page.id}.`
+              )
+            );
+          }
+
           save.timers[
             context.encounterId
           ] = {
@@ -2896,7 +2924,12 @@ function getQuestDisplayName(questName) {
               ),
 
             resumePage:
-              destination
+              destination,
+
+            waitPage:
+              action.waitPage
+                ? String(action.waitPage)
+                : null
           };
 
           mutated =
