@@ -659,12 +659,14 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "Bye",
-              "next": "3405"
+              "next": "3406"
             }
           ],
           "actions": [
             {
-              "type": "NEXT_SCAN"
+              "type": "START_TIMER",
+              "durationMs": 300000,
+              "waitPage": "3405"
             }
           ],
           "condition": {}
@@ -677,14 +679,10 @@ window.QR_CITY_QUEST_DATA = {
             {
               "index": 1,
               "label": "OK",
-              "next": "3406"
+              "next": "HOME"
             }
           ],
-          "actions": [
-            {
-              "type": "NEXT_SCAN"
-            }
-          ],
+          "actions": [],
           "condition": {},
           "picture": "otter-gone"
         },
@@ -720,7 +718,9 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "actions": [
             {
-              "type": "NEXT_SCAN"
+              "type": "START_TIMER",
+              "durationMs": 300000,
+              "waitPage": "3405"
             }
           ],
           "condition": {}
@@ -738,7 +738,9 @@ window.QR_CITY_QUEST_DATA = {
           ],
           "actions": [
             {
-              "type": "NEXT_SCAN"
+              "type": "START_TIMER",
+              "durationMs": 300000,
+              "waitPage": "3405"
             }
           ],
           "condition": {}
