@@ -775,6 +775,23 @@
   }
 
 
+  // A mod QR includes the expansion namespace (for example london:02).
+  function isValidGameQr(qr) {
+    return /^(?:[0-9]{2}|[a-z][a-z0-9-]{1,47}:[0-9]{2})$/.test(qr);
+  }
+
+  function isDialoguePageId(id) {
+    return /^(?:[0-9]{4}|[a-z][a-z0-9-]{1,47}:[0-9]{4})$/.test(String(id));
+  }
+
+  function pictureUrl(name) {
+    if (!name) return null;
+    if (name.includes(":")) {
+      return (window.QRCQ_MOD_IMAGES || {})[name] || null;
+    }
+    return "./images/" + encodeURIComponent(name) + ".png?v=29";
+  }
+
   function getItemDefinitionByQr(qr) {
     if (
       !GAME.items ||
@@ -794,9 +811,11 @@
           ""
         );
 
-      if (
-        startPage.slice(0, 2) === qr
-      ) {
+      const colon = startPage.indexOf(":");
+      const itemQr = (colon >= 0 ? startPage.slice(0, colon + 1) : "") +
+        startPage.slice(colon + 1, colon + 3);
+
+      if (itemQr === qr) {
         return {
           name,
           data: item
@@ -819,12 +838,17 @@
   currentItemName = null;
   currentPageId = null;
 
+  // Disabled mod items remain saved but are hidden until the mod is enabled again.
+  const visibleItems = save.inventory.filter(itemName =>
+    !itemName.includes(":") || Object.prototype.hasOwnProperty.call(GAME.items || {}, itemName)
+  );
+
   const items =
-    save.inventory.length
+    visibleItems.length
       ? `
         <div class="inventory-grid">
           ${
-            save.inventory
+            visibleItems
               .map((itemName, index) => {
                 const item =
                   getItemDefinition(itemName);
@@ -840,6 +864,8 @@
                     ? item.data.defaultPicture.trim()
                     : "";
 
+                const iconSrc = pictureUrl(picture);
+
                 return `
                   <button
                     class="inventory-item-button"
@@ -849,11 +875,11 @@
                     title="${esc(displayName)}"
                   >
                     ${
-                      picture
+                      iconSrc
                         ? `
                           <img
                             class="inventory-item-icon"
-                            src="./images/${esc(picture)}.png?v=28"
+                            src="${esc(iconSrc)}"
                             alt=""
                             loading="lazy"
                             decoding="async"
@@ -926,7 +952,7 @@
 
       button.onclick = () => {
         const itemName =
-          save.inventory[
+          visibleItems[
             Number(
               button.dataset
                 .inventoryIndex
@@ -1671,12 +1697,12 @@ function getQuestDisplayName(questName) {
         .trim();
 
     const encounterExists =
-      /^\d{2}$/.test(qr) &&
+      isValidGameQr(qr) &&
       GAME.encounters &&
       GAME.encounters[qr];
 
     const item =
-      /^\d{2}$/.test(qr)
+      isValidGameQr(qr)
         ? getItemDefinitionByQr(qr)
         : null;
 
@@ -1879,8 +1905,11 @@ function getQuestDisplayName(questName) {
         pageId ?? ""
       );
 
+    const colon = id.indexOf(":");
     const encounterId =
-      id.slice(0, 2);
+      colon >= 0
+        ? id.slice(0, colon + 3)
+        : id.slice(0, 2);
 
     const encounter =
       GAME.encounters &&
@@ -2214,12 +2243,14 @@ function getQuestDisplayName(questName) {
     const picture =
       getPagePicture(page, context);
 
+    const pictureSrc = pictureUrl(picture);
+
     const pictureMarkup =
-      picture
+      pictureSrc
         ? `
           <div class="encounter-picture">
             <img
-              src="./images/${esc(picture)}.png?v=28"
+              src="${esc(pictureSrc)}"
               alt="${esc(page.speaker || TEXT.encounterFallback)}"
               class="encounter-picture-image"
               decoding="async"
@@ -2371,6 +2402,13 @@ function getQuestDisplayName(questName) {
         );
       };
   
+      // Downloaded mod conditions use a restricted data-only interpreter.
+      if (page && page.__modId) {
+        return !!window.QRCQModConditions.evaluate(
+          condition, { save }, page.__modId, context
+        );
+      }
+      // Legacy built-in condition strings belong to the trusted base game.
       return !!eval(condition);
   
     } catch (error) {
@@ -2877,7 +2915,7 @@ function getQuestDisplayName(questName) {
           }
 
           if (
-            !/^\d{4}$/.test(
+            !isDialoguePageId(
               destination
             ) ||
             !findPage(
@@ -2898,7 +2936,7 @@ function getQuestDisplayName(questName) {
           if (
             action.waitPage &&
             (
-              !/^\d{4}$/.test(
+              !isDialoguePageId(
                 String(action.waitPage)
               ) ||
               !findPage(
@@ -3160,7 +3198,7 @@ function getQuestDisplayName(questName) {
       }
 
       if (
-        !/^\d{4}$/.test(
+        !isDialoguePageId(
           destination
         ) ||
         !findPage(
@@ -3223,7 +3261,7 @@ function getQuestDisplayName(questName) {
     }
 
     if (
-      !/^\d{4}$/.test(
+      !isDialoguePageId(
         destination
       )
     ) {
@@ -5623,7 +5661,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=28");
+        .register("./sw.js?v=29");
 
       await navigator
         .serviceWorker
