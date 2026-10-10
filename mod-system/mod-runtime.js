@@ -102,7 +102,10 @@
       if(result.requiredArea)result.requiredArea=namespace(id,result.requiredArea);
       return result;
     }
-    const out={encounters:{},items:{},thingsIKnow:{},knowledgeFolders:{},questDisplayNames:{},imageFiles:images};
+    const selected=override ? override.data[selectedLanguage] :
+      target.data[selectedLanguage] || target.data.en;
+    const out={encounters:{},items:{},thingsIKnow:{},knowledgeFolders:{},
+      questDisplayNames:{},imageFiles:images,appText:{...selected.app}};
     for(const [qr,owner] of Object.entries(game.encounters||{})){
       if(!/^\d{2}$/.test(qr))throw Error("Invalid encounter QR "+qr);
       out.encounters[namespace(id,qr)]=normalizedOwner(owner);
@@ -121,14 +124,14 @@
     return out;
   }
   async function build(base,language){
-    const result={game:base,images:Object.create(null),loaded:[],errors:[]};
+    const result={game:base,images:Object.create(null),appText:Object.create(null),loaded:[],errors:[]};
     const store=root.QRCQModStorage, registryAPI=root.QRCQModRegistry;
     if(!store||!registryAPI||!root.QRCQModConditions)return result;
     let entries;
     try{entries=await store.list();}
     catch(e){result.errors.push("Mod storage unavailable: "+e.message);return result;}
     if(!entries.length)return result;
-    // Core language packs will be activated in Step 4, not this expansion engine stage.
+    // Main-game language packs are handled by the language-loader, not this merge.
     const expansions=entries.filter(e=>e.manifest && e.manifest.target!=="core");
     const registry=registryAPI.inspectPackages(expansions);
     if(!registry.valid) {
@@ -156,6 +159,8 @@
           Object.assign(combined[key],prepared[key]);
         for(const [name,path] of Object.entries(prepared.imageFiles))
           assetFiles.push({id:entry.id,key:namespace(entry.id,name),name:path,bytes:entry.files[path]});
+        for(const [name,value] of Object.entries(prepared.appText))
+          result.appText[namespace(entry.id,name)]=value;
         result.loaded.push(entry.manifest.id);
       }catch(e){
         result.errors.push(entry.manifest.id+": "+e.message);
