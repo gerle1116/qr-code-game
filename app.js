@@ -789,7 +789,7 @@
     if (name.includes(":")) {
       return (window.QRCQ_MOD_IMAGES || {})[name] || null;
     }
-    return "./images/" + encodeURIComponent(name) + ".png?v=29";
+    return "./images/" + encodeURIComponent(name) + ".png?v=30";
   }
 
   function getItemDefinitionByQr(qr) {
@@ -1449,7 +1449,7 @@ function getQuestDisplayName(questName) {
   function showLanguageSettings() {
     stopCamera();
 
-    const languages = [
+    const languages = window.QR_CITY_QUEST_AVAILABLE_LANGUAGES || [
       { code: "en", name: "English" },
       { code: "hu", name: "Magyar" }
     ];
@@ -5664,7 +5664,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=29");
+        .register("./sw.js?v=30");
 
       await navigator
         .serviceWorker
