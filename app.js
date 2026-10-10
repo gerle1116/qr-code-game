@@ -1328,6 +1328,7 @@ function getQuestDisplayName(questName) {
         <div class="mods-install-row">
           <button class="primary" type="button" id="installModBtn">${esc(TEXT.installMod)}</button>
           <input type="file" accept=".zip,application/zip" id="modFileInput" hidden>
+          <button class="secondary" type="button" id="modsReloadBtn">${esc(TEXT.modsApplyChanges)}</button>
         </div>
         <div id="installedMods" class="mods-list">${esc(TEXT.modsLoading)}</div>
         <p class="mods-note">${esc(TEXT.modsNotYetPlayable)}</p>
@@ -1338,6 +1339,8 @@ function getQuestDisplayName(questName) {
     const picker = document.getElementById("modFileInput");
     const installButton = document.getElementById("installModBtn");
     const status = document.getElementById("modsStatus");
+    const reloadButton = document.getElementById("modsReloadBtn");
+    reloadButton.onclick = () => location.reload();
     let working = false;
 
     function setStatus(text) {
@@ -1398,7 +1401,7 @@ function getQuestDisplayName(questName) {
           const id = button.dataset.modToggle;
           const enabled = button.dataset.modEnable === "true";
           const changed = await api.setEnabled(id, enabled);
-          setStatus(changed.name + ": " + (enabled ? TEXT.modEnabled : TEXT.modDisabled));
+          setStatus(changed.name + ": " + (enabled ? TEXT.modEnabled : TEXT.modDisabled) + " — " + TEXT.modsRestartNeeded);
           await refreshMods();
         });
       });
@@ -1408,7 +1411,7 @@ function getQuestDisplayName(questName) {
           if (!confirm(TEXT.confirmRemoveMod)) return;
           runTask(async () => {
             await api.remove(button.dataset.modRemove);
-            setStatus(TEXT.modRemoved);
+            setStatus(TEXT.modRemoved + " " + TEXT.modsRestartNeeded);
             await refreshMods();
           });
         };
@@ -1429,7 +1432,7 @@ function getQuestDisplayName(questName) {
       runTask(async () => {
         setStatus(TEXT.modsInstalling);
         const installed = await api.install(selected);
-        setStatus(TEXT.modInstalled(installed.name));
+        setStatus(TEXT.modInstalled(installed.name) + " " + TEXT.modsRestartNeeded);
         await refreshMods();
       });
     };
