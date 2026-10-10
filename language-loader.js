@@ -96,8 +96,8 @@
         window.QR_CITY_QUEST_APP_TEXT = englishText;
         window.QR_CITY_QUEST_DATA = englishGame;
       } else if (lang === "hu") {
-        await loadScript("data/apptext_hu.js?v=30");
-        await loadScript("data/game-data_hu.js?v=30");
+        await loadScript("data/apptext_hu.js?v=31");
+        await loadScript("data/game-data_hu.js?v=31");
       } else {
         const pack = discovery.packs[lang];
         if (!pack) throw Error("Selected language pack is not installed");
@@ -121,7 +121,7 @@
         }
       }
 
-      await loadScript("app.js?v=30");
+      await loadScript("app.js?v=31");
     } catch (error) {
       console.error("QR City Quest language loading error:", error);
       app.innerHTML = `
@@ -139,9 +139,9 @@
   async function initialize() {
     try {
       // Load trusted original English data once to validate independent translations.
-      await loadScript("data/apptext_en.js?v=30");
+      await loadScript("data/apptext_en.js?v=31");
       englishText = window.QR_CITY_QUEST_APP_TEXT;
-      await loadScript("data/game-data_en.js?v=30");
+      await loadScript("data/game-data_en.js?v=31");
       englishGame = window.QR_CITY_QUEST_DATA;
 
       if (window.QRCQModLocalization && window.QRCQModStorage) {
