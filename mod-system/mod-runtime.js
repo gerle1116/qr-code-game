@@ -15,6 +15,7 @@
   const clone=x=>JSON.parse(JSON.stringify(x));
   const namespace=(prefix,id)=>prefix+":"+String(id);
   function destination(prefix,id){
+    if(id==="TITLE_SCREEN")throw Error("Expansions cannot end the base game");
     if(DESTINATIONS.has(id))return id;
     if(typeof id!=="string"||!/^[0-9]{4}$/.test(id))throw Error("Invalid page target: "+id);
     return namespace(prefix,id);
