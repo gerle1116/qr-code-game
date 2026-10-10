@@ -8,6 +8,8 @@ on:
       - 'mod-system/**'
       - 'tests/test-mod-installer.js'
       - 'tests/test-mod-runtime.js'
+      - 'tests/test-mod-localization.js'
+      - 'tests/test-mod-localization.js'
       - '.github/workflows/mod-installer-tests.yml'
   pull_request:
     paths:
@@ -30,3 +32,5 @@ jobs:
         run: node tests/test-mod-installer.js
       - name: Verify playable expansion engine
         run: node tests/test-mod-runtime.js
+      - name: Verify dynamic main-game and independent translations
+        run: node tests/test-mod-localization.js
