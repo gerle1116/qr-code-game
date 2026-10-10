@@ -6,6 +6,7 @@ const path=require("node:path");
 const vm=require("node:vm");
 const validator=require("../mod-system/mod-validator.js");
 const localization=require("../mod-system/mod-localization.js");
+const zipReader=require("../mod-system/mod-zip-reader.js");
 const root=path.resolve(__dirname,"..");
 const originalGame=validator.parseStaticJs(
   fs.readFileSync(path.join(root,"data/game-data_en.js"),"utf8"),
@@ -121,6 +122,18 @@ function fixture({language="es",id="spanish-core"}={}){
     const d=localization.discover([bad],originalGame,originalText);
     assert.deepEqual(d.languages.map(x=>x.code),["en","hu"]);
     assert.equal(globalThis.hacked,undefined);
+  });
+  await check("Shipped Spanish preview ZIP extracts and validates",async()=>{
+    const data=fs.readFileSync(path.join(root,"sample-mods/core-spanish-preview.zip"));
+    const archive={name:"core-spanish-preview.zip",size:data.length,
+      arrayBuffer:async()=>data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength)};
+    const files=await zipReader.readZip(archive);
+    const manifest=validator.parseStaticJs(files["manifest.js"],"QR_CITY_QUEST_MOD_MANIFEST");
+    const translated=localization.checkCorePack(
+      {id:manifest.id,enabled:true,manifest,files},originalGame,originalText
+    );
+    assert.equal(translated.valid,true,translated.errors.join("; "));
+    assert.ok(translated.pack.data.es.game.encounters["02"].pages["0201"].text.includes("¡Hola"));
   });
   console.log("PASS: "+passed+" dynamic-language checks");
 })().catch(e=>{console.error(e);process.exitCode=1;});
