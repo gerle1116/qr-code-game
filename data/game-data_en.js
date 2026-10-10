@@ -4955,7 +4955,8 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         }
-      }
+      },
+      "defaultPicture": "straw"
     },
     "Mosquito": {
       "displayName": "Mosquito",
@@ -4975,7 +4976,8 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         }
-      }
+      },
+      "defaultPicture": "mosquito"
     },
     "Sketch3": {
       "displayName": "Sketch 3",
@@ -5018,7 +5020,8 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {
             "2": "save.inventory.includes(\"Magnifying Glass\")",
             "3": "!save.inventory.includes(\"Magnifying Glass\")"
-          }
+          },
+          "picture": "magic-book-cover"
         },
         "4002": {
           "id": "4002",
@@ -5165,9 +5168,11 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": {}
+          "condition": {},
+          "picture": "book-too-small"
         }
-      }
+      },
+      "defaultPicture": "book"
     },
     "Magnifying Glass": {
       "displayName": "Magnifying Glass",
@@ -5226,7 +5231,8 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         }
-      }
+      },
+      "defaultPicture": "magnifier-card"
     },
     "Premium Library Card": {
       "displayName": "Premium Library Card",
@@ -5246,7 +5252,8 @@ window.QR_CITY_QUEST_DATA = {
           "actions": [],
           "condition": {}
         }
-      }
+      },
+      "defaultPicture": "premium-library-card"
     },
     "Worm Book": {
       "displayName": "The History of the Worms",
@@ -5277,7 +5284,8 @@ window.QR_CITY_QUEST_DATA = {
           "condition": {
             "2": "save.inventory.includes(\"Magnifying Glass\")",
             "3": "!save.inventory.includes(\"Magnifying Glass\")"
-          }
+          },
+          "picture": "worm-book-cover"
         },
         "4302": {
           "id": "4302",
@@ -5424,9 +5432,11 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": {}
+          "condition": {},
+          "picture": "book-too-small"
         }
-      }
+      },
+      "defaultPicture": "book"
     }
   },
   "knowledgeFolders": {
