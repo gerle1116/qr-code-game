@@ -20,7 +20,7 @@
   async function coreEnglish(){
     if(!englishPromise) {
       englishPromise=(async()=>{
-        const response=await fetch("./data/game-data_en.js?v=29");
+        const response=await fetch("./data/game-data_en.js?v=30");
         if(!response.ok)throw Error("Unable to read original English game data");
         const text=await response.text();
         return dependencies().validator.parseStaticJs(text,"QR_CITY_QUEST_DATA");
