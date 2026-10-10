@@ -135,6 +135,8 @@
       result.errors.push(...registry.errors);
       return result;
     }
+    if(!expansions.some(entry=>entry.enabled!==false && !entry.manifest.target))
+      return result;
     const combined={...base,encounters:{...(base.encounters||{})},items:{...(base.items||{})},
       thingsIKnow:{...(base.thingsIKnow||{})},knowledgeFolders:{...(base.knowledgeFolders||{})},
       questDisplayNames:{...(base.questDisplayNames||{})}};
