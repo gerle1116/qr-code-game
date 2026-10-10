@@ -97,13 +97,18 @@
       await loadScript(`data/apptext_${lang}.js?v=29`);
       await loadScript(`data/game-data_${lang}.js?v=29`);
 
-      // Merge locally installed, enabled expansions before app.js initializes.
+      // Even a broken installed package must not prevent the core game from starting.
       if (window.QRCQModRuntime) {
-        const mods = await window.QRCQModRuntime.build(window.QR_CITY_QUEST_DATA, lang);
-        window.QR_CITY_QUEST_DATA = mods.game;
-        window.QRCQ_MOD_IMAGES = mods.images;
-        window.QRCQ_MOD_RUNTIME_INFO = { loaded: mods.loaded, errors: mods.errors };
-        if (mods.errors.length) console.warn("QR City Quest mod startup:", mods.errors);
+        try {
+          const mods = await window.QRCQModRuntime.build(window.QR_CITY_QUEST_DATA, lang);
+          window.QR_CITY_QUEST_DATA = mods.game;
+          window.QRCQ_MOD_IMAGES = mods.images;
+          window.QRCQ_MOD_RUNTIME_INFO = { loaded: mods.loaded, errors: mods.errors };
+          if (mods.errors.length) console.warn("QR City Quest mod startup:", mods.errors);
+        } catch (modError) {
+          console.error("Expansion loading failed; starting base game:", modError);
+          window.QRCQ_MOD_RUNTIME_INFO = { loaded: [], errors: [String(modError)] };
+        }
       }
 
       await loadScript("app.js?v=29");
