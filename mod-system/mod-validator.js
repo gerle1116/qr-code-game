@@ -75,7 +75,7 @@
         errors.push("manifest." + key + " must be a short string");
   }
 
-  function checkGame(data, errors, file) {
+  function checkGame(data, errors, file, coreTranslation = false) {
     if (data.formatVersion !== 1) errors.push(file + ": formatVersion must be 1");
     if (own(data,"encounters") && !record(data.encounters)) errors.push(file + ": encounters must be an object");
     if (own(data,"items") && !record(data.items)) errors.push(file + ": items must be an object");
@@ -114,7 +114,7 @@
     for (const [id,page] of pages) {
       if (page.condition!==undefined) {
         if (!record(page.condition)) errors.push(file + ": invalid condition map on " + id);
-        else for (const condition of Object.values(page.condition)) {
+        else if (!coreTranslation) for (const condition of Object.values(page.condition)) {
           if (typeof condition!=="string" || !safeConditions ||
               safeConditions.validate(condition)!==null)
             errors.push(file + ": unsupported or unsafe condition on " + id);
@@ -124,14 +124,14 @@
         if (!record(button) || typeof button.label !== "string" || typeof button.next !== "string" ||
             !(ids.has(button.next) || TARGETS.has(button.next)))
           errors.push(file + ": invalid button destination on " + id);
-        if (record(button) && button.next==="TITLE_SCREEN")
+        if (!coreTranslation && record(button) && button.next==="TITLE_SCREEN")
           errors.push(file + ": expansion cannot end the base game on " + id);
       }
       for (const action of page.actions) {
         if (!record(action) || typeof action.type !== "string") {
           errors.push(file + ": invalid action on " + id); continue;
         }
-        if (!ALLOWED_ACTIONS.has(action.type))
+        if (!ALLOWED_ACTIONS.has(action.type) && !(coreTranslation && action.type==="OPEN_CASTLE"))
           errors.push(file + ": unsupported expansion action " + action.type + " on " + id);
         if (typeof action.otherNext==="string" && !ids.has(action.otherNext) && !TARGETS.has(action.otherNext))
           errors.push(file + ": invalid dropdown fallback on " + id);
@@ -141,7 +141,7 @@
           if (!record(option) || typeof option.next !== "string" ||
               !(ids.has(option.next) || TARGETS.has(option.next)))
             errors.push(file + ": invalid dropdown destination on " + id);
-          else if (option.next==="TITLE_SCREEN")
+          else if (!coreTranslation && option.next==="TITLE_SCREEN")
             errors.push(file + ": expansion dropdown cannot end the base game on " + id);
       }
     }
@@ -204,7 +204,7 @@
       catch(e) { errors.push(gameFile+": "+e.message); }
       try { app=parseStaticJs(files[appFile],"QR_CITY_QUEST_APP_TEXT"); }
       catch(e) { errors.push(appFile+": "+e.message); }
-      if (game) checkGame(game,errors,gameFile);
+      if (game) checkGame(game,errors,gameFile,m.target==="core");
       if (app && Object.values(app).some(v=>typeof v!=="string")) errors.push(appFile+": all values must be string templates");
       if (game&&app) out.data[lang]={game,app};
     }
