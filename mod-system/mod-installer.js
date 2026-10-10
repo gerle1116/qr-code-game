@@ -1,4 +1,4 @@
-/* Step 2: validate, install and manage archive packages. Does NOT merge mod content into gameplay yet. */
+/* Installs and manages data-only mods; enabled expansion data loads on restart. */
 (function(root,factory){
   const api=factory(root);
   if(typeof module==="object"&&module.exports)module.exports=api;
@@ -20,7 +20,7 @@
   async function coreEnglish(){
     if(!englishPromise) {
       englishPromise=(async()=>{
-        const response=await fetch("./data/game-data_en.js?v=23");
+        const response=await fetch("./data/game-data_en.js?v=29");
         if(!response.ok)throw Error("Unable to read original English game data");
         const text=await response.text();
         return dependencies().validator.parseStaticJs(text,"QR_CITY_QUEST_DATA");

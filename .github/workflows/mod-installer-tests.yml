@@ -1,14 +1,25 @@
-name: Mod installer regression tests
+name: Mod system regression tests
 on:
   push:
-    branches: [main]
+    branches: [main, 'feature/**']
     paths:
+      - 'app.js'
+      - 'language-loader.js'
       - 'mod-system/**'
       - 'tests/test-mod-installer.js'
+      - 'tests/test-mod-runtime.js'
+      - '.github/workflows/mod-installer-tests.yml'
+  pull_request:
+    paths:
+      - 'app.js'
+      - 'language-loader.js'
+      - 'mod-system/**'
+      - 'tests/test-mod-installer.js'
+      - 'tests/test-mod-runtime.js'
       - '.github/workflows/mod-installer-tests.yml'
   workflow_dispatch:
 jobs:
-  mod-installer:
+  mod-system:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -17,3 +28,5 @@ jobs:
           node-version: '22'
       - name: Validate ZIP importer and mod manager
         run: node tests/test-mod-installer.js
+      - name: Verify playable expansion engine
+        run: node tests/test-mod-runtime.js
