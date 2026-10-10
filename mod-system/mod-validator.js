@@ -205,7 +205,10 @@
       catch(e) { errors.push(gameFile+": "+e.message); }
       try { app=parseStaticJs(files[appFile],"QR_CITY_QUEST_APP_TEXT"); }
       catch(e) { errors.push(appFile+": "+e.message); }
-      if (game) checkGame(game,errors,gameFile,m.target==="core");
+      // Core language packs are compared against the full trusted English structure
+      // by the registry/locale loader. The base game includes non-dialogue placeholder
+      // items, so applying expansion-only page rules would reject valid translations.
+      if (game && m.target!=="core") checkGame(game,errors,gameFile,false);
       if (app && Object.values(app).some(v=>typeof v!=="string")) errors.push(appFile+": all values must be string templates");
       if (game&&app) out.data[lang]={game,app};
     }
