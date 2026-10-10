@@ -94,9 +94,19 @@
     app.innerHTML = "";
 
     try {
-      await loadScript(`data/apptext_${lang}.js?v=28`);
-      await loadScript(`data/game-data_${lang}.js?v=28`);
-      await loadScript("app.js?v=28");
+      await loadScript(`data/apptext_${lang}.js?v=29`);
+      await loadScript(`data/game-data_${lang}.js?v=29`);
+
+      // Merge locally installed, enabled expansions before app.js initializes.
+      if (window.QRCQModRuntime) {
+        const mods = await window.QRCQModRuntime.build(window.QR_CITY_QUEST_DATA, lang);
+        window.QR_CITY_QUEST_DATA = mods.game;
+        window.QRCQ_MOD_IMAGES = mods.images;
+        window.QRCQ_MOD_RUNTIME_INFO = { loaded: mods.loaded, errors: mods.errors };
+        if (mods.errors.length) console.warn("QR City Quest mod startup:", mods.errors);
+      }
+
+      await loadScript("app.js?v=29");
     } catch (error) {
       console.error("QR City Quest language loading error:", error);
 
