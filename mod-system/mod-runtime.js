@@ -145,13 +145,15 @@
       if(entry.enabled===false || entry.manifest.target)continue;
       try{
         const prepared=validateAndPrepare(entry,language,registry);
+        // Validate every key before touching merged data; reject an invalid mod atomically.
         for(const key of ["encounters","items","thingsIKnow","knowledgeFolders","questDisplayNames"]){
-          for(const [name,value] of Object.entries(prepared[key])){
+          for(const name of Object.keys(prepared[key])){
             if(Object.prototype.hasOwnProperty.call(combined[key],name))
               throw Error("Duplicate game ID: "+name);
-            combined[key][name]=value;
           }
         }
+        for(const key of ["encounters","items","thingsIKnow","knowledgeFolders","questDisplayNames"])
+          Object.assign(combined[key],prepared[key]);
         for(const [name,path] of Object.entries(prepared.imageFiles))
           assetFiles.push({id:entry.id,key:namespace(entry.id,name),name:path,bytes:entry.files[path]});
         result.loaded.push(entry.manifest.id);
