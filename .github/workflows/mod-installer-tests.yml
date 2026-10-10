@@ -9,7 +9,6 @@ on:
       - 'tests/test-mod-installer.js'
       - 'tests/test-mod-runtime.js'
       - 'tests/test-mod-localization.js'
-      - 'tests/test-mod-localization.js'
       - '.github/workflows/mod-installer-tests.yml'
   pull_request:
     paths:
@@ -18,6 +17,7 @@ on:
       - 'mod-system/**'
       - 'tests/test-mod-installer.js'
       - 'tests/test-mod-runtime.js'
+      - 'tests/test-mod-localization.js'
       - '.github/workflows/mod-installer-tests.yml'
   workflow_dispatch:
 jobs:
