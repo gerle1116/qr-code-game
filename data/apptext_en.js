@@ -13,7 +13,7 @@ window.QR_CITY_QUEST_APP_TEXT = {
   installMod: "Install Mod (.zip)",
   modsLoading: "Loading installed mods...",
   noModsInstalled: "No mods installed yet.",
-  modsNotYetPlayable: "Enabled expansions become playable after reloading. Scan a mod QR such as london:02. More language choices are coming in Step 4.",
+  modsNotYetPlayable: "Enable mods, then reload to apply them. Complete installed main-game translation packs add languages to Settings automatically.",
   modsRestartNeeded: "Reload to apply mod changes.",
   modsApplyChanges: "Apply changes / Reload",
   modsInstalling: "Checking and installing mod...",
