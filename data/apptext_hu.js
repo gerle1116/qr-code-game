@@ -13,7 +13,7 @@ window.QR_CITY_QUEST_APP_TEXT = {
   installMod: "Mod telepítése (.zip)",
   modsLoading: "Telepített modok betöltése...",
   noModsInstalled: "Még nincs telepített mod.",
-  modsNotYetPlayable: "A bekapcsolt bővítmények újratöltés után játszhatók. Olvasd be például a london:02 QR-kódot. A további nyelvek a 4. lépésben érkeznek.",
+  modsNotYetPlayable: "Kapcsold be a modokat, majd töltsd újra a játékot. A teljes, telepített alapjáték-fordítások új nyelveket adnak a Beállítások menühöz.",
   modsRestartNeeded: "A modváltozások alkalmazásához töltsd újra a játékot.",
   modsApplyChanges: "Változások alkalmazása / Újratöltés",
   modsInstalling: "Mod ellenőrzése és telepítése...",
