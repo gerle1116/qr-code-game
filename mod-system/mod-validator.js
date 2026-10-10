@@ -161,7 +161,8 @@
     } else {
       const key=path.split(".").pop();
       if (VISIBLE.has(key) && typeof base === "string" && typeof translated === "string") return errors;
-      if (path.includes(".questDisplayNames.") && typeof base === "string" && typeof translated === "string") return errors;
+      if ((path.includes(".questDisplayNames.") || path.includes(".knowledgeFolders.")) &&
+          typeof base === "string" && typeof translated === "string") return errors;
       if (base !== translated) errors.push(path + ": gameplay/internal data differs");
     }
     return errors;
