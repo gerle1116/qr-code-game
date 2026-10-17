@@ -119,7 +119,7 @@ const PRECACHE = [
   "./manifest.webmanifest",
 
   "./icons/icon-192.png",
-  "./icons/icon-512.png"
+  "./icons/icon-512.png",
   "./images/book.png?v=32",
   "./images/worm-book-cover.png?v=32",
   "./images/magic-book-cover.png?v=32",
