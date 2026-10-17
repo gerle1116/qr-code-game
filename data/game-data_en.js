@@ -1010,6 +1010,454 @@ window.QR_CITY_QUEST_DATA = {
       },
       "defaultPicture": "heron"
     },
+    "45": {
+      "startPage": "4501",
+      "defaultPicture": "scribe",
+      "overdueItemTimers": {
+        "Worm Book": "4514",
+        "Magic Book": "4514",
+        "Crystal Book": "4514"
+      },
+      "pages": {
+        "4501": {
+          "id": "4501",
+          "speaker": "Scribe Worm",
+          "text": "Hi! Do you want to visit the library?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "4502"
+            },
+            {
+              "index": 2,
+              "label": "No",
+              "next": "4503"
+            },
+            {
+              "index": 3,
+              "label": "I brought a book back",
+              "next": "4508"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "3": "save.inventory.includes(\"Worm Book\") || save.inventory.includes(\"Magic Book\") || save.inventory.includes(\"Crystal Book\")"
+          }
+        },
+        "4502": {
+          "id": "4502",
+          "speaker": "Scribe Worm",
+          "text": "Which book would you like to borrow?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "The History of the Worms",
+              "next": "4504"
+            },
+            {
+              "index": 2,
+              "label": "The Magic Pebble",
+              "next": "4505"
+            },
+            {
+              "index": 3,
+              "label": "Crystal Facts",
+              "next": "4506"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "1": "!save.inventory.includes(\"Worm Book\")",
+            "2": "!save.inventory.includes(\"Magic Book\")",
+            "3": "!save.inventory.includes(\"Crystal Book\")"
+          },
+          "picture": "scribe-books"
+        },
+        "4503": {
+          "id": "4503",
+          "speaker": "Scribe Worm",
+          "text": "Do you want a magnifier? These books are very small.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Yes",
+              "next": "4507"
+            },
+            {
+              "index": 2,
+              "label": "No, bye!",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {}
+        },
+        "4504": {
+          "id": "4504",
+          "speaker": "Scribe Worm",
+          "text": "Here you go: The History of the Worms. You have seven minutes with it.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "4503"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Worm Book"
+            },
+            {
+              "type": "START_ITEM_TIMER",
+              "data": "Worm Book",
+              "durationMs": 420000,
+              "unlessHasItem": "Premium Library Card"
+            }
+          ],
+          "condition": {}
+        },
+        "4505": {
+          "id": "4505",
+          "speaker": "Scribe Worm",
+          "text": "Here you go: The Magic Pebble. You have seven minutes with it.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "4503"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Magic Book"
+            },
+            {
+              "type": "START_ITEM_TIMER",
+              "data": "Magic Book",
+              "durationMs": 420000,
+              "unlessHasItem": "Premium Library Card"
+            }
+          ],
+          "condition": {}
+        },
+        "4506": {
+          "id": "4506",
+          "speaker": "Scribe Worm",
+          "text": "Here you go: Crystal Facts. You have seven minutes with it.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "4503"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Crystal Book"
+            },
+            {
+              "type": "START_ITEM_TIMER",
+              "data": "Crystal Book",
+              "durationMs": 420000,
+              "unlessHasItem": "Premium Library Card"
+            }
+          ],
+          "condition": {}
+        },
+        "4507": {
+          "id": "4507",
+          "speaker": "Scribe Worm",
+          "text": "Here you go! If you lose it, just ask for another one. I have plenty.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thanks!",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Magnifying Glass"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {},
+          "picture": "scribe-gives-magnifier-card"
+        },
+        "4508": {
+          "id": "4508",
+          "speaker": "Scribe Worm",
+          "text": "You brought it back? Then give it here!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Items",
+              "next": "4509"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Crystal Book",
+                  "label": "Crystal Facts",
+                  "next": "4509"
+                },
+                {
+                  "value": "Magic Book",
+                  "label": "The Magic Pebble",
+                  "next": "4510"
+                },
+                {
+                  "value": "Worm Book",
+                  "label": "The History of the Worms",
+                  "next": "4511"
+                }
+              ],
+              "otherNext": "4512"
+            }
+          ],
+          "condition": {}
+        },
+        "4509": {
+          "id": "4509",
+          "speaker": "Scribe Worm",
+          "text": "Thanks, Crystal Facts is back.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "4513"
+            },
+            {
+              "index": 2,
+              "label": "Okay",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Crystal Book"
+            },
+            {
+              "type": "STOP_ITEM_TIMER",
+              "data": "Crystal Book"
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\")",
+            "2": "!(had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\"))"
+          }
+        },
+        "4510": {
+          "id": "4510",
+          "speaker": "Scribe Worm",
+          "text": "Thanks, The Magic Pebble is back.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "4513"
+            },
+            {
+              "index": 2,
+              "label": "Okay",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Magic Book"
+            },
+            {
+              "type": "STOP_ITEM_TIMER",
+              "data": "Magic Book"
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\")",
+            "2": "!(had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\"))"
+          }
+        },
+        "4511": {
+          "id": "4511",
+          "speaker": "Scribe Worm",
+          "text": "Thanks, The History of the Worms is back.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "4513"
+            },
+            {
+              "index": 2,
+              "label": "Okay",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Worm Book"
+            },
+            {
+              "type": "STOP_ITEM_TIMER",
+              "data": "Worm Book"
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\")",
+            "2": "!(had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\"))"
+          }
+        },
+        "4512": {
+          "id": "4512",
+          "speaker": "Scribe Worm",
+          "text": "That doesn't belong to the library!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Sorry!",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "4513": {
+          "id": "4513",
+          "speaker": "Scribe Worm",
+          "text": "Wait! Our most determined readers receive a Premium Library Card. You borrowed all three books, so this is yours now. It gives you unlimited access to the library books!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Thank you!",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Premium Library Card"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {},
+          "picture": "scribe-premium-card"
+        },
+        "4514": {
+          "id": "4514",
+          "speaker": "Scribe Worm",
+          "text": "Give me the book you borrowed because the time limit is over!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Items",
+              "next": "4509"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Crystal Book",
+                  "label": "Crystal Facts",
+                  "next": "4509"
+                },
+                {
+                  "value": "Magic Book",
+                  "label": "The Magic Pebble",
+                  "next": "4510"
+                },
+                {
+                  "value": "Worm Book",
+                  "label": "The History of the Worms",
+                  "next": "4511"
+                }
+              ],
+              "otherNext": "4515"
+            }
+          ],
+          "condition": {}
+        },
+        "4515": {
+          "id": "4515",
+          "speaker": "Scribe Worm",
+          "text": "Not that thing!!!!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay!",
+              "next": "4514"
+            },
+            {
+              "index": 2,
+              "label": "I'm not giving it back",
+              "next": "4516"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {}
+        },
+        "4516": {
+          "id": "4516",
+          "speaker": "Scribe Worm",
+          "text": "Get out!!!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Okay",
+              "next": "4516"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
     "01": {
       "defaultPicture": "child",
       "startPage": "0101",
@@ -5436,6 +5884,13 @@ window.QR_CITY_QUEST_DATA = {
           "picture": "book-too-small"
         }
       },
+      "defaultPicture": "book"
+    },
+    "Crystal Book": {
+      "displayName": "Crystal Facts",
+      "startPage": "4401",
+      "implemented": false,
+      "pages": {},
       "defaultPicture": "book"
     }
   },
