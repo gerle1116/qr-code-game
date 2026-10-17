@@ -1010,6 +1010,454 @@ window.QR_CITY_QUEST_DATA = {
       },
       "defaultPicture": "heron"
     },
+    "45": {
+      "startPage": "4501",
+      "defaultPicture": "scribe",
+      "overdueItemTimers": {
+        "Worm Book": "4514",
+        "Magic Book": "4514",
+        "Crystal Book": "4514"
+      },
+      "pages": {
+        "4501": {
+          "id": "4501",
+          "speaker": "Írnok Kukac",
+          "text": "Szia! Akarsz betérni a könyvtárba?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "4502"
+            },
+            {
+              "index": 2,
+              "label": "Nem",
+              "next": "4503"
+            },
+            {
+              "index": 3,
+              "label": "Visszahoztam egy könyvet",
+              "next": "4508"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "3": "save.inventory.includes(\"Worm Book\") || save.inventory.includes(\"Magic Book\") || save.inventory.includes(\"Crystal Book\")"
+          }
+        },
+        "4502": {
+          "id": "4502",
+          "speaker": "Írnok Kukac",
+          "text": "Melyik könyvet szeretnéd kikölcsönözni?",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "A kukacok története",
+              "next": "4504"
+            },
+            {
+              "index": 2,
+              "label": "A varázskavics",
+              "next": "4505"
+            },
+            {
+              "index": 3,
+              "label": "Kristálytények",
+              "next": "4506"
+            }
+          ],
+          "actions": [],
+          "condition": {
+            "1": "!save.inventory.includes(\"Worm Book\")",
+            "2": "!save.inventory.includes(\"Magic Book\")",
+            "3": "!save.inventory.includes(\"Crystal Book\")"
+          },
+          "picture": "scribe-books"
+        },
+        "4503": {
+          "id": "4503",
+          "speaker": "Írnok Kukac",
+          "text": "Akarsz egy nagyítót? Ezek a könyvek elég aprók.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Igen",
+              "next": "4507"
+            },
+            {
+              "index": 2,
+              "label": "Nem, szia!",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {}
+        },
+        "4504": {
+          "id": "4504",
+          "speaker": "Írnok Kukac",
+          "text": "Tessék, itt van A kukacok története. Hét perced van rá.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "4503"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Worm Book"
+            },
+            {
+              "type": "START_ITEM_TIMER",
+              "data": "Worm Book",
+              "durationMs": 420000,
+              "unlessHasItem": "Premium Library Card"
+            }
+          ],
+          "condition": {}
+        },
+        "4505": {
+          "id": "4505",
+          "speaker": "Írnok Kukac",
+          "text": "Tessék, itt van A varázskavics. Hét perced van rá.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "4503"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Magic Book"
+            },
+            {
+              "type": "START_ITEM_TIMER",
+              "data": "Magic Book",
+              "durationMs": 420000,
+              "unlessHasItem": "Premium Library Card"
+            }
+          ],
+          "condition": {}
+        },
+        "4506": {
+          "id": "4506",
+          "speaker": "Írnok Kukac",
+          "text": "Tessék, itt van a Kristálytények. Hét perced van rá.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "4503"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Crystal Book"
+            },
+            {
+              "type": "START_ITEM_TIMER",
+              "data": "Crystal Book",
+              "durationMs": 420000,
+              "unlessHasItem": "Premium Library Card"
+            }
+          ],
+          "condition": {}
+        },
+        "4507": {
+          "id": "4507",
+          "speaker": "Írnok Kukac",
+          "text": "Tessék! Ha elveszítenéd, nyugodtan kérj másikat, van belőle egy csomó.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszi!",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Magnifying Glass"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {},
+          "picture": "scribe-gives-magnifier-card"
+        },
+        "4508": {
+          "id": "4508",
+          "speaker": "Írnok Kukac",
+          "text": "Visszahoztad? Akkor add ide!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgyak",
+              "next": "4509"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Crystal Book",
+                  "label": "Kristálytények",
+                  "next": "4509"
+                },
+                {
+                  "value": "Magic Book",
+                  "label": "A varázskavics",
+                  "next": "4510"
+                },
+                {
+                  "value": "Worm Book",
+                  "label": "A kukacok története",
+                  "next": "4511"
+                }
+              ],
+              "otherNext": "4512"
+            }
+          ],
+          "condition": {}
+        },
+        "4509": {
+          "id": "4509",
+          "speaker": "Írnok Kukac",
+          "text": "Köszönöm, visszakerült a Kristálytények.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "4513"
+            },
+            {
+              "index": 2,
+              "label": "Jó",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Crystal Book"
+            },
+            {
+              "type": "STOP_ITEM_TIMER",
+              "data": "Crystal Book"
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\")",
+            "2": "!(had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\"))"
+          }
+        },
+        "4510": {
+          "id": "4510",
+          "speaker": "Írnok Kukac",
+          "text": "Köszönöm, visszakerült A varázskavics.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "4513"
+            },
+            {
+              "index": 2,
+              "label": "Jó",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Magic Book"
+            },
+            {
+              "type": "STOP_ITEM_TIMER",
+              "data": "Magic Book"
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\")",
+            "2": "!(had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\"))"
+          }
+        },
+        "4511": {
+          "id": "4511",
+          "speaker": "Írnok Kukac",
+          "text": "Köszönöm, visszakerült A kukacok története.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "4513"
+            },
+            {
+              "index": 2,
+              "label": "Jó",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "REMOVE_ITEM",
+              "data": "Worm Book"
+            },
+            {
+              "type": "STOP_ITEM_TIMER",
+              "data": "Worm Book"
+            },
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {
+            "1": "had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\")",
+            "2": "!(had_item.includes(\"Worm Book\") && had_item.includes(\"Magic Book\") && had_item.includes(\"Crystal Book\"))"
+          }
+        },
+        "4512": {
+          "id": "4512",
+          "speaker": "Írnok Kukac",
+          "text": "Ez nem tartozik a könyvtárhoz!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Bocsi!",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        },
+        "4513": {
+          "id": "4513",
+          "speaker": "Írnok Kukac",
+          "text": "Várj! A legeltökéltebb olvasóink kapnak egy Prémium olvasójegyet. Te mindhárom könyvet kikölcsönözted, úgyhogy ez mostantól a tiéd. Ez végtelen hozzáférést biztosít a könyvtári könyvekhez!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Köszönöm!",
+              "next": "4501"
+            }
+          ],
+          "actions": [
+            {
+              "type": "ADD_ITEM",
+              "data": "Premium Library Card"
+            },
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {},
+          "picture": "scribe-premium-card"
+        },
+        "4514": {
+          "id": "4514",
+          "speaker": "Írnok Kukac",
+          "text": "Add ide a könyvet amit kivettél mert lejárt a határidő!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Tárgyak",
+              "next": "4509"
+            }
+          ],
+          "actions": [
+            {
+              "type": "DROPDOWN_INVENTORY",
+              "options": [
+                {
+                  "value": "Crystal Book",
+                  "label": "Kristálytények",
+                  "next": "4509"
+                },
+                {
+                  "value": "Magic Book",
+                  "label": "A varázskavics",
+                  "next": "4510"
+                },
+                {
+                  "value": "Worm Book",
+                  "label": "A kukacok története",
+                  "next": "4511"
+                }
+              ],
+              "otherNext": "4515"
+            }
+          ],
+          "condition": {}
+        },
+        "4515": {
+          "id": "4515",
+          "speaker": "Írnok Kukac",
+          "text": "Nem ezt a dolgot!!!!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó!",
+              "next": "4514"
+            },
+            {
+              "index": 2,
+              "label": "Nem adom vissza",
+              "next": "4516"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN",
+              "buttonIndex": 2
+            }
+          ],
+          "condition": {}
+        },
+        "4516": {
+          "id": "4516",
+          "speaker": "Írnok Kukac",
+          "text": "Tűnés!!!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Jó",
+              "next": "4516"
+            }
+          ],
+          "actions": [
+            {
+              "type": "NEXT_SCAN"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
     "01": {
       "defaultPicture": "child",
       "startPage": "0101",
@@ -5436,6 +5884,13 @@ window.QR_CITY_QUEST_DATA = {
           "picture": "book-too-small"
         }
       },
+      "defaultPicture": "book"
+    },
+    "Crystal Book": {
+      "displayName": "Kristálytények",
+      "startPage": "4401",
+      "implemented": false,
+      "pages": {},
       "defaultPicture": "book"
     }
   },
