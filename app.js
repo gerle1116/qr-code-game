@@ -53,6 +53,7 @@
       quests: {},
       encounters: {},
       timers: {},
+      itemTimers: {},
       flags: {
         castleOpen: false,
         unlockedAreas: []
@@ -155,6 +156,12 @@
         value.timers &&
         typeof value.timers === "object"
           ? value.timers
+          : {};
+
+      clean.itemTimers =
+        value.itemTimers &&
+        typeof value.itemTimers === "object"
+          ? value.itemTimers
           : {};
 
       clean.flags.castleOpen =
@@ -1828,6 +1835,44 @@ function getQuestDisplayName(questName) {
       ] ||
       encounter.startPage;
 
+    // Some encounters (for example the library) can have several
+    // independent item timers running at once. When the encounter is
+    // otherwise at its normal start page, an expired timer can redirect
+    // the player to the configured overdue page.
+    if (
+      savedPage === encounter.startPage &&
+      encounter.overdueItemTimers &&
+      typeof encounter.overdueItemTimers === "object"
+    ) {
+      for (
+        const [itemName, overduePage]
+        of Object.entries(
+          encounter.overdueItemTimers
+        )
+      ) {
+        const itemTimer =
+          save.itemTimers[
+            itemName
+          ];
+
+        if (
+          save.inventory.includes(
+            itemName
+          ) &&
+          itemTimer &&
+          Date.now() >=
+            Number(itemTimer.endAt) &&
+          findPage(
+            String(overduePage)
+          )
+        ) {
+          return showPage(
+            String(overduePage)
+          );
+        }
+      }
+    }
+
     if (
       savedPage !== "-1"
     ) {
@@ -2801,6 +2846,20 @@ function getQuestDisplayName(questName) {
               true;
           }
 
+          if (
+            action.data &&
+            !save.hadItems.includes(
+              action.data
+            )
+          ) {
+            save.hadItems.push(
+              action.data
+            );
+
+            mutated =
+              true;
+          }
+
           break;
         }
 
@@ -2901,6 +2960,107 @@ function getQuestDisplayName(questName) {
           }
 
           break;
+
+
+        case "START_ITEM_TIMER": {
+          const itemName =
+            typeof action.data === "string"
+              ? action.data.trim()
+              : "";
+
+          const durationMs =
+            Number(
+              action.durationMs
+            );
+
+          if (
+            !itemName ||
+            !Number.isFinite(
+              durationMs
+            ) ||
+            durationMs <= 0
+          ) {
+            return showDataError(
+              d(
+                `START_ITEM_TIMER is invalid on page ${page.id}.`,
+                `A START_ITEM_TIMER hibás ezen az oldalon: ${page.id}.`
+              )
+            );
+          }
+
+          const unlessHasItem =
+            typeof action.unlessHasItem === "string"
+              ? action.unlessHasItem.trim()
+              : "";
+
+          // Premium-style access can explicitly bypass the timer.
+          if (
+            unlessHasItem &&
+            save.inventory.includes(
+              unlessHasItem
+            )
+          ) {
+            if (
+              save.itemTimers[
+                itemName
+              ]
+            ) {
+              delete save.itemTimers[
+                itemName
+              ];
+
+              mutated =
+                true;
+            }
+
+            break;
+          }
+
+          save.itemTimers[
+            itemName
+          ] = {
+            endAt:
+              Date.now() +
+              durationMs
+          };
+
+          mutated =
+            true;
+
+          break;
+        }
+
+
+        case "STOP_ITEM_TIMER": {
+          const itemName =
+            typeof action.data === "string"
+              ? action.data.trim()
+              : "";
+
+          if (!itemName) {
+            return showDataError(
+              d(
+                `STOP_ITEM_TIMER has no item on page ${page.id}.`,
+                `A STOP_ITEM_TIMER actionnek nincs tárgya ezen az oldalon: ${page.id}.`
+              )
+            );
+          }
+
+          if (
+            save.itemTimers[
+              itemName
+            ]
+          ) {
+            delete save.itemTimers[
+              itemName
+            ];
+
+            mutated =
+              true;
+          }
+
+          break;
+        }
 
 
         case "START_TIMER":
@@ -3551,7 +3711,9 @@ function getQuestDisplayName(questName) {
         if (
           (
             action.type === "ADD_ITEM" ||
-            action.type === "REMOVE_ITEM"
+            action.type === "REMOVE_ITEM" ||
+            action.type === "START_ITEM_TIMER" ||
+            action.type === "STOP_ITEM_TIMER"
           ) &&
           action.data
         ) {
