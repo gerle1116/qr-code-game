@@ -796,7 +796,7 @@
     if (name.includes(":")) {
       return (window.QRCQ_MOD_IMAGES || {})[name] || null;
     }
-    return "./images/" + encodeURIComponent(name) + ".png?v=36";
+    return "./images/" + encodeURIComponent(name) + ".png?v=37";
   }
 
   function getItemDefinitionByQr(qr) {
@@ -5826,7 +5826,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=36");
+        .register("./sw.js?v=37");
 
       await navigator
         .serviceWorker
