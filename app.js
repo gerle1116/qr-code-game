@@ -796,7 +796,7 @@
     if (name.includes(":")) {
       return (window.QRCQ_MOD_IMAGES || {})[name] || null;
     }
-    return "./images/" + encodeURIComponent(name) + ".png?v=34";
+    return "./images/" + encodeURIComponent(name) + ".png?v=35";
   }
 
   function getItemDefinitionByQr(qr) {
