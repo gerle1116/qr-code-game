@@ -1121,7 +1121,7 @@ window.QR_CITY_QUEST_DATA = {
               "unlessHasItem": "Premium Library Card"
             }
           ],
-          "condition": {}
+          "condition": {},\n          "picture": "scribe-gives-book"
         },
         "4505": {
           "id": "4505",
@@ -1146,7 +1146,7 @@ window.QR_CITY_QUEST_DATA = {
               "unlessHasItem": "Premium Library Card"
             }
           ],
-          "condition": {}
+          "condition": {},\n          "picture": "scribe-gives-book"
         },
         "4506": {
           "id": "4506",
@@ -1171,7 +1171,7 @@ window.QR_CITY_QUEST_DATA = {
               "unlessHasItem": "Premium Library Card"
             }
           ],
-          "condition": {}
+          "condition": {},\n          "picture": "scribe-gives-book"
         },
         "4507": {
           "id": "4507",
@@ -1353,7 +1353,7 @@ window.QR_CITY_QUEST_DATA = {
               "type": "NEXT_SCAN"
             }
           ],
-          "condition": {}
+          "condition": {},\n          "picture": "scribe-annoyed"
         },
         "4513": {
           "id": "4513",
@@ -1479,7 +1479,7 @@ window.QR_CITY_QUEST_DATA = {
             }
           ],
           "actions": [],
-          "condition": {}
+          "condition": {},\n          "picture": "scribe-annoyed"
         },
         "0102": {
           "id": "0102",
