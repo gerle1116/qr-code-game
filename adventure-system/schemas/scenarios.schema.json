@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Linear scenarios v1",
+  "type": "object", "additionalProperties": false,
+  "required": ["formatVersion", "scenarios"],
+  "properties": {
+    "formatVersion": {"type": "integer", "const": 1},
+    "scenarios": {
+      "type": "object", "minProperties": 1,
+      "additionalProperties": {
+        "type": "object", "additionalProperties": false,
+        "required": ["startQR", "sequence", "encounters", "outOfOrder"],
+        "properties": {
+          "startQR": {"type": "string", "pattern": "^[0-9]{2}$"},
+          "sequence": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "pattern": "^[0-9]{2}$"}},
+          "encounters": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+          "outOfOrder": {"type": "string", "enum": ["block", "preview", "allow"]}
+        }
+      }
+    }
+  }
+}

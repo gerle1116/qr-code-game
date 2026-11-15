@@ -1,0 +1,81 @@
+{
+  "formatVersion": 1,
+  "encounters": {
+    "01": {
+      "startPage": "0101",
+      "pages": {
+        "0101": {
+          "id": "0101",
+          "speaker": "Guide",
+          "text": "Explore freely. Meet the keeper at QR 02.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "HOME"
+            }
+          ],
+          "actions": [
+            {
+              "type": "START_QUEST",
+              "data": "greeting"
+            },
+            {
+              "type": "ADD_ITEM",
+              "data": "Token"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    },
+    "02": {
+      "startPage": "0201",
+      "pages": {
+        "0201": {
+          "id": "0201",
+          "speaker": "Keeper",
+          "text": "Welcome! Your objective is complete.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Finish",
+              "next": "TITLE_SCREEN"
+            }
+          ],
+          "actions": [
+            {
+              "type": "COMPLETE_QUEST",
+              "data": "greeting"
+            }
+          ],
+          "condition": {}
+        }
+      }
+    }
+  },
+  "items": {
+    "Token": {
+      "startPage": "1101",
+      "pages": {
+        "1101": {
+          "id": "1101",
+          "speaker": "Token",
+          "text": "A keepsake from the garden.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    }
+  },
+  "questDisplayNames": {
+    "greeting": "Meet the keeper"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "formatVersion": 1,
+  "id": "non-linear-demo",
+  "version": "1.0.0",
+  "name": "non-linear demo",
+  "description": "A small single-language adventure for validator testing.",
+  "author": "QR City Quest",
+  "language": "en",
+  "type": "non-linear",
+  "location": "Practice garden",
+  "estimatedMinutes": 10,
+  "minimumAge": 6,
+  "gameData": "game-data.json"
+}

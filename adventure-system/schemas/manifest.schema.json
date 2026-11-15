@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adventure manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["formatVersion", "id", "version", "name", "description", "author", "language", "type", "location", "estimatedMinutes", "minimumAge", "gameData"],
+  "properties": {
+    "formatVersion": {"type": "integer", "const": 1},
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]*$"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "name": {"type": "string", "minLength": 1},
+    "description": {"type": "string", "minLength": 1},
+    "author": {"type": "string", "minLength": 1},
+    "language": {"type": "string", "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"},
+    "type": {"type": "string", "enum": ["linear", "circular", "non-linear"]},
+    "location": {"type": "string", "minLength": 1},
+    "estimatedMinutes": {"type": "integer", "minimum": 1},
+    "minimumAge": {"type": "integer", "minimum": 0},
+    "cover": {"type": "string", "minLength": 1},
+    "gameData": {"type": "string", "minLength": 1},
+    "scenarios": {"type": "string", "minLength": 1},
+    "map": {
+      "type": "object", "additionalProperties": false, "required": ["mode", "image"],
+      "properties": {
+        "mode": {"type": "string", "enum": ["static", "markers"]},
+        "image": {"type": "string", "minLength": 1},
+        "markers": {"type": "array", "items": {
+          "type": "object", "additionalProperties": false, "required": ["id", "qr", "label", "x", "y"],
+          "properties": {
+            "id": {"type": "string", "minLength": 1},
+            "qr": {"type": "string", "pattern": "^[0-9]{2}$"},
+            "label": {"type": "string", "minLength": 1},
+            "x": {"type": "number", "minimum": 0, "maximum": 100},
+            "y": {"type": "number", "minimum": 0, "maximum": 100}
+          }
+        }}
+      }
+    }
+  }
+}

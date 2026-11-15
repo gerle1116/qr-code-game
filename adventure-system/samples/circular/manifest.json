@@ -1,0 +1,18 @@
+{
+  "formatVersion": 1,
+  "id": "circular-demo",
+  "version": "1.0.0",
+  "name": "circular demo",
+  "description": "A small single-language adventure for validator testing.",
+  "author": "QR City Quest",
+  "language": "en",
+  "type": "circular",
+  "location": "Practice garden",
+  "estimatedMinutes": 10,
+  "minimumAge": 6,
+  "gameData": "game-data.json",
+  "map": {
+    "mode": "static",
+    "image": "images/map.png"
+  }
+}

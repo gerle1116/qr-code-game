@@ -1,0 +1,37 @@
+{
+  "formatVersion": 1,
+  "scenarios": {
+    "scenario-a": {
+      "startQR": "03",
+      "sequence": [
+        "03",
+        "01",
+        "04",
+        "02"
+      ],
+      "encounters": {
+        "03": "guard-a",
+        "01": "merchant-a",
+        "04": "king-a",
+        "02": "wizard-a"
+      },
+      "outOfOrder": "block"
+    },
+    "scenario-b": {
+      "startQR": "02",
+      "sequence": [
+        "02",
+        "01",
+        "03",
+        "04"
+      ],
+      "encounters": {
+        "02": "guard-b",
+        "01": "hunter-b",
+        "03": "wizard-b",
+        "04": "merchant-b"
+      },
+      "outOfOrder": "preview"
+    }
+  }
+}

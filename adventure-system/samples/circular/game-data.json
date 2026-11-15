@@ -1,0 +1,58 @@
+{
+  "formatVersion": 1,
+  "encounters": {
+    "01": {
+      "startPage": "0101",
+      "pages": {
+        "0101": {
+          "id": "0101",
+          "speaker": "Gardener",
+          "text": "The bridge keeper at QR 02 knows the answer.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "HOME"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "02": {
+      "startPage": "0201",
+      "pages": {
+        "0201": {
+          "id": "0201",
+          "speaker": "Bridge keeper",
+          "text": "You found me. You can also start here and ask the gardener at QR 01.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Finish",
+              "next": "TITLE_SCREEN"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    }
+  },
+  "items": {},
+  "questDisplayNames": {},
+  "progression": {
+    "eligibleStarts": [
+      "01",
+      "02"
+    ],
+    "trackVisits": true,
+    "visitConditions": [
+      {
+        "qr": "01",
+        "minimumVisits": 1
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "formatVersion": 1,
+  "id": "linear-demo",
+  "version": "1.0.0",
+  "name": "linear demo",
+  "description": "A small single-language adventure for validator testing.",
+  "author": "QR City Quest",
+  "language": "en",
+  "type": "linear",
+  "location": "Practice garden",
+  "estimatedMinutes": 10,
+  "minimumAge": 6,
+  "gameData": "game-data.json",
+  "scenarios": "scenarios.json",
+  "map": {
+    "mode": "markers",
+    "image": "images/map.png",
+    "markers": [
+      {
+        "id": "bridge",
+        "qr": "02",
+        "label": "Bridge",
+        "x": 32,
+        "y": 60
+      }
+    ]
+  }
+}

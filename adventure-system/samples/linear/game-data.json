@@ -1,0 +1,159 @@
+{
+  "formatVersion": 1,
+  "encounters": {
+    "guard-a": {
+      "startPage": "0101",
+      "pages": {
+        "0101": {
+          "id": "0101",
+          "speaker": "Guard",
+          "text": "Go to QR 01.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "0201"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "merchant-a": {
+      "startPage": "0201",
+      "pages": {
+        "0201": {
+          "id": "0201",
+          "speaker": "Merchant",
+          "text": "Go to QR 04.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "0301"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "king-a": {
+      "startPage": "0301",
+      "pages": {
+        "0301": {
+          "id": "0301",
+          "speaker": "King",
+          "text": "Find the Wizard at QR 02.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "0401"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "wizard-a": {
+      "startPage": "0401",
+      "pages": {
+        "0401": {
+          "id": "0401",
+          "speaker": "Wizard",
+          "text": "You completed the first mystery!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Finish",
+              "next": "TITLE_SCREEN"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "guard-b": {
+      "startPage": "0501",
+      "pages": {
+        "0501": {
+          "id": "0501",
+          "speaker": "Guard",
+          "text": "Go to QR 01.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "0601"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "hunter-b": {
+      "startPage": "0601",
+      "pages": {
+        "0601": {
+          "id": "0601",
+          "speaker": "Hunter",
+          "text": "Find QR 03.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "0701"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "wizard-b": {
+      "startPage": "0701",
+      "pages": {
+        "0701": {
+          "id": "0701",
+          "speaker": "Wizard",
+          "text": "Finish at QR 04.",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Continue",
+              "next": "0801"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    },
+    "merchant-b": {
+      "startPage": "0801",
+      "pages": {
+        "0801": {
+          "id": "0801",
+          "speaker": "Merchant",
+          "text": "You completed the second mystery!",
+          "buttons": [
+            {
+              "index": 1,
+              "label": "Finish",
+              "next": "TITLE_SCREEN"
+            }
+          ],
+          "actions": [],
+          "condition": {}
+        }
+      }
+    }
+  },
+  "items": {},
+  "questDisplayNames": {}
+}
