@@ -2,7 +2,7 @@
 'use strict';
 const fs = require('node:fs');
 const path = require('node:path');
-const conditions = require('../mod-system/mod-conditions.js');
+const conditions = require('./encounter-history.js');
 const record = v => v !== null && typeof v === 'object' && !Array.isArray(v);
 const text = v => typeof v === 'string' && v.trim().length > 0;
 const qr = v => typeof v === 'string' && /^\d{2}$/.test(v);
@@ -160,7 +160,7 @@ function validatePackage(directory) {
       indices.add(b.index); destination(b.next, `${at}.buttons[${i}].next`);
     });
     if (record(p.condition)) for (const [key, value] of Object.entries(p.condition)) {
-      if (!indices.has(Number(key)) || typeof value !== 'string' || conditions.validate(value) !== null)
+      if (!indices.has(Number(key)) || typeof value !== 'string' || conditions.validateCondition(value, encounters) !== null)
         error(`${at}.condition.${key}`, 'expected existing button index and safe engine condition expression');
     }
     (Array.isArray(p.actions) ? p.actions : []).forEach((a, i) => {
@@ -241,7 +241,7 @@ function validatePackage(directory) {
     if (manifest.type !== 'circular') error(`${manifest.gameData}.progression`, 'visit metadata is only for circular adventures');
     for (const q of game.progression.eligibleStarts || []) if (!physical.has(q)) error(`${manifest.gameData}.progression.eligibleStarts`, 'unknown QR');
     for (const c of game.progression.visitConditions || []) if (record(c) && !physical.has(c.qr)) error(`${manifest.gameData}.progression.visitConditions`, 'unknown QR');
-    warnings.push('Circular visit history/count declarations are authoring metadata; runtime support is deferred.');
+    warnings.push('Circular progression declarations are metadata; standalone Stage 5 conditions guide dialogue without enforcing a route.');
   }
   // A conservative graph check, not a proof that all conditions can be satisfied.
   const reachable = (start, allowed = null) => {

@@ -3,7 +3,8 @@
 `adventure-save.js` prepares, checks, migrates and serializes **one gameplay save**.
 It never reads or writes localStorage, IndexedDB, player saves or downloaded
 packages. No live application script loads it. Reset and replacement return new
-data; they do not erase anything. Stage 5 visit conditions are not implemented.
+data; they do not erase anything. Stage 5 now provides standalone visit conditions
+and recording; see [ENCOUNTER_HISTORY.md](ENCOUNTER_HISTORY.md).
 
 ## Save format
 

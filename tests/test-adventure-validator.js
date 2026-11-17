@@ -83,6 +83,17 @@ rejects('invalid timer', 'game-data.json', g => page(g).actions = [{type:'START_
 rejects('missing counter name', 'game-data.json', g => page(g).actions = [{type:'ADD_COUNTER'}], /data/);
 rejects('unsafe condition', 'game-data.json', g => page(g).condition = {'1':'process.exit()'}, /safe engine condition/);
 rejects('legacy HAS_ITEM condition rejected explicitly', 'game-data.json', g => page(g).condition = {type:'HAS_ITEM',data:'Key'}, /condition/);
+for (const expression of ['HAS_VISITED()', 'HAS_VISITED("missing")', 'VISIT_COUNT("guard-a", 0)',
+  'VISIT_COUNT("guard-a", 1.5)', 'VISIT_COUNT("guard-a", -1)', 'DISTINCT_VISITED_COUNT(0)',
+  'DISTINCT_VISITED_COUNT(9007199254740992)', 'UNKNOWN_VISIT(1)'])
+  rejects(`invalid visit expression ${expression}`, 'game-data.json',
+    g => page(g).condition = { '1': expression }, /safe engine condition/);
+test('visit expressions work for linear resolved IDs and distinct count needs no ID', () => fixture('linear', dir => {
+  edit(dir, 'game-data.json', g => page(g).condition = {
+    '1': 'HAS_VISITED("guard-a") && VISIT_COUNT("merchant-a", 2) && DISTINCT_VISITED_COUNT(3)'
+  });
+  const result = validatePackage(dir); assert.equal(result.valid, true, result.errors.join('\n'));
+}));
 test('safe item quest knowledge counter conditions pass', () => fixture('non-linear', dir => {
   edit(dir,'game-data.json',g => {
     g.encounters['01'].pages['0101'].condition={'1':'!had_item.includes("Token") && counter("uses", "Token") >= 0 && save.quests["greeting"] !== "completed" && !knowledge.includes("secret")'};

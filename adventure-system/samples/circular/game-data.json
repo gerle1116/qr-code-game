@@ -6,17 +6,31 @@
       "pages": {
         "0101": {
           "id": "0101",
-          "speaker": "Gardener",
-          "text": "The bridge keeper at QR 02 knows the answer.",
+          "speaker": "Guard",
+          "text": "Find the Merchant at QR 02. Return here after meeting the Wizard.",
           "buttons": [
             {
               "index": 1,
-              "label": "Continue",
+              "label": "First visit: ask about the Merchant",
+              "next": "HOME"
+            },
+            {
+              "index": 2,
+              "label": "Ask again about the Merchant",
+              "next": "HOME"
+            },
+            {
+              "index": 3,
+              "label": "Tell the Guard what the Wizard said",
               "next": "HOME"
             }
           ],
           "actions": [],
-          "condition": {}
+          "condition": {
+            "1": "!VISIT_COUNT(\"01\", 2) && !HAS_VISITED(\"03\")",
+            "2": "VISIT_COUNT(\"01\", 2) && !HAS_VISITED(\"03\")",
+            "3": "HAS_VISITED(\"03\")"
+          }
         }
       }
     },
@@ -25,15 +39,33 @@
       "pages": {
         "0201": {
           "id": "0201",
-          "speaker": "Bridge keeper",
-          "text": "You found me. You can also start here and ask the gardener at QR 01.",
+          "speaker": "Merchant",
+          "text": "You may start here too. Find the Wizard at QR 03, then return to the Guard at QR 01.",
           "buttons": [
             {
               "index": 1,
-              "label": "Finish",
+              "label": "Finish after meeting all three NPCs",
               "next": "TITLE_SCREEN"
+            },
+            {
+              "index": 2,
+              "label": "Look for the Wizard",
+              "next": "HOME"
             }
           ],
+          "actions": [],
+          "condition": { "1": "DISTINCT_VISITED_COUNT(3)" }
+        }
+      }
+    },
+    "03": {
+      "startPage": "0301",
+      "pages": {
+        "0301": {
+          "id": "0301",
+          "speaker": "Wizard",
+          "text": "Return to the Guard at QR 01 and tell them you found me. You can begin your search here as well.",
+          "buttons": [{ "index": 1, "label": "Find the Guard", "next": "HOME" }],
           "actions": [],
           "condition": {}
         }
@@ -45,7 +77,8 @@
   "progression": {
     "eligibleStarts": [
       "01",
-      "02"
+      "02",
+      "03"
     ],
     "trackVisits": true,
     "visitConditions": [

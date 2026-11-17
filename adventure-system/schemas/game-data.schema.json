@@ -46,7 +46,7 @@
         "id": {"type": "string", "pattern": "^[0-9]{4}$"},
         "speaker": {"type": "string"}, "text": {"type": "string"},
         "picture": {"type": "string", "minLength": 1},
-        "condition": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+        "condition": {"description": "Button-indexed safe expressions. Stage 5 adds HAS_VISITED(\"id\"), VISIT_COUNT(\"id\", minimum), DISTINCT_VISITED_COUNT(minimum). Minimums are positive safe integers; encounter references must exist.", "type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
         "buttons": {"type": "array", "minItems": 1, "items": {
           "type": "object", "additionalProperties": false, "required": ["index", "label", "next"],
           "properties": {

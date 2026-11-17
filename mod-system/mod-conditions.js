@@ -43,6 +43,23 @@
       if(t==="null"){pos++;return null;}
       if(/^\d/.test(t)){pos++;return Number(t);}
       if(t[0]==='"'||t[0]==="'")return literal();
+      if(context.visitConditions && ["HAS_VISITED","VISIT_COUNT","DISTINCT_VISITED_COUNT"].includes(t)){
+        pos++;take("(");
+        let id=null,minimum=1;
+        if(t!=="DISTINCT_VISITED_COUNT"){
+          id=literal();
+          if(!context.visitConditions.validId(id))throw Error("Unknown or invalid encounter ID");
+          if(t==="VISIT_COUNT")take(",");
+        }
+        if(t!=="HAS_VISITED"){
+          const n=peek();
+          if(!n||!/^\d+$/.test(n)||!Number.isSafeInteger(Number(n))||Number(n)<1)
+            throw Error("Visit minimum must be a positive safe integer");
+          minimum=Number(n);pos++;
+        }
+        take(")");
+        return context.visitConditions.count(id)>=minimum;
+      }
       if(t==="counter"){
         pos++;take("(");const name=literal();
         let itemName=context.itemName||"";

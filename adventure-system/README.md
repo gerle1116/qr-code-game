@@ -139,8 +139,9 @@ Circular packages contain no route or scenarios file. Numeric encounter keys
 identify eligible physical locations. Dialogue tells the player where to go.
 The optional `progression` metadata declares `eligibleStarts`, `trackVisits: true`
 and visit requirements as `{qr, minimumVisits}`. References and positive counts
-are validated. Visit requirements are declarations for future runtime support;
-they are not yet connected to buttons or enforced. Existing safe quest, inventory,
+are validated. Stage 5 provides standalone visit recording and safe button
+expressions; see [ENCOUNTER_HISTORY.md](ENCOUNTER_HISTORY.md). Live integration
+remains future work. Existing safe quest, inventory,
 knowledge and area expressions may still be authored. No route array is needed.
 
 ## Safety and validation limits
