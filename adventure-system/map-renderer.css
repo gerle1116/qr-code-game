@@ -1,0 +1,13 @@
+.qrcq-map { font-family: Arial, Helvetica, sans-serif; color: #111; width: 100%; }
+.qrcq-map-toolbar { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: .5rem; }
+.qrcq-map button { font: inherit; min-height: 44px; padding: .5rem .8rem; cursor: pointer; border: 1px solid #5c5c5c; border-radius: .5rem; background: #fff9d9; color: #111; }
+.qrcq-map button:focus-visible, .qrcq-map-viewport:focus-visible { outline: 3px solid #5278f2; outline-offset: 3px; }
+.qrcq-map button:disabled { opacity: .5; cursor: default; }
+.qrcq-map-viewport { position: relative; height: clamp(260px, 60vh, 650px); overflow: hidden; background: #eee; border: 1px solid #8f8383; border-radius: .6rem; touch-action: none; overscroll-behavior: contain; user-select: none; }
+.qrcq-map-plane { position: absolute; left: 50%; top: 50%; transform-origin: center; }
+.qrcq-map-plane[hidden] { display: none; }
+.qrcq-map-plane img { display: block; width: 100%; height: 100%; pointer-events: none; }
+.qrcq-map .qrcq-map-marker { position: absolute; transform: translate(-50%, -50%); background: #f3d986; max-width: 150px; overflow-wrap: anywhere; }
+.qrcq-map-info { overflow-wrap: anywhere; padding: .75rem 0; }
+.qrcq-map-info:empty { display: none; }
+.qrcq-map-status { font-size: .9rem; }
