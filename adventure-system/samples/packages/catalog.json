@@ -1,0 +1,53 @@
+{
+  "catalogVersion": 1,
+  "adventures": [
+    {
+      "id": "linear-demo",
+      "version": "1.0.0",
+      "name": "linear demo",
+      "description": "A small single-language adventure for validator testing.",
+      "author": "QR City Quest",
+      "language": "en",
+      "type": "linear",
+      "location": "Practice garden",
+      "estimatedMinutes": 10,
+      "minimumAge": 6,
+      "coverUrl": "https://example.invalid/linear.png",
+      "downloadUrl": "https://example.invalid/linear.zip",
+      "packageSize": 5329,
+      "sha256": "4ca786a9bf39e873e5c1c56d67aff53fe6f2464ce652402aeb8ba6f096b54c5f"
+    },
+    {
+      "id": "circular-demo",
+      "version": "1.0.0",
+      "name": "circular demo",
+      "description": "A small single-language adventure for validator testing.",
+      "author": "QR City Quest",
+      "language": "en",
+      "type": "circular",
+      "location": "Practice garden",
+      "estimatedMinutes": 10,
+      "minimumAge": 6,
+      "coverUrl": "https://example.invalid/circular.png",
+      "downloadUrl": "https://example.invalid/circular.zip",
+      "packageSize": 3374,
+      "sha256": "10bce361bcd2b3d3f20e4b1fca7e71d2482422dc6fe0e6b05c919d2ff7986690"
+    },
+    {
+      "id": "non-linear-demo",
+      "version": "1.0.0",
+      "name": "non-linear demo",
+      "description": "A small single-language adventure for validator testing.",
+      "author": "QR City Quest",
+      "language": "en",
+      "type": "non-linear",
+      "location": "Practice garden",
+      "estimatedMinutes": 10,
+      "minimumAge": 6,
+      "coverUrl": "https://example.invalid/non-linear.png",
+      "downloadUrl": "https://example.invalid/non-linear.zip",
+      "packageSize": 2287,
+      "sha256": "73175f6db4835481178ca52f3c0a9b4c9c29244e7e9e79ba81361c5d6ed9cd52"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage 8 installation tester</title><link rel="stylesheet" href="map-renderer.css">
+<style>body{font:16px Arial,sans-serif;max-width:960px;margin:1rem auto;padding:0 1rem}button,select{font:inherit;padding:.6rem;margin:.3rem}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#fff9d9;padding:1rem}#warning{font-weight:bold}label{display:block;margin:.6rem 0}</style>
+<h1>Adventure installation tester</h1>
+<p>Development only. Real Stage 8 modules and IndexedDB, isolated database <code>qrcq-stage8-installation-tester-v1</code>. No live gameplay saves are accessed.</p>
+<label>Sample package <select id="sample" disabled></select></label>
+<button id="prepare" disabled>Prepare installation</button><button id="fail" disabled>Simulate failed installation</button>
+<button id="cancel" disabled>Cancel installation</button>
+<label><input id="offline" type="checkbox"> Simulated offline mode: block test downloads; installed data still reads from IndexedDB</label>
+<p id="warning"></p><button id="activate" disabled>Activate prepared adventure</button>
+<p id="status" role="status" aria-live="polite">Opening isolated storage…</p>
+<h2>Active adventure</h2><pre id="active"></pre><button id="refresh">Read installed data again</button><button id="clear">Clear tester data</button>
+<p>Reload this page to verify persistence. Offline mode is a test download failure, not an offline cache of this development page.</p>
+<div id="map"></div><h2>Installation progress</h2><pre id="progress"></pre>
+<script src="../mod-system/mod-conditions.js"></script><script src="../mod-system/mod-zip-reader.js"></script>
+<script src="scenario-engine.js"></script><script src="encounter-history.js"></script><script src="adventure-schemas.js"></script><script src="validator.js"></script>
+<script src="adventure-save.js"></script><script src="adventure-catalog.js"></script><script src="adventure-zip.js"></script><script src="adventure-storage.js"></script><script src="adventure-downloader.js"></script>
+<script src="map-renderer.js"></script><script src="downloader-tester.js"></script></html>

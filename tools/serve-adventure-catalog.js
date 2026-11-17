@@ -11,14 +11,17 @@ function createTesterServer() {
       const name = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
       const target = path.resolve(root, '.' + name);
       const relative = path.relative(root, target);
-      if (!['adventure-system', 'adventure-catalog', 'tests'].includes(relative.split(path.sep)[0]) ||
-          relative.split(path.sep).some(p => p.startsWith('.')) || !/\.(?:html|js|css|json|png|jpe?g|webp)$/.test(target)) {
+      const portable = relative.split(path.sep).join('/');
+      if ((!['adventure-system', 'adventure-catalog', 'tests'].includes(relative.split(path.sep)[0]) &&
+          !['mod-system/mod-conditions.js', 'mod-system/mod-zip-reader.js'].includes(portable)) ||
+          relative.split(path.sep).some(p => p.startsWith('.')) || (!/\.(?:html|js|css|json|png|jpe?g|webp)$/.test(target) &&
+          !/^adventure-system\/samples\/packages\/(?:linear|circular|non-linear)\.zip$/.test(relative.split(path.sep).join('/')))) {
         response.writeHead(403); return response.end('Only standalone adventure tester resources are served.');
       }
       const real = await fs.realpath(target);
       if (real !== target) { response.writeHead(403); return response.end(); }
       const content = await fs.readFile(real), extension = path.extname(real);
-      response.writeHead(200, { 'Content-Type': ({ '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp' })[extension],
+      response.writeHead(200, { 'Content-Type': ({ '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.css': 'text/css', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.zip': 'application/zip' })[extension],
         'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' });
       response.end(request.method === 'HEAD' ? undefined : content);
     } catch (_) { response.writeHead(404); response.end('Tester resource not found.'); }

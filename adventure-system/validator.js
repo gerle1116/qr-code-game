@@ -1,8 +1,16 @@
 /* Stage 1 authoring validator. No runtime integration or package code execution. */
+(function (root, factory) {
+  'use strict';
+  if (typeof module === 'object' && module.exports) {
+    const schemas = Object.fromEntries(['manifest', 'game-data', 'scenarios'].map(name => [name, require(`./schemas/${name}.schema.json`)]));
+    module.exports = factory(require('./encounter-history.js'), schemas, require('node:fs'), require('node:path'));
+    if (require.main === module) {
+      const result = module.exports.validatePackage(process.argv[2] || '.');
+      console.log(JSON.stringify(result, null, 2)); process.exitCode = result.valid ? 0 : 1;
+    }
+  } else root.QRCQAdventureValidator = factory(root.QRCQEncounterHistory, root.QRCQAdventureSchemas);
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (conditions, schemas, nodeFS, nodePath) {
 'use strict';
-const fs = require('node:fs');
-const path = require('node:path');
-const conditions = require('./encounter-history.js');
 const record = v => v !== null && typeof v === 'object' && !Array.isArray(v);
 const text = v => typeof v === 'string' && v.trim().length > 0;
 const qr = v => typeof v === 'string' && /^\d{2}$/.test(v);
@@ -64,10 +72,10 @@ function parseJSON(source) {
   return JSON.parse(source);
 }
 
-function validatePackage(directory) {
+function validateSource(directory, fs, path) {
   const errors = [], warnings = [], root = path.resolve(directory);
   const error = (at, msg) => errors.push(`${at}: ${msg}`);
-  const schema = name => JSON.parse(fs.readFileSync(path.join(__dirname, 'schemas', `${name}.schema.json`), 'utf8'));
+  const schema = name => schemas[name];
   function local(name, at, image = false) {
     if (!safePath(name)) { error(at, 'expected safe relative file path'); return null; }
     const target = path.join(root, name);
@@ -80,9 +88,9 @@ function validatePackage(directory) {
       if (!fs.statSync(target).isFile()) throw Error('not a regular file');
       if (image) {
         const bytes = fs.readFileSync(target);
-        const png = name.endsWith('.png') && bytes.subarray(0, 8).equals(Buffer.from([137,80,78,71,13,10,26,10]));
+        const png = name.endsWith('.png') && bytes.length >= 8 && [137,80,78,71,13,10,26,10].every((v, i) => bytes[i] === v);
         const jpg = /\.jpe?g$/.test(name) && bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255;
-        const webp = name.endsWith('.webp') && bytes.toString('ascii', 0, 4) === 'RIFF' && bytes.toString('ascii', 8, 12) === 'WEBP';
+        const webp = name.endsWith('.webp') && new TextDecoder().decode(bytes.subarray(0, 4)) === 'RIFF' && new TextDecoder().decode(bytes.subarray(8, 12)) === 'WEBP';
         if (!png && !jpg && !webp) throw Error('expected PNG, JPEG or WebP image signature');
       }
       return target;
@@ -265,9 +273,35 @@ function validatePackage(directory) {
   warnings.push('Completion is checked structurally; condition satisfiability, physical route feasibility and timer behavior are not proven.');
   return { valid: errors.length === 0, errors, warnings };
 }
-module.exports = { validatePackage, checkSchema, parseJSON, safePath };
-if (require.main === module) {
-  const result = validatePackage(process.argv[2] || '.');
-  console.log(JSON.stringify(result, null, 2));
-  process.exitCode = result.valid ? 0 : 1;
+function validatePackage(directory) { return validateSource(directory, nodeFS, nodePath); }
+// Adapter only: both disk and extracted packages use the exact Stage 1 rules above.
+function validateFiles(files) {
+  try {
+    if (!files || typeof files !== 'object' || Array.isArray(files)) throw Error('Expected a file dictionary.');
+    for (const [name, bytes] of Object.entries(files)) {
+      if (!safePath(name) || !/\.(json|png|jpg|jpeg|webp)$/.test(name) || !(bytes instanceof Uint8Array)) throw Error(`Unsupported package file: ${name}`);
+    }
+    const target = name => name.slice('package/'.length);
+    const fs = {
+      readFileSync(name, encoding) {
+        const bytes = files[target(name)]; if (!bytes) throw Error(`Missing file: ${target(name)}`);
+        return encoding ? new TextDecoder('utf-8', { fatal: true }).decode(bytes) : bytes;
+      },
+      existsSync: name => Object.hasOwn(files, target(name)),
+      lstatSync: () => ({ isSymbolicLink: () => false }),
+      statSync(name) { if (!Object.hasOwn(files, target(name))) throw Error('missing required asset'); return { isFile: () => true }; },
+      readdirSync(directory) {
+        const prefix = directory === 'package' ? '' : target(directory) + '/';
+        const names = new Map();
+        for (const file of Object.keys(files)) if (file.startsWith(prefix)) {
+          const tail = file.slice(prefix.length), name = tail.split('/')[0]; names.set(name, tail.includes('/'));
+        }
+        return [...names].map(([name, dir]) => ({ name, isSymbolicLink: () => false, isDirectory: () => dir }));
+      }
+    };
+    const path = { resolve: () => 'package', join: (...parts) => parts.join('/'), relative: (from, to) => to.slice(from.length + 1), sep: '/' };
+    return validateSource('', fs, path);
+  } catch (e) { return { valid: false, errors: [e.message], warnings: [] }; }
 }
+return { validatePackage, validateFiles, checkSchema, parseJSON, safePath };
+});
