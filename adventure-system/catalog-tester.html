@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage 7 catalog tester</title>
+<style>
+body{font:16px Arial,sans-serif;color:#111;background:#fff9d9;max-width:960px;margin:2rem auto;padding:0 1rem}
+button,input,select{font:inherit;padding:.65rem;max-width:100%;box-sizing:border-box}button{cursor:pointer}
+.controls{display:flex;flex-wrap:wrap;gap:1rem;margin:1rem 0}label{display:flex;flex-direction:column;gap:.3rem}
+#url{width:100%}article{background:white;border:1px solid #8f8383;border-radius:.5rem;padding:1rem;margin:1rem 0;overflow-wrap:anywhere}
+#status{font-weight:bold}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #5278f2;outline-offset:2px}
+</style>
+<h1>Adventure catalog tester</h1>
+<p>Development only. Sample entries are fictional and cannot be downloaded. Online entries are metadata only; this page never downloads ZIPs or covers.</p>
+<div class="controls">
+<button id="sample" type="button">Load local samples</button>
+<button id="development" type="button">Use development URL</button>
+<button id="production" type="button">Use future production URL</button>
+</div>
+<label for="url">Online HTTPS catalog URL</label><input id="url" type="url">
+<p><button id="online" type="button">Load online catalog</button></p>
+<p id="source"></p><p id="status" role="status" aria-live="polite">Loading samples…</p>
+<div class="controls">
+<label>Search<input id="search" type="search" placeholder="Name or description"></label>
+<label>Type<select id="type"><option value="">All types</option><option>linear</option><option>circular</option><option value="non-linear">non-linear</option></select></label>
+<label>Language<input id="language" placeholder="For example: en"></label>
+<label>Location<input id="location" placeholder="Town or region"></label>
+<label>Player age<input id="age" type="number" min="0" step="1" placeholder="Any age"></label>
+<label>Sort<select id="sort"><option value="">Catalog order</option><option value="name">Name</option><option value="duration">Estimated duration</option></select></label>
+<label>Order<select id="order"><option value="asc">Ascending</option><option value="desc">Descending</option></select></label>
+</div>
+<div id="results"></div>
+<script src="adventure-catalog.js"></script><script src="catalog-tester.js"></script>
+</html>

@@ -1,0 +1,29 @@
+{
+  "catalogVersion": 1,
+  "adventures": [
+    {
+      "id": "sample-linear", "version": "1.0.0", "name": "Castle Clues (sample)",
+      "description": "Sample only: follow clues through a garden. No package is published.",
+      "author": "QR City Quest", "language": "en", "type": "linear", "location": "Practice garden",
+      "estimatedMinutes": 30, "minimumAge": 8,
+      "coverUrl": "https://example.invalid/sample-linear.png", "downloadUrl": "https://example.invalid/sample-linear.zip",
+      "packageSize": 1024, "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    {
+      "id": "sample-circular", "version": "1.0.0", "name": "Garden Circle (sample)",
+      "description": "Sample only: meet the Wizard in any order. No package is published.",
+      "author": "QR City Quest", "language": "hu", "type": "circular", "location": "Gárdony, Hungary",
+      "estimatedMinutes": 20, "minimumAge": 6,
+      "coverUrl": "https://example.invalid/sample-circular.png", "downloadUrl": "https://example.invalid/sample-circular.zip",
+      "packageSize": 2048, "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "id": "sample-nonlinear", "version": "1.0.0", "name": "Open Exploration (sample)",
+      "description": "Sample only: explore at your own pace. No package is published.",
+      "author": "QR City Quest", "language": "en", "type": "nonlinear", "location": "Practice town",
+      "estimatedMinutes": 45, "minimumAge": 10,
+      "coverUrl": "https://example.invalid/sample-nonlinear.png", "downloadUrl": "https://example.invalid/sample-nonlinear.zip",
+      "packageSize": 3072, "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ]
+}
