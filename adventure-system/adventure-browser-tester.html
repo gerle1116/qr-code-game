@@ -1,0 +1,19 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choose Your Adventure · Stage 9 tester</title>
+<link rel="stylesheet" href="adventure-browser.css">
+<style>body{margin:0;background:#eee9df}.demo-controls{font:14px/1.5 system-ui,sans-serif;max-width:1120px;margin:20px auto;padding:16px 24px;background:white;box-sizing:border-box}.demo-controls label{display:inline-block;margin:6px 16px 6px 0}.demo-controls select,.demo-controls button{font:inherit;min-height:44px;padding:8px}.demo-controls p{margin:8px 0;overflow-wrap:anywhere}#tester-status{color:#715033}</style>
+<aside class="demo-controls" aria-label="Development tester controls">
+<strong>Stage 9 standalone tester</strong>
+<p id="mode-description">Demo Mode uses local sample ZIPs with real checksums. These samples are not published adventures.</p>
+<label>Catalog <select id="mode"><option value="demo">Demo Mode · local packages</option><option value="development">Development GitHub catalog</option></select></label>
+<label>Interface language <select id="locale"><option value="en">English</option><option value="hu">Magyar</option></select></label>
+<label><input id="offline" type="checkbox"> Simulated offline: block test network requests</label>
+<label><input id="fail-download" type="checkbox"> Simulate download network failure</label>
+<p>Offline simulation blocks requests, not access to installed IndexedDB data. This development HTML page is not cached for offline launch. Reload to check persistence.</p>
+<p id="tester-status" role="status"></p>
+</aside>
+<main id="browser"></main>
+<script src="../mod-system/mod-conditions.js"></script><script src="../mod-system/mod-zip-reader.js"></script>
+<script src="scenario-engine.js"></script><script src="encounter-history.js"></script><script src="adventure-schemas.js"></script><script src="validator.js"></script>
+<script src="adventure-save.js"></script><script src="adventure-catalog.js"></script><script src="adventure-zip.js"></script><script src="adventure-storage.js"></script><script src="adventure-downloader.js"></script>
+<script src="adventure-browser.js"></script><script src="adventure-browser-tester.js"></script></html>

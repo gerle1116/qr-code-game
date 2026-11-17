@@ -1,7 +1,7 @@
 /* Wait on real browser/IndexedDB time; virtual-time dump-dom can finish before IDB I/O. */
 'use strict';
 const { spawn } = require('node:child_process');
-module.exports = async function runBrowser(browser, profile, pageURL) {
+module.exports = async function runBrowser(browser, profile, pageURL, { keyboard = false, screenshotPath, screenshotURL } = {}) {
   const child = spawn(browser, ['--headless', '--disable-gpu', '--no-first-run', '--no-default-browser-check',
     `--user-data-dir=${profile}`, '--disable-background-networking', '--remote-debugging-port=0', 'about:blank'], { windowsHide: true });
   let socket, stderr = '', connection;
@@ -29,7 +29,31 @@ module.exports = async function runBrowser(browser, profile, pageURL) {
     while (Date.now() < deadline) {
       const value = await connection('Runtime.evaluate', { expression: 'document.getElementById("results")?.textContent || "loading"', returnByValue: true }, sessionId);
       last = value.result?.value || '';
-      if (/BROWSER: .*; complete/.test(last)) return last;
+      if (/BROWSER: .*; complete/.test(last)) {
+        if (screenshotPath && screenshotURL) {
+          await connection('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true }, sessionId);
+          await connection('Page.navigate', { url: screenshotURL }, sessionId);
+          for (let i = 0; i < 100; i++) {
+            const ready = await connection('Runtime.evaluate', { expression: 'document.querySelectorAll(".ab-card").length === 3', returnByValue: true }, sessionId);
+            if (ready.result?.value) break;
+            await new Promise(resolve => setTimeout(resolve, 50));
+          }
+          const capture = await connection('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true }, sessionId);
+          require('node:fs').writeFileSync(screenshotPath, Buffer.from(capture.data, 'base64'));
+        }
+        return last;
+      }
+      if (keyboard) {
+        const request = await connection('Runtime.evaluate', { expression: 'window.__browserKeyRequest && !window.__browserKeyRequest.done ? window.__browserKeyRequest : null', returnByValue: true }, sessionId);
+        const action = request.result?.value;
+        if (action) {
+          const codes = { Tab: 9, Enter: 13, Escape: 27 };
+          for (const type of ['keyDown', 'keyUp']) await connection('Input.dispatchKeyEvent', { type, key: action.key, code: action.key,
+            windowsVirtualKeyCode: codes[action.key], nativeVirtualKeyCode: codes[action.key], modifiers: action.shift ? 8 : 0,
+            ...(action.key === 'Enter' && type === 'keyDown' ? { text: '\r', unmodifiedText: '\r' } : {}) }, sessionId);
+          await connection('Runtime.evaluate', { expression: 'window.__browserKeyRequest.done = true' }, sessionId);
+        }
+      }
       await new Promise(resolve => setTimeout(resolve, 100));
     }
     throw Error('Browser test did not complete:\n' + last + '\n' + stderr);
