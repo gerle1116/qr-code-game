@@ -91,6 +91,13 @@
     function authorizeMutation(result) {
       return result === current && issued.has(result) && issued.get(result).mutation === true;
     }
+    function openOwnedItem(id) {
+      current = null;
+      if (!own(game.items, id)) return failure('UNKNOWN_ITEM');
+      // Ownership is checked by the session before asking the resolver to open it.
+      return publish({ ...failure('UNKNOWN_ITEM'), ok: true, code: 'ITEM_READY',
+        type: 'item', itemId: id, access: 'full', readOnly: false, progressionSensitiveActionsAllowed: true });
+    }
     function completeCheckpoint(result) {
       if (!engine || !authorizeMutation(result) || !issued.get(result).checkpoint) return failure('CHECKPOINT_NOT_AUTHORIZED');
       const completed = engine.completeCheckpoint(issued.get(result).qr);
@@ -109,7 +116,7 @@
         access: 'full', readOnly: false, canCompleteCheckpoint: false, progressionSensitiveActionsAllowed: true });
     }
     return { ok: true, resolver: Object.freeze({ scan, authorizeMutation, completeCheckpoint,
-      reopenFinishedCheckpoint,
+      reopenFinishedCheckpoint, openOwnedItem, close: () => { current = null; },
       getStatus: () => engine ? engine.getStatus() : { ok: true, scenarioId: null } }) };
   }
   return { createQRResolver };

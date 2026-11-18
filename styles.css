@@ -1134,3 +1134,28 @@ select {
 .debug-jump-row .primary {
   flex: 0 0 auto;
 }
+.adventure-actions,
+.manual-scan {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem;
+  padding-block: .75rem;
+}
+
+.manual-scan input {
+  width: 10ch;
+  min-height: 44px;
+  font: inherit;
+}
+
+.manual-scan button,
+#active-dialogue select {
+  min-height: 44px;
+  font: inherit;
+}
+
+#active-dialogue select { max-width: 100%; }
+#active-dialogue .choice-btn { margin-top: .6rem; }
+.adventure-dialogue-image { display: block; width: 100%; max-height: 17rem; object-fit: contain; }
+.adventure-diagnostics { white-space: pre-wrap; overflow-wrap: anywhere; }

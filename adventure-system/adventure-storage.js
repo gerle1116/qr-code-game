@@ -109,6 +109,21 @@
         return { ok: true, revision: state.revision };
       });
     }
+    async function activateBuiltIn(expectedRevision, { confirmed = false } = {}) {
+      const adventure = { manifest: saves.LEGACY_ADVENTURE };
+      const fresh = saves.createAdventureSave(adventure);
+      if (!fresh.ok) fail(fresh.code, fresh.message);
+      return transact(state => {
+        if (state.revision !== expectedRevision) fail('STALE_TRANSITION', 'Active progress changed.');
+        if (state.active?.kind === 'builtin') return { ok: true, revision: state.revision };
+        if (state.active && !state.active.save.completed && confirmed !== true)
+          return { ok: false, code: 'CONFIRMATION_REQUIRED' };
+        state.active = { kind: 'builtin', adventure, files: {}, save: fresh.save };
+        state.staging = null;
+        state.revision++;
+        return { ok: true, revision: state.revision };
+      });
+    }
     async function clear({ confirmed = false } = {}) {
       return transact(state => {
         if (state.active?.save.completed !== true && state.active && !confirmed) fail('CONFIRMATION_REQUIRED', 'Confirm clearing unfinished adventure data.');
@@ -134,7 +149,7 @@
         dispose() { if (!disposed) for (const url of created.values()) urls.revokeObjectURL(url); disposed = true; created.clear(); }
       };
     }
-    return { snapshot, stage, commit, discard, recover, updateSave, adoptBuiltInSave, clear, getAsset, createAssetLoader,
+    return { snapshot, stage, commit, discard, recover, updateSave, adoptBuiltInSave, activateBuiltIn, clear, getAsset, createAssetLoader,
       getActive: async () => (await snapshot()).active, close: () => backend.close?.() };
   }
   return { createIndexedDBBackend, createAdventureStorage, adventureFromFiles };

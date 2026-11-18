@@ -1,7 +1,7 @@
 /* Wait on real browser/IndexedDB time; virtual-time dump-dom can finish before IDB I/O. */
 'use strict';
 const { spawn } = require('node:child_process');
-module.exports = async function runBrowser(browser, profile, pageURL, { keyboard = false, screenshotPath, screenshotURL } = {}) {
+module.exports = async function runBrowser(browser, profile, pageURL, { keyboard = false, network = false, timeoutMs = 40000, screenshotPath, screenshotURL } = {}) {
   const child = spawn(browser, ['--headless', '--disable-gpu', '--no-first-run', '--no-default-browser-check',
     `--user-data-dir=${profile}`, '--disable-background-networking', '--remote-debugging-port=0', 'about:blank'], { windowsHide: true });
   let socket, stderr = '', connection;
@@ -25,7 +25,7 @@ module.exports = async function runBrowser(browser, profile, pageURL, { keyboard
     const { targetId } = await connection('Target.createTarget', { url: 'about:blank' });
     const { sessionId } = await connection('Target.attachToTarget', { targetId, flatten: true });
     await connection('Page.navigate', { url: pageURL }, sessionId);
-    const deadline = Date.now() + 40000; let last = '';
+    const deadline = Date.now() + timeoutMs; let last = '';
     while (Date.now() < deadline) {
       const value = await connection('Runtime.evaluate', { expression: 'document.getElementById("results")?.textContent || "loading"', returnByValue: true }, sessionId);
       last = value.result?.value || '';
@@ -52,6 +52,17 @@ module.exports = async function runBrowser(browser, profile, pageURL, { keyboard
             windowsVirtualKeyCode: codes[action.key], nativeVirtualKeyCode: codes[action.key], modifiers: action.shift ? 8 : 0,
             ...(action.key === 'Enter' && type === 'keyDown' ? { text: '\r', unmodifiedText: '\r' } : {}) }, sessionId);
           await connection('Runtime.evaluate', { expression: 'window.__browserKeyRequest.done = true' }, sessionId);
+        }
+      }
+      if (network) {
+        const request = await connection('Runtime.evaluate', {
+          expression: 'window.__browserNetworkRequest?.done === false ? window.__browserNetworkRequest : null', returnByValue: true
+        }, sessionId);
+        if (request.result?.value) {
+          await connection('Network.enable', {}, sessionId);
+          await connection('Network.emulateNetworkConditions', { offline: request.result.value.offline,
+            latency: 0, downloadThroughput: -1, uploadThroughput: -1 }, sessionId);
+          await connection('Runtime.evaluate', { expression: 'window.__browserNetworkRequest.done = true' }, sessionId);
         }
       }
       await new Promise(resolve => setTimeout(resolve, 100));

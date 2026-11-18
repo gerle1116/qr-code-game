@@ -14,6 +14,7 @@
   };
   let englishText = null;
   let englishGame = null;
+  let starting = false;
 
   function normalizeLanguage(value) {
     const lang = String(value || "").toLowerCase().trim();
@@ -86,18 +87,22 @@
   }
 
   async function start(language) {
+    if (starting) return;
+    starting = true;
     const lang = normalizeLanguage(language) || "en";
     window.QR_CITY_QUEST_LANGUAGE = lang;
     document.documentElement.lang = lang;
     app.innerHTML = "";
 
     try {
+      const session = await window.QRCQAdventureIntegration.start();
+      window.QRCQ_ACTIVE_SESSION = session;
       if (lang === "en") {
         window.QR_CITY_QUEST_APP_TEXT = englishText;
         window.QR_CITY_QUEST_DATA = englishGame;
       } else if (lang === "hu") {
-        await loadScript("data/apptext_hu.js?v=39");
-        await loadScript("data/game-data_hu.js?v=39");
+        await loadScript("data/apptext_hu.js?v=41");
+        await loadScript("data/game-data_hu.js?v=41");
       } else {
         const pack = discovery.packs[lang];
         if (!pack) throw Error("Selected language pack is not installed");
@@ -107,7 +112,19 @@
         window.QR_CITY_QUEST_DATA = pack.game;
       }
 
-      if (window.QRCQModRuntime) {
+      if (session.active.kind === 'downloaded') {
+        window.QR_CITY_QUEST_DATA = session.active.adventure.gameData;
+        const opened = await window.QRCQAdventureCompletion.createCompletionEngine({
+          storage: session.storage, live: true, expectedRevision: session.revision()
+        });
+        if (!opened.ok) throw Object.assign(Error(opened.code), { code: opened.code });
+        window.QRCQ_ACTIVE_PLAY = opened.engine;
+        window.QRCQ_ACTIVE_ASSETS = await session.storage.createAssetLoader();
+        if ((await session.storage.snapshot()).revision !== session.revision()) {
+          window.QRCQ_ACTIVE_ASSETS?.dispose();
+          throw Object.assign(Error('The active save changed.'), { code: 'STALE_TRANSITION' });
+        }
+      } else if (window.QRCQModRuntime) {
         try {
           const mods = await window.QRCQModRuntime.build(window.QR_CITY_QUEST_DATA, lang);
           window.QR_CITY_QUEST_DATA = mods.game;
@@ -121,7 +138,7 @@
         }
       }
 
-      await loadScript("app.js?v=39");
+      await loadScript("app.js?v=41");
     } catch (error) {
       console.error("QR City Quest language loading error:", error);
       app.innerHTML = `
@@ -129,19 +146,24 @@
           <section class="card error-card screen-card">
             <div class="error-icon" aria-hidden="true">!</div>
             <h2>Loading error / Betöltési hiba</h2>
-            <p>Could not load the selected language. Refresh the game and try English.</p>
+            <p>QR City Quest could not open the active adventure. Your stored progress has been kept.</p>
+            <p>Az aktív kaland nem nyitható meg. A mentés megmaradt.</p>
+            <p id="startup-error"></p>
+            <button type="button" id="startup-retry">Try again / Újrapróbálás</button>
           </section>
         </main>
       `;
+      document.getElementById('startup-error').textContent = error.code || error.message;
+      document.getElementById('startup-retry').onclick = () => location.reload();
     }
   }
 
   async function initialize() {
     try {
       // Load trusted original English data once to validate independent translations.
-      await loadScript("data/apptext_en.js?v=39");
+      await loadScript("data/apptext_en.js?v=41");
       englishText = window.QR_CITY_QUEST_APP_TEXT;
-      await loadScript("data/game-data_en.js?v=39");
+      await loadScript("data/game-data_en.js?v=41");
       englishGame = window.QR_CITY_QUEST_DATA;
 
       if (window.QRCQModLocalization && window.QRCQModStorage) {

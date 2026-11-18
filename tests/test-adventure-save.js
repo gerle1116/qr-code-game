@@ -248,11 +248,12 @@ test('standalone browser works with storage, DOM and network access forbidden', 
   assert.equal(standalone.migrateLegacySave(legacy()).ok, true);
   assert.equal(standalone.prepareAdventureTransition(created.save, fixture('circular')).commit(created.save).ok, true);
 });
-test('new gameplay fields match the actual app defaultSave without running the app', () => {
-  const source = fs.readFileSync(path.join(__dirname, '../app.js'), 'utf8');
-  const extracted = source.match(/function defaultSave\(\) \{[\s\S]*?\n  \}/);
-  assert.ok(extracted, 'Locate the actual original save factory');
-  const original = copy(vm.runInNewContext(`(${extracted[0]})()`, {}));
+test('new gameplay fields match the historical built-in save contract', () => {
+  // The original app factory was retired when Stage 4 became the live authority.
+  const original = { schemaVersion: 1, inventory: [], hadItems: [], knowledge: [],
+    quests: {}, encounters: {}, timers: {}, itemTimers: {},
+    flags: { castleOpen: false, unlockedAreas: [] },
+    itemState: { counters: {}, usedButtons: {}, oneTimeRewards: {} }, lastSavedAt: 0 };
   const s = fresh(core());
   for (const key of Object.keys(original)) {
     if (key !== 'lastSavedAt') assert.deepEqual(s[key], original[key], key);

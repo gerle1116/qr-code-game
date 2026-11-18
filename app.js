@@ -4,10 +4,14 @@
   const GAME = window.QR_CITY_QUEST_DATA;
   const TEXT = window.QR_CITY_QUEST_APP_TEXT;
 
-  const SAVE_KEY = "qr-city-quest-save-v1";
+  const session = window.QRCQ_ACTIVE_SESSION;
+  const play = window.QRCQ_ACTIVE_PLAY;
+  let uiBusy = false;
+  let disposeScreen = null;
   const DEBUG_VISIBLE_KEY = "qr-city-quest-debug-visible-v1";
   const DEBUG = new URLSearchParams(location.search).get("debug") === "1";
   const DEBUG_SECRET = "QRCITY";
+  const dropdownTransition = Symbol("dropdown");
   const LANGUAGE = window.QR_CITY_QUEST_LANGUAGE || "en";
   const app = document.getElementById("app");
 
@@ -17,7 +21,7 @@
     return;
   }
 
-  let save = loadSave();
+  let save = session.saved();
   let currentEncounter = null;
   let currentItemName = null;
   let currentPageId = null;
@@ -44,295 +48,34 @@
   // SAVE
   // =========================================================
 
-  function defaultSave() {
-    return {
-      schemaVersion: 1,
-      inventory: [],
-      hadItems: [],
-      knowledge: [],
-      quests: {},
-      encounters: {},
-      timers: {},
-      itemTimers: {},
-      flags: {
-        castleOpen: false,
-        unlockedAreas: []
-      },
-      itemState: {
-        counters: {},
-        usedButtons: {},
-        oneTimeRewards: {}
-      },
-      lastSavedAt: Date.now()
-    };
-  }
-
-
-  function loadSave() {
-    try {
-      const raw = localStorage.getItem(SAVE_KEY);
-
-      if (!raw) {
-        return defaultSave();
-      }
-
-      const value = JSON.parse(raw);
-
-      if (
-        !value ||
-        value.schemaVersion !== 1
-      ) {
-        return defaultSave();
-      }
-
-      const clean = defaultSave();
-
-      clean.inventory =
-        Array.isArray(value.inventory)
-          ? [
-              ...new Set(
-                value.inventory
-                  .filter(
-                    x =>
-                      typeof x === "string" &&
-                      x.trim()
-                  )
-                  .map(x => x.trim())
-              )
-            ]
-          : [];
-
-      clean.hadItems =
-        Array.isArray(value.hadItems)
-          ? [
-              ...new Set(
-                value.hadItems
-                  .filter(
-                    x =>
-                      typeof x === "string" &&
-                      x.trim()
-                  )
-                  .map(x => x.trim())
-              )
-            ]
-          : [...clean.inventory];
-
-
-      
-      for (const item of clean.inventory) {
-        if (!clean.hadItems.includes(item)) {
-          clean.hadItems.push(item);
-        }
-      }
-
-      clean.knowledge =
-        Array.isArray(value.knowledge)
-          ? [
-              ...new Set(
-                value.knowledge
-                  .filter(
-                    x =>
-                      typeof x === "string" &&
-                      x.trim()
-                  )
-                  .map(x => x.trim())
-              )
-            ]
-          : [];
-            
-      clean.quests =
-        value.quests &&
-        typeof value.quests === "object"
-          ? value.quests
-          : {};
-
-      clean.encounters =
-        value.encounters &&
-        typeof value.encounters === "object"
-          ? value.encounters
-          : {};
-
-      clean.timers =
-        value.timers &&
-        typeof value.timers === "object"
-          ? value.timers
-          : {};
-
-      clean.itemTimers =
-        value.itemTimers &&
-        typeof value.itemTimers === "object"
-          ? value.itemTimers
-          : {};
-
-      clean.flags.castleOpen =
-        !!(
-          value.flags &&
-          value.flags.castleOpen
-        );
-
-      clean.flags.unlockedAreas =
-        Array.isArray(
-          value.flags &&
-          value.flags.unlockedAreas
-        )
-          ? [
-              ...new Set(
-                value.flags.unlockedAreas.filter(
-                  x =>
-                    typeof x === "string" &&
-                    x.trim()
-                )
-              )
-            ]
-          : [];
-
-      const oldItemState =
-        value.itemState &&
-        typeof value.itemState === "object"
-          ? value.itemState
-          : {};
-
-      clean.itemState.counters =
-        oldItemState.counters &&
-        typeof oldItemState.counters === "object"
-          ? oldItemState.counters
-          : {};
-
-      clean.itemState.usedButtons =
-        oldItemState.usedButtons &&
-        typeof oldItemState.usedButtons === "object"
-          ? oldItemState.usedButtons
-          : {};
-
-      clean.itemState.oneTimeRewards =
-        oldItemState.oneTimeRewards &&
-        typeof oldItemState.oneTimeRewards === "object"
-          ? oldItemState.oneTimeRewards
-          : {};
-
-      // Migrate old special-mechanics save state
-      // into the new generic counter system.
-      const legacyCounterMigrations = [
-        {
-          oldKey: "Fishing Rod::Blobfish",
-          newKey: "Fishing Rod::blobfishCaught"
-        },
-        {
-          oldKey: "Fishing Rod::Great Salmon",
-          newKey: "Fishing Rod::salmonCaught"
-        },
-        {
-          oldKey: "Fishing Rod::Old Boots",
-          newKey: "Fishing Rod::bootsCaught"
-        }
-      ];
-
-      for (
-        const migration
-        of legacyCounterMigrations
-      ) {
-        if (
-          clean.itemState
-            .oneTimeRewards[
-              migration.oldKey
-            ] &&
-          !Number(
-            clean.itemState
-              .counters[
-                migration.newKey
-              ]
-          )
-        ) {
-          clean.itemState
-            .counters[
-              migration.newKey
-            ] = 1;
-        }
-      }
-
-      if (
-        clean.itemState
-          .usedButtons[
-            "Silver Ring::2601::Put it on."
-          ] &&
-        !Number(
-          clean.itemState
-            .counters[
-              "Silver Ring::worn"
-            ]
-        )
-      ) {
-        clean.itemState
-          .counters[
-            "Silver Ring::worn"
-          ] = 1;
-      }
-
-      clean.lastSavedAt =
-        Number(value.lastSavedAt) ||
-        Date.now();
-
-      return clean;
-
-    } catch (_) {
-      return defaultSave();
-    }
-  }
-
-
-  function persist() {
-    save.inventory = [
-      ...new Set(save.inventory)
-    ];
-
-    save.hadItems = [
-      ...new Set(save.hadItems || [])
-    ];
-
-    save.knowledge = [
-      ...new Set(save.knowledge || [])
-    ];
-
-    for (const item of save.inventory) {
-      if (!save.hadItems.includes(item)) {
-        save.hadItems.push(item);
-      }
-    }
-
-    save.flags.unlockedAreas = [
-      ...new Set(
-        save.flags.unlockedAreas || []
-      )
-    ];
-
+  async function persist() {
+    save.inventory = [...new Set(save.inventory)];
+    save.hadItems = [...new Set([...save.hadItems, ...save.inventory])];
+    save.knowledge = [...new Set(save.knowledge)];
+    save.flags.unlockedAreas = [...new Set(save.flags.unlockedAreas)];
     save.lastSavedAt = Date.now();
-
+    uiBusy = true;
     try {
-      localStorage.setItem(
-        SAVE_KEY,
-        JSON.stringify(save)
-      );
-
-      if (
-        navigator.storage &&
-        navigator.storage.persist
-      ) {
-        navigator.storage
-          .persist()
-          .catch(() => {});
+      const result = await session.update(save);
+      if (!result.ok) {
+        save = session.saved();
+        saveError(result.code);
+        return false;
       }
-
       return true;
-
-    } catch (_) {
-      toast(
-        TEXT.saveCouldNotBeWritten
-      );
-
-      return false;
-    }
+    } finally { uiBusy = false; }
   }
 
+  function saveError(code) {
+    showHome();
+    toast(code === 'STALE_TRANSITION'
+      ? d('The active save changed in another tab. Reload before continuing.', 'A mentés másik lapon megváltozott. A folytatáshoz töltsd újra az oldalt.')
+      : TEXT.saveCouldNotBeWritten);
+    if (code === 'STALE_TRANSITION') {
+      const footer = document.querySelector(".home-settings-footer");
+      if (footer) screenButton(footer, d("Reload saved progress", "Mentett haladás újratöltése"), () => location.reload());
+    }
+  }
 
   function loadSecretDebugVisibility() {
     try {
@@ -424,6 +167,8 @@
       home = false
     } = {}
   ) {
+    disposeScreen?.();
+    disposeScreen = null;
     app.innerHTML = `
       <main class="shell">
 
@@ -525,10 +270,13 @@
     currentItemName = null;
     currentPageId = null;
     transitionLocked = false;
+    play?.close();
+    const manifest = session.active.adventure.manifest;
+    const usesMap = manifest.type !== "non-linear";
 
     shell(`
       <section class="hero">
-        <h1 id="homeTitleSecret">${esc(TEXT.homeTitle)}</h1>
+        <h1 id="homeTitleSecret">${esc(play ? manifest.name : TEXT.homeTitle)}</h1>
       </section>
 
       <section class="card home-grid">
@@ -551,7 +299,7 @@
               class="home-icon-button"
               id="objectivesBtn"
               type="button"
-              aria-label="${esc(TEXT.objectives)}"
+              aria-label="${esc(usesMap ? d("Map", "Térkép") : TEXT.objectives)}"
             >
               🎯
             </button>
@@ -588,6 +336,9 @@
       </section>
 
       <footer class="home-settings-footer">
+        <button class="home-settings-button" id="adventuresBtn" type="button">${esc(d("Adventures", "Kalandok"))}</button>
+        ${save.completed || play?.getCompletionStatus().completed
+          ? `<button class="home-settings-button" id="victoryBtn" type="button">${esc(d("Victory", "Győzelem"))}</button>` : ""}
         <button class="home-settings-button" id="settingsBtn" type="button">
           ⚙ ${esc(TEXT.settings)}
         </button>
@@ -600,7 +351,7 @@
 
     document
       .getElementById("objectivesBtn")
-      .onclick = showObjectives;
+      .onclick = usesMap ? showAdventureMap : showObjectives;
 
     document
       .getElementById("inventoryBtn")
@@ -613,6 +364,9 @@
     document
       .getElementById("settingsBtn")
       .onclick = showSettings;
+    document.getElementById("adventuresBtn").onclick = showAdventures;
+    const victoryButton = document.getElementById("victoryBtn");
+    if (victoryButton) victoryButton.onclick = showAdventureVictory;
 
     const secretTitle =
       document.getElementById(
@@ -675,6 +429,168 @@
     }
   }
 
+  function showAdventures() {
+    stopCamera();
+    play?.close();
+    shell('<div class="adventure-actions" id="adventure-actions"></div><div id="adventure-browser"></div>', { back: showHome });
+    const controls = document.getElementById("adventure-actions");
+    const reload = () => location.reload();
+    const resume = () => { if (!browser.getState().committing) showHome(); };
+    screenButton(controls, d("Resume adventure", "Kaland folytatása"), resume);
+    if (play) screenButton(controls, d("Switch to QR City Quest", "Váltás a QR City Questre"), async () => {
+      if (uiBusy || browser.getState().busy) return;
+      const completed = play.getCompletionStatus().completed;
+      if (!completed && !window.confirm(d("Switching discards the unfinished adventure. Continue?",
+        "A váltás törli a befejezetlen kaland mentését. Folytatod?"))) return;
+      uiBusy = true;
+      try {
+        const result = await session.storage.activateBuiltIn(play.getRevision(), { confirmed: !completed });
+        if (result.ok) reload();
+        else toast(d("The switch could not be saved.", "A váltás mentése sikertelen."));
+      } catch (error) { saveError(error.code); }
+      finally { uiBusy = false; }
+    });
+    const browser = QRCQAdventureBrowser.createAdventureBrowser({
+      container: document.getElementById("adventure-browser"), storage: session.storage, locale: LANGUAGE,
+      catalogURL: QRCQAdventureCatalog.DEVELOPMENT_CATALOG_URL, onActivated: reload,
+      messages: {
+        integration: d("Resume the active adventure from this screen.", "Innen folytathatod az aktív kalandot."),
+        replaceTitle: d("Replace your current adventure?", "Lecseréled a jelenlegi kalandot?"),
+        replaceText: d("Replacing this adventure discards its unfinished progress.",
+          "A csere törli a jelenlegi kaland befejezetlen haladását."),
+        completed: d("Adventure completed", "Kaland teljesítve"),
+        unfinished: d("Unfinished progress saved", "Befejezetlen haladás mentve")
+      }
+    });
+    document.getElementById("backBtn").onclick = resume;
+    disposeScreen = () => { void browser.destroy(); };
+  }
+
+  function screenButton(parent, label, action) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "choice-btn";
+    button.textContent = label;
+    button.onclick = action;
+    parent.append(button);
+    return button;
+  }
+
+  function showAdventureMap() {
+    const adventure = structuredClone(session.active.adventure);
+    const route = adventure.scenarioData?.scenarios[play.getProgress().scenarioState?.scenarioId];
+    if (route && adventure.manifest.map?.markers) {
+      adventure.manifest.map.markers = adventure.manifest.map.markers.filter(marker => route.sequence.includes(marker.qr));
+    }
+    shell('<section class="card" id="adventure-map"></section>', { back: showHome });
+    const container = document.getElementById("adventure-map");
+    const mapped = QRCQMapRenderer.createMapRenderer({ container, adventure, resolveAsset: pictureUrl });
+    if (mapped.renderer) {
+      disposeScreen = () => mapped.renderer.destroy();
+      if (route) {
+        const progress = document.createElement("p");
+        const { completedCheckpoints, scenarioId } = play.getProgress().scenarioState;
+        progress.textContent = `${scenarioId} · ${completedCheckpoints.length}/${route.sequence.length}`;
+        container.prepend(progress);
+      }
+    }
+    else container.textContent = d("Map unavailable.", "A térkép nem érhető el.");
+  }
+
+  async function showAdventureVictory() {
+    stopCamera();
+    play?.close();
+    shell('<div id="live-victory"></div>', { back: showHome });
+    const container = document.getElementById("live-victory");
+    const view = await QRCQAdventureVictory.mountVictory({ container, storage: session.storage, locale: LANGUAGE,
+      expectedRevision: play ? play.getRevision() : session.revision(),
+      onBack: showAdventures, onReplay: () => location.reload() });
+    if (!container.isConnected) { view.destroy?.(); return; }
+    if (view.ok) disposeScreen = view.destroy;
+    else if (view.code === "STALE_TRANSITION") showSaveRecovery();
+    else container.textContent = d("Saved victory is unavailable.", "A mentett győzelem nem érhető el.");
+  }
+
+  async function runAdventureInteraction(operation, commit = true) {
+    if (uiBusy) return;
+    uiBusy = true;
+    try {
+      const result = await operation();
+      if (!result.ok) {
+        if (result.code === "AREA_LOCKED") showAreaLocked();
+        else if (result.code === "ITEM_ALREADY_COLLECTED") { showHome(); toast(TEXT.itemAlreadyCollected); }
+        else if (result.code === "STALE_TRANSITION" || play.hasPendingWrite()) showSaveRecovery();
+        else if (result.code === "OUT_OF_ORDER") {
+          showUnknownQR();
+          toast(d(`Scan QR ${result.expectedQR} first.`, `Először a(z) ${result.expectedQR} QR-kódot olvasd be.`));
+        } else if (result.type || ["INVALID_QR", "UNKNOWN_QR", "INVALID_START", "START_NOT_ELIGIBLE",
+          "COMPLETED_CHECKPOINT_REQUIRED"].includes(result.code)) showUnknownQR();
+        else toast(d("This interaction is unavailable.", "Ez a művelet nem érhető el."));
+        return;
+      }
+      if (!result.completed && commit && !result.readOnly) {
+        const saved = await play.flush();
+        if (!saved.ok) {
+          showSaveRecovery();
+          return;
+        }
+      }
+      save = play.getProgress();
+      if (result.completed) await showAdventureVictory();
+      else if (result.page) showAdventureDialogue(result);
+      else showHome();
+    } catch (error) {
+      console.error("Adventure interaction:", error);
+      showSaveRecovery();
+    } finally { uiBusy = false; }
+  }
+
+  function showSaveRecovery() {
+    shell('<section class="card" id="play-recovery"></section>', { back: showHome });
+    const recovery = document.getElementById("play-recovery");
+    recovery.textContent = d("Progress could not be saved.", "A haladás mentése sikertelen.");
+    screenButton(recovery, d("Reload saved progress", "Mentett haladás újratöltése"), () => location.reload());
+  }
+
+  function showAdventureDialogue(view) {
+    shell('<section class="card encounter-card" id="active-dialogue"></section>', { back: showHome });
+    const container = document.getElementById("active-dialogue");
+    const addText = (tag, text, className) => {
+      const node = document.createElement(tag);
+      node.className = className;
+      node.textContent = text;
+      container.append(node);
+    };
+    const picture = pictureUrl(view.picture);
+    if (picture) {
+      const image = document.createElement("img");
+      image.className = "adventure-dialogue-image";
+      image.alt = "";
+      image.src = picture;
+      image.onerror = () => image.remove();
+      container.append(image);
+    }
+    addText("h2", view.page.speaker, "speaker");
+    addText("p", view.page.text, "dialogue");
+    if (view.waitingUntil) addText("p", d("Scan again when the timer ends.", "Az idő lejártakor olvasd be újra a kódot.") +
+      " " + new Date(view.waitingUntil).toLocaleTimeString(LANGUAGE), "dialogue");
+    else if (view.readOnly) addText("p", d("Read only", "Csak olvasható"), "dialogue");
+    for (const choice of play.choices(view)) {
+      let select;
+      if (choice.dropdown) {
+        select = document.createElement("select");
+        select.setAttribute("aria-label", choice.label);
+        const inventory = choice.dropdown.type === "DROPDOWN_INVENTORY";
+        const options = inventory ? save.inventory.map(id => [id, getItemDisplayName(id)]) :
+          choice.dropdown.options.map(({ label }, index) => [index, label]);
+        if (inventory) options.unshift(["", d("No item", "Nincs tárgy")]);
+        for (const [value, label] of options) select.add(new Option(label, value));
+        container.append(select);
+      }
+      screenButton(container, choice.label, () => runAdventureInteraction(() => play.choose(view, choice.index,
+        choice.dropdown?.type === "DROPDOWN_CHOICE" ? Number(select.value) : select?.value), !view.readOnly));
+    }
+  }
 
   // =========================================================
   // AREA LOCKED
@@ -792,11 +708,12 @@
   }
 
   function pictureUrl(name) {
+    if (play) return name ? window.QRCQ_ACTIVE_ASSETS?.resolveAsset(name) : undefined;
     if (!name) return null;
     if (name.includes(":")) {
       return (window.QRCQ_MOD_IMAGES || {})[name] || null;
     }
-    return "./images/" + encodeURIComponent(name) + ".png?v=40";
+    return "./images/" + encodeURIComponent(name) + ".png?v=41";
   }
 
   function getItemDefinitionByQr(qr) {
@@ -974,6 +891,7 @@
 }
 
 function openItemDialogue(itemName) {
+    if (play) return runAdventureInteraction(() => play.openItem(itemName), false);
   const item =
     getItemDefinition(itemName);
 
@@ -1282,6 +1200,7 @@ function getQuestDisplayName(questName) {
   }
 
   function showSettings() {
+    play?.close();
     stopCamera();
 
     shell(`
@@ -1495,6 +1414,7 @@ function getQuestDisplayName(questName) {
 
   function showScanner() {
     stopCamera();
+    play?.close();
 
     scannerLocked = false;
 
@@ -1544,12 +1464,21 @@ function getQuestDisplayName(questName) {
           ></div>
 
         </div>
-
+        <form id="manual-scan" class="manual-scan">
+          <label for="manual-qr">${esc(d("QR code", "QR-kód"))}</label>
+          <input id="manual-qr" required autocomplete="off">
+          <button type="submit">${esc(TEXT.scanQR)}</button>
+        </form>
       </section>
     `, {
       back: showHome
     });
 
+    document.getElementById("manual-scan").onsubmit = event => {
+      event.preventDefault();
+      scannerLocked = false;
+      acceptScannedText(document.getElementById("manual-qr").value);
+    };
     if (!secure) {
       const msg =
         document.getElementById(
@@ -1697,14 +1626,18 @@ function getQuestDisplayName(questName) {
   }
 
 
-  function acceptScannedText(raw) {
-    if (scannerLocked) {
+  async function acceptScannedText(raw) {
+    if (uiBusy || scannerLocked) {
       return;
     }
 
     const qr =
       String(raw ?? "")
         .trim();
+    if (play) {
+      stopCamera();
+      return runAdventureInteraction(() => play.scan(qr));
+    }
 
     const encounterExists =
       isValidGameQr(qr) &&
@@ -1761,7 +1694,7 @@ function getQuestDisplayName(questName) {
           item.name
         );
 
-        persist();
+        if (!await persist()) return;
 
         if (!ownsItem) {
           toast(
@@ -1803,7 +1736,7 @@ function getQuestDisplayName(questName) {
   // ENCOUNTERS
   // =========================================================
 
-  function resolveScan(encounterId) {
+  async function resolveScan(encounterId) {
     const encounter =
       GAME.encounters[
         encounterId
@@ -1935,7 +1868,7 @@ function getQuestDisplayName(questName) {
       encounterId
     ];
 
-    persist();
+    if (!await persist()) return;
 
     showPage(
       timer.resumePage
@@ -2405,6 +2338,7 @@ function getQuestDisplayName(questName) {
   // =========================================================
 
    function checkButtonCondition(condition, page, button, context) {
+    if (play) return false;
     if (
       condition === undefined ||
       condition === null ||
@@ -2576,6 +2510,7 @@ function getQuestDisplayName(questName) {
     page,
     action
   ) {
+    if (uiBusy || currentPageId !== page.id || !page.actions.includes(action)) return;
     const select =
       document.getElementById(
         "dropdownSelect"
@@ -2713,7 +2648,8 @@ function getQuestDisplayName(questName) {
     handleTransition(
       page,
       1,
-      destination
+      destination,
+      dropdownTransition
     );
   }
 
@@ -2789,14 +2725,18 @@ function getQuestDisplayName(questName) {
   // TRANSITIONS / ACTIONS
   // =========================================================
 
-  function handleTransition(
+  async function handleTransition(
     page,
     buttonIndex,
-    destination
+    destination,
+    source
   ) {
-    if (transitionLocked) {
+    if (uiBusy || transitionLocked || currentPageId !== page.id) {
       return;
     }
+    const selected = page.buttons.find(button => Number(button.index) === buttonIndex);
+    if (source !== dropdownTransition && selected?.next !== destination) return;
+    if (selected && !checkButtonCondition(page.condition?.[buttonIndex], page, selected, findPageContext(page.id))) return;
 
     transitionLocked =
       true;
@@ -3336,7 +3276,7 @@ function getQuestDisplayName(questName) {
 
 
     if (timerStarted) {
-      persist();
+      if (!await persist()) return;
 
       toast(
         TEXT.progressSavedTimer
@@ -3381,14 +3321,19 @@ function getQuestDisplayName(questName) {
       ] =
         destination;
 
-      persist();
+      if (!await persist()) return;
 
       return showHome();
     }
 
 
+    if (destination === "TITLE_SCREEN") {
+      save = QRCQAdventureCompletion.finishTrustedBuiltIn(save);
+      if (!await persist()) return;
+      return showAdventureVictory();
+    }
     if (mutated) {
-      persist();
+      if (!await persist()) return;
     }
 
     resolveDestination(
@@ -3408,13 +3353,6 @@ function getQuestDisplayName(questName) {
       destination === "HOME"
     ) {
       return showHome();
-    }
-
-    if (
-      destination ===
-      "TITLE_SCREEN"
-    ) {
-      return showWin();
     }
 
     if (
@@ -3455,60 +3393,6 @@ function getQuestDisplayName(questName) {
 
   // =========================================================
   // WIN SCREEN
-  // =========================================================
-
-  function showWin() {
-    stopCamera();
-
-    shell(`
-      <section class="win">
-
-        <div class="win-inner">
-
-          <div
-            class="win-crown"
-            aria-hidden="true"
-          >
-            ♛
-          </div>
-
-          <h1>
-            ${esc(TEXT.youWon)}
-          </h1>
-
-          <p>
-            ${esc(TEXT.demoComplete)}
-          </p>
-
-          ${
-            DEBUG
-              ? `
-                <button
-                  class="secondary"
-                  id="winHome"
-                  type="button"
-                >
-                  ${esc(TEXT.home)}
-                </button>
-              `
-              : ""
-          }
-
-        </div>
-
-      </section>
-    `);
-
-    if (DEBUG) {
-      document
-        .getElementById("winHome")
-        .onclick = showHome;
-    }
-  }
-
-
-  // =========================================================
-  // UNKNOWN QR
   // =========================================================
 
   function showUnknownQR() {
@@ -3574,6 +3458,7 @@ function getQuestDisplayName(questName) {
   function showDataError(
     detail
   ) {
+    if (transitionLocked && !uiBusy && !play) save = session.saved();
     stopCamera();
 
     console.error(
@@ -4033,6 +3918,47 @@ function getQuestDisplayName(questName) {
 
 
   function showDebug() {
+    if (play) {
+      play.close();
+      shell('<section class="card" id="download-debug"></section>', { back: showSettings });
+      const panel = document.getElementById("download-debug");
+      const heading = document.createElement("h2");
+      heading.textContent = session.active.adventure.manifest.name;
+      panel.append(heading);
+      screenButton(panel, d("Simulate scan", "Beolvasás szimulálása"), () => {
+        const qr = window.prompt(d("QR code", "QR-kód"));
+        if (qr !== null) { scannerLocked = false; acceptScannedText(qr); }
+      });
+      const adventure = session.active.adventure;
+      const routes = Object.values(adventure.scenarioData?.scenarios || {});
+      const codes = new Set(routes.length ? routes.flatMap(route => route.sequence) : Object.keys(adventure.gameData.encounters));
+      const select = document.createElement("select");
+      select.setAttribute("aria-label", d("Encounter QR", "Találkozás QR-kódja"));
+      for (const qr of codes) select.add(new Option(qr, qr));
+      panel.append(select);
+      screenButton(panel, d("Scan selected QR", "Kiválasztott QR-kód beolvasása"), () => {
+        scannerLocked = false;
+        acceptScannedText(select.value);
+      });
+      const state = play.getProgress();
+      for (const [label, value] of [
+        [TEXT.inventory, state.inventory], [TEXT.objectives, state.quests],
+        [d("Flags and counters", "Jelzők és számlálók"), { flags: state.flags, counters: state.itemState.counters }],
+        [d("Knowledge", "Ismeretek"), state.knowledge],
+        [d("Timers", "Időzítők"), { encounters: state.timers, items: state.itemTimers }],
+        [d("Save diagnostics", "Mentési diagnosztika"), state]
+      ]) {
+        const details = document.createElement("details");
+        const labelNode = document.createElement("summary");
+        labelNode.textContent = label;
+        const diagnostics = document.createElement("pre");
+        diagnostics.className = "adventure-diagnostics";
+        diagnostics.textContent = JSON.stringify(value, null, 2);
+        details.append(labelNode, diagnostics);
+        panel.append(details);
+      }
+      return;
+    }
     if (!isDebugEnabled()) return showSettings();
     stopCamera();
 
@@ -4188,7 +4114,7 @@ function getQuestDisplayName(questName) {
         </div>
 
         <div class="debug-section">
-          <h3>${esc(TEXT.jumpToPageId)}</h3>
+          <h3>${esc(d("Developer override · jump to page", "Fejlesztői felülbírálás · ugrás oldalra"))}</h3>
 
           <div class="debug-row debug-jump-row">
             <input
@@ -4286,7 +4212,7 @@ function getQuestDisplayName(questName) {
                         type="button"
                         data-debug-open-encounter="${esc(id)}"
                       >
-                        ${esc(d("Open", "Megnyitás"))}
+                        ${esc(d("Developer open", "Fejlesztői megnyitás"))}
                       </button>
 
                       <button
@@ -4314,10 +4240,10 @@ function getQuestDisplayName(questName) {
         "[data-debug-scan]"
       )
       .forEach(button => {
-        button.onclick = () =>
-          resolveScan(
-            button.dataset.debugScan
-          );
+        button.onclick = () => {
+          scannerLocked = false;
+          acceptScannedText(button.dataset.debugScan);
+        };
       });
 
     const pageInput = document.getElementById("jumpPage");
@@ -4346,7 +4272,7 @@ function getQuestDisplayName(questName) {
         "[data-debug-open-encounter]"
       )
       .forEach(button => {
-        button.onclick = () => {
+        button.onclick = async () => {
           const id =
             button.dataset
               .debugOpenEncounter;
@@ -4380,7 +4306,7 @@ function getQuestDisplayName(questName) {
         "[data-debug-reset-encounter]"
       )
       .forEach(button => {
-        button.onclick = () => {
+        button.onclick = async () => {
           const id =
             button.dataset
               .debugResetEncounter;
@@ -4388,7 +4314,7 @@ function getQuestDisplayName(questName) {
           delete save.encounters[id];
           delete save.timers[id];
 
-          persist();
+          if (!await persist()) return;
           showDebugEncounters();
         };
       });
@@ -4616,7 +4542,7 @@ function getQuestDisplayName(questName) {
       );
 
     if (addInventory) {
-      addInventory.onclick = () => {
+      addInventory.onclick = async () => {
         if (
           selected &&
           !save.inventory.includes(selected)
@@ -4631,7 +4557,7 @@ function getQuestDisplayName(questName) {
           save.hadItems.push(selected);
         }
 
-        persist();
+        if (!await persist()) return;
         showDebugInventory();
       };
     }
@@ -4642,13 +4568,13 @@ function getQuestDisplayName(questName) {
       );
 
     if (removeInventory) {
-      removeInventory.onclick = () => {
+      removeInventory.onclick = async () => {
         save.inventory =
           save.inventory.filter(
             item => item !== selected
           );
 
-        persist();
+        if (!await persist()) return;
         showDebugInventory();
       };
     }
@@ -4659,7 +4585,7 @@ function getQuestDisplayName(questName) {
       );
 
     if (addHad) {
-      addHad.onclick = () => {
+      addHad.onclick = async () => {
         if (
           selected &&
           !save.hadItems.includes(selected)
@@ -4667,7 +4593,7 @@ function getQuestDisplayName(questName) {
           save.hadItems.push(selected);
         }
 
-        persist();
+        if (!await persist()) return;
         showDebugInventory();
       };
     }
@@ -4678,7 +4604,7 @@ function getQuestDisplayName(questName) {
       );
 
     if (removeHad) {
-      removeHad.onclick = () => {
+      removeHad.onclick = async () => {
         if (
           save.inventory.includes(selected)
         ) {
@@ -4695,27 +4621,27 @@ function getQuestDisplayName(questName) {
             item => item !== selected
           );
 
-        persist();
+        if (!await persist()) return;
         showDebugInventory();
       };
     }
 
     document
       .getElementById("clearItemsBtn")
-      .onclick = () => {
+      .onclick = async () => {
         save.inventory = [];
-        persist();
+        if (!await persist()) return;
         showDebugInventory();
       };
 
     document
       .getElementById("clearHadItemsBtn")
-      .onclick = () => {
+      .onclick = async () => {
         save.hadItems = [
           ...save.inventory
         ];
 
-        persist();
+        if (!await persist()) return;
         showDebugInventory();
       };
   }
@@ -4860,7 +4786,7 @@ function getQuestDisplayName(questName) {
       );
 
     if (setButton) {
-      setButton.onclick = () => {
+      setButton.onclick = async () => {
         const status =
           document
             .getElementById(
@@ -4874,7 +4800,7 @@ function getQuestDisplayName(questName) {
           save.quests[selected] = status;
         }
 
-        persist();
+        if (!await persist()) return;
         showDebugQuests();
       };
     }
@@ -5040,7 +4966,7 @@ function getQuestDisplayName(questName) {
       );
 
     if (add) {
-      add.onclick = () => {
+      add.onclick = async () => {
         if (
           selected &&
           !save.knowledge.includes(selected)
@@ -5048,7 +4974,7 @@ function getQuestDisplayName(questName) {
           save.knowledge.push(selected);
         }
 
-        persist();
+        if (!await persist()) return;
         showDebugKnowledge();
       };
     }
@@ -5059,13 +4985,13 @@ function getQuestDisplayName(questName) {
       );
 
     if (remove) {
-      remove.onclick = () => {
+      remove.onclick = async () => {
         save.knowledge =
           save.knowledge.filter(
             id => id !== selected
           );
 
-        persist();
+        if (!await persist()) return;
         showDebugKnowledge();
       };
     }
@@ -5256,7 +5182,7 @@ function getQuestDisplayName(questName) {
       };
     }
 
-    const setCounter = value => {
+    const setCounter = async value => {
       if (!selected) {
         return;
       }
@@ -5276,7 +5202,7 @@ function getQuestDisplayName(questName) {
         selected.key
       ] = number;
 
-      persist();
+      if (!await persist()) return;
       showDebugCounters();
     };
 
@@ -5437,11 +5363,11 @@ function getQuestDisplayName(questName) {
 
     document
       .getElementById("toggleCastleOpen")
-      .onclick = () => {
+      .onclick = async () => {
         save.flags.castleOpen =
           !save.flags.castleOpen;
 
-        persist();
+        if (!await persist()) return;
         showDebugFlags();
       };
 
@@ -5450,7 +5376,7 @@ function getQuestDisplayName(questName) {
         "[data-debug-area]"
       )
       .forEach(button => {
-        button.onclick = () => {
+        button.onclick = async () => {
           const area =
             button.dataset.debugArea;
 
@@ -5468,7 +5394,7 @@ function getQuestDisplayName(questName) {
               .push(area);
           }
 
-          persist();
+          if (!await persist()) return;
           showDebugFlags();
         };
       });
@@ -5607,7 +5533,7 @@ function getQuestDisplayName(questName) {
         "[data-debug-expire-timer]"
       )
       .forEach(button => {
-        button.onclick = () => {
+        button.onclick = async () => {
           const id =
             button.dataset
               .debugExpireTimer;
@@ -5617,7 +5543,7 @@ function getQuestDisplayName(questName) {
               Date.now() - 1;
           }
 
-          persist();
+          if (!await persist()) return;
           showDebugTimers();
         };
       });
@@ -5627,7 +5553,7 @@ function getQuestDisplayName(questName) {
         "[data-debug-delete-timer]"
       )
       .forEach(button => {
-        button.onclick = () => {
+        button.onclick = async () => {
           const id =
             button.dataset
               .debugDeleteTimer;
@@ -5640,21 +5566,21 @@ function getQuestDisplayName(questName) {
             delete save.encounters[id];
           }
 
-          persist();
+          if (!await persist()) return;
           showDebugTimers();
         };
       });
 
     document
       .getElementById("expireTimers")
-      .onclick = () => {
+      .onclick = async () => {
         Object.values(save.timers)
           .forEach(timer => {
             timer.endAt =
               Date.now() - 1;
           });
 
-        persist();
+        if (!await persist()) return;
         showDebugTimers();
       };
   }
@@ -5764,15 +5690,15 @@ function getQuestDisplayName(questName) {
 
     document
       .getElementById("clearItemsSaveBtn")
-      .onclick = () => {
+      .onclick = async () => {
         save.inventory = [];
-        persist();
+        if (!await persist()) return;
         showDebugSaveTools();
       };
 
     document
       .getElementById("resetSave")
-      .onclick = () => {
+      .onclick = async () => {
         if (
           !confirm(
             TEXT.resetProgressQuestion
@@ -5781,17 +5707,13 @@ function getQuestDisplayName(questName) {
           return;
         }
 
-        localStorage.removeItem(
-          SAVE_KEY
-        );
-
-        save = defaultSave();
+        save = session.fresh();
 
         debugSelectedItem = null;
         debugSelectedQuest = null;
         debugSelectedCounter = null;
 
-        persist();
+        if (!await persist()) return;
 
         toast(
           TEXT.allProgressReset
@@ -5826,7 +5748,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=40");
+        .register("./sw.js?v=41");
 
       await navigator
         .serviceWorker
@@ -5853,6 +5775,14 @@ function getQuestDisplayName(questName) {
   // =========================================================
   // EVENTS / START
   // =========================================================
+
+  for (const eventName of ["click", "submit", "change"]) {
+    app.addEventListener(eventName, event => {
+      if (!uiBusy) return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    }, true);
+  }
 
   document.addEventListener(
     "keydown",
@@ -5901,7 +5831,14 @@ function getQuestDisplayName(questName) {
 
   window.addEventListener(
     "pagehide",
-    stopCamera
+    event => {
+      stopCamera();
+      if (!event.persisted) {
+        disposeScreen?.();
+        window.QRCQ_ACTIVE_ASSETS?.dispose();
+        for (const url of Object.values(window.QRCQ_MOD_IMAGES || {})) URL.revokeObjectURL(url);
+      }
+    }
   );
 
 
@@ -5931,7 +5868,8 @@ function getQuestDisplayName(questName) {
   );
 
 
-  showHome();
+  if (save.completed) showAdventureVictory();
+  else showHome();
   registerOffline();
 
 })();

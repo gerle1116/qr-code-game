@@ -15,8 +15,8 @@
       cancel: 'Mégse', confirm: 'Törlés és újrajátszás', failed: 'Az új játék mentése sikertelen.', stale: 'Az aktív mentés megváltozott. Térj vissza a kalandokhoz, és nyisd meg újra.' }
   };
 
-  async function mountVictory({ container, storage, locale = 'en', onBack, onReplay } = {}) {
-    const victory = await completion.prepareVictory(storage);
+  async function mountVictory({ container, storage, locale = 'en', expectedRevision, onBack, onReplay } = {}) {
+    const victory = await completion.prepareVictory(storage, expectedRevision);
     if (!victory.ok) return victory;
     const language = locale.toLowerCase().split('-')[0] === 'hu' ? 'hu' : 'en';
     const t = key => messages[language][key];

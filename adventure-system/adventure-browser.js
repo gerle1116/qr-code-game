@@ -68,7 +68,7 @@
       CRYPTO_UNAVAILABLE: 'browserError', IMAGE_DECODER_UNAVAILABLE: 'browserError' };
     return translate(keys[code] || 'genericError');
   }
-  function createAdventureBrowser({ container, storage, catalogURL = catalogAPI.DEFAULT_CATALOG_URL, locale = 'en', messages = {}, dependencies = {} } = {}) {
+  function createAdventureBrowser({ container, storage, catalogURL = catalogAPI.DEFAULT_CATALOG_URL, locale = 'en', messages = {}, dependencies = {}, onActivated } = {}) {
     if (!container?.ownerDocument || !storage?.recover || !storage?.snapshot) throw new TypeError('Supply a DOM container and Stage 8 storage.');
     const doc = container.ownerDocument, win = doc.defaultView, t = createTranslator(locale, messages);
     const root = doc.createElement('section'); root.className = 'ab'; root.lang = locale;
@@ -283,7 +283,9 @@
           await handle.cancel(); pending = null; closeDialog(); installationError(result); await refreshActive(); return;
         }
         pending = null; busy = false; closeDialog(); showProgress({ phase: 'complete' }); meter.value = 100; meter.hidden = false; byteText.textContent = '';
-        lastEntry = null; await refreshActive(); syncButtons();
+        lastEntry = null;
+        onActivated?.(result);
+        await refreshActive(); syncButtons();
       } catch (e) {
         if (!destroyed && seq === operationSeq) { committing = false; await handle.cancel().catch(() => {}); pending = null; closeDialog(); installationError(e); await refreshActive(); }
       } finally { committing = false; }

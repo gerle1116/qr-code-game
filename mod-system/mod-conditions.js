@@ -82,6 +82,7 @@
             return Object.prototype.hasOwnProperty.call(quests,quest)?quests[quest]:undefined;
           } else if(key==="flags"){
             take(".");const flag=peek();pos++;
+            if(flag==="castleOpen")return flags.castleOpen===true;
             if(flag!=="unlockedAreas")throw Error("Unsupported save flag in mod condition");
             list=flags.unlockedAreas||[];
           } else throw Error("Unsupported save field in mod condition");
