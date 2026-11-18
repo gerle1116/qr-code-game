@@ -255,6 +255,7 @@
     }
 
     async function confirmCheckpoint() {
+      if (live) return fail('GAMEPLAY_TRANSITION_REQUIRED');
       const denied = locked(); if (denied) return denied;
       if (!linear || !current || !resolver.authorizeMutation(current.permission)) return fail('NO_AUTHORIZED_CHECKPOINT');
       if (!current.permission.canCompleteCheckpoint) return fail('NO_AUTHORIZED_CHECKPOINT');

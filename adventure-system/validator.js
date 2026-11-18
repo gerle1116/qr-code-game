@@ -17,6 +17,43 @@ const qr = v => typeof v === 'string' && /^\d{2}$/.test(v);
 const safePath = v => typeof v === 'string' && /^[a-zA-Z0-9_-]+(?:\/[a-zA-Z0-9_.-]+)*\.[a-zA-Z0-9]+$/.test(v) &&
   v.split('/').every(p => p !== '.' && p !== '..' && !p.includes(':'));
 
+const MAX_IMAGE_EDGE = 4096;
+const MAX_IMAGE_PIXELS = 12000000;
+function checkImage(bytes, name) {
+  const tag = (at, value) => [...value].every((c, i) => bytes[at + i] === c.charCodeAt(0));
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  let width, height;
+  if (name.endsWith('.png') && bytes.length >= 33 && [137,80,78,71,13,10,26,10].every((v, i) => bytes[i] === v) &&
+      view.getUint32(8) === 13 && tag(12, 'IHDR')) {
+    width = view.getUint32(16); height = view.getUint32(20);
+  } else if (/\.jpe?g$/.test(name) && bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255) {
+    for (let at = 2; at + 4 <= bytes.length && bytes[at++] === 255;) {
+      while (bytes[at] === 255) at++;
+      const marker = bytes[at++];
+      if (marker === 0xda || marker === 0xd9 || at + 2 > bytes.length) break;
+      const size = view.getUint16(at);
+      if (size < 2 || at + size > bytes.length) break;
+      if (size >= 8 && marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+        height = view.getUint16(at + 3); width = view.getUint16(at + 5); break;
+      }
+      at += size;
+    }
+  } else if (name.endsWith('.webp') && bytes.length >= 25 && tag(0, 'RIFF') && tag(8, 'WEBP')) {
+    if (tag(12, 'VP8X') && bytes.length >= 30) {
+      const read24 = at => bytes[at] + 256 * bytes[at + 1] + 65536 * bytes[at + 2];
+      width = 1 + read24(24); height = 1 + read24(27);
+    } else if (tag(12, 'VP8L') && bytes[20] === 0x2f) {
+      const bits = view.getUint32(21, true);
+      width = 1 + (bits & 0x3fff); height = 1 + ((bits >>> 14) & 0x3fff);
+    } else if (tag(12, 'VP8 ') && bytes.length >= 30 && bytes[23] === 0x9d && bytes[24] === 1 && bytes[25] === 0x2a) {
+      width = view.getUint16(26, true) & 0x3fff; height = view.getUint16(28, true) & 0x3fff;
+    }
+  }
+  if (!width || !height) throw Error('expected PNG, JPEG or WebP image signature and dimensions');
+  if (width > MAX_IMAGE_EDGE || height > MAX_IMAGE_EDGE || width * height > MAX_IMAGE_PIXELS)
+    throw Error('image dimensions exceed the package limit');
+}
+
 // The schemas deliberately use only this small, explicit JSON Schema subset.
 function checkSchema(value, schema, at, errors, root = schema) {
   if (schema.$ref) schema = schema.$ref.slice(2).split('/').reduce((v, k) => v[k], root);
@@ -86,13 +123,7 @@ function validateSource(directory, fs, path) {
         if (fs.lstatSync(current).isSymbolicLink()) throw Error('symbolic links are forbidden');
       }
       if (!fs.statSync(target).isFile()) throw Error('not a regular file');
-      if (image) {
-        const bytes = fs.readFileSync(target);
-        const png = name.endsWith('.png') && bytes.length >= 8 && [137,80,78,71,13,10,26,10].every((v, i) => bytes[i] === v);
-        const jpg = /\.jpe?g$/.test(name) && bytes[0] === 255 && bytes[1] === 216 && bytes[2] === 255;
-        const webp = name.endsWith('.webp') && new TextDecoder().decode(bytes.subarray(0, 4)) === 'RIFF' && new TextDecoder().decode(bytes.subarray(8, 12)) === 'WEBP';
-        if (!png && !jpg && !webp) throw Error('expected PNG, JPEG or WebP image signature');
-      }
+      if (image) checkImage(fs.readFileSync(target), name);
       return target;
     } catch (e) { error(at, `${name}: ${e.message}`); return null; }
   }
@@ -111,6 +142,7 @@ function validateSource(directory, fs, path) {
       else if (entry.isDirectory()) walk(file);
       else if (!safePath(rel) || !/\.(json|png|jpg|jpeg|webp)$/.test(rel)) error(rel, 'unsupported package file');
       else if (rel.endsWith('.json')) read(rel, rel);
+      else local(rel, rel, true);
     }
   }
   try { walk(root); } catch (e) { error('package', e.message); }
@@ -303,5 +335,5 @@ function validateFiles(files) {
     return validateSource('', fs, path);
   } catch (e) { return { valid: false, errors: [e.message], warnings: [] }; }
 }
-return { validatePackage, validateFiles, checkSchema, parseJSON, safePath };
+return { validatePackage, validateFiles, checkSchema, checkImage, parseJSON, safePath };
 });

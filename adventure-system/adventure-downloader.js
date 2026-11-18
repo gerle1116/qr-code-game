@@ -85,7 +85,12 @@
   }
   async function validateAdventurePackage(files, catalogEntry, { decodeImage: decode = decodeImage, signal } = {}) {
     try {
-      abort(signal); const validation = validator.validateFiles(files);
+      abort(signal);
+      for (const [name, bytes] of Object.entries(files || {})) if (/\.(png|jpe?g|webp)$/.test(name) && bytes instanceof Uint8Array) {
+        try { validator.checkImage(bytes, name); }
+        catch (e) { error('INVALID_IMAGE', `${name}: ${e.message}`); }
+      }
+      const validation = validator.validateFiles(files);
       if (!validation.valid) return fail('INVALID_PACKAGE', 'Stage 1 adventure validation failed.', validation.errors);
       const adventure = storageAPI.adventureFromFiles(files), e = entry(catalogEntry), m = adventure.manifest;
       const metadata = ['id', 'version', 'type', 'language', 'name', 'description', 'author', 'location', 'estimatedMinutes', 'minimumAge'];

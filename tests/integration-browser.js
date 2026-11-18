@@ -122,9 +122,9 @@
     await click('#backBtn');
   });
   await test('the new worker activates over the old registration and keeps the backup and previous shell', async () => {
-    await wait(() => win().navigator.serviceWorker.controller?.scriptURL.endsWith('/sw.js?v=41'), 420);
+    await wait(() => win().navigator.serviceWorker.controller?.scriptURL.endsWith('/sw.js?v=42'), 420);
     check(!!await (await caches.open('qr-city-quest-v40')).match('/old-shell-marker'));
-    check(!!await (await caches.open('qr-city-quest-v41')).match('/adventure-system/adventure-completion.js?v=41'));
+    check(!!await (await caches.open('qr-city-quest-v42')).match('/adventure-system/adventure-completion.js?v=42'));
     check(localStorage.getItem(legacyKey) === backup);
   });
   await test('original physical item scans persist once and namespaced mods still resolve', async () => {

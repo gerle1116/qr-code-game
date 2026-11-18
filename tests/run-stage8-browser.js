@@ -7,13 +7,18 @@ module.exports = async function runBrowser(browser, profile, pageURL, { keyboard
   let socket, stderr = '', connection;
   try {
     const endpoint = await new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => reject(Error('Chrome debugging connection timed out.')), 10000);
+      const timeout = setTimeout(() => reject(Error('Chromium debugging connection timed out.\n' + stderr)), 30000);
       child.on('error', e => { clearTimeout(timeout); reject(e); });
+      child.once('exit', code => { clearTimeout(timeout); reject(Error(`Chromium exited during startup (${code}).\n${stderr}`)); });
       child.stderr.on('data', chunk => { stderr += chunk; const match = stderr.match(/DevTools listening on (ws:\/\/[^\s]+)/); if (match) { clearTimeout(timeout); resolve(match[1]); } });
     });
     socket = new WebSocket(endpoint);
     await new Promise((resolve, reject) => { socket.addEventListener('open', resolve, { once: true }); socket.addEventListener('error', reject, { once: true }); });
     let id = 0; const pending = new Map();
+    socket.addEventListener('close', () => {
+      for (const handlers of pending.values()) handlers.reject(Error('Chromium debugging connection closed.'));
+      pending.clear();
+    });
     socket.addEventListener('message', event => {
       const value = JSON.parse(event.data); if (!value.id) return;
       const handlers = pending.get(value.id); pending.delete(value.id);

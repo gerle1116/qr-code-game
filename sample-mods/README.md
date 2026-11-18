@@ -9,6 +9,9 @@ It copies the full trusted English game structure, translates the Merchant's fir
 dialogue, and translates several app interface labels. Most game dialogue and
 many messages intentionally remain in English.
 
+Stage 12 added encounter `45`, `Crystal Book`, and the current picture metadata
+for six existing items and four book pages. The Spanish preview dialogue is unchanged.
+
 The preview pack has no `type` field. Its `manifest.js` declares
 `target: "core"` and `languages: ["es"]`, so installing and enabling it
 adds **español** to Settings → Language.

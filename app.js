@@ -9,7 +9,8 @@
   let uiBusy = false;
   let disposeScreen = null;
   const DEBUG_VISIBLE_KEY = "qr-city-quest-debug-visible-v1";
-  const DEBUG = new URLSearchParams(location.search).get("debug") === "1";
+  const LOCAL_DEV = ["localhost", "127.0.0.1", "[::1]"].includes(location.hostname);
+  const DEBUG = LOCAL_DEV && new URLSearchParams(location.search).get("debug") === "1";
   const DEBUG_SECRET = "QRCITY";
   const dropdownTransition = Symbol("dropdown");
   const LANGUAGE = window.QR_CITY_QUEST_LANGUAGE || "en";
@@ -452,7 +453,8 @@
     });
     const browser = QRCQAdventureBrowser.createAdventureBrowser({
       container: document.getElementById("adventure-browser"), storage: session.storage, locale: LANGUAGE,
-      catalogURL: QRCQAdventureCatalog.DEVELOPMENT_CATALOG_URL, onActivated: reload,
+      catalogURL: LOCAL_DEV ? QRCQAdventureCatalog.DEVELOPMENT_CATALOG_URL : QRCQAdventureCatalog.DEFAULT_CATALOG_URL,
+      onActivated: reload,
       messages: {
         integration: d("Resume the active adventure from this screen.", "Innen folytathatod az aktív kalandot."),
         replaceTitle: d("Replace your current adventure?", "Lecseréled a jelenlegi kalandot?"),
@@ -713,7 +715,7 @@
     if (name.includes(":")) {
       return (window.QRCQ_MOD_IMAGES || {})[name] || null;
     }
-    return "./images/" + encodeURIComponent(name) + ".png?v=41";
+    return "./images/" + encodeURIComponent(name) + ".png?v=42";
   }
 
   function getItemDefinitionByQr(qr) {
@@ -5748,7 +5750,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=41");
+        .register("./sw.js?v=42");
 
       await navigator
         .serviceWorker
