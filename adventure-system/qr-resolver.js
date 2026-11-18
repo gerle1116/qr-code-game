@@ -42,6 +42,10 @@
       const created = scenarioAPI.createScenarioEngine(scenarios, game);
       if (!created.ok) return failure(created.code);
       engine = created.engine;
+      if (options.initialScenarioState !== undefined) {
+        const restored = engine.restoreState(options.initialScenarioState);
+        if (!restored.ok) return failure(restored.code);
+      }
     } else if (scenarios !== undefined || manifest.scenarios !== undefined) return failure('INVALID_DATA');
 
     let current = null;
@@ -93,7 +97,19 @@
       current = null;
       return completed;
     }
+    // Stage 10 can resume authored route dialogue after route-only progress was saved.
+    // Ordinary scans retain their Stage 3 behavior on a finished route.
+    function reopenFinishedCheckpoint(qr) {
+      current = null;
+      const status = engine?.getStatus();
+      if (!status?.finished || !status.state.completedCheckpoints.includes(qr))
+        return failure('COMPLETED_CHECKPOINT_REQUIRED');
+      const encounterId = scenarios.scenarios[status.scenarioId].encounters[qr];
+      return publish({ ...status, qr, type: 'encounter', encounterId, encounter: copy(game.encounters[encounterId]),
+        access: 'full', readOnly: false, canCompleteCheckpoint: false, progressionSensitiveActionsAllowed: true });
+    }
     return { ok: true, resolver: Object.freeze({ scan, authorizeMutation, completeCheckpoint,
+      reopenFinishedCheckpoint,
       getStatus: () => engine ? engine.getStatus() : { ok: true, scenarioId: null } }) };
   }
   return { createQRResolver };

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adventure Completion Tester</title>
+  <link rel="stylesheet" href="adventure-browser.css">
+  <link rel="stylesheet" href="adventure-victory.css">
+  <style>
+    body { margin: 0; padding: 1rem; background: #eee9df; color: #192e23; font: 1rem/1.5 system-ui, sans-serif; }
+    .tester { max-width: 48rem; margin: auto; }
+    .tester fieldset { min-width: 0; margin-block: 1rem; border: 1px solid #9d896b; border-radius: .5rem; background: #fffaf1; }
+    .tester button, .tester select, .tester input[type=text] { min-height: 44px; font: inherit; margin: .25rem; }
+    .tester input[type=text] { width: 8ch; }
+    .tester pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+    #interaction button { display: block; max-width: 100%; }
+  </style>
+</head>
+<body>
+  <main class="tester">
+    <h1>Adventure Completion Tester</h1>
+    <p>Developer controls use an isolated save. Installing a different sample replaces the current test save.</p>
+    <fieldset id="controls">
+      <legend>Developer controls</legend>
+      <label>Sample <select id="sample"><option>linear</option><option>circular</option><option>non-linear</option></select></label>
+      <button id="install">Install local sample</button>
+      <button id="load">Reopen stored save</button>
+      <label>Victory interface <select id="locale"><option value="en">English</option><option value="hu">Magyar</option></select></label>
+      <div><label><input type="checkbox" id="offline"> Block tester network requests</label></div>
+      <div><label><input type="checkbox" id="fail"> Abort the next save transaction</label></div>
+      <button id="stale">Simulate another tab saving</button>
+      <form id="scan-form">
+        <label>QR <input type="text" id="qr" required autocomplete="off"></label>
+        <button>Scan</button>
+      </form>
+      <button id="checkpoint">Confirm current checkpoint</button>
+      <button id="save">Save progress or retry failed write</button>
+      <button id="victory">Open saved victory</button>
+      <section id="interaction" aria-label="Dialogue"></section>
+    </fieldset>
+    <p id="status" role="status"></p>
+    <section id="victory-screen"></section>
+    <details><summary>Inspect in-memory gameplay state</summary><pre id="progress"></pre></details>
+  </main>
+  <section id="browser" aria-label="Adventure browser"></section>
+  <script src="../mod-system/mod-conditions.js"></script>
+  <script src="../mod-system/mod-zip-reader.js"></script>
+  <script src="scenario-engine.js"></script>
+  <script src="qr-resolver.js"></script>
+  <script src="encounter-history.js"></script>
+  <script src="adventure-schemas.js"></script>
+  <script src="validator.js"></script>
+  <script src="adventure-save.js"></script>
+  <script src="adventure-catalog.js"></script>
+  <script src="adventure-zip.js"></script>
+  <script src="adventure-storage.js"></script>
+  <script src="adventure-downloader.js"></script>
+  <script src="adventure-browser.js"></script>
+  <script src="adventure-completion.js"></script>
+  <script src="adventure-victory.js"></script>
+  <script src="completion-tester.js"></script>
+</body>
+</html>

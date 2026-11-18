@@ -1,5 +1,8 @@
 # Adventure System — Stage 1
 
+For the Stage 10 engine, replay screen, and standalone tester, see
+[Adventure Completion](ADVENTURE_COMPLETION.md).
+
 This directory contains an authoring format, a local validator and three example
 adventures. Nothing here is loaded by the game. There is no downloader, browser,
 scenario selector, save migration or new runtime behavior.

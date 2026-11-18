@@ -1,0 +1,62 @@
+.av-victory {
+  box-sizing: border-box;
+  max-width: 44rem;
+  margin: 1rem auto;
+  padding: clamp(1.3rem, 5vw, 3.5rem);
+  border: 1px solid #b69561;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2rem #122b2026;
+  background: radial-gradient(ellipse at top, #35573b, #142f26 68%);
+  color: #fff4dc;
+  text-align: center;
+  font: 1rem/1.5 system-ui, sans-serif;
+  overflow-wrap: anywhere;
+}
+.av-seal {
+  display: grid;
+  place-items: center;
+  margin: auto;
+  width: 4rem;
+  height: 4rem;
+  border: 1px solid #eaca8b;
+  border-radius: 50%;
+  color: #f7d99c;
+  background: #182f23;
+  font-size: 2.4rem;
+}
+.av-victory h1 { margin: .65em 0 .25em; font: 700 clamp(2rem, 7vw, 3.25rem)/1.1 Georgia, serif; }
+.av-victory p { margin: .6rem 0; }
+.av-victory .av-type { color: #efd4a4; }
+.av-victory details {
+  text-align: left;
+  border-block: 1px solid #af956777;
+  margin: 1.5rem 0;
+}
+.av-victory summary { cursor: pointer; padding: .7rem .25rem; }
+.av-victory dl { display: grid; grid-template-columns: 1fr auto; gap: .5rem; padding: 0 .3rem; }
+.av-victory dd { margin: 0; text-align: right; }
+.av-actions { display: flex; justify-content: center; gap: .7rem; flex-wrap: wrap; }
+.av-victory button {
+  border: 1px solid #c19c62;
+  border-radius: .45rem;
+  background: #f4d699;
+  color: #1b281b;
+  cursor: pointer;
+  min-height: 44px;
+  padding: .5rem .9rem;
+  font: 650 1rem system-ui, sans-serif;
+}
+.av-victory button + button { background: #f5ecd9; }
+.av-victory :focus-visible { outline: 3px solid #c78b41; outline-offset: 3px; }
+.av-victory .av-status:empty { display: none; }
+.av-victory dialog {
+  box-sizing: border-box;
+  width: min(23rem, calc(100% - 2rem));
+  border: 1px solid #b69561;
+  border-radius: .8rem;
+  background: #fcf2df;
+  color: #182f23;
+  padding: 1.4rem;
+}
+.av-victory dialog .av-actions { margin-top: 1rem; }
+.av-victory dialog::backdrop { background: #15261dcc; }

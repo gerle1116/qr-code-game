@@ -101,6 +101,8 @@
     if (s.adventure.type !== c.identity.type) return fail('INVALID_SAVE', 'Saved adventure type does not match.');
     const errors = gameplayErrors(s);
     if (typeof s.completed !== 'boolean' || typeof s.scenarioFinished !== 'boolean') errors.push('completed and scenarioFinished must be booleans');
+    if (own(s, 'completedAt') && (!s.completed || !Number.isSafeInteger(s.completedAt) ||
+        s.completedAt < 0 || s.completedAt > 8640000000000000)) errors.push('completedAt requires a completed save and a valid timestamp');
     const history = s.encounterHistory;
     if (!record(history) || !record(history.visits) || !Number.isSafeInteger(history.distinctVisited) ||
         history.distinctVisited < 0 || (record(history.visits) &&
@@ -123,7 +125,7 @@
     const parsed = parse(data); if (!parsed.ok) return parsed;
     const legacy = parsed.value;
     if (!record(legacy) || legacy.schemaVersion !== 1) return fail('UNSUPPORTED_SAVE_VERSION', 'Legacy migration supports the actual schemaVersion 1 gameplay save.');
-    const reserved = ['adventureSaveVersion', 'adventure', 'scenarioState', 'scenarioFinished', 'encounterHistory', 'completed'];
+    const reserved = ['adventureSaveVersion', 'adventure', 'scenarioState', 'scenarioFinished', 'encounterHistory', 'completed', 'completedAt'];
     if (reserved.some(k => own(legacy, k))) return fail('MIGRATION_CONFLICT', 'Legacy save contains reserved adventure fields; explicit recovery is required.');
     const c = context(adventure); if (!c.ok) return c;
     if (c.identity.id !== LEGACY_ADVENTURE.id || c.identity.version !== LEGACY_ADVENTURE.version || c.identity.type !== 'non-linear') return fail('LEGACY_ADVENTURE_MISMATCH', 'Legacy progress belongs to the original non-linear game, not a new adventure.');
