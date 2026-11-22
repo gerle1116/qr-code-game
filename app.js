@@ -433,7 +433,7 @@
   function showAdventures() {
     stopCamera();
     play?.close();
-    shell('<div class="adventure-actions" id="adventure-actions"></div><div id="adventure-browser"></div>', { back: showHome });
+    shell('<div class="adventure-actions" id="adventure-actions"></div><div id="adventure-browser"></div>');
     const controls = document.getElementById("adventure-actions");
     const reload = () => location.reload();
     const resume = () => { if (!browser.getState().committing) showHome(); };
@@ -464,7 +464,6 @@
         unfinished: d("Unfinished progress saved", "Befejezetlen haladás mentve")
       }
     });
-    document.getElementById("backBtn").onclick = resume;
     disposeScreen = () => { void browser.destroy(); };
   }
 
@@ -5750,7 +5749,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=42");
+        .register("./sw.js?v=43");
 
       await navigator
         .serviceWorker
