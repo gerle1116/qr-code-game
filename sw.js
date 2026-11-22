@@ -1,4 +1,4 @@
-const CACHE = "qr-city-quest-v42";
+const CACHE = "qr-city-quest-v43";
 const VERSION = Number(CACHE.slice(CACHE.lastIndexOf("v") + 1));
 
 const PRECACHE = [
@@ -7,8 +7,8 @@ const PRECACHE = [
 
   "./styles.css?v=42",
 
-  "./language-loader.js?v=42",
-  "./app.js?v=42",
+  "./language-loader.js?v=43",
+  "./app.js?v=43",
 
   "./mod-system/mod-conditions.js?v=42",
   "./mod-system/mod-validator.js?v=42",
