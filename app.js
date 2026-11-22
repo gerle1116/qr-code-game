@@ -2180,6 +2180,7 @@ function getQuestDisplayName(questName) {
       );
 
     let controls = "";
+    let hideDuplicateContinueBack = false;
 
     if (dropdown) {
       const data =
@@ -2239,6 +2240,20 @@ function getQuestDisplayName(questName) {
         visibleButtons(
           page,
           context
+        );
+
+      // The single "Continue adventure" choice already leaves this screen.
+      // Do not show an additional header Back button beside it.
+      hideDuplicateContinueBack =
+        buttons.length === 1 &&
+        [
+          "continue adventure",
+          "continue the adventure",
+          "kaland folytatása"
+        ].includes(
+          String(buttons[0].label || "")
+            .trim()
+            .toLocaleLowerCase()
         );
 
       controls =
@@ -2338,8 +2353,9 @@ function getQuestDisplayName(questName) {
 
       </section>
     `, {
-      back:
-        context.type === "item"
+      back: hideDuplicateContinueBack
+        ? null
+        : context.type === "item"
           ? showInventory
           : showHome
     });
@@ -5826,7 +5842,7 @@ function getQuestDisplayName(questName) {
     try {
       await navigator
         .serviceWorker
-        .register("./sw.js?v=40");
+        .register("./sw.js?v=41");
 
       await navigator
         .serviceWorker
