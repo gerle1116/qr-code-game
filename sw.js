@@ -1,4 +1,4 @@
-const CACHE = "qr-city-quest-v40";
+const CACHE = "qr-city-quest-v41";
 
 const PRECACHE = [
   "./",
@@ -7,7 +7,7 @@ const PRECACHE = [
   "./styles.css?v=40",
 
   "./language-loader.js?v=40",
-  "./app.js?v=40",
+  "./app.js?v=41",
 
   "./mod-system/mod-conditions.js?v=40",
   "./mod-system/mod-validator.js?v=40",
