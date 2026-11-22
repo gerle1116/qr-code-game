@@ -121,7 +121,7 @@
         }
       }
 
-      await loadScript("app.js?v=39");
+      await loadScript("app.js?v=41");
     } catch (error) {
       console.error("QR City Quest language loading error:", error);
       app.innerHTML = `
